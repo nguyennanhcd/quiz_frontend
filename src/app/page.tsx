@@ -1,4 +1,5 @@
 import Header from '@/components/Header'
+import PageContent from '@/components/HomeContent'
 import SideBar from '@/components/SideBar'
 
 export default function QuizHubDashboard() {
@@ -9,6 +10,9 @@ export default function QuizHubDashboard() {
 
       {/* Sidebar */}
       <SideBar />
+
+      {/* Main Content */}
+      <PageContent />
     </div>
   )
 }
