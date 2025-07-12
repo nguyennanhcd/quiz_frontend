@@ -18,7 +18,7 @@ const Header = () => {
           <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4' />
           <Input
             placeholder='Search quizzes, categories, creators...'
-            className='pl-10 bg-slate-700 border-slate-600 text-default placeholder-slate-400'
+            className='pl-10 bg-main border-slate-600 placeholder-white-primary'
           />
         </div>
       </div>

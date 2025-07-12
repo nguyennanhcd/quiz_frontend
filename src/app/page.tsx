@@ -8,11 +8,13 @@ export default function QuizHubDashboard() {
       {/* Top Navigation */}
       <Header />
 
-      {/* Sidebar */}
-      <SideBar />
+      <div className='flex'>
+        {/* Sidebar */}
+        <SideBar />
 
-      {/* Main Content */}
-      <PageContent />
+        {/* Main Content */}
+        <PageContent />
+      </div>
     </div>
   )
 }
