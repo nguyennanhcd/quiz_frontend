@@ -3,6 +3,41 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 960px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1536px;
+
+  --color-default: oklch(0.65 0.15 270);
+  --color-default-hover: oklch(0.72 0.15 270);
+  --color-primary: oklch(0.2291 0.0115 285.46);
+  --color-white-primary: 	oklch(0.98 0 0);
+  --color-main: oklch(0.2795 0.0368 260.03);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-primary text-white leading-loose;
+  }
+  .h1 {
+    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
+  }
+  .h2 {
+    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
+  }
+  .h3 {
+    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
+  }
+  .clip-path {
+    clip-path: circle(50% at 50% 50%);
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

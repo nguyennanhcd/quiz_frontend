@@ -8,7 +8,7 @@ const Header = () => {
     <header className='flex items-center justify-between px-6 py-4 bg-slate-800 border-b border-slate-700'>
       <div className='flex items-center space-x-4'>
         <div className='flex items-center space-x-2'>
-          <BookOpen className='h-8 w-8 text-blue-400' />
+          <BookOpen className='h-8 w-8 text-default' />
           <span className='text-xl font-bold'>QuizHub</span>
         </div>
       </div>
@@ -18,7 +18,7 @@ const Header = () => {
           <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4' />
           <Input
             placeholder='Search quizzes, categories, creators...'
-            className='pl-10 bg-slate-700 border-slate-600 text-white placeholder-slate-400'
+            className='pl-10 bg-slate-700 border-slate-600 text-default placeholder-slate-400'
           />
         </div>
       </div>
