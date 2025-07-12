@@ -14,7 +14,7 @@ const PageContent = () => {
             <br />
             Starts Here:
             <br />
-            <span className='text-blue-400'>Play, Share, Earn!</span>
+            <span className='text-default'>Play, Share, Earn!</span>
           </h1>
           <p className='text-xl text-slate-300 mb-8'>
             Build engaging quizzes, challenge others, and earn rewards
@@ -29,14 +29,14 @@ const PageContent = () => {
             >
               Create Quiz
             </Button>
-            <Button size='lg' className='bg-blue-600 hover:bg-blue-700'>
+            <Button size='lg' className='bg-default hover:bg-default-hover'>
               Join Contest
             </Button>
           </div>
         </div>
 
         {/* Decorative Elements */}
-        <div className='absolute top-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-full transform rotate-12'>
+        <div className='absolute top-4 right-4 bg-default text-white px-4 py-2 rounded-full transform rotate-12'>
           <span className='font-bold'>Science Quiz</span>
         </div>
         <div className='absolute bottom-8 right-8 w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-20'></div>
