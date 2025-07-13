@@ -1,30 +1,47 @@
-import React from 'react'
+'use client'
+
 import { LogOut } from 'lucide-react'
 import { sidebarItems } from '@/constant/sideBarItems'
 
-const SideBar = () => {
-  return (
-    <aside className='w-64 bg-main min-h-screen border-r border-slate-700 flex flex-col gap-50'>
-      <nav className='p-4 space-y-2'>
-        {sidebarItems.map((item, index) => (
-          <div
-            key={index}
-            className={`flex items-center space-x-3 px-3 py-2 rounded-lg cursor-pointer transition-colors ${
-              item.active
-                ? 'bg-default text-primary'
-                : 'text-white-primary hover:bg-slate-700 hover:text-white'
-            }`}
-          >
-            <item.icon className='h-5 w-5' />
-            <span className='text-sm font-medium'>{item.label}</span>
-          </div>
-        ))}
-      </nav>
+interface SideBarProps {
+  isCollapsed: boolean
+}
 
-      <div className='p-4 space-y-2'>
-        <div className='flex items-center space-x-3 px-3 py-2 rounded-lg cursor-pointer text-slate-300 hover:bg-slate-700 hover:text-white transition-colors'>
+const SideBar = ({ isCollapsed }: SideBarProps) => {
+  return (
+    <aside
+      className={`fixed top-20 h-[calc(100%-4rem)] left-0 z-10 ${
+        isCollapsed ? 'w-16' : 'w-64'
+      } bg-main border-r border-slate-700 flex flex-col justify-between transition-all duration-300`}
+    >
+      <div className='flex-1'>
+        {/* Navigation */}
+        <nav className=' mt-10 p-2 space-y-3'>
+          {sidebarItems.map((item, index) => (
+            <div
+              key={index}
+              className={`flex items-center px-3 py-2 rounded-lg cursor-pointer transition-colors ${
+                item.active
+                  ? 'bg-default text-primary'
+                  : 'text-white-primary hover:bg-slate-700 hover:text-white'
+              }`}
+            >
+              <item.icon className='h-5 w-5' />
+              {!isCollapsed && (
+                <span className='ml-3 text-sm font-medium'>{item.label}</span>
+              )}
+            </div>
+          ))}
+        </nav>
+      </div>
+
+      {/* Logout */}
+      <div className='p-2 transform -translate-y-30'>
+        <div className='flex items-center px-3 py-2 rounded-lg cursor-pointer text-slate-300 hover:bg-slate-700 hover:text-white transition-colors'>
           <LogOut className='h-5 w-5' />
-          <span className='text-sm font-medium'>Logout</span>
+          {!isCollapsed && (
+            <span className='ml-3 text-sm font-medium'>Logout</span>
+          )}
         </div>
       </div>
     </aside>
