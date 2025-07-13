@@ -2,6 +2,7 @@ import React from 'react'
 import { Search, MessageSquare, Bell, BookOpen } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ModeToggle } from './modeToggle'
 
 const Header = () => {
   return (
@@ -43,6 +44,8 @@ const Header = () => {
             3
           </div>
         </div>
+
+        <ModeToggle />
 
         {/* wallet section */}
         <div className='flex items-center space-x-2 p-2 border-white  rounded-lg'>

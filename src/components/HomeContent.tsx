@@ -23,13 +23,15 @@ const PageContent = () => {
           </p>
           <div className='flex space-x-4'>
             <Button
-              variant='outline'
               size='lg'
-              className='bg-white text-slate-900 hover:bg-slate-100'
+              className='text-white-primary bg-default hover:bg-default-hover'
             >
               Create Quiz
             </Button>
-            <Button size='lg' className='bg-default hover:bg-default-hover'>
+            <Button
+              size='lg'
+              className='text-white-primary bg-default hover:bg-default-hover'
+            >
               Join Contest
             </Button>
           </div>
