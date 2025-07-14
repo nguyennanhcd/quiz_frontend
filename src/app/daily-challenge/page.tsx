@@ -25,14 +25,14 @@ export default function DailyChallenge() {
   }, [])
 
   return (
-    <div className='min-h-scree p-4 md:p-6'>
-      <div className='max-w-7xl mx-auto space-y-6'>
+    <div className='min-h-scree p-4 md:p-6 text-white-primary'>
+      <div className='max-w-7xl mx-auto space-y-6 text-white-primary/70'>
         {/* Header */}
         <div className='space-y-2'>
-          <h1 className='text-3xl md:text-4xl font-bold text-gray-900'>
+          <h1 className='text-3xl md:text-4xl font-bold text-white-primary'>
             Daily Challenge
           </h1>
-          <p className='text-gray-600'>
+          <p className=''>
             A new quiz every day. Test your knowledge and compete with others!
           </p>
         </div>
@@ -112,14 +112,14 @@ export default function DailyChallenge() {
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
           {/* Quiz Section */}
           <div className='lg:col-span-2'>
-            <Card>
+            <Card className='bg-main text-white-primary'>
               <CardHeader>
                 <div className='flex justify-between items-start'>
                   <div>
                     <CardTitle className='text-xl font-bold'>
                       Science & Technology Challenge
                     </CardTitle>
-                    <p className='text-gray-600 mt-1'>
+                    <p className='text-white-primary/70 mt-1'>
                       Test your knowledge of scientific discoveries and
                       technological innovations.
                     </p>
@@ -130,7 +130,7 @@ export default function DailyChallenge() {
                   </div>
                 </div>
                 <div className='space-y-2'>
-                  <div className='flex justify-between text-sm text-gray-600'>
+                  <div className='flex justify-between text-sm text-white-primary/70'>
                     <span>Question 1 of 5</span>
                     <span>20% Complete</span>
                   </div>
@@ -147,25 +147,25 @@ export default function DailyChallenge() {
                     onValueChange={setSelectedAnswer}
                     className='space-y-3'
                   >
-                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50'>
+                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-main-hover'>
                       <RadioGroupItem value='java' id='java' />
                       <Label htmlFor='java' className='flex-1 cursor-pointer'>
                         Java
                       </Label>
                     </div>
-                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50'>
+                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-main-hover'>
                       <RadioGroupItem value='python' id='python' />
                       <Label htmlFor='python' className='flex-1 cursor-pointer'>
                         Python
                       </Label>
                     </div>
-                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50'>
+                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-main-hover'>
                       <RadioGroupItem value='html' id='html' />
                       <Label htmlFor='html' className='flex-1 cursor-pointer'>
                         HTML
                       </Label>
                     </div>
-                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50'>
+                    <div className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-main-hover'>
                       <RadioGroupItem value='javascript' id='javascript' />
                       <Label
                         htmlFor='javascript'
@@ -188,13 +188,13 @@ export default function DailyChallenge() {
 
           {/* Leaderboard */}
           <div>
-            <Card>
+            <Card className='bg-main text-white-primary'>
               <CardHeader>
                 <CardTitle>Leaderboard</CardTitle>
               </CardHeader>
               <CardContent>
                 <Tabs defaultValue='today' className='w-full'>
-                  <TabsList className='grid w-full grid-cols-3'>
+                  <TabsList className='bg-main grid w-full grid-cols-3'>
                     <TabsTrigger value='today'>Today</TabsTrigger>
                     <TabsTrigger value='week'>Week</TabsTrigger>
                     <TabsTrigger value='allTime'>All Time</TabsTrigger>
@@ -209,7 +209,7 @@ export default function DailyChallenge() {
                       {data.map((player, index) => (
                         <div
                           key={player.id}
-                          className='flex items-center space-x-3 p-3 bg-gray-50 rounded-lg'
+                          className='flex items-center space-x-3 p-3 bg-main rounded-lg'
                         >
                           <span className='text-lg'>{player.badge}</span>
                           <div className='w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm'>
