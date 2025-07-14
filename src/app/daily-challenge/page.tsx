@@ -2,7 +2,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Clock, Calendar, Trophy, Flame, User } from 'lucide-react'
+import {
+  Clock,
+  Calendar,
+  Trophy,
+  Flame,
+  User,
+  Badge,
+  ChevronRight
+} from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
@@ -24,8 +32,26 @@ export default function DailyChallenge() {
     return () => clearInterval(timer)
   }, [])
 
+  const performanceData = [
+    { day: 'Mon', yourScore: 80, avgScore: 65 },
+    { day: 'Tue', yourScore: 60, avgScore: 70 },
+    { day: 'Wed', yourScore: 90, avgScore: 70 },
+    { day: 'Thu', yourScore: 70, avgScore: 65 },
+    { day: 'Fri', yourScore: 85, avgScore: 72 },
+    { day: 'Sat', yourScore: 75, avgScore: 68 },
+    { day: 'Sun', yourScore: 95, avgScore: 75 }
+  ]
+
+  const streakRewards = [
+    { days: 3, reward: '+50 Coins' },
+    { days: 5, reward: '+100 Coins' },
+    { days: 7, reward: 'Special Badge' },
+    { days: 14, reward: 'Premium Theme' }
+  ]
+
   return (
     <div className='min-h-scree p-4 md:p-6 text-white-primary'>
+      {/* Challenge Section */}
       <div className='max-w-7xl mx-auto space-y-6 text-white-primary/70'>
         {/* Header */}
         <div className='space-y-2'>
@@ -234,6 +260,161 @@ export default function DailyChallenge() {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </div>
+
+      {/* Challenge Stats */}
+      <div className='max-w-7xl mx-auto space-y-6 text-white-primary/70 mt-10'>
+        <div className='max-w-7xl mx-auto space-y-6'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+            {/* Performance Chart */}
+            <div className='lg:col-span-2'>
+              <Card className='bg-slate-800 border-slate-700'>
+                <CardHeader>
+                  <CardTitle>Your Challenge Stats</CardTitle>
+                  <div className='flex space-x-4'>
+                    <Button
+                      variant='secondary'
+                      className='bg-slate-700 text-white'
+                    >
+                      Performance
+                    </Button>
+                    <Button variant='ghost' className='text-slate-400'>
+                      Categories
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className='space-y-4'>
+                    <div className='h-64 flex items-end justify-between space-x-2'>
+                      {performanceData.map((data, index) => (
+                        <div
+                          key={index}
+                          className='flex flex-col items-center space-y-2 flex-1'
+                        >
+                          <div className='flex items-end space-x-1 h-40'>
+                            <div
+                              className='bg-purple-500 w-6 rounded-t'
+                              style={{
+                                height: `${(data.yourScore / 100) * 160}px`
+                              }}
+                            />
+                            <div
+                              className='bg-green-500 w-6 rounded-t'
+                              style={{
+                                height: `${(data.avgScore / 100) * 160}px`
+                              }}
+                            />
+                          </div>
+                          <span className='text-sm text-slate-400'>
+                            {data.day}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className='flex items-center justify-center space-x-6 text-sm'>
+                      <div className='flex items-center space-x-2'>
+                        <div className='w-3 h-3 bg-purple-500 rounded'></div>
+                        <span>Your Score</span>
+                      </div>
+                      <div className='flex items-center space-x-2'>
+                        <div className='w-3 h-3 bg-green-500 rounded'></div>
+                        <span>Average Score</span>
+                      </div>
+                    </div>
+                    <p className='text-center text-slate-400 text-sm'>
+                      Your daily challenge performance compared to the average
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Rewards & Streaks */}
+            <Card className='bg-slate-800 border-slate-700'>
+              <CardHeader>
+                <CardTitle className='flex items-center space-x-2'>
+                  <Trophy className='h-5 w-5' />
+                  <span>Rewards & Streaks</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='space-y-6'>
+                {/* Daily Streak */}
+                <div>
+                  <div className='flex items-center space-x-2 mb-3'>
+                    <Calendar className='h-4 w-4 text-blue-400' />
+                    <span className='font-medium'>Daily Streak</span>
+                  </div>
+                  <div className='flex space-x-2 mb-2'>
+                    {[1, 2, 3, 4, 5, 6, 7].map((day) => (
+                      <div
+                        key={day}
+                        className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                          day <= 4
+                            ? 'bg-blue-600 text-white'
+                            : day === 7
+                            ? 'bg-yellow-500 text-black relative'
+                            : 'bg-slate-700 text-slate-400'
+                        }`}
+                      >
+                        {day}
+                        {day === 7 && (
+                          <Trophy className='absolute -top-1 -right-1 h-3 w-3 text-yellow-400' />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <p className='text-sm text-slate-400'>
+                    Current streak: 4 days. Keep playing daily!
+                  </p>
+                </div>
+
+                {/* Streak Rewards */}
+                <div>
+                  <div className='flex items-center space-x-2 mb-3'>
+                    <Flame className='h-4 w-4 text-orange-400' />
+                    <span className='font-medium'>Streak Rewards</span>
+                  </div>
+                  <div className='grid grid-cols-2 gap-2'>
+                    {streakRewards.map((reward, index) => (
+                      <div
+                        key={index}
+                        className='bg-slate-700 rounded-lg p-3 text-center'
+                      >
+                        <div className='font-bold text-sm'>
+                          {reward.days} Days
+                        </div>
+                        <div className='text-xs text-slate-300 mt-1'>
+                          {reward.reward}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Challenge History */}
+          <Card className='bg-slate-800 border-slate-700'>
+            <CardHeader>
+              <div className='flex items-center justify-between'>
+                <CardTitle>Challenge History</CardTitle>
+                <Button variant='ghost' size='sm' className='text-slate-400'>
+                  View All
+                  <ChevronRight className='h-4 w-4 ml-1' />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className='flex items-center justify-between'>
+                <span className='text-lg'>May 19, 2025</span>
+                <Badge className='bg-green-600 text-white text-lg px-3 py-1'>
+                  80%
+                </Badge>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

@@ -23,6 +23,46 @@ export const leaderboardData = {
       score: 80,
       time: '1m 3s',
       badge: '🥉'
+    },
+    {
+      id: 1,
+      name: 'QuizMaster',
+      avatar: '👨‍💼',
+      score: 100,
+      time: '1m 7s',
+      badge: '🏆'
+    },
+    {
+      id: 1,
+      name: 'QuizMaster',
+      avatar: '👨‍💼',
+      score: 100,
+      time: '1m 7s',
+      badge: '🏆'
+    },
+    {
+      id: 1,
+      name: 'QuizMaster',
+      avatar: '👨‍💼',
+      score: 100,
+      time: '1m 7s',
+      badge: '🏆'
+    },
+    {
+      id: 1,
+      name: 'QuizMaster',
+      avatar: '👨‍💼',
+      score: 100,
+      time: '1m 7s',
+      badge: '🏆'
+    },
+    {
+      id: 1,
+      name: 'QuizMaster',
+      avatar: '👨‍💼',
+      score: 100,
+      time: '1m 7s',
+      badge: '🏆'
     }
   ],
   week: [
