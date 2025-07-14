@@ -22,7 +22,7 @@ const SideBarMobile = () => {
         side='left'
         className='p-0 w-64 bg-main text-white border-slate-700'
       >
-        <div className='flex flex-col h-full justify-between'>
+        <div className='flex flex-col h-full justify-between mt-10'>
           <div className='flex-1 overflow-auto'>
             <nav className='mt-10 px-4 space-y-3'>
               {sidebarItems.map((item, index) => (
