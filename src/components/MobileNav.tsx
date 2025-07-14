@@ -1,23 +1,11 @@
-import { Search, MessageSquare, Bell } from 'lucide-react'
-import { Input } from '@/components/ui/input'
+import { MessageSquare, Bell } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { ModeToggle } from './modeToggle'
 
 const MobileNav = () => {
   return (
     <header className='fixed top-0 left-0 w-full z-20 bg-slate-800 border-b border-slate-700 px-4 py-3'>
-      <div className='flex items-center justify-between w-full'>
-        {/* Center: Search */}
-        <div className='flex-1 mx-4 max-w-sm'>
-          <div className='relative'>
-            <Search className='absolute left-2 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5' />
-            <Input
-              placeholder='Search...'
-              className='pl-9 bg-main border border-slate-600 placeholder-white-primary text-sm h-9 w-full'
-            />
-          </div>
-        </div>
-
+      <div className='flex items-center justify-end w-full'>
         {/* Right: Icons + Avatar */}
         <div className='flex items-center gap-3'>
           {/* Messages */}

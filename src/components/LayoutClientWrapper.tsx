@@ -19,8 +19,8 @@ export default function LayoutClientWrapper({
       <main
         className={`transition-all mt-20 duration-300 p-4 ${
           isCollapsed
-            ? 'ml-16 w-[calc(100%-4rem)]'
-            : 'ml-64 w-[calc(100%-16rem)]'
+            ? 'xl:ml-16 xl:w-[calc(100%-4rem)]'
+            : 'xl:ml-64 xl:w-[calc(100%-16rem)]'
         }`}
       >
         {children}
