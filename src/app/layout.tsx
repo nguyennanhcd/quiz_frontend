@@ -1,18 +1,14 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 
 import './globals.css'
 import LayoutClientWrapper from '@/components/LayoutClientWrapper'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin']
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin']
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetBrains-mono',
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800']
 })
 
 export const metadata: Metadata = {
@@ -28,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-900 text-white`}
+        className={`${jetbrainsMono.variable} antialiased bg-slate-900 text-white`}
       >
         <ThemeProvider
           attribute='class'
