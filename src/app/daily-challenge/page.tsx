@@ -19,6 +19,8 @@ import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { leaderboardData } from '@/constant/leaderBoard'
 import { challengeHistoryData } from '@/constant/challengeHistoryData'
+import { streakRewards } from '@/constant/streakRewards'
+import ChallengeChart from '@/components/ChallengeChart'
 
 export default function DailyChallenge() {
   const [timeRemaining, setTimeRemaining] = useState('15:23:16')
@@ -31,23 +33,6 @@ export default function DailyChallenge() {
     }, 1000)
     return () => clearInterval(timer)
   }, [])
-
-  const performanceData = [
-    { day: 'Mon', yourScore: 80, avgScore: 65 },
-    { day: 'Tue', yourScore: 60, avgScore: 70 },
-    { day: 'Wed', yourScore: 90, avgScore: 70 },
-    { day: 'Thu', yourScore: 70, avgScore: 65 },
-    { day: 'Fri', yourScore: 85, avgScore: 72 },
-    { day: 'Sat', yourScore: 75, avgScore: 68 },
-    { day: 'Sun', yourScore: 95, avgScore: 75 }
-  ]
-
-  const streakRewards = [
-    { days: 3, reward: '+50 Coins' },
-    { days: 5, reward: '+100 Coins' },
-    { days: 7, reward: 'Special Badge' },
-    { days: 14, reward: 'Premium Theme' }
-  ]
 
   return (
     <div className='min-h-screen p-4 md:p-6 text-white'>
@@ -185,68 +170,7 @@ export default function DailyChallenge() {
           </Card>
 
           {/* Challenge Stats */}
-          <section className='grid grid-cols-1 gap-6 lg:grid-cols-2 lg:grid-rows-[auto_auto_auto]'>
-            {/* Performance Chart */}
-            <Card className='bg-slate-800 border-slate-700 lg:col-span-2 lg:row-span-2'>
-              <CardHeader>
-                <CardTitle>Your Challenge Stats</CardTitle>
-                <div className='flex space-x-4'>
-                  <Button
-                    variant='secondary'
-                    className='bg-slate-700 text-white'
-                  >
-                    Performance
-                  </Button>
-                  <Button variant='ghost' className='text-slate-400'>
-                    Categories
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className='space-y-4'>
-                  <div className='h-64 flex items-end justify-between space-x-2'>
-                    {performanceData.map((data) => (
-                      <div
-                        key={data.day}
-                        className='flex flex-col items-center space-y-2 flex-1'
-                      >
-                        <div className='flex items-end space-x-1 h-40'>
-                          <div
-                            className='bg-purple-500 w-6 rounded-t'
-                            style={{
-                              height: `${(data.yourScore / 100) * 160}px`
-                            }}
-                          />
-                          <div
-                            className='bg-green-500 w-6 rounded-t'
-                            style={{
-                              height: `${(data.avgScore / 100) * 160}px`
-                            }}
-                          />
-                        </div>
-                        <span className='text-sm text-slate-400'>
-                          {data.day}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className='flex justify-center space-x-6 text-sm'>
-                    <div className='flex items-center space-x-2'>
-                      <div className='w-3 h-3 bg-purple-500 rounded' />
-                      <span>Your Score</span>
-                    </div>
-                    <div className='flex items-center space-x-2'>
-                      <div className='w-3 h-3 bg-green-500 rounded' />
-                      <span>Average Score</span>
-                    </div>
-                  </div>
-                  <p className='text-center text-slate-400 text-sm'>
-                    Your daily challenge performance compared to the average
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+          <ChallengeChart />
 
           {/* Challenge History */}
           <Card className='bg-slate-800 border-slate-700'>
