@@ -12,15 +12,14 @@ import {
 import { BarChart, Bar, XAxis, CartesianGrid } from 'recharts'
 import { performanceData } from '@/constant/performanceData'
 import { useState } from 'react'
+import ChallengePieChart from './ChallengePieChart'
 
 const chartConfig = {
   yourScore: {
-    label: 'Your Score',
-    color: 'hsl(var(--chart-1))'
+    label: 'Your Score'
   },
   avgScore: {
-    label: 'Average Score',
-    color: 'hsl(var(--chart-2))'
+    label: 'Average Score'
   }
 } satisfies ChartConfig
 
@@ -89,7 +88,9 @@ const ChallengeChart = () => {
                     content={<ChartLegendContent className='text-sm' />}
                   />
                   <ChartTooltip
-                    content={<ChartTooltipContent className='bg-main' />}
+                    cursor={{ fill: '#1e293b' }}
+                    wrapperClassName='hover:bg-slate-800'
+                    content={<ChartTooltipContent />}
                   />
                   <Bar
                     dataKey='yourScore'
@@ -111,11 +112,7 @@ const ChallengeChart = () => {
           )}
         </CardContent>
 
-        {activeTab === 'Categories' && (
-          <div className='h-80 flex items-center justify-center'>
-            <p className='text-slate-400'>Categories view coming soon...</p>
-          </div>
-        )}
+        {activeTab === 'Categories' && <ChallengePieChart />}
       </Card>
     </section>
   )
