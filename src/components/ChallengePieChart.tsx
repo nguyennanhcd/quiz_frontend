@@ -1,14 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip
+} from 'recharts'
 
 const data = [
-  { name: 'Science', value: 35, color: '#8B5CF6' },
-  { name: 'History', value: 25, color: '#10B981' },
-  { name: 'Geography', value: 20, color: '#F59E0B' },
-  { name: 'Entertainment', value: 15, color: '#EF4444' },
-  { name: 'Sports', value: 5, color: '#3B82F6' }
+  { name: 'Science', value: 35, color: '#8884d8' },
+  { name: 'History', value: 25, color: '#82ca9d' },
+  { name: 'Geography', value: 20, color: '#ffc658' },
+  { name: 'Entertainment', value: 15, color: '#ff8042' },
+  { name: 'Sports', value: 5, color: '#0088fe' }
 ]
 
 const RADIAN = Math.PI / 180
@@ -80,6 +87,11 @@ export default function ChallengePieChart() {
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
+            <Tooltip
+              contentStyle={{ backgroundColor: '#1f2937', border: 'none' }}
+              itemStyle={{ color: '#fff' }}
+              formatter={(value: number, name: string) => [`${value}%`, name]}
+            />
             <Legend content={<CustomLegend />} />
           </PieChart>
         </ResponsiveContainer>
