@@ -27,7 +27,7 @@ const ChallengeChart = () => {
   const [activeTab, setActiveTab] = useState('Performance')
 
   return (
-    <section className='w-full max-w-4xl mx-auto p-6 bg-slate-900 text-white rounded-lg'>
+    <section className=' bg-slate-900 text-white rounded-lg'>
       {/* Performance Chart */}
       <Card className='bg-slate-800 border-slate-700 lg:col-span-2 lg:row-span-2'>
         <CardHeader>
