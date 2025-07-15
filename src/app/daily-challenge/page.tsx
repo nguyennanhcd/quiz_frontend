@@ -8,8 +8,9 @@ import {
   Trophy,
   Flame,
   User,
-  Badge,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft,
+  Star
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -18,14 +19,17 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { leaderboardData } from '@/constant/leaderBoard'
-import { challengeHistoryData } from '@/constant/challengeHistoryData'
 import { streakRewards } from '@/constant/streakRewards'
 import ChallengeChart from '@/components/ChallengeChart'
+import { challengeData } from '@/constant/challengeHistoryData'
+import { Badge } from '@/components/ui/badge'
+import { badges } from '@/constant/badges'
 
 export default function DailyChallenge() {
   const [timeRemaining, setTimeRemaining] = useState('15:23:16')
   const [questionTime, setQuestionTime] = useState('7:07')
   const [selectedAnswer, setSelectedAnswer] = useState('')
+  const [showAllHistory, setShowAllHistory] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -33,6 +37,10 @@ export default function DailyChallenge() {
     }, 1000)
     return () => clearInterval(timer)
   }, [])
+
+  const displayedHistory = showAllHistory
+    ? challengeData
+    : challengeData.slice(0, 3)
 
   return (
     <div className='min-h-screen p-4 md:p-6 text-white'>
@@ -66,9 +74,7 @@ export default function DailyChallenge() {
               <Calendar className='h-5 w-5 text-blue-700' />
             </div>
             <div>
-              <p className='text-sm text-blue-600 font-medium'>
-                Today&rsquo;s Theme
-              </p>
+              <p className='text-sm text-blue-600 font-medium'>Today’s Theme</p>
               <p className='text-lg font-bold text-blue-900'>
                 Science & Technology
               </p>
@@ -173,34 +179,61 @@ export default function DailyChallenge() {
           <ChallengeChart />
 
           {/* Challenge History */}
-          <Card className='bg-slate-800 border-slate-700'>
+          <Card className='bg-main text-white max-w-4xl mx-auto border-slate-700'>
             <CardHeader>
               <div className='flex items-center justify-between'>
-                <CardTitle>Challenge History</CardTitle>
-                <Button variant='ghost' size='sm' className='text-slate-400'>
-                  View All
-                  <ChevronRight className='h-4 w-4 ml-1' />
+                <h1 className='text-2xl font-bold'>Challenge History</h1>
+                <Button
+                  className='flex items-center gap-1 bg-main text-slate-300 hover:bg-main-hover transition-colors'
+                  onClick={() => setShowAllHistory(!showAllHistory)}
+                >
+                  <span>{showAllHistory ? 'View Less' : 'View All'}</span>
+                  {showAllHistory ? (
+                    <ChevronLeft className='w-4 h-4' />
+                  ) : (
+                    <ChevronRight className='w-4 h-4' />
+                  )}
                 </Button>
               </div>
             </CardHeader>
-
-            <CardContent className='space-y-3'>
-              {challengeHistoryData.map((item, index) => (
-                <div key={index} className='flex items-center justify-between'>
-                  <span className='text-lg'>{item.date}</span>
-                  <Badge
-                    className={`text-white text-lg px-3 py-1 ${
-                      item.score >= 80
-                        ? 'bg-green-600'
-                        : item.score >= 60
-                        ? 'bg-yellow-600'
-                        : 'bg-red-600'
-                    }`}
+            <CardContent>
+              <div className='space-y-6'>
+                {displayedHistory.map((challenge, index) => (
+                  <Card
+                    key={index}
+                    className='bg-slate-800 border-slate-700 last:mb-0'
                   >
-                    {item.score}%
-                  </Badge>
-                </div>
-              ))}
+                    <CardContent className='p-4'>
+                      <div className='flex items-center justify-between'>
+                        <div className='flex-1'>
+                          <div className='text-lg font-medium mb-3'>
+                            {challenge.date}
+                          </div>
+                          <div className='flex items-center gap-3'>
+                            <Badge className='bg-main text-slate-300 hover:bg-main-hover transition-colors'>
+                              {challenge.category}
+                            </Badge>
+                            {challenge.isTopTen && (
+                              <Badge className='bg-orange-500 hover:bg-orange-600 text-white'>
+                                Top 10
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className='text-right'>
+                          <div className='text-xl font-bold mb-1'>
+                            {challenge.score}%
+                          </div>
+                          <div className='text-slate-400 text-sm'>
+                            Rank #{challenge.rank}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -305,6 +338,46 @@ export default function DailyChallenge() {
                     </div>
                   ))}
                 </div>
+              </div>
+            </CardContent>
+            <CardContent className=''>
+              <div className='flex items-center gap-3 mb-8'>
+                <div className='w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center'>
+                  <Star className='h-4 w-4' />
+                </div>
+                <h1 className='text-medium text-white-primary font-bold'>
+                  Daily Challenge Badges
+                </h1>
+              </div>
+
+              <div className='grid grid-cols-3 gap-2'>
+                {badges.map((badge, index) => {
+                  const IconComponent = badge.icon
+                  return (
+                    <Card
+                      key={index}
+                      className={`
+                  bg-slate-700 rounded-lg p-3 text-center
+                  ${!badge.unlocked ? 'opacity-60' : ''}
+                `}
+                    >
+                      <div className='flex flex-col justify-center items-center gap-2'>
+                        <div
+                          className={`w-6 h-6 rounded-full  flex items-center justify-center ${badge.bgColor}`}
+                        >
+                          <IconComponent className={`w-4 h-4 ${badge.color}`} />
+                        </div>
+                        <span
+                          className={`font-bold text-sm ${
+                            badge.unlocked ? 'text-white' : 'text-gray-400'
+                          }`}
+                        >
+                          {badge.name}
+                        </span>
+                      </div>
+                    </Card>
+                  )
+                })}
               </div>
             </CardContent>
           </Card>
