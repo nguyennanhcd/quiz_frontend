@@ -34,7 +34,7 @@ const SideBarDesktop = ({ isCollapsed }: SideBarProps) => {
             >
               <item.icon className='h-5 w-5' />
               {!isCollapsed && (
-                <span className='ml-3 text-sm font-medium'>{item.label}</span>
+                <span className='ml-3 text-base font-medium'>{item.label}</span>
               )}
             </Link>
           ))}
