@@ -35,11 +35,15 @@ export default function QuizPlatform() {
   const [difficultyFilter, setDifficultyFilter] = useState('all')
   const [sortBy, setSortBy] = useState('popular')
   const [rewardRange, setRewardRange] = useState([0])
+  const [timeLimit, setTimeLimit] = useState([0])
+  const [availability, setAvailability] = useState('Spots available')
+  const [timeRange, setTimeRange] = useState('All')
   const [showDifficulty, setShowDifficulty] = useState(true)
   const [showSortBy, setShowSortBy] = useState(true)
   const [showReward, setShowReward] = useState(true)
   const [showTimeLimit, setShowTimeLimit] = useState(false)
   const [showAvailability, setShowAvailability] = useState(false)
+  const [showTimeRange, setShowTimeRange] = useState(false)
   const [activeTab, setActiveTab] = useState('All') // State for active tab
 
   // Update filterTabs to use activeTab state
@@ -434,6 +438,21 @@ export default function QuizPlatform() {
                     <ChevronDown className='w-4 h-4' />
                   )}
                 </button>
+                {showTimeLimit && (
+                  <div className='space-y-4'>
+                    <div className='flex justify-between text-sm text-slate-400'>
+                      <span>0 min</span>
+                      <span>30+ min</span>
+                    </div>
+                    <Slider
+                      value={timeLimit}
+                      onValueChange={setTimeLimit}
+                      max={15}
+                      step={1}
+                      className='w-full'
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Availability Filter */}
@@ -449,6 +468,63 @@ export default function QuizPlatform() {
                     <ChevronDown className='w-4 h-4' />
                   )}
                 </button>
+                {showAvailability && (
+                  <RadioGroup
+                    value={availability}
+                    onValueChange={setAvailability}
+                  >
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem
+                        value='spots available'
+                        id='spots available'
+                      />
+                      <Label htmlFor='spots available'>Spots Available</Label>
+                    </div>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='almost full' id='almost full' />
+                      <Label htmlFor='almost full'>Almost Full</Label>
+                    </div>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='limited time' id='limited time' />
+                      <Label htmlFor='limited time'>Limited Time</Label>
+                    </div>
+                  </RadioGroup>
+                )}
+              </div>
+
+              {/* Time Range Filter */}
+              <div className='mb-6'>
+                <button
+                  onClick={() => setShowTimeRange(!showTimeRange)}
+                  className='flex items-center justify-between w-full text-left font-semibold mb-3'
+                >
+                  Time Range
+                  {showTimeRange ? (
+                    <ChevronUp className='w-4 h-4' />
+                  ) : (
+                    <ChevronDown className='w-4 h-4' />
+                  )}
+                </button>
+                {showTimeRange && (
+                  <RadioGroup value={timeRange} onValueChange={setTimeRange}>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='all time' id='all time' />
+                      <Label htmlFor='all time'>All Time</Label>
+                    </div>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='today' id='today' />
+                      <Label htmlFor='today'>Today</Label>
+                    </div>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='this week' id='this week' />
+                      <Label htmlFor='this week'>This Week</Label>
+                    </div>
+                    <div className='flex items-center space-x-2'>
+                      <RadioGroupItem value='this month' id='this month' />
+                      <Label htmlFor='this month'>This Month</Label>
+                    </div>
+                  </RadioGroup>
+                )}
               </div>
             </div>
           </div>
