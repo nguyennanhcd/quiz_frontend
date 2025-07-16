@@ -6,7 +6,6 @@ import './globals.css'
 import LayoutClientWrapper from '@/components/LayoutClientWrapper'
 
 const inter = Inter({
-  variable: '--font-inter',
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800']
 })
@@ -23,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased bg-slate-900 text-white`}>
+      <body
+        className={`${inter.className} antialiased bg-slate-900 text-white`}
+      >
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
