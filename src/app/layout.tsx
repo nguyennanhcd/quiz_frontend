@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 
 import './globals.css'
 import LayoutClientWrapper from '@/components/LayoutClientWrapper'
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-jetBrains-mono',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800']
 })
@@ -23,9 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body
-        className={`${jetbrainsMono.variable} antialiased bg-slate-900 text-white`}
-      >
+      <body className={`${inter.variable} antialiased bg-slate-900 text-white`}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
