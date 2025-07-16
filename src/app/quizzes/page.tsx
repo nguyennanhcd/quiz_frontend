@@ -1,11 +1,34 @@
 'use client'
 
-import { Search, Grid3X3, List, Clock, Users, Star } from 'lucide-react'
+import {
+  Search,
+  Grid3X3,
+  List,
+  Clock,
+  Users,
+  Star,
+  ChevronUp,
+  ChevronDown,
+  DollarSign
+} from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
+import { quizzes } from '@/constant/quizzes'
+import { useState } from 'react'
+import { Label } from '@/components/ui/label'
+import { Slider } from '@/components/ui/slider'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Card, CardContent } from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
+
+const difficultyColors = {
+  Easy: 'bg-green-500',
+  Medium: 'bg-orange-500',
+  Hard: 'bg-red-500'
+}
 
 const categories = [
   { name: 'All Categories', icon: '🌐', active: true },
@@ -26,83 +49,33 @@ const filterTabs = [
   { name: "Editor's" }
 ]
 
-const quizzes = [
-  {
-    id: 1,
-    title: 'Science Quiz: Space Exploration',
-    category: 'Entertainment',
-    image: '/placeholder.svg?height=200&width=300',
-    creator: {
-      name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
-      rating: 4.9
-    },
-    reward: '$10.00',
-    players: '2.5k players joined',
-    spots: '547 spots available',
-    completion: 82,
-    timeLeft: '2 days left',
-    badges: ['Hot'],
-    bgGradient: 'from-purple-600 to-blue-600'
-  },
-  {
-    id: 2,
-    title: 'World Geography Challenge: Landmarks & Capitals',
-    category: 'Geography',
-    image: '/placeholder.svg?height=200&width=300',
-    creator: {
-      name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
-      rating: 4.8
-    },
-    reward: '$7.50',
-    players: '1.9k players joined',
-    spots: '728 spots available',
-    completion: 94,
-    badges: ["Editor's Choice"],
-    bgGradient: 'from-green-600 to-teal-600'
-  },
-  {
-    id: 3,
-    title: 'Brain Teasers & Logic Puzzles',
-    category: 'Puzzles',
-    image: '/placeholder.svg?height=200&width=300',
-    creator: {
-      name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
-      rating: 4.7
-    },
-    reward: '$8.00',
-    players: '3.2k players joined',
-    spots: '1759 spots available',
-    completion: 65,
-    timeLeft: '24h 0m left',
-    badges: ['Trending'],
-    bgGradient: 'from-orange-600 to-red-600'
-  },
-  {
-    id: 4,
-    title: "History's Greatest Mysteries",
-    category: 'History',
-    image: '/placeholder.svg?height=200&width=300',
-    creator: {
-      name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
-      rating: 4.9
-    },
-    reward: '$6.50',
-    players: '1.6k players joined',
-    spots: 'Only 37 spots left',
-    completion: 98,
-    badges: ['Top Rated'],
-    bgGradient: 'from-amber-600 to-orange-600'
-  }
-]
-
 export default function QuizPlatform() {
+  const [difficultyFilter, setDifficultyFilter] = useState('all')
+  const [sortBy, setSortBy] = useState('popular')
+  const [rewardRange, setRewardRange] = useState([0])
+  const [showDifficulty, setShowDifficulty] = useState(true)
+  const [showSortBy, setShowSortBy] = useState(true)
+  const [showReward, setShowReward] = useState(true)
+  const [showTimeLimit, setShowTimeLimit] = useState(false)
+  const [showAvailability, setShowAvailability] = useState(false)
+
+  const filteredQuizzes = quizzes.filter((quiz) => {
+    if (
+      difficultyFilter !== 'all' &&
+      quiz.difficulty.toLowerCase() !== difficultyFilter
+    ) {
+      return false
+    }
+    return true
+  })
+
+  const getAvailabilityProgress = (spotsLeft: number, totalPlayers: number) => {
+    const totalSpots = totalPlayers + spotsLeft
+    return ((totalSpots - spotsLeft) / totalSpots) * 100
+  }
   return (
-    <div className='min-h-screen bg-slate-900 text-white-primary'>
-      <div className='container mx-auto px-4 py-8'>
+    <div className='min-h-screen bg-slate-900 text-white-primary m-3 xl:m-5'>
+      <div className=' px-4 py-8'>
         {/* Header */}
         <div className='mb-8'>
           <h1 className='text-4xl font-bold mb-2'>Explore Quizzes</h1>
@@ -155,7 +128,7 @@ export default function QuizPlatform() {
               variant={category.active ? 'default' : 'outline'}
               className={`whitespace-nowrap flex-shrink-0 rounded-full ${
                 category.active
-                  ? 'bg-blue-600 hover:bg-blue-700'
+                  ? 'bg-default hover:bg-default/90'
                   : 'border-slate-700 bg-slate-800 hover:bg-slate-700'
               }`}
             >
@@ -197,7 +170,7 @@ export default function QuizPlatform() {
             {quizzes.map((quiz) => (
               <div
                 key={quiz.id}
-                className='bg-slate-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-200 cursor-pointer'
+                className='border border-white/20 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-200 cursor-pointer'
               >
                 {/* Quiz Image */}
                 <div
@@ -211,7 +184,7 @@ export default function QuizPlatform() {
                   />
 
                   {/* Badges */}
-                  <div className='absolute top-3 left-3 flex gap-2'>
+                  <div className='absolute top-3 left-3 flex justify-between w-[90%]'>
                     {quiz.timeLeft && (
                       <Badge
                         variant='secondary'
@@ -221,17 +194,18 @@ export default function QuizPlatform() {
                         {quiz.timeLeft}
                       </Badge>
                     )}
+
                     {quiz.badges.map((badge) => (
                       <Badge
                         key={badge}
-                        className={`${
+                        className={`text-white rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent flex items-center ${
                           badge === 'Hot'
-                            ? 'bg-red-600 hover:bg-red-700'
+                            ? 'bg-[#7F1D1D] hover:bg-[#7F1D1D]/80 '
                             : badge === "Editor's Choice"
-                            ? 'bg-purple-600 hover:bg-purple-700'
+                            ? 'bg-violet-500 hover:bg-violet-600'
                             : badge === 'Trending'
-                            ? 'bg-blue-600 hover:bg-blue-700'
-                            : 'bg-yellow-600 hover:bg-yellow-700'
+                            ? 'bg-blue-500 hover:bg-blue-600'
+                            : 'bg-[#EAB308] hover:bg-[#EAB308]/80'
                         }`}
                       >
                         {badge === 'Hot' && '🔥'}
@@ -245,8 +219,12 @@ export default function QuizPlatform() {
 
                   {/* Quiz Title Overlay */}
                   <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4'>
-                    <h3 className='font-bold text-lg mb-1'>{quiz.title}</h3>
-                    <p className='text-slate-300 text-sm'>{quiz.category}</p>
+                    <h3 className='font-bold text-lg mb-1 truncate overflow-hidden whitespace-nowrap'>
+                      {quiz.title}
+                    </h3>
+                    <p className='text-slate-300 text-sm truncate overflow-hidden whitespace-nowrap'>
+                      {quiz.category}
+                    </p>
                   </div>
                 </div>
 
@@ -298,6 +276,268 @@ export default function QuizPlatform() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      <div className='min-h-screen bg-slate-900 text-white'>
+        <div className='flex'>
+          {/* Sidebar */}
+          <div className='w-80 bg-slate-800 p-6 min-h-screen'>
+            <h2 className='text-xl font-bold mb-6'>Filters</h2>
+
+            {/* Difficulty Filter */}
+            <div className='mb-6'>
+              <button
+                onClick={() => setShowDifficulty(!showDifficulty)}
+                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+              >
+                Difficulty
+                {showDifficulty ? (
+                  <ChevronUp className='w-4 h-4' />
+                ) : (
+                  <ChevronDown className='w-4 h-4' />
+                )}
+              </button>
+              {showDifficulty && (
+                <RadioGroup
+                  value={difficultyFilter}
+                  onValueChange={setDifficultyFilter}
+                >
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='all' id='all' />
+                    <Label htmlFor='all'>All Levels</Label>
+                  </div>
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='easy' id='easy' />
+                    <Label htmlFor='easy' className='flex items-center gap-2'>
+                      Easy{' '}
+                      <Badge className='bg-green-500 text-white text-xs'>
+                        Easy
+                      </Badge>
+                    </Label>
+                  </div>
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='medium' id='medium' />
+                    <Label htmlFor='medium' className='flex items-center gap-2'>
+                      Medium{' '}
+                      <Badge className='bg-orange-500 text-white text-xs'>
+                        Medium
+                      </Badge>
+                    </Label>
+                  </div>
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='hard' id='hard' />
+                    <Label htmlFor='hard' className='flex items-center gap-2'>
+                      Hard{' '}
+                      <Badge className='bg-red-500 text-white text-xs'>
+                        Hard
+                      </Badge>
+                    </Label>
+                  </div>
+                </RadioGroup>
+              )}
+            </div>
+
+            {/* Sort By Filter */}
+            <div className='mb-6'>
+              <button
+                onClick={() => setShowSortBy(!showSortBy)}
+                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+              >
+                Sort By
+                {showSortBy ? (
+                  <ChevronUp className='w-4 h-4' />
+                ) : (
+                  <ChevronDown className='w-4 h-4' />
+                )}
+              </button>
+              {showSortBy && (
+                <RadioGroup value={sortBy} onValueChange={setSortBy}>
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='popular' id='popular' />
+                    <Label htmlFor='popular'>Most Popular</Label>
+                  </div>
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='newest' id='newest' />
+                    <Label htmlFor='newest'>Newest</Label>
+                  </div>
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='rated' id='rated' />
+                    <Label htmlFor='rated'>Highest Rated</Label>
+                  </div>
+                  <div className='flex items-center space-x-2'>
+                    <RadioGroupItem value='reward' id='reward' />
+                    <Label htmlFor='reward'>Highest Reward</Label>
+                  </div>
+                </RadioGroup>
+              )}
+            </div>
+
+            {/* Reward Filter */}
+            <div className='mb-6'>
+              <button
+                onClick={() => setShowReward(!showReward)}
+                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+              >
+                Reward
+                {showReward ? (
+                  <ChevronUp className='w-4 h-4' />
+                ) : (
+                  <ChevronDown className='w-4 h-4' />
+                )}
+              </button>
+              {showReward && (
+                <div className='space-y-4'>
+                  <div className='flex justify-between text-sm text-slate-400'>
+                    <span>$0</span>
+                    <span>$15+</span>
+                  </div>
+                  <Slider
+                    value={rewardRange}
+                    onValueChange={setRewardRange}
+                    max={15}
+                    step={1}
+                    className='w-full'
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Time Limit Filter */}
+            <div className='mb-6'>
+              <button
+                onClick={() => setShowTimeLimit(!showTimeLimit)}
+                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+              >
+                Time Limit
+                {showTimeLimit ? (
+                  <ChevronUp className='w-4 h-4' />
+                ) : (
+                  <ChevronDown className='w-4 h-4' />
+                )}
+              </button>
+            </div>
+
+            {/* Availability Filter */}
+            <div className='mb-6'>
+              <button
+                onClick={() => setShowAvailability(!showAvailability)}
+                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+              >
+                Availability
+                {showAvailability ? (
+                  <ChevronUp className='w-4 h-4' />
+                ) : (
+                  <ChevronDown className='w-4 h-4' />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className='flex-1 p-6'>
+            <div className='mb-6'>
+              <p className='text-slate-400'>Showing 1-6 of 8 quizzes</p>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+              {filteredQuizzes.map((quiz) => (
+                <Card
+                  key={quiz.id}
+                  className='bg-slate-800 border-slate-700 overflow-hidden'
+                >
+                  <div className='relative'>
+                    <Image
+                      src={quiz.image || '/placeholder.svg'}
+                      alt={quiz.title}
+                      fill
+                      className='w-full h-48 object-cover'
+                    />
+                    <Badge
+                      className={`absolute top-3 left-3 ${
+                        difficultyColors[
+                          quiz.difficulty as keyof typeof difficultyColors
+                        ]
+                      } text-white`}
+                    >
+                      {quiz.difficulty}
+                    </Badge>
+                    <div className='absolute top-3 right-3 bg-black/50 rounded-full px-2 py-1 flex items-center gap-1 text-white text-sm'>
+                      <Clock className='w-3 h-3' />
+                      {quiz.duration}
+                    </div>
+                  </div>
+
+                  <CardContent className='p-4'>
+                    <h3 className='font-bold text-lg mb-3 text-white'>
+                      {quiz.title}
+                    </h3>
+
+                    <div className='flex items-center gap-3 mb-3'>
+                      <Avatar className='w-8 h-8'>
+                        <AvatarImage
+                          src={quiz.creator.avatar || '/placeholder.svg'}
+                        />
+                        <AvatarFallback>{quiz.creator.name[0]}</AvatarFallback>
+                      </Avatar>
+                      <span className='text-slate-300 text-sm'>
+                        {quiz.creator.name}
+                      </span>
+                      <Badge
+                        variant='secondary'
+                        className='bg-slate-700 text-slate-300'
+                      >
+                        {quiz.category}
+                      </Badge>
+                    </div>
+
+                    <div className='flex items-center justify-between mb-3'>
+                      <div className='flex items-center gap-1'>
+                        <Star className='w-4 h-4 fill-yellow-400 text-yellow-400' />
+                        <span className='text-white font-semibold'>
+                          {quiz.rating}
+                        </span>
+                        <span className='text-slate-400 text-sm'>
+                          ({quiz.reviews})
+                        </span>
+                      </div>
+                      <div className='flex items-center gap-1 text-green-400 font-bold'>
+                        <DollarSign className='w-4 h-4' />$
+                        {quiz.reward.toFixed(2)}
+                      </div>
+                    </div>
+
+                    <div className='flex items-center gap-4 mb-4 text-sm text-slate-400'>
+                      <div className='flex items-center gap-1'>
+                        <Users className='w-4 h-4' />
+                        {quiz.players} players
+                      </div>
+                      <div>{quiz.spotsLeft} spots left</div>
+                      <div className='flex-1'>
+                        <Progress
+                          value={getAvailabilityProgress(
+                            quiz.spotsLeft,
+                            quiz.players
+                          )}
+                          className='h-2'
+                        />
+                      </div>
+                    </div>
+
+                    {quiz.almostFull && (
+                      <p className='text-red-400 text-sm mb-3'>
+                        Almost full! Only {quiz.spotsLeft} spots left
+                      </p>
+                    )}
+
+                    <Button className='w-full bg-indigo-600 hover:bg-indigo-700'>
+                      Play Now
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
