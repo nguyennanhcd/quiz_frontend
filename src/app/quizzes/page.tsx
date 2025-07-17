@@ -157,16 +157,15 @@ export default function QuizPlatform() {
                 Specially selected quizzes you don’t want to miss
               </p>
             </div>
-            <div className='flex bg-slate-800 rounded-lg p-1'>
+            <div className='flex gap-2 rounded-lg p-1'>
               {filterTabs.map((tab) => (
                 <Button
                   key={tab.name}
-                  variant={tab.active ? 'default' : 'ghost'}
                   size='sm'
                   className={`${
                     tab.active
-                      ? 'bg-slate-700 text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-700'
+                      ? ''
+                      : 'bg-slate-700 text-white hover:bg-slate-600'
                   }`}
                   onClick={() => setActiveTab(tab.name)} // Update active tab on click
                 >
@@ -624,7 +623,7 @@ export default function QuizPlatform() {
                       </p>
                     )}
 
-                    <Button className='w-full bg-indigo-600 hover:bg-indigo-700'>
+                    <Button className='w-full bg-default hover:bg-default-hover'>
                       Play Now
                     </Button>
                   </CardContent>

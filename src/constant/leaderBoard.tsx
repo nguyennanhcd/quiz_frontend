@@ -25,7 +25,7 @@ export const leaderboardData = {
       badge: '🥉'
     },
     {
-      id: 1,
+      id: 4,
       name: 'QuizMaster',
       avatar: '👨‍💼',
       score: 100,
@@ -33,7 +33,7 @@ export const leaderboardData = {
       badge: '🏆'
     },
     {
-      id: 1,
+      id: 5,
       name: 'QuizMaster',
       avatar: '👨‍💼',
       score: 100,
@@ -41,7 +41,7 @@ export const leaderboardData = {
       badge: '🏆'
     },
     {
-      id: 1,
+      id: 6,
       name: 'QuizMaster',
       avatar: '👨‍💼',
       score: 100,
@@ -49,7 +49,7 @@ export const leaderboardData = {
       badge: '🏆'
     },
     {
-      id: 1,
+      id: 7,
       name: 'QuizMaster',
       avatar: '👨‍💼',
       score: 100,
@@ -57,7 +57,7 @@ export const leaderboardData = {
       badge: '🏆'
     },
     {
-      id: 1,
+      id: 8,
       name: 'QuizMaster',
       avatar: '👨‍💼',
       score: 100,

@@ -142,27 +142,27 @@ export default function QuizForm() {
         </Tabs>
 
         {/* Footer Action Buttons */}
-        <div className='flex flex-col sm:flex-row items-center justify-between p-6 border-t border-[#2a2a2e] bg-[#1a1a1e] gap-4'>
+        <div className='flex flex-col sm:flex-row items-center justify-between p-6 bg-transparent  gap-4'>
           <div className='flex flex-wrap gap-3'>
-            <Button className='bg-[#4a4a4e] hover:bg-[#5a5a5e] text-white px-4 py-2 rounded-md'>
+            <Button className='bg-transparent hover:bg-slate-800 border-slate-200 text-white px-4 py-2 rounded-md'>
               <Plus className='w-4 h-4 mr-2' />
               New Quiz
             </Button>
-            <Button className='bg-[#4a4a4e] hover:bg-[#5a5a5e] text-white px-4 py-2 rounded-md'>
+            <Button className='bg-transparent hover:bg-slate-800 border-slate-200 text-white px-4 py-2 rounded-md'>
               <Eye className='w-4 h-4 mr-2' />
               Preview
             </Button>
           </div>
           <div className='flex flex-wrap gap-3'>
-            <Button className='bg-[#dc2626] hover:bg-[#b91c1c] text-white px-4 py-2 rounded-md'>
+            <Button className='bg-[#7F1D1D] hover:bg-[#b91c1c] text-white px-4 py-2 rounded-md'>
               <Trash2 className='w-4 h-4 mr-2' />
               Delete Quiz
             </Button>
-            <Button className='bg-[#4a4a4e] hover:bg-[#5a5a5e] text-white px-4 py-2 rounded-md'>
+            <Button className='bg-transparent hover:bg-slate-800 text-white px-4 py-2 rounded-md'>
               <Save className='w-4 h-4 mr-2' />
               Save Draft
             </Button>
-            <Button className='bg-[#6d28d9] hover:bg-[#5b21b6] text-white px-4 py-2 rounded-md'>
+            <Button className='bg-default hover:bg-default-hover text-white px-4 py-2 rounded-md'>
               <Upload className='w-4 h-4 mr-2' />
               Publish Quiz
             </Button>
