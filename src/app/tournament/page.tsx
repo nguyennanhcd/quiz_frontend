@@ -12,12 +12,12 @@ export default function QuizTournament() {
           Compete against other quiz enthusiasts and win amazing prizes
         </p>
 
-        <div className='relative bg-gradient-to-br from-purple-800 to-indigo-950 rounded-xl p-6 md:p-10 lg:p-12 overflow-hidden shadow-lg'>
+        <div className='relative bg-gradient-to-br bg-default to-indigo-950 rounded-xl p-6 md:p-10 lg:p-12 overflow-hidden shadow-lg'>
           {/* Abstract background shapes - simplified for demonstration */}
           <div className='absolute inset-0 opacity-20'>
-            <div className='absolute w-64 h-64 bg-purple-700 rounded-full -top-16 -left-16 blur-3xl'></div>
+            <div className='absolute w-64 h-64 bg-default rounded-full -top-16 -left-16 blur-3xl'></div>
             <div className='absolute w-96 h-96 bg-indigo-700 rounded-full -bottom-32 -right-32 blur-3xl'></div>
-            <div className='absolute w-48 h-48 bg-purple-600 rounded-full top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 blur-3xl'></div>
+            <div className='absolute w-48 h-48 bg-default rounded-full top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 blur-3xl'></div>
           </div>
 
           <div className='relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center'>
@@ -48,14 +48,14 @@ export default function QuizTournament() {
                   <span>$5,000 prize pool</span>
                 </div>
               </div>
-              <Button className='bg-white text-purple-800 hover:bg-gray-100 px-6 py-3 rounded-lg text-base font-semibold flex items-center gap-2'>
+              <Button className='bg-default px-6 py-3 rounded-lg text-sm font-semibold flex items-center gap-2'>
                 Join Tournament
                 <ArrowRight className='w-5 h-5' />
               </Button>
             </div>
 
             {/* Right Section */}
-            <div className='bg-purple-900/50 backdrop-blur-sm rounded-lg p-6 space-y-6 lg:ml-auto lg:max-w-sm w-full'>
+            <div className='bg-default/30 backdrop-blur-sm rounded-lg p-6 space-y-6 lg:ml-auto lg:max-w-sm w-full'>
               <div className='flex items-center justify-between text-gray-200'>
                 <span>Registration closes in</span>
                 <div className='flex items-center gap-1'>
@@ -63,22 +63,22 @@ export default function QuizTournament() {
                   <span>3 days</span>
                 </div>
               </div>
-              <div className='w-full bg-purple-700 rounded-full h-2.5'>
+              <div className='w-full bg-default rounded-full h-2.5'>
                 <div
                   className='bg-white h-2.5 rounded-full'
                   style={{ width: '70%' }}
                 ></div>
               </div>
               <div className='grid grid-cols-3 gap-4'>
-                <div className='bg-purple-800 rounded-lg p-4 text-center'>
+                <div className='bg-default rounded-lg p-4 text-center'>
                   <div className='text-3xl font-bold'>3</div>
                   <div className='text-gray-300 text-sm'>Rounds</div>
                 </div>
-                <div className='bg-purple-800 rounded-lg p-4 text-center'>
+                <div className='bg-default rounded-lg p-4 text-center'>
                   <div className='text-3xl font-bold'>15</div>
                   <div className='text-gray-300 text-sm'>Categories</div>
                 </div>
-                <div className='bg-purple-800 rounded-lg p-4 text-center'>
+                <div className='bg-default rounded-lg p-4 text-center'>
                   <div className='text-3xl font-bold'>50</div>
                   <div className='text-gray-300 text-sm'>Questions</div>
                 </div>
