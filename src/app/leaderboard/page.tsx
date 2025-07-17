@@ -120,7 +120,7 @@ const Page = () => {
         </Card>
 
         {/* Leaderboard Highlights */}
-        <Card className='bg-slate-800 border-slate-700 col-span-2'>
+        <Card className='bg-transparent border-slate-700 col-span-2'>
           <CardHeader>
             <CardTitle className='text-white text-2xl font-bold'>
               Leaderboard Highlights

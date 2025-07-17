@@ -37,12 +37,9 @@ export default function GlobalLeaderboard() {
   const maxScore = Math.max(...players.map((p) => p.score))
 
   return (
-    <div className='min-h-screen bg-[#0a0a1a] text-white p-4 md:p-8'>
+    <div className='min-h-screen mt-10 '>
       {/* Header Section */}
-      <div
-        className='relative overflow-hidden rounded-xl p-6 md:p-8 mb-8'
-        style={{ background: 'linear-gradient(90deg, #6a0dad, #4a0080)' }}
-      >
+      <div className='relative overflow-hidden rounded-xl p-6 md:p-8 mb-8 bg-default'>
         <div className='relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4'>
           <div>
             <h1 className='text-3xl md:text-4xl font-bold mb-2'>
@@ -53,17 +50,11 @@ export default function GlobalLeaderboard() {
             </p>
           </div>
           <div className='flex flex-col sm:flex-row gap-3'>
-            <Button
-              variant='secondary'
-              className='bg-white/10 text-white hover:bg-white/20 border border-white/20 rounded-full px-5 py-2'
-            >
+            <Button className='bg-white/10 text-white hover:bg-white/20 border border-white/20 rounded-full px-5 py-2 cursor-pointer'>
               <Trophy className='w-5 h-5 mr-2' />
               Hall of Fame
             </Button>
-            <Button
-              variant='secondary'
-              className='bg-white/10 text-white hover:bg-white/20 border border-white/20 rounded-full px-5 py-2'
-            >
+            <Button className='bg-white/10 text-white hover:bg-white/20 border border-white/20 rounded-full px-5 py-2 cursor-pointer'>
               <Trophy className='w-5 h-5 mr-2' />
               Seasonal Awards
             </Button>
@@ -81,12 +72,12 @@ export default function GlobalLeaderboard() {
 
       {/* Search and Filter Section */}
       <div className='flex flex-col md:flex-row justify-between items-center gap-4 mb-6'>
-        <div className='relative w-full md:w-1/3'>
-          <Search className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5' />
+        <div className='relative w-full md:w-1/3 bg-transparent'>
+          <Search className='absolute left-3 top-1/2 -translate-y-1/2 bg-transparent w-5 h-5' />
           <Input
             type='text'
             placeholder='Search players...'
-            className='w-full pl-10 pr-4 py-2 rounded-lg bg-[#1a1a2e] border border-[#3a3a5e] text-white placeholder:text-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent'
+            className='w-full pl-10 pr-4 py-2 rounded-lg bg-transparent border outline-none'
           />
         </div>
         <div className='flex gap-3 w-full md:w-auto justify-end'>
@@ -116,7 +107,7 @@ export default function GlobalLeaderboard() {
             <DropdownMenuTrigger asChild>
               <Button
                 variant='outline'
-                className='bg-[#1a1a2e] text-white border border-[#3a3a5e] hover:bg-[#2a2a4e] hover:text-white rounded-lg px-4 py-2 flex items-center gap-2'
+                className='bg-transparent text-white border border-[#3a3a5e] hover:bg-[#2a2a4e] hover:text-white rounded-lg px-4 py-2 flex items-center gap-2'
               >
                 All Time
                 <ChevronDown className='w-4 h-4' />
@@ -138,7 +129,7 @@ export default function GlobalLeaderboard() {
       </div>
 
       {/* Leaderboard Table */}
-      <div className='bg-[#1a1a2e] rounded-xl overflow-hidden border border-[#3a3a5e]'>
+      <div className='bg-transparent rounded-xl overflow-hidden border border-[#3a3a5e]'>
         {/* Table Header */}
         <div className='grid grid-cols-[0.5fr_2fr_1.5fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1.5fr_1fr_1fr_1fr] gap-4 p-4 text-gray-400 font-semibold border-b border-[#3a3a5e] text-sm md:text-base'>
           <div className='text-center'>Rank</div>
@@ -238,6 +229,17 @@ export default function GlobalLeaderboard() {
             </div>
           </div>
         ))}
+        <div className='text-sm p-5 flex flex-row justify-between'>
+          <span>Showing 1-10 of {players.length} players</span>
+          <div className='flex items-center gap-2'>
+            <Button className='rounded-full px-3 py-1 h-auto text-xs font-medium flex items-center gap-1'>
+              Previous
+            </Button>
+            <Button className='rounded-full px-3 py-1 h-auto text-xs font-medium flex items-center gap-1'>
+              Next
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
