@@ -25,11 +25,12 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import GlobalLeaderboard from '@/components/GlobalLeaderBoard'
 import { leaderboardData } from '@/constant/leaderBoardRanking'
 
 const Page = () => {
   return (
-    <div className='min-h-scree text-white-primary sm:p-6 lg:p-8'>
+    <div className='min-h-screen text-white-primary sm:p-6 lg:p-8'>
       <header className='mb-8 max-w-7xl mx-auto space-y-2 flex flex-col xl:flex-row justify-between'>
         <div>
           <h1 className='text-4xl font-bold mb-2'>Leader Board</h1>
@@ -193,7 +194,9 @@ const Page = () => {
               </Select>
 
               <TabsContent value='global' className='space-y-4'>
+                {/* Global Leaderboard */}
                 <div className='relative'>
+                  {/* Leaderboard Items */}
                   {leaderboardData.map((user) => {
                     if (user.rank === 1) {
                       return (
@@ -226,25 +229,21 @@ const Page = () => {
                               <div className='w-6 h-6 text-yellow-400'>👑</div>
                             </div>
                           </div>
-                          <div className='text-center mt-2'>
-                            <h3 className='text-white font-bold'>
-                              {user.name}
-                            </h3>
-                            <p className='text-slate-300'>
-                              {user.points.toLocaleString()} pts
-                            </p>
-                            <div className='flex items-center gap-2 mt-1'>
-                              <Badge className={`${user.badgeColor} text-xs`}>
-                                {user.badge === 'Diamond' ? '💎' : ''}{' '}
-                                {user.badge}
-                              </Badge>
-                              <Badge
-                                variant='outline'
-                                className='border-yellow-400 text-yellow-400 text-xs'
-                              >
-                                ⭐{user.stars}
-                              </Badge>
-                            </div>
+                          <h3 className='text-white font-bold'>{user.name}</h3>
+                          <p className='text-slate-300'>
+                            {user.points.toLocaleString()} pts
+                          </p>
+                          <div className='flex items-center gap-2 mt-1'>
+                            <Badge className={`${user.badgeColor} text-xs`}>
+                              {user.badge === 'Diamond' ? '💎' : ''}{' '}
+                              {user.badge}
+                            </Badge>
+                            <Badge
+                              variant='outline'
+                              className='border-yellow-400 text-yellow-400 text-xs'
+                            >
+                              ⭐{user.stars}
+                            </Badge>
                           </div>
                         </div>
                       )
@@ -258,39 +257,45 @@ const Page = () => {
                         return (
                           <div
                             key={user.rank}
-                            className='flex flex-col items-center'
+                            className='flex flex-col items-center mb-8'
                           >
                             <div className='relative'>
                               <div
-                                className={`w-16 h-16 rounded-full overflow-hidden border-4 ${user.borderColor}`}
+                                className={`w-20 h-20 rounded-full overflow-hidden border-4 ${user.borderColor}`}
                               >
                                 <Image
                                   src={user.avatar}
                                   alt={user.name}
-                                  width={64}
-                                  height={64}
+                                  width={80}
+                                  height={80}
                                   className='w-full h-full object-cover'
                                 />
                               </div>
                               <div
-                                className={`absolute -top-1 -right-1 w-6 h-6 ${user.rankBgColor} rounded-full flex items-center justify-center`}
+                                className={`absolute -top-2 -right-2 w-8 h-8 ${user.rankBgColor} rounded-full flex items-center justify-center`}
                               >
                                 <span
-                                  className={`font-bold text-xs ${user.rankTextColor}`}
+                                  className={`font-bold text-sm ${user.rankTextColor}`}
                                 >
                                   {user.rank}
                                 </span>
                               </div>
+                              <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
+                                <div className='w-6 h-6 text-yellow-400'>
+                                  👑
+                                </div>
+                              </div>
                             </div>
                             <div className='text-center mt-2'>
-                              <h3 className='text-white font-medium'>
+                              <h3 className='text-white font-bold'>
                                 {user.name}
                               </h3>
-                              <p className='text-slate-300 text-sm'>
+                              <p className='text-slate-300'>
                                 {user.points.toLocaleString()} pts
                               </p>
-                              <div className='flex flex-col gap-1 mt-1'>
+                              <div className='flex items-center gap-2 mt-1'>
                                 <Badge className={`${user.badgeColor} text-xs`}>
+                                  {user.badge === 'Diamond' ? '💎' : ''}{' '}
                                   {user.badge}
                                 </Badge>
                                 <Badge
@@ -313,6 +318,8 @@ const Page = () => {
           </CardContent>
         </Card>
       </div>
+
+      <GlobalLeaderboard />
     </div>
   )
 }
