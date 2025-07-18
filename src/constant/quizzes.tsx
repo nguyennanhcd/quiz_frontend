@@ -18,7 +18,7 @@ export const quizzes = [
     players: 1900,
     spots: 547,
     completion: 82,
-    timeLeft: '2 days left',
+    timeLeft: 2,
     badges: ['Hot'],
     almostFull: true,
     bgGradient: 'from-purple-600 to-blue-600'
@@ -65,7 +65,7 @@ export const quizzes = [
     players: 3200,
     spots: 1759,
     completion: 65,
-    timeLeft: '24h 0m left',
+    timeLeft: 1,
     badges: ['Trending'],
     almostFull: true,
     bgGradient: 'from-orange-600 to-red-600'

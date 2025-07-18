@@ -178,7 +178,8 @@ export default function QuizPlatform() {
                         className='bg-slate-900/80 text-white'
                       >
                         <Clock className='w-3 h-3 mr-1' />
-                        {quiz.timeLeft}
+                        {quiz.timeLeft} {quiz.timeLeft === 1 ? 'day' : 'days'}{' '}
+                        left
                       </Badge>
                     )}
 
@@ -240,7 +241,10 @@ export default function QuizPlatform() {
                     </div>
                     <div className='text-right'>
                       <p className='text-xs text-slate-400'>Reward</p>
-                      <p className='font-bold text-green-400'>{quiz.reward}</p>
+                      <p className='font-bold text-green-400'>
+                        {' '}
+                        $ {quiz.reward}
+                      </p>
                     </div>
                   </div>
 
@@ -248,18 +252,18 @@ export default function QuizPlatform() {
                   <div className='flex items-center justify-between text-xs text-slate-400 mb-2'>
                     <div className='flex items-center gap-1'>
                       <Users className='w-3 h-3' />
-                      <span>{quiz.players}</span>
+                      <span>{quiz.players} players joined</span>
                     </div>
-                    <div className='flex items-center gap-2'>
-                      <div className='flex items-center gap-1'>
-                        <div className='w-8 h-8 rounded-full border-2 border-slate-600 flex items-center justify-center text-xs font-bold'>
-                          {quiz.completion}%
-                        </div>
-                      </div>
-                    </div>
+                    <SpotAvailabilityIndicator
+                      currentSpots={quiz.spots - quiz.spotsLeft}
+                      totalSpots={quiz.spots}
+                      mode='percentage'
+                    />
                   </div>
 
-                  <p className='text-xs text-slate-400'>{quiz.spots}</p>
+                  <p className='text-xs text-slate-400'>
+                    {quiz.spotsLeft} spots available
+                  </p>
                 </div>
               </div>
             ))}
@@ -581,6 +585,7 @@ export default function QuizPlatform() {
                         <SpotAvailabilityIndicator
                           currentSpots={quiz.spots - quiz.spotsLeft}
                           totalSpots={quiz.spots}
+                          mode='default'
                         />
                       </div>
                     </div>
