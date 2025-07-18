@@ -2,8 +2,6 @@
 
 import {
   Search,
-  Grid3X3,
-  List,
   Clock,
   Users,
   Star,
@@ -98,22 +96,6 @@ export default function QuizPlatform() {
               className='pl-10 bg-slate-800 border-slate-700 text-white placeholder:text-slate-400 h-12'
             />
           </div>
-          <div className='flex gap-2'>
-            <Button
-              variant='outline'
-              size='icon'
-              className='border-slate-700 bg-slate-800 hover:bg-slate-700'
-            >
-              <Grid3X3 className='w-4 h-4' />
-            </Button>
-            <Button
-              variant='outline'
-              size='icon'
-              className='border-slate-700 bg-slate-800 hover:bg-slate-700'
-            >
-              <List className='w-4 h-4' />
-            </Button>
-          </div>
         </div>
 
         {/* Category Pills */}
@@ -152,7 +134,7 @@ export default function QuizPlatform() {
                 Specially selected quizzes you don’t want to miss
               </p>
             </div>
-            <div className='flex gap-2 rounded-lg p-1 '>
+            <div className='flex gap-3 rounded-lg p-1 '>
               {filterTabs.map((tab) => (
                 <Button
                   key={tab.name}
@@ -171,7 +153,7 @@ export default function QuizPlatform() {
           </div>
 
           {/* Quiz Cards Grid */}
-          <div className='grid grid-cols-1 lg:grid-cols-4 lg:gap-6'>
+          <div className='grid grid-cols-1 lg:grid-cols-4 gap-6'>
             {filteredQuizzes.map((quiz) => (
               <div
                 key={quiz.id}
@@ -288,7 +270,7 @@ export default function QuizPlatform() {
       <div className=' text-white'>
         <div className='flex xl:flex-row flex-col'>
           {/* Sidebar */}
-          <div className='xl:w-80 xl:p-6 min-h-screen w-full'>
+          <div className='xl:w-80 xl:p-6 w-full mb-3 xl:mb-none'>
             <h2 className='text-xl font-bold mb-6'>Filters</h2>
 
             <div className='border border-white-primary/20 rounded-md p-4'>
@@ -518,14 +500,14 @@ export default function QuizPlatform() {
           </div>
 
           {/* Main Content */}
-          <div className='flex-1 p-6'>
-            <div className='mb-6'>
+          <div className='flex-1 p-5 xl:block flex flex-col'>
+            <div className='mb-6 order-2 xl:order-1'>
               <p className='text-slate-400'>
                 Showing 1-6 of {filteredQuizzes.length} quizzes
               </p>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2'>
               {filteredQuizzes.map((quiz) => (
                 <Card key={quiz.id} className='bg-transparent overflow-hidden'>
                   <div className='relative'>
