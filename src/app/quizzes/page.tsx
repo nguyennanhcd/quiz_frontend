@@ -117,7 +117,7 @@ export default function QuizPlatform() {
         </div>
 
         {/* Category Pills */}
-        <div className='flex gap-3 mb-12 overflow-x-auto pb-2 scrollbar-hide'>
+        <div className='flex gap-3 mb-12 overflow-x-auto pb-2 scrollbar-hide w-full max-w-full flex-wrap sm:flex-nowrap'>
           <style jsx global>{`
             .scrollbar-hide {
               -ms-overflow-style: none;
@@ -152,7 +152,7 @@ export default function QuizPlatform() {
                 Specially selected quizzes you don’t want to miss
               </p>
             </div>
-            <div className='flex gap-2 rounded-lg p-1'>
+            <div className='flex gap-2 rounded-lg p-1 '>
               {filterTabs.map((tab) => (
                 <Button
                   key={tab.name}
@@ -171,122 +171,116 @@ export default function QuizPlatform() {
           </div>
 
           {/* Quiz Cards Grid */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-            {filteredQuizzes.map(
-              (
-                quiz // Use filteredQuizzes instead of quizzes
-              ) => (
+          <div className='grid grid-cols-1 lg:grid-cols-4 lg:gap-6'>
+            {filteredQuizzes.map((quiz) => (
+              <div
+                key={quiz.id}
+                className='border border-white/20 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-200 cursor-pointer'
+              >
+                {/* Quiz Image */}
                 <div
-                  key={quiz.id}
-                  className='border border-white/20 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-200 cursor-pointer'
+                  className={`relative h-48 bg-gradient-to-br ${quiz.bgGradient}`}
                 >
-                  {/* Quiz Image */}
-                  <div
-                    className={`relative h-48 bg-gradient-to-br ${quiz.bgGradient}`}
-                  >
-                    <Image
-                      src={quiz.image || '/placeholder.svg'}
-                      alt={quiz.title}
-                      fill
-                      className='object-cover mix-blend-overlay'
-                    />
+                  <Image
+                    src={quiz.image || '/placeholder.svg'}
+                    alt={quiz.title}
+                    fill
+                    className='object-cover mix-blend-overlay'
+                  />
 
-                    {/* Badges */}
-                    <div className='absolute top-3 left-3 flex justify-between w-[90%]'>
-                      {quiz.timeLeft && (
-                        <Badge
-                          variant='secondary'
-                          className='bg-slate-900/80 text-white'
-                        >
-                          <Clock className='w-3 h-3 mr-1' />
-                          {quiz.timeLeft}
-                        </Badge>
-                      )}
+                  {/* Badges */}
+                  <div className='absolute top-3 left-3 flex justify-between w-[90%]'>
+                    {quiz.timeLeft && (
+                      <Badge
+                        variant='secondary'
+                        className='bg-slate-900/80 text-white'
+                      >
+                        <Clock className='w-3 h-3 mr-1' />
+                        {quiz.timeLeft}
+                      </Badge>
+                    )}
 
-                      {quiz.badges.map((badge) => (
-                        <Badge
-                          key={badge}
-                          className={`text-white rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent flex items-center ${
-                            badge === 'Hot'
-                              ? 'bg-[#7F1D1D] hover:bg-[#7F1D1D]/80 '
-                              : badge === "Editor's Choice"
-                              ? 'bg-violet-500 hover:bg-violet-600'
-                              : badge === 'Trending'
-                              ? 'bg-blue-500 hover:bg-blue-600'
-                              : 'bg-[#EAB308] hover:bg-[#EAB308]/80'
-                          }`}
-                        >
-                          {badge === 'Hot' && '🔥'}
-                          {badge === "Editor's Choice" && '⭐'}
-                          {badge === 'Trending' && '📈'}
-                          {badge === 'Top Rated' && '⭐'}
-                          {badge}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Quiz Title Overlay */}
-                    <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4'>
-                      <h3 className='font-bold text-lg mb-1 truncate overflow-hidden whitespace-nowrap'>
-                        {quiz.title}
-                      </h3>
-                      <p className='text-slate-300 text-sm truncate overflow-hidden whitespace-nowrap'>
-                        {quiz.category}
-                      </p>
-                    </div>
+                    {quiz.badges.map((badge) => (
+                      <Badge
+                        key={badge}
+                        className={`text-white rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent flex items-center ${
+                          badge === 'Hot'
+                            ? 'bg-[#7F1D1D] hover:bg-[#7F1D1D]/80 '
+                            : badge === "Editor's Choice"
+                            ? 'bg-violet-500 hover:bg-violet-600'
+                            : badge === 'Trending'
+                            ? 'bg-blue-500 hover:bg-blue-600'
+                            : 'bg-[#EAB308] hover:bg-[#EAB308]/80'
+                        }`}
+                      >
+                        {badge === 'Hot' && '🔥'}
+                        {badge === "Editor's Choice" && '⭐'}
+                        {badge === 'Trending' && '📈'}
+                        {badge === 'Top Rated' && '⭐'}
+                        {badge}
+                      </Badge>
+                    ))}
                   </div>
 
-                  {/* Quiz Details */}
-                  <div className='p-4'>
-                    {/* Creator Info */}
-                    <div className='flex items-center justify-between mb-3'>
-                      <div className='flex items-center gap-2'>
-                        <Avatar className='w-8 h-8'>
-                          <AvatarImage
-                            src={quiz.creator.avatar || '/placeholder.svg'}
-                          />
-                          <AvatarFallback>AS</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className='font-medium text-sm'>
-                            {quiz.creator.name}
-                          </p>
-                          <div className='flex items-center gap-1'>
-                            <Star className='w-3 h-3 fill-yellow-400 text-yellow-400' />
-                            <span className='text-xs text-slate-400'>
-                              {quiz.creator.rating}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className='text-right'>
-                        <p className='text-xs text-slate-400'>Reward</p>
-                        <p className='font-bold text-green-400'>
-                          {quiz.reward}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Stats */}
-                    <div className='flex items-center justify-between text-xs text-slate-400 mb-2'>
-                      <div className='flex items-center gap-1'>
-                        <Users className='w-3 h-3' />
-                        <span>{quiz.players}</span>
-                      </div>
-                      <div className='flex items-center gap-2'>
-                        <div className='flex items-center gap-1'>
-                          <div className='w-8 h-8 rounded-full border-2 border-slate-600 flex items-center justify-center text-xs font-bold'>
-                            {quiz.completion}%
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className='text-xs text-slate-400'>{quiz.spots}</p>
+                  {/* Quiz Title Overlay */}
+                  <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4'>
+                    <h3 className='font-bold text-lg mb-1 truncate overflow-hidden whitespace-nowrap'>
+                      {quiz.title}
+                    </h3>
+                    <p className='text-slate-300 text-sm truncate overflow-hidden whitespace-nowrap'>
+                      {quiz.category}
+                    </p>
                   </div>
                 </div>
-              )
-            )}
+
+                {/* Quiz Details */}
+                <div className='p-4'>
+                  {/* Creator Info */}
+                  <div className='flex items-center justify-between mb-3'>
+                    <div className='flex items-center gap-2'>
+                      <Avatar className='w-8 h-8'>
+                        <AvatarImage
+                          src={quiz.creator.avatar || '/placeholder.svg'}
+                        />
+                        <AvatarFallback>AS</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className='font-medium text-sm'>
+                          {quiz.creator.name}
+                        </p>
+                        <div className='flex items-center gap-1'>
+                          <Star className='w-3 h-3 fill-yellow-400 text-yellow-400' />
+                          <span className='text-xs text-slate-400'>
+                            {quiz.creator.rating}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='text-right'>
+                      <p className='text-xs text-slate-400'>Reward</p>
+                      <p className='font-bold text-green-400'>{quiz.reward}</p>
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div className='flex items-center justify-between text-xs text-slate-400 mb-2'>
+                    <div className='flex items-center gap-1'>
+                      <Users className='w-3 h-3' />
+                      <span>{quiz.players}</span>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <div className='flex items-center gap-1'>
+                        <div className='w-8 h-8 rounded-full border-2 border-slate-600 flex items-center justify-center text-xs font-bold'>
+                          {quiz.completion}%
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className='text-xs text-slate-400'>{quiz.spots}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
