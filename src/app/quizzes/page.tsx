@@ -117,7 +117,7 @@ export default function QuizPlatform() {
         </div>
 
         {/* Category Pills */}
-        <div className='flex gap-3 mb-12 overflow-x-auto pb-2 scrollbar-hide w-full max-w-full flex-wrap sm:flex-nowrap'>
+        <div className=' gap-3 mb-12 overflow-x-auto pb-2 scrollbar-hide w-full max-w-full hidden sm:flex'>
           <style jsx global>{`
             .scrollbar-hide {
               -ms-overflow-style: none;
@@ -145,8 +145,8 @@ export default function QuizPlatform() {
 
         {/* Featured Quizzes Section */}
         <div className='mb-8'>
-          <div className='flex items-center justify-between mb-6'>
-            <div>
+          <div className='flex items-center justify-between mb-6 flex-col xl:flex-row'>
+            <div className='mb-5'>
               <h2 className='text-2xl font-bold mb-1'>Featured Quizzes</h2>
               <p className='text-slate-400'>
                 Specially selected quizzes you don’t want to miss
@@ -286,9 +286,9 @@ export default function QuizPlatform() {
       </div>
 
       <div className=' text-white'>
-        <div className='flex'>
+        <div className='flex xl:flex-row flex-col'>
           {/* Sidebar */}
-          <div className='w-80 p-6 min-h-screen'>
+          <div className='xl:w-80 xl:p-6 min-h-screen w-full'>
             <h2 className='text-xl font-bold mb-6'>Filters</h2>
 
             <div className='border border-white-primary/20 rounded-md p-4'>
