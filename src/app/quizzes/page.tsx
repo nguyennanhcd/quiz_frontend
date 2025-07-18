@@ -22,8 +22,8 @@ import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Card, CardContent } from '@/components/ui/card'
-import { Progress } from '@/components/ui/progress'
 import { categories } from '@/constant/quizCategories'
+import SpotAvailabilityIndicator from '@/components/SpotAvailabiltyIndicator'
 
 const difficultyColors = {
   Easy: 'bg-green-500',
@@ -78,13 +78,8 @@ export default function QuizPlatform() {
     return true
   })
 
-  const getAvailabilityProgress = (spotsLeft: number, totalPlayers: number) => {
-    const totalSpots = totalPlayers + spotsLeft
-    return ((totalSpots - spotsLeft) / totalSpots) * 100
-  }
-
   return (
-    <div className='min-h-screen bg-slate-900 text-white-primary m-3 xl:m-5'>
+    <div className='min-h-screen text-white-primary m-3 xl:m-5'>
       <div className='px-4 py-8'>
         {/* Header */}
         <div className='mb-8'>
@@ -296,7 +291,7 @@ export default function QuizPlatform() {
         </div>
       </div>
 
-      <div className='min-h-screen bg-slate-900 text-white'>
+      <div className=' text-white'>
         <div className='flex'>
           {/* Sidebar */}
           <div className='w-80 p-6 min-h-screen'>
@@ -607,12 +602,9 @@ export default function QuizPlatform() {
                       </div>
                       <div>{quiz.spotsLeft} spots left</div>
                       <div className='flex-1'>
-                        <Progress
-                          value={getAvailabilityProgress(
-                            quiz.spotsLeft,
-                            quiz.players
-                          )}
-                          className='h-2'
+                        <SpotAvailabilityIndicator
+                          currentSpots={quiz.spots - quiz.spotsLeft}
+                          totalSpots={quiz.spots}
                         />
                       </div>
                     </div>
