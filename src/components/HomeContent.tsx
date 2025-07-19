@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import categories from '@/constant/category'
+import Image from 'next/image'
 
 const PageContent = () => {
   return (
@@ -66,7 +67,7 @@ const PageContent = () => {
               className={`${category.color} rounded-xl p-4 sm:p-6 cursor-pointer hover:scale-105 transition-transform relative overflow-hidden`}
             >
               <div className='relative z-10'>
-                <div className='text-2xl sm:text-3xl mb-2'>{category.icon}</div>
+                <Image src={category.imageUrl} alt={category.name} />
                 <h3 className='text-white font-bold text-base sm:text-lg mb-1'>
                   {category.name}
                 </h3>
