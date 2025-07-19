@@ -13,7 +13,7 @@ const categories = [
     createdAt: '2023-11-01T08:00:00Z',
     updatedAt: '2025-07-10T12:00:00Z',
     isFeatured: true,
-    imageUrl: 'categories.webp'
+    imageUrl: '/categories.webp'
   },
   {
     id: 'music',
@@ -29,7 +29,7 @@ const categories = [
     createdAt: '2024-02-15T10:30:00Z',
     updatedAt: '2025-06-05T15:45:00Z',
     isFeatured: false,
-    imageUrl: 'categories.webp'
+    imageUrl: '/categories.webp'
   },
   {
     id: 'politics',
@@ -45,7 +45,7 @@ const categories = [
     createdAt: '2024-08-20T09:15:00Z',
     updatedAt: '2025-07-01T14:00:00Z',
     isFeatured: false,
-    imageUrl: 'categories.webp'
+    imageUrl: '/categories.webp'
   },
   {
     id: 'puzzle',
@@ -61,7 +61,7 @@ const categories = [
     createdAt: '2023-12-05T11:00:00Z',
     updatedAt: '2025-07-15T17:30:00Z',
     isFeatured: true,
-    imageUrl: 'categories.webp'
+    imageUrl: '/categories.webp'
   }
 ]
 
