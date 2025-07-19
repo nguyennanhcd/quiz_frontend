@@ -5,10 +5,10 @@ export const quizzes = [
     category: 'Entertainment',
     difficulty: 'Medium',
     duration: 15,
-    image: '/placeholder.svg?height=200&width=300',
+    image: '/placeholder.webp',
     creator: {
       name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: '/avatarPlaceholder.webp',
       rating: 4.9
     },
     rating: 4.8,
@@ -27,12 +27,12 @@ export const quizzes = [
     id: 2,
     title: 'World Geography Challenge: Landmarks & Capitals',
     category: 'Geography',
-    image: '/placeholder.svg?height=200&width=300',
+    image: '/placeholder.webp',
     difficulty: 'Medium',
     duration: 15,
     creator: {
       name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: '/avatarPlaceholder.webp',
       rating: 4.8
     },
     rating: 4.8,
@@ -50,12 +50,12 @@ export const quizzes = [
     id: 3,
     title: 'Brain Teasers & Logic Puzzles',
     category: 'Puzzles',
-    image: '/placeholder.svg?height=200&width=300',
+    image: '/placeholder.webp',
     difficulty: 'Medium',
     duration: 15,
     creator: {
       name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: '/avatarPlaceholder.webp',
       rating: 4.7
     },
     rating: 4.8,
@@ -74,12 +74,12 @@ export const quizzes = [
     id: 4,
     title: "History's Greatest Mysteries",
     category: 'History',
-    image: '/placeholder.svg?height=200&width=300',
+    image: '/placeholder.webp',
     difficulty: 'Medium',
     duration: 15,
     creator: {
       name: 'Alex Smith',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: '/avatarPlaceholder.webp',
       rating: 4.9
     },
     rating: 4.8,

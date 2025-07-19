@@ -157,17 +157,17 @@ export default function QuizPlatform() {
             {filteredQuizzes.map((quiz) => (
               <div
                 key={quiz.id}
-                className='border border-white/20 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-200 cursor-pointer'
+                className='border border-white/20 rounded-xl overflow-hidden  cursor-pointer'
               >
                 {/* Quiz Image */}
                 <div
                   className={`relative h-48 bg-gradient-to-br ${quiz.bgGradient}`}
                 >
                   <Image
-                    src={quiz.image || '/placeholder.svg'}
+                    src={quiz.image}
                     alt={quiz.title}
                     fill
-                    className='object-cover mix-blend-overlay'
+                    className='object-cover mix-blend-overlay hover:transform hover:scale-115 transition-all duration-200'
                   />
 
                   {/* Badges */}
@@ -222,9 +222,7 @@ export default function QuizPlatform() {
                   <div className='flex items-center justify-between mb-3'>
                     <div className='flex items-center gap-2'>
                       <Avatar className='w-8 h-8'>
-                        <AvatarImage
-                          src={quiz.creator.avatar || '/placeholder.svg'}
-                        />
+                        <AvatarImage src={quiz.creator.avatar} />
                         <AvatarFallback>AS</AvatarFallback>
                       </Avatar>
                       <div>
@@ -259,11 +257,10 @@ export default function QuizPlatform() {
                       totalSpots={quiz.spots}
                       mode='percentage'
                     />
+                    <p className='text-xs text-slate-400'>
+                      {quiz.spotsLeft} spots available
+                    </p>
                   </div>
-
-                  <p className='text-xs text-slate-400'>
-                    {quiz.spotsLeft} spots available
-                  </p>
                 </div>
               </div>
             ))}
@@ -513,10 +510,10 @@ export default function QuizPlatform() {
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2'>
               {filteredQuizzes.map((quiz) => (
-                <Card key={quiz.id} className='bg-transparent overflow-hidden'>
-                  <div className='relative'>
+                <Card key={quiz.id} className=''>
+                  <div className='relative h-48'>
                     <Image
-                      src={quiz.image || '/placeholder.svg'}
+                      src={quiz.image}
                       alt={quiz.title}
                       fill
                       className='w-full h-48 object-cover'
@@ -570,7 +567,7 @@ export default function QuizPlatform() {
                         </span>
                       </div>
                       <div className='flex items-center gap-1 text-green-400 font-bold'>
-                        <DollarSign className='w-4 h-4' />$
+                        <DollarSign className='w-4 h-4' />
                         {quiz.reward.toFixed(2)}
                       </div>
                     </div>
