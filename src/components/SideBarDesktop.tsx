@@ -43,7 +43,7 @@ const SideBarDesktop = ({ isCollapsed }: SideBarProps) => {
 
       {/* Logout */}
       <div className='p-2'>
-        <button className='flex items-center w-full px-3 py-2 rounded-lg cursor-pointer text-slate-300 hover:bg-slate-700 hover:text-white transition-colors'>
+        <button className='flex items-center w-full px-3 py-2 rounded-lg cursor-pointer border-t transform -translate-y-5 text-slate-300 hover:bg-slate-700 hover:text-white transition-colors'>
           <LogOut className='h-5 w-5' />
           {!isCollapsed && (
             <span className='ml-3 text-sm font-medium'>Logout</span>

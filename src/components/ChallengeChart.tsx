@@ -60,7 +60,10 @@ const ChallengeChart = () => {
         <CardContent>
           {activeTab === 'Performance' && (
             <div className='space-y-6'>
-              <ChartContainer config={chartConfig} className='min-h-20'>
+              <ChartContainer
+                config={chartConfig}
+                className='min-h-20 dark:[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-slate-700'
+              >
                 <BarChart
                   accessibilityLayer
                   data={performanceData}
@@ -89,7 +92,6 @@ const ChallengeChart = () => {
                   />
                   <ChartTooltip
                     cursor={{ fill: '#1e293b' }}
-                    wrapperClassName='hover:bg-slate-800'
                     content={<ChartTooltipContent />}
                   />
                   <Bar
