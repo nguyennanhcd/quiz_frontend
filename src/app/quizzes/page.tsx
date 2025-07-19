@@ -6,8 +6,7 @@ import {
   Users,
   Star,
   ChevronUp,
-  ChevronDown,
-  DollarSign
+  ChevronDown
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -19,15 +18,9 @@ import { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Card, CardContent } from '@/components/ui/card'
 import { categories } from '@/constant/quizCategories'
 import SpotAvailabilityIndicator from '@/components/SpotAvailabiltyIndicator'
-
-const difficultyColors = {
-  Easy: 'bg-green-500',
-  Medium: 'bg-orange-500',
-  Hard: 'bg-red-500'
-}
+import QuizCard from '@/components/QuizCard'
 
 export default function QuizPlatform() {
   const [difficultyFilter, setDifficultyFilter] = useState('all')
@@ -510,94 +503,7 @@ export default function QuizPlatform() {
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2'>
               {filteredQuizzes.map((quiz) => (
-                <Card key={quiz.id} className=''>
-                  <div className='relative h-48'>
-                    <Image
-                      src={quiz.image}
-                      alt={quiz.title}
-                      fill
-                      className='w-full h-48 object-cover'
-                    />
-                    <Badge
-                      className={`absolute top-3 left-3 ${
-                        difficultyColors[
-                          quiz.difficulty as keyof typeof difficultyColors
-                        ]
-                      } text-white`}
-                    >
-                      {quiz.difficulty}
-                    </Badge>
-                    <div className='absolute top-3 right-3 bg-black/50 rounded-full px-2 py-1 flex items-center gap-1 text-white text-sm'>
-                      <Clock className='w-3 h-3' />
-                      {quiz.duration}
-                    </div>
-                  </div>
-
-                  <CardContent className='p-4'>
-                    <h3 className='font-bold text-lg mb-3 text-white truncate overflow-hidden'>
-                      {quiz.title}
-                    </h3>
-
-                    <div className='flex items-center gap-3 mb-3'>
-                      <Avatar className='w-8 h-8'>
-                        <AvatarImage
-                          src={quiz.creator.avatar || '/placeholder.svg'}
-                        />
-                        <AvatarFallback>{quiz.creator.name[0]}</AvatarFallback>
-                      </Avatar>
-                      <span className='text-slate-300 text-sm'>
-                        {quiz.creator.name}
-                      </span>
-                      <Badge
-                        variant='secondary'
-                        className='bg-slate-700 text-slate-300'
-                      >
-                        {quiz.category}
-                      </Badge>
-                    </div>
-
-                    <div className='flex items-center justify-between mb-3'>
-                      <div className='flex items-center gap-1'>
-                        <Star className='w-4 h-4 fill-yellow-400 text-yellow-400' />
-                        <span className='text-white font-semibold'>
-                          {quiz.rating}
-                        </span>
-                        <span className='text-slate-400 text-sm'>
-                          ({quiz.reviews})
-                        </span>
-                      </div>
-                      <div className='flex items-center gap-1 text-green-400 font-bold'>
-                        <DollarSign className='w-4 h-4' />
-                        {quiz.reward.toFixed(2)}
-                      </div>
-                    </div>
-
-                    <div className='flex items-center gap-4 mb-4 text-sm text-slate-400'>
-                      <div className='flex items-center gap-1'>
-                        <Users className='w-4 h-4' />
-                        {quiz.players} players
-                      </div>
-                      <div>{quiz.spotsLeft} spots left</div>
-                      <div className='flex-1'>
-                        <SpotAvailabilityIndicator
-                          currentSpots={quiz.spots - quiz.spotsLeft}
-                          totalSpots={quiz.spots}
-                          mode='default'
-                        />
-                      </div>
-                    </div>
-
-                    {quiz.almostFull && (
-                      <p className='text-red-400 text-sm mb-3'>
-                        Almost full! Only {quiz.spotsLeft} spots left
-                      </p>
-                    )}
-
-                    <Button className='w-full bg-default hover:bg-default-hover'>
-                      Play Now
-                    </Button>
-                  </CardContent>
-                </Card>
+                <QuizCard key={quiz.id} {...quiz} />
               ))}
             </div>
           </div>
