@@ -1,9 +1,8 @@
 import React from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import categories from '@/constant/category'
-import Image from 'next/image'
+import { CategoryCard } from './CatergoryCard'
 
 const PageContent = () => {
   return (
@@ -60,24 +59,16 @@ const PageContent = () => {
           </div>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6'>
-          {categories.map((category, index) => (
-            <div
-              key={index}
-              className={`${category.color} rounded-xl p-4 sm:p-6 cursor-pointer hover:scale-105 transition-transform relative overflow-hidden`}
-            >
-              <div className='relative z-10'>
-                <Image src={category.imageUrl} alt={category.name} />
-                <h3 className='text-white font-bold text-base sm:text-lg mb-1'>
-                  {category.name}
-                </h3>
-                <Badge className='bg-white/20 text-white border-0 text-xs sm:text-sm'>
-                  {category.count}
-                </Badge>
-              </div>
-              <div className='absolute -bottom-3 sm:-bottom-4 -right-3 sm:-right-4 w-12 sm:w-16 h-12 sm:h-16 bg-white/10 rounded-full'></div>
-              <div className='absolute -top-1 sm:-top-2 -left-1 sm:-left-2 w-6 sm:w-8 h-6 sm:h-8 bg-white/10 rounded-full'></div>
-            </div>
+        <div className='flex overflow-x-auto space-x-6 pb-4 scrollbar-hide'>
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              id={category.id}
+              name={category.name}
+              count={category.count}
+              slug={category.slug}
+              imageUrl={category.imageUrl}
+            />
           ))}
         </div>
       </div>
