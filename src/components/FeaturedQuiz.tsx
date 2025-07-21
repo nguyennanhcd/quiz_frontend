@@ -52,7 +52,7 @@ const FeaturedQuiz = () => {
               className={`${
                 tab.active ? '' : 'bg-slate-700 text-white hover:bg-slate-600'
               }`}
-              onClick={() => setActiveTab(tab.name)} // Update active tab on click
+              onClick={() => setActiveTab(tab.name)}
             >
               {tab.name}
             </Button>
@@ -162,6 +162,13 @@ const FeaturedQuiz = () => {
                 <p className='text-xs text-slate-400'>
                   {quiz.spotsLeft} spots available
                 </p>
+              </div>
+
+              <div className='w-full text-center'>
+                {/* Play Button */}
+                <Button className='text-sm w-full text-white-primary'>
+                  Play Now
+                </Button>
               </div>
             </div>
           </div>
