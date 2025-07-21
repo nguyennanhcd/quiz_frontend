@@ -1,11 +1,81 @@
 import React from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Swords } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import categories from '@/constant/category'
 import { CategoryCard } from './CatergoryCard'
 import { quizzes } from '@/constant/quizzes'
 import FeaturedQuiz from './FeaturedQuiz'
 import QuizCard from './QuizCard'
+import { ScrollArea, ScrollBar } from './ui/scroll-area'
+import { PlayerCard, PlayerCardProps } from './PlayerCard'
+
+const players: PlayerCardProps[] = [
+  {
+    name: 'Olivia Anderson',
+    country: 'Italy',
+    flag: '🇮🇹',
+    rank: 8,
+    wins: 23,
+    earned: 580.3,
+    followers: '378',
+    following: '267',
+    level: 'Advanced',
+    avatarUrl: '/avatarPlaceholder.webp',
+    bgImageUrl: '/placeholder.webp'
+  },
+  {
+    name: 'Alex Johnson',
+    country: 'United States',
+    flag: '🇺🇸',
+    rank: 1,
+    wins: 42,
+    earned: 1250.75,
+    followers: '1.2k',
+    following: '356',
+    level: 'Grandmaster',
+    avatarUrl: '/avatarPlaceholder.webp',
+    bgImageUrl: '/placeholder.webp'
+  },
+  {
+    name: 'Sarah Williams',
+    country: 'Canada',
+    flag: '🇨🇦',
+    rank: 2,
+    wins: 38,
+    earned: 980.5,
+    followers: '987',
+    following: '412',
+    level: 'Master',
+    avatarUrl: '/avatarPlaceholder.webp',
+    bgImageUrl: '/placeholder.webp'
+  },
+  {
+    name: 'David Lee',
+    country: 'Germany',
+    flag: '🇩🇪',
+    rank: 3,
+    wins: 35,
+    earned: 750.2,
+    followers: '650',
+    following: '200',
+    level: 'Advanced',
+    avatarUrl: '/avatarPlaceholder.webp',
+    bgImageUrl: '/placeholder.webp'
+  },
+  {
+    name: 'Emily Chen',
+    country: 'Australia',
+    flag: '🇦🇺',
+    rank: 4,
+    wins: 30,
+    earned: 620.0,
+    followers: '500',
+    following: '180',
+    level: 'Master',
+    avatarUrl: '/avatarPlaceholder.webp',
+    bgImageUrl: '/placeholder.webp'
+  }
+]
 
 const PageContent = () => {
   return (
@@ -98,7 +168,51 @@ const PageContent = () => {
         </div>
       </div>
 
+      {/* Featured Quiz */}
       <FeaturedQuiz />
+
+      {/* Player Ranking */}
+      <div className='min-h-screen bg-[#1a1a2e] p-6 text-white'>
+        <div className='mx-auto max-w-6xl'>
+          <div className='mb-6 flex items-center justify-between'>
+            <h2 className='flex items-center gap-2 text-2xl font-bold'>
+              <Swords className='h-6 w-6' />
+              Top Players
+            </h2>
+            <div className='flex gap-2'>
+              <Button
+                variant='ghost'
+                size='icon'
+                className='rounded-full bg-[#2a2a4a] text-white hover:bg-[#3a3a5a]'
+              >
+                <ChevronLeft className='h-5 w-5' />
+              </Button>
+              <Button
+                variant='ghost'
+                size='icon'
+                className='rounded-full bg-[#2a2a4a] text-white hover:bg-[#3a3a5a]'
+              >
+                <ChevronRight className='h-5 w-5' />
+              </Button>
+            </div>
+          </div>
+
+          <ScrollArea className='w-full whitespace-nowrap pb-4'>
+            <div className='flex space-x-6'>
+              {players.map((player, index) => (
+                <PlayerCard key={index} {...player} />
+              ))}
+            </div>
+            <ScrollBar orientation='horizontal' className='mt-4' />
+          </ScrollArea>
+
+          <div className='mt-8 flex justify-center'>
+            <Button className='rounded-md bg-[#3a3a5a] px-6 py-3 text-white hover:bg-[#4a4a6a]'>
+              View Full Leaderboard
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
