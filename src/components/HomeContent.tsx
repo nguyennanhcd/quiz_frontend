@@ -76,7 +76,7 @@ const PageContent = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2 mb-10'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2 mb-10git'>
         {quizzes.map((quiz) => (
           <QuizCard key={quiz.id} {...quiz} />
         ))}
