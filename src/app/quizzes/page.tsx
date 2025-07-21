@@ -9,8 +9,8 @@ import { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import QuizCard from '@/components/QuizCard'
 import FeaturedQuiz from '@/components/FeaturedQuiz'
+import QuizCardDetail from '@/components/QuizCardDetail'
 
 export default function QuizPlatform() {
   const [difficultyFilter, setDifficultyFilter] = useState('all')
@@ -344,7 +344,7 @@ export default function QuizPlatform() {
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2'>
               {filteredQuizzes.map((quiz) => (
-                <QuizCard key={quiz.id} {...quiz} />
+                <QuizCardDetail key={quiz.id} {...quiz} />
               ))}
             </div>
           </div>

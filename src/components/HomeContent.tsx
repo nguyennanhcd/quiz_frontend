@@ -3,9 +3,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import categories from '@/constant/category'
 import { CategoryCard } from './CatergoryCard'
-import QuizCard from './QuizCard'
 import { quizzes } from '@/constant/quizzes'
 import FeaturedQuiz from './FeaturedQuiz'
+import QuizCard from './QuizCard'
 
 const PageContent = () => {
   return (
@@ -76,10 +76,27 @@ const PageContent = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2 mb-10git'>
-        {quizzes.map((quiz) => (
-          <QuizCard key={quiz.id} {...quiz} />
-        ))}
+      <div className='min-h-screen bg-[#1A1A2E] text-white p-8 md:p-12 lg:p-16'>
+        <h2 className='text-4xl font-bold mb-8 md:mb-12'>Latest Quizzes</h2>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8'>
+          {quizzes.map((quiz) => (
+            <QuizCard
+              key={quiz.id}
+              title={quiz.title}
+              category={quiz.category}
+              difficulty={quiz.difficulty as 'Easy' | 'Medium' | 'Hard'}
+              image={quiz.image}
+            />
+          ))}
+        </div>
+        <div className='flex justify-center mt-10 md:mt-16'>
+          <Button
+            variant='outline'
+            className='px-8 py-3 rounded-full text-lg border-gray-600 text-gray-50 hover:bg-gray-700 hover:text-white bg-transparent'
+          >
+            View All Quizzes
+          </Button>
+        </div>
       </div>
 
       <FeaturedQuiz />
