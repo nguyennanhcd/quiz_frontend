@@ -5,6 +5,7 @@ import categories from '@/constant/category'
 import { CategoryCard } from './CatergoryCard'
 import QuizCard from './QuizCard'
 import { quizzes } from '@/constant/quizzes'
+import FeaturedQuiz from './FeaturedQuiz'
 
 const PageContent = () => {
   return (
@@ -75,11 +76,13 @@ const PageContent = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 order-1 xl:order-2 mb-10'>
         {quizzes.map((quiz) => (
           <QuizCard key={quiz.id} {...quiz} />
         ))}
       </div>
+
+      <FeaturedQuiz />
     </div>
   )
 }

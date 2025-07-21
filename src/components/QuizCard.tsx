@@ -40,7 +40,6 @@ export type QuizType = {
 }
 
 const QuizCard = (props: QuizType) => {
-  console.log(props)
   return (
     <Card key={props.id} className=''>
       <div className='relative h-48'>
