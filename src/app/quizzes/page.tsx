@@ -9,7 +9,6 @@ import { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { categories } from '@/constant/quizCategories'
 import QuizCard from '@/components/QuizCard'
 import FeaturedQuiz from '@/components/FeaturedQuiz'
 
@@ -26,6 +25,18 @@ export default function QuizPlatform() {
   const [showTimeLimit, setShowTimeLimit] = useState(false)
   const [showAvailability, setShowAvailability] = useState(false)
   const [showTimeRange, setShowTimeRange] = useState(false)
+
+  const categories = [
+    { name: 'All Categories', icon: '🌐', active: true },
+    { name: 'Science', icon: '🧪' },
+    { name: 'History', icon: '🏛️' },
+    { name: 'Geography', icon: '🌍' },
+    { name: 'Mathematics', icon: '📊' },
+    { name: 'Literature', icon: '📚' },
+    { name: 'Sports', icon: '🏆' },
+    { name: 'Music', icon: '🎵' },
+    { name: 'Movies & TV', icon: '🎬' }
+  ]
 
   // Filter quizzes based on difficulty and active tab
   const filteredQuizzes = quizzes.filter((quiz) => {
