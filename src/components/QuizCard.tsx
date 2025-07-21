@@ -2,32 +2,36 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { QuizType } from '@/types/quizType'
 import { difficultyColors } from '@/constant/difficultColor'
-import { Badge } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
-const QuizCard = ({ id, title, category, difficulty, image }: QuizType) => {
+const QuizCard = ({ title, category, difficulty, image }: QuizType) => {
   return (
-    <div key={id} className='border rounded-xl overflow-hidden'>
+    <div className='border rounded-xl overflow-hidden relative'>
       <div className='relative h-48'>
         <Image src={image} alt={title} fill className='object-cover ' />
-        <Badge
-          className={`absolute top-3 left-3 ${
-            difficultyColors[difficulty as keyof typeof difficultyColors]
-          } text-white`}
-        >
-          {difficulty}
-        </Badge>
+
+        <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4'>
+          <div className='w-full'>
+            <Badge
+              className={`absolute top-3 left-3 ${
+                difficultyColors[difficulty as keyof typeof difficultyColors]
+              } text-white`}
+            >
+              {difficulty}
+            </Badge>
+            <h3 className='font-bold text-base mb-3 absolute bottom-3 text-white line-clamp-2 p-1'>
+              {title}
+            </h3>
+          </div>
+        </div>
       </div>
 
-      <div className='p-4'>
-        <h3 className='font-bold text-lg mb-3 text-white truncate overflow-hidden'>
-          {title}
-        </h3>
+      <div className='p-4 flex justify-between overflow-hidden'>
+        <div className='inline-flex items-center rounded-full border px-2.5 py-0 text-[12px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground bg-slate-50 dark:bg-slate-700'>
+          {category}
+        </div>
 
-        <Badge className='bg-slate-700 text-slate-300'>{category}</Badge>
-
-        <Button className='w-full bg-default hover:bg-default-hover'>
-          Play Now
-        </Button>
+        <Button className=' bg-default hover:bg-default-hover'>Play Now</Button>
       </div>
     </div>
   )

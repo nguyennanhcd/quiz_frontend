@@ -76,8 +76,9 @@ const PageContent = () => {
         </div>
       </div>
 
-      <div className='min-h-screen bg-[#1A1A2E] text-white p-8 md:p-12 lg:p-16'>
-        <h2 className='text-4xl font-bold mb-8 md:mb-12'>Latest Quizzes</h2>
+      {/* Latest Quizzes */}
+      <div className=' bg-main text-white border rounded-lg lg:p-8 mb-10'>
+        <h2 className='text-2xl font-bold mb-8'>Latest Quizzes</h2>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8'>
           {quizzes.map((quiz) => (
             <QuizCard
@@ -89,11 +90,9 @@ const PageContent = () => {
             />
           ))}
         </div>
-        <div className='flex justify-center mt-10 md:mt-16'>
-          <Button
-            variant='outline'
-            className='px-8 py-3 rounded-full text-lg border-gray-600 text-gray-50 hover:bg-gray-700 hover:text-white bg-transparent'
-          >
+
+        <div className='flex justify-center mt-3 lg:mt-8 mb-3'>
+          <Button className=' text-sm hover:bg-default-hover rounded-sm'>
             View All Quizzes
           </Button>
         </div>
