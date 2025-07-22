@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Card, CardContent } from '@/components/ui/card'
+import { CardContent } from '@/components/ui/card'
 import { Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -38,7 +38,7 @@ export function PlayerCard({
   }
 
   return (
-    <Card className='relative w-[280px] flex-shrink-0 overflow-hidden rounded-lg bg-[#2a2a4a] text-white shadow-lg'>
+    <div className='relative w-[280px] xl:w-[350px] flex-shrink-0 overflow-hidden rounded-lg bg-transparent border text-white shadow-lg'>
       <div className='relative h-32 w-full'>
         <Image
           src={
@@ -112,6 +112,6 @@ export function PlayerCard({
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

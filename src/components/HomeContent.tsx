@@ -8,6 +8,8 @@ import FeaturedQuiz from './FeaturedQuiz'
 import QuizCard from './QuizCard'
 import { ScrollArea, ScrollBar } from './ui/scroll-area'
 import { PlayerCard, PlayerCardProps } from './PlayerCard'
+import { QuizCardDifficulty } from './QuizCardDifficulty'
+import { quizzesDifficulty } from '@/constant/quizDifficulty'
 
 const players: PlayerCardProps[] = [
   {
@@ -172,9 +174,9 @@ const PageContent = () => {
       <FeaturedQuiz />
 
       {/* Player Ranking */}
-      <div className='min-h-screen bg-[#1a1a2e] p-6 text-white'>
+      <div className=' xl:py-10 bg-main p-6 text-white rounded-sm'>
         <div className='mx-auto max-w-6xl'>
-          <div className='mb-6 flex items-center justify-between'>
+          <div className='mb-10 flex items-center justify-between'>
             <h2 className='flex items-center gap-2 text-2xl font-bold'>
               <Swords className='h-6 w-6' />
               Top Players
@@ -183,21 +185,21 @@ const PageContent = () => {
               <Button
                 variant='ghost'
                 size='icon'
-                className='rounded-full bg-[#2a2a4a] text-white hover:bg-[#3a3a5a]'
+                className=' bg-default text-white hover:bg-default-hover'
               >
                 <ChevronLeft className='h-5 w-5' />
               </Button>
               <Button
                 variant='ghost'
                 size='icon'
-                className='rounded-full bg-[#2a2a4a] text-white hover:bg-[#3a3a5a]'
+                className='bg-default text-white hover:bg-default-hover'
               >
                 <ChevronRight className='h-5 w-5' />
               </Button>
             </div>
           </div>
 
-          <ScrollArea className='w-full whitespace-nowrap pb-4'>
+          <ScrollArea className='w-full whitespace-nowrap pb-4 mt-5'>
             <div className='flex space-x-6'>
               {players.map((player, index) => (
                 <PlayerCard key={index} {...player} />
@@ -207,10 +209,66 @@ const PageContent = () => {
           </ScrollArea>
 
           <div className='mt-8 flex justify-center'>
-            <Button className='rounded-md bg-[#3a3a5a] px-6 py-3 text-white hover:bg-[#4a4a6a]'>
+            <Button className='rounded-md bg-default hover:bg-default-hover'>
               View Full Leaderboard
             </Button>
           </div>
+        </div>
+      </div>
+
+      {/* QuizCard Difficulty*/}
+      <div className='min-h-screen bg-[#1A1A2E] p-6 md:p-10 lg:p-12'>
+        <div className='mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
+          <div>
+            <h1 className='text-3xl font-bold text-white md:text-4xl'>
+              Quizzes by Difficulty
+            </h1>
+            <p className='text-md text-gray-400 md:text-lg'>
+              Choose challenges according to your skill level
+            </p>
+          </div>
+          <div className='flex items-center gap-2'>
+            <div className='flex rounded-lg bg-[#2A2A3A] p-1'>
+              <Button
+                variant='ghost'
+                className='h-8 rounded-md px-4 text-white hover:bg-purple-600 hover:text-white'
+              >
+                Easy
+              </Button>
+              <Button
+                variant='ghost'
+                className='h-8 rounded-md px-4 text-white hover:bg-purple-600 hover:text-white'
+              >
+                Medium
+              </Button>
+              <Button
+                variant='ghost'
+                className='h-8 rounded-md px-4 text-white hover:bg-purple-600 hover:text-white'
+              >
+                Hard
+              </Button>
+            </div>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='h-8 w-8 rounded-full text-white hover:bg-purple-600 hover:text-white'
+            >
+              <ChevronLeft className='h-4 w-4' />
+            </Button>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='h-8 w-8 rounded-full text-white hover:bg-purple-600 hover:text-white'
+            >
+              <ChevronRight className='h-4 w-4' />
+            </Button>
+          </div>
+        </div>
+
+        <div className='flex gap-6 overflow-x-auto pb-4 scrollbar-hide lg:grid lg:grid-cols-4 lg:gap-8'>
+          {quizzesDifficulty.map((quiz) => (
+            <QuizCardDifficulty key={quiz.id} {...quiz} />
+          ))}
         </div>
       </div>
     </div>
