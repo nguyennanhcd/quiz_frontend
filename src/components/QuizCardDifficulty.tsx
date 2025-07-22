@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Clock, Users, Leaf } from 'lucide-react'
+import { Clock, Users, DollarSign } from 'lucide-react'
 import { difficultyColors } from '@/constant/difficultColor'
 
 export interface QuizCardProps {
@@ -73,9 +73,12 @@ export function QuizCardDifficulty({
           </Avatar>
           <span className='font-semibold text-white'>{authorName}</span>
         </div>
-        <div className='absolute bottom-3 right-3 flex items-center text-sm font-semibold text-white'>
-          <Leaf className='mr-1 h-4 w-4 text-green-400' />
-          Reward {reward}
+        <div className='absolute bottom-3 right-3 flex items-center flex-col text-sm font-semibold text-white'>
+          <span>Reward </span>
+          <div className='flex items-center justify-center'>
+            <DollarSign className='mr-1 h-4 w-4 text-green-400' />
+            <span className='text-green-400'>{reward}</span>
+          </div>
         </div>
       </div>
       <div className='p-4 text-white'>
@@ -95,7 +98,7 @@ export function QuizCardDifficulty({
         </div>
         <div className='mb-3 h-2 w-full rounded-full bg-gray-700'>
           <div
-            className='h-full rounded-full bg-purple-400'
+            className='h-full rounded-full bg-white-primary'
             style={{ width: `${progress}%` }}
           />
         </div>

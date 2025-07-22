@@ -86,7 +86,6 @@ export default function QuizPlatform() {
           {categories.map((category) => (
             <Button
               key={category.name}
-              variant={category.active ? 'default' : 'outline'}
               className={`whitespace-nowrap flex-shrink-0 rounded-full ${
                 category.active
                   ? 'bg-default hover:bg-default/90'

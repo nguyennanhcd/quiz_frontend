@@ -22,6 +22,7 @@ const QuizCardDetail = (props: QuizDetailType) => {
         <Badge
           className={`absolute top-3 left-3 ${
             difficultyColors[props.difficulty as keyof typeof difficultyColors]
+              .bg
           } text-white`}
         >
           {props.difficulty}

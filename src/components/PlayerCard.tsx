@@ -100,12 +100,12 @@ export function PlayerCard({
           </div>
         </CardContent>
         <div className='mt-4 flex w-full justify-around gap-2'>
-          <div className='flex flex-1 flex-col items-center rounded-md bg-[#3a3a5a] p-2'>
+          <div className='flex flex-1 flex-col items-center rounded-md bg-main p-2'>
             <Users className='h-4 w-4 text-gray-400' />
             <span className='mt-1 text-base font-semibold'>{followers}</span>
             <span className='text-xs text-gray-400'>Followers</span>
           </div>
-          <div className='flex flex-1 flex-col items-center rounded-md bg-[#3a3a5a] p-2'>
+          <div className='flex flex-1 flex-col items-center rounded-md bg-main p-2'>
             <Users className='h-4 w-4 text-gray-400' />
             <span className='mt-1 text-base font-semibold'>{following}</span>
             <span className='text-xs text-gray-400'>Following</span>

@@ -13,6 +13,8 @@ import { PlayerCard, PlayerCardProps } from './PlayerCard'
 import { QuizCardDifficulty } from './QuizCardDifficulty'
 import { quizzesDifficulty } from '@/constant/quizDifficulty'
 import { difficultyColors } from '@/constant/difficultColor'
+import Link from 'next/link'
+import LiveWinners from './LiveWinner'
 
 const players: PlayerCardProps[] = [
   {
@@ -172,7 +174,7 @@ const PageContent = () => {
 
         <div className='flex justify-center mt-3 lg:mt-8 mb-3'>
           <Button className=' text-sm hover:bg-default-hover rounded-sm'>
-            View All Quizzes
+            <Link href='/quizzes'>View All Quizzes</Link>
           </Button>
         </div>
       </div>
@@ -206,7 +208,7 @@ const PageContent = () => {
             </div>
           </div>
 
-          <ScrollArea className='w-full whitespace-nowrap pb-4 mt-5'>
+          <ScrollArea className='w-full whitespace-nowrap pb-4 mt-5 bg-slate-900'>
             <div className='flex space-x-6'>
               {players.map((player, index) => (
                 <PlayerCard key={index} {...player} />
@@ -224,8 +226,8 @@ const PageContent = () => {
       </div>
 
       {/* QuizCard Difficulty*/}
-      <div className='mt-10 xl:mt-20 bg-transparent p-6'>
-        <div className='mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
+      <div className='mt-20'>
+        <div className='mb-8 m flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
           <div>
             <h1 className='text-3xl font-bold text-white md:text-4xl'>
               Quizzes by Difficulty
@@ -274,6 +276,9 @@ const PageContent = () => {
             ))}
         </div>
       </div>
+
+      {/* Live Winners */}
+      <LiveWinners />
     </div>
   )
 }
