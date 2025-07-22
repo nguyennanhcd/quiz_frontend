@@ -14,7 +14,7 @@ const QuizCard = ({ title, category, difficulty, image }: QuizType) => {
           <div className='w-full'>
             <Badge
               className={`absolute top-3 left-3 ${
-                difficultyColors[difficulty as keyof typeof difficultyColors]
+                difficultyColors[difficulty as keyof typeof difficultyColors].bg
               } text-white`}
             >
               {difficulty}
