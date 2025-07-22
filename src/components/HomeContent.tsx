@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import { useState } from 'react'
 import { ChevronLeft, ChevronRight, Swords } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import categories from '@/constant/category'
@@ -10,6 +12,7 @@ import { ScrollArea, ScrollBar } from './ui/scroll-area'
 import { PlayerCard, PlayerCardProps } from './PlayerCard'
 import { QuizCardDifficulty } from './QuizCardDifficulty'
 import { quizzesDifficulty } from '@/constant/quizDifficulty'
+import { difficultyColors } from '@/constant/difficultColor'
 
 const players: PlayerCardProps[] = [
   {
@@ -80,6 +83,10 @@ const players: PlayerCardProps[] = [
 ]
 
 const PageContent = () => {
+  const [selectedDifficulty, setSelectedDifficulty] = useState<
+    'Easy' | 'Medium' | 'Hard'
+  >('Easy')
+
   return (
     <div className='flex-1 p-4 sm:p-6 lg:p-8 max-w-full overflow-hidden'>
       <div className='relative bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 mb-6 sm:mb-8'>
@@ -217,7 +224,7 @@ const PageContent = () => {
       </div>
 
       {/* QuizCard Difficulty*/}
-      <div className='min-h-screen bg-[#1A1A2E] p-6 md:p-10 lg:p-12'>
+      <div className='mt-10 xl:mt-20 bg-transparent p-6'>
         <div className='mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
           <div>
             <h1 className='text-3xl font-bold text-white md:text-4xl'>
@@ -229,46 +236,42 @@ const PageContent = () => {
           </div>
           <div className='flex items-center gap-2'>
             <div className='flex rounded-lg bg-[#2A2A3A] p-1'>
-              <Button
-                variant='ghost'
-                className='h-8 rounded-md px-4 text-white hover:bg-purple-600 hover:text-white'
-              >
-                Easy
-              </Button>
-              <Button
-                variant='ghost'
-                className='h-8 rounded-md px-4 text-white hover:bg-purple-600 hover:text-white'
-              >
-                Medium
-              </Button>
-              <Button
-                variant='ghost'
-                className='h-8 rounded-md px-4 text-white hover:bg-purple-600 hover:text-white'
-              >
-                Hard
-              </Button>
+              {(['Easy', 'Medium', 'Hard'] as const).map((level) => (
+                <Button
+                  key={level}
+                  onClick={() => setSelectedDifficulty(level)}
+                  className={`rounded-sm px-4 py-1 text-sm transition ${
+                    selectedDifficulty === level
+                      ? `${difficultyColors[level].bg} pointer-events-none `
+                      : `bg-transparent  ${difficultyColors[level].hover}`
+                  }
+                  `}
+                >
+                  {level}
+                </Button>
+              ))}
             </div>
             <Button
-              variant='ghost'
               size='icon'
-              className='h-8 w-8 rounded-full text-white hover:bg-purple-600 hover:text-white'
+              className='h-8 w-8 bg-transparent text-white-primary hover:bg-slate-700 '
             >
               <ChevronLeft className='h-4 w-4' />
             </Button>
             <Button
-              variant='ghost'
               size='icon'
-              className='h-8 w-8 rounded-full text-white hover:bg-purple-600 hover:text-white'
+              className='h-8 w-8 bg-transparent text-white-primary hover:bg-slate-700 '
             >
               <ChevronRight className='h-4 w-4' />
             </Button>
           </div>
         </div>
 
-        <div className='flex gap-6 overflow-x-auto pb-4 scrollbar-hide lg:grid lg:grid-cols-4 lg:gap-8'>
-          {quizzesDifficulty.map((quiz) => (
-            <QuizCardDifficulty key={quiz.id} {...quiz} />
-          ))}
+        <div className='flex gap-6 overflow-x-auto pb-4 scrollbar-hide lg:grid lg:grid-cols-4 lg:gap-30'>
+          {quizzesDifficulty
+            .filter((quiz) => quiz.difficulty === selectedDifficulty)
+            .map((quiz) => (
+              <QuizCardDifficulty key={quiz.id} {...quiz} />
+            ))}
         </div>
       </div>
     </div>

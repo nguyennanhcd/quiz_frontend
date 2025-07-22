@@ -2,17 +2,17 @@ import Image from 'next/image'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Clock, Users, Leaf } from 'lucide-react'
+import { difficultyColors } from '@/constant/difficultColor'
 
 export interface QuizCardProps {
   id?: string
   imageSrc: string
   difficulty: 'Easy' | 'Medium' | 'Hard'
   authorAvatarSrc: string
-  authorAvatarQuery: string
   authorName: string
   reward: number
   category: string
-  duration: number // in minutes
+  duration: number
   title: string
   players: number
   spotsAvailable: number
@@ -40,7 +40,7 @@ export function QuizCardDifficulty({
   const isSpotsLow = spotsAvailable > 0 && spotsAvailable <= 10 // Example threshold for "Only X spots left!"
 
   return (
-    <div className='relative w-72 flex-shrink-0 overflow-hidden rounded-lg bg-[#2A2A3A] shadow-lg'>
+    <div className='relative w-72 flex-shrink-0 overflow-hidden rounded-lg border shadow-lg'>
       <div className='relative h-40 w-full'>
         <Image
           src={imageSrc || '/placeholder.svg'}
@@ -50,9 +50,14 @@ export function QuizCardDifficulty({
           className='absolute inset-0 h-full w-full object-cover'
         />
         <div className='absolute inset-0 bg-gradient-to-t from-black/70 to-transparent' />
-        <div className='absolute top-3 right-3 rounded-full bg-green-500 px-3 py-1 text-xs font-semibold text-white'>
+        <div
+          className={`absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-semibold text-white ${
+            difficultyColors[difficulty as keyof typeof difficultyColors]
+          }`}
+        >
           {difficulty}
         </div>
+
         <div className='absolute bottom-3 left-3 flex items-center gap-2'>
           <Avatar className='h-10 w-10 border-2 border-white'>
             <AvatarImage
