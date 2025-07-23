@@ -17,6 +17,7 @@ import Link from 'next/link'
 import LiveWinners from './LiveWinner'
 import { playersRank } from '@/constant/playersRank'
 import HowItWorks from './HowItWorks'
+import SuccessStoriesCarousel from './SuccessStoryCarousel'
 
 const PageContent = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState<
@@ -216,6 +217,9 @@ const PageContent = () => {
 
       {/*How it Works */}
       <HowItWorks />
+
+      {/* Success Story */}
+      <SuccessStoriesCarousel />
     </div>
   )
 }
