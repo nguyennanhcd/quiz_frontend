@@ -9,7 +9,7 @@ export const leaderboardData = [
     rankBgColor: 'bg-yellow-400',
     rankTextColor: 'text-slate-900',
     stars: 78,
-    avatar: '/placeholder.svg?height=80&width=80'
+    avatar: '/avatarPlaceholder.webp'
   },
   {
     rank: 2,
@@ -21,7 +21,7 @@ export const leaderboardData = [
     rankBgColor: 'bg-slate-400',
     rankTextColor: 'text-slate-900',
     stars: 65,
-    avatar: '/placeholder.svg?height=64&width=64'
+    avatar: '/avatarPlaceholder.webp'
   },
   {
     rank: 3,
@@ -33,6 +33,6 @@ export const leaderboardData = [
     rankBgColor: 'bg-amber-600',
     rankTextColor: 'text-white',
     stars: 59,
-    avatar: '/placeholder.svg?height=64&width=64'
+    avatar: '/avatarPlaceholder.webp'
   }
 ]
