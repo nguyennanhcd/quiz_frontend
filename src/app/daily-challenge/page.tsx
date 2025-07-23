@@ -26,16 +26,68 @@ import { Badge } from '@/components/ui/badge'
 import { badges } from '@/constant/badges'
 
 export default function DailyChallenge() {
-  const [timeRemaining, setTimeRemaining] = useState('15:23:16')
-  const [questionTime, setQuestionTime] = useState('7:07')
+  const [timeRemaining, setTimeRemaining] = useState<string>('')
+  const [questionTime, setQuestionTime] = useState<string>('5:00')
   const [selectedAnswer, setSelectedAnswer] = useState('')
   const [showAllHistory, setShowAllHistory] = useState(false)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      // Timer logic placeholder
-    }, 1000)
-    return () => clearInterval(timer)
+    const updateTimer = () => {
+      const now: Date = new Date()
+      const endOfDay: Date = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        23,
+        59,
+        59,
+        999
+      )
+      const diff: number = endOfDay.getTime() - now.getTime()
+
+      const hours: number = Math.floor(diff / (1000 * 60 * 60))
+      const minutes: number = Math.floor(
+        (diff % (1000 * 60 * 60)) / (1000 * 60)
+      )
+      const seconds: number = Math.floor((diff % (1000 * 60)) / 1000)
+
+      setTimeRemaining(
+        `${hours.toString().padStart(2, '0')}:${minutes
+          .toString()
+          .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+      )
+    }
+
+    updateTimer() // Initial call
+    const interval: NodeJS.Timeout = setInterval(updateTimer, 1000)
+
+    return () => clearInterval(interval) // Cleanup on unmount
+  }, [])
+
+  useEffect(() => {
+    let seconds: number = 5 * 60 // 5 minutes in seconds
+
+    const updateTimer = () => {
+      if (seconds <= 0) {
+        setQuestionTime('00:00')
+        return
+      }
+
+      const minutes: number = Math.floor(seconds / 60)
+      const remainingSeconds: number = seconds % 60
+
+      setQuestionTime(
+        `${minutes.toString().padStart(2, '0')}:${remainingSeconds
+          .toString()
+          .padStart(2, '0')}`
+      )
+      seconds--
+    }
+
+    updateTimer() // Initial call
+    const interval: NodeJS.Timeout = setInterval(updateTimer, 1000)
+
+    return () => clearInterval(interval) // Cleanup on unmount
   }, [])
 
   const displayedHistory = showAllHistory
