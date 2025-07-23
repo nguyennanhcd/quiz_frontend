@@ -2,8 +2,13 @@
 import { mockQuizzes } from '@/constant/mockQuizzes'
 import Link from 'next/link'
 
-export default function QuizDetail({ params }: { params: { id: string } }) {
-  const quiz = mockQuizzes.find((q) => q.id === parseInt(params.id))
+export default async function QuizDetail({
+  params
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const quiz = mockQuizzes.find((q) => q.id === parseInt(id))
 
   if (!quiz) {
     return (
@@ -32,7 +37,7 @@ export default function QuizDetail({ params }: { params: { id: string } }) {
           </div>
           <div className='flex space-x-4 mt-6'>
             <Link
-              href={`/quizzes/${params.id}/start`}
+              href={`/quizzes/${id}/start`}
               className='bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition'
             >
               Bắt đầu làm bài
