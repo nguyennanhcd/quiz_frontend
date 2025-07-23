@@ -50,9 +50,8 @@ export default function QuizCategories() {
             </p>
           </div>
         )}
+        <TestKnowledge />
       </div>
-
-      <TestKnowledge />
     </div>
   )
 }
