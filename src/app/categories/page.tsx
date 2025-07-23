@@ -4,6 +4,7 @@ import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { quizCategories } from '@/constant/quizCategories'
 import QuizCategoriesCard from '@/components/quizCategoriesCard'
+import TestKnowledge from '@/components/categories/TestKnowledge'
 
 export default function QuizCategories() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -15,8 +16,6 @@ export default function QuizCategories() {
     <div className='min-h-screen bg-slate-900 text-white p-6'>
       <div className='max-w-7xl mx-auto'>
         {' '}
-        {/* Added max-w-7xl and mx-auto for better centering on large screens */}
-        {/* Header */}
         <div className='mb-8'>
           <h1 className='text-4xl md:text-5xl font-bold mb-4'>
             Quiz Categories
@@ -52,6 +51,8 @@ export default function QuizCategories() {
           </div>
         )}
       </div>
+
+      <TestKnowledge />
     </div>
   )
 }
