@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image'
 import React from 'react'
 import { Card } from '@/components/ui/card'
@@ -25,7 +24,7 @@ const QuizCategoriesCard = ({ id, name, count }: QuizCategoryProps) => {
         />
         {/* Count badge - positioned absolutely over the image */}
         <div className='absolute top-2 right-2 bg-black/20 backdrop-blur-sm rounded-full w-6 h-6 flex items-center justify-center z-10'>
-          <span className='text-white font-bold text-[1'>{count}</span>
+          <span className='text-white font-bold text-[12px]'>{count}</span>
         </div>
       </div>
     </Card>
