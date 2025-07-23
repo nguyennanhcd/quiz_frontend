@@ -3,7 +3,7 @@ export const leaderboardData = {
     {
       id: 1,
       name: 'QuizMaster',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 7s',
       badge: '🏆'
@@ -11,7 +11,7 @@ export const leaderboardData = {
     {
       id: 2,
       name: 'BrainGenius',
-      avatar: '👨‍🎓',
+      avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 22s',
       badge: '🥈'
@@ -19,7 +19,7 @@ export const leaderboardData = {
     {
       id: 3,
       name: 'KnowledgeKing',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 80,
       time: '1m 3s',
       badge: '🥉'
@@ -27,7 +27,7 @@ export const leaderboardData = {
     {
       id: 4,
       name: 'QuizMaster',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 7s',
       badge: '🏆'
@@ -35,7 +35,7 @@ export const leaderboardData = {
     {
       id: 5,
       name: 'QuizMaster',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 7s',
       badge: '🏆'
@@ -43,7 +43,7 @@ export const leaderboardData = {
     {
       id: 6,
       name: 'QuizMaster',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 7s',
       badge: '🏆'
@@ -51,7 +51,7 @@ export const leaderboardData = {
     {
       id: 7,
       name: 'QuizMaster',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 7s',
       badge: '🏆'
@@ -59,7 +59,7 @@ export const leaderboardData = {
     {
       id: 8,
       name: 'QuizMaster',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 7s',
       badge: '🏆'
@@ -69,7 +69,7 @@ export const leaderboardData = {
     {
       id: 1,
       name: 'WeeklyChamp',
-      avatar: '👩‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 950,
       time: 'avg 45s',
       badge: '🏆'
@@ -77,7 +77,7 @@ export const leaderboardData = {
     {
       id: 2,
       name: 'ConsistentPro',
-      avatar: '👨‍💼',
+      avatar: '/avatarPlaceholder.webp',
       score: 920,
       time: 'avg 52s',
       badge: '🥈'
@@ -85,7 +85,7 @@ export const leaderboardData = {
     {
       id: 3,
       name: 'SteadyLearner',
-      avatar: '👩‍🎓',
+      avatar: '/avatarPlaceholder.webp',
       score: 890,
       time: 'avg 48s',
       badge: '🥉'
@@ -95,7 +95,7 @@ export const leaderboardData = {
     {
       id: 1,
       name: 'LegendaryMind',
-      avatar: '👑',
+      avatar: '/avatarPlaceholder.webp',
       score: 9850,
       time: 'avg 42s',
       badge: '🏆'
@@ -103,7 +103,7 @@ export const leaderboardData = {
     {
       id: 2,
       name: 'EternalWisdom',
-      avatar: '🧠',
+      avatar: '/avatarPlaceholder.webp',
       score: 9720,
       time: 'avg 44s',
       badge: '🥈'
@@ -111,7 +111,7 @@ export const leaderboardData = {
     {
       id: 3,
       name: 'TimelessGenius',
-      avatar: '⭐',
+      avatar: '/avatarPlaceholder.webp',
       score: 9650,
       time: 'avg 46s',
       badge: '🥉'

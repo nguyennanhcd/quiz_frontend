@@ -6,7 +6,6 @@ import {
   Calendar,
   Trophy,
   Flame,
-  User,
   ChevronRight,
   ChevronLeft,
   Star
@@ -23,23 +22,29 @@ import ChallengeChart from '@/components/ChallengeChart'
 import { Badge } from '@/components/ui/badge'
 import { badges } from '@/constant/badges'
 import { challengeData } from '@/constant/challengeHistoryData'
+import Image from 'next/image'
 
 const MainContent = () => {
   const [questionTime, setQuestionTime] = useState<string>('5:00')
   const [selectedAnswer, setSelectedAnswer] = useState('')
+  const [isTimerActive, setIsTimerActive] = useState(false) // New state to control timer
   const [showAllHistory, setShowAllHistory] = useState(false)
 
   useEffect(() => {
-    let seconds: number = 5 * 60 // 5 minutes in seconds
+    // Start timer only if an answer is selected
+    if (!isTimerActive || selectedAnswer === '') return
+
+    let seconds = 5 * 60 // 5 minutes in seconds
 
     const updateTimer = () => {
       if (seconds <= 0) {
         setQuestionTime('00:00')
+        setIsTimerActive(false) // Stop timer when it reaches 0
         return
       }
 
-      const minutes: number = Math.floor(seconds / 60)
-      const remainingSeconds: number = seconds % 60
+      const minutes = Math.floor(seconds / 60)
+      const remainingSeconds = seconds % 60
 
       setQuestionTime(
         `${minutes.toString().padStart(2, '0')}:${remainingSeconds
@@ -49,11 +54,18 @@ const MainContent = () => {
       seconds--
     }
 
-    updateTimer() // Initial call
-    const interval: NodeJS.Timeout = setInterval(updateTimer, 1000)
+    updateTimer() // Update immediately on selection
+    const interval = setInterval(updateTimer, 1000)
 
-    return () => clearInterval(interval) // Cleanup on unmount
-  }, [])
+    return () => clearInterval(interval)
+  }, [isTimerActive, selectedAnswer]) // Depend on isTimerActive and selectedAnswer
+
+  // Start the timer when an answer is selected
+  useEffect(() => {
+    if (selectedAnswer !== '') {
+      setIsTimerActive(true)
+    }
+  }, [selectedAnswer])
 
   const displayedHistory = showAllHistory
     ? challengeData
@@ -216,8 +228,14 @@ const MainContent = () => {
                       className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-main-hover'
                     >
                       <span className='text-lg'>{player.badge}</span>
-                      <div className='w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white'>
-                        <User className='h-4 w-4' />
+                      <div className='w-8 h-8 rounded-full flex items-center justify-center text-white'>
+                        <Image
+                          src={player.avatar}
+                          alt={player.name}
+                          width={8}
+                          height={8}
+                          className='w-8 h-8 rounded-full flex items-center justify-center text-white'
+                        />
                       </div>
                       <div className='flex-1'>
                         <p className='font-medium text-sm'>{player.name}</p>
