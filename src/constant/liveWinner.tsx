@@ -14,7 +14,7 @@ export const winners: Winner[] = [
     timeAgo: '2 months ago',
     amountWon: '12.50',
     game: 'History Masters',
-    avatarUrl: '/placeholder.svg?height=64&width=64'
+    avatarUrl: 'avatarPlaceholder.webp'
   },
   {
     id: '2',
@@ -22,7 +22,7 @@ export const winners: Winner[] = [
     timeAgo: '2 months ago',
     amountWon: '3.25',
     game: 'Pop Culture Quiz',
-    avatarUrl: '/placeholder.svg?height=64&width=64'
+    avatarUrl: 'avatarPlaceholder.webp'
   },
   {
     id: '3',
@@ -30,7 +30,7 @@ export const winners: Winner[] = [
     timeAgo: '2 months ago',
     amountWon: '7.80',
     game: 'Geography Challenge',
-    avatarUrl: '/placeholder.svg?height=64&width=64'
+    avatarUrl: 'avatarPlaceholder.webp'
   },
   {
     id: '4',
@@ -38,7 +38,7 @@ export const winners: Winner[] = [
     timeAgo: '2 months ago',
     amountWon: '15.00',
     game: 'Math Wizards',
-    avatarUrl: '/placeholder.svg?height=64&width=64'
+    avatarUrl: 'avatarPlaceholder.webp'
   },
   {
     id: '5',
@@ -46,7 +46,7 @@ export const winners: Winner[] = [
     timeAgo: '1 month ago',
     amountWon: '9.99',
     game: 'Science Trivia',
-    avatarUrl: '/placeholder.svg?height=64&width=64'
+    avatarUrl: 'avatarPlaceholder.webp'
   },
   {
     id: '6',
@@ -54,6 +54,6 @@ export const winners: Winner[] = [
     timeAgo: '3 months ago',
     amountWon: '20.00',
     game: 'Sports Fanatic',
-    avatarUrl: '/placeholder.svg?height=64&width=64'
+    avatarUrl: 'avatarPlaceholder.webp'
   }
 ]
