@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { quizCategories } from '@/constant/quizCategories'
 import QuizCategoriesCard from '@/components/quizCategoriesCard'
 import TestKnowledge from '@/components/categories/TestKnowledge'
+import HowItWorks from '@/components/HowItWorks'
 
 export default function QuizCategories() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -51,6 +52,7 @@ export default function QuizCategories() {
           </div>
         )}
         <TestKnowledge />
+        <HowItWorks />
       </div>
     </div>
   )
