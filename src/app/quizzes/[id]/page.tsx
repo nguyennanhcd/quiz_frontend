@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 import QuizDetail from '@/components/quiz-page/QuizDetail'
 import { mockQuizzes } from '@/constant/mockQuizzes'
+import Link from 'next/link'
 
 export default async function QuizDetailPage({
   params
@@ -14,16 +14,14 @@ export default async function QuizDetailPage({
     return (
       <div className='min-h-screen bg-slate-900 flex items-center justify-center'>
         <div className='text-center'>
-          <h1 className='text-2xl font-bold text-red-400 mb-4'>
-            Can not find this quiz
-          </h1>
+          <h1 className='text-2xl font-bold'>Can not find this quiz</h1>
           <p className='text-slate-400 mb-6'>Quiz is unavailable</p>
-          <a
+          <Link
             href='/quizzes'
-            className='bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition'
+            className='bg-default hover:bg-default-hover text-white px-6 py-2 rounded-lg transition'
           >
             Back to Explore Quizzes
-          </a>
+          </Link>
         </div>
       </div>
     )

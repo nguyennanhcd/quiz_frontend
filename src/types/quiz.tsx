@@ -4,13 +4,15 @@ export type Quiz = {
   description: string
   duration: string
   questionCount: number
-  difficulty: string
+  difficulty: 'Easy' | 'Medium' | 'Hard'
   image: string
   currentPlayers: number
   maxPlayers: number
   requirements: string
   tags: string[]
   category: string[]
+  isPopular: boolean
+  isFeatured: boolean
   questions: {
     id: number
     text: string

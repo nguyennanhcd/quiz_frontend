@@ -9,35 +9,10 @@ import { Quiz } from '@/types/quiz'
 import { leaderboardData } from '@/constant/quizLeaderBoard'
 import StarRating from '../StarRating'
 import { quizReviews } from '@/constant/quizReview'
+import { difficultyColors } from '@/constant/difficultColor'
 
 interface QuizDetailProps {
   quiz: Quiz
-}
-
-function getDifficultyColor(difficulty: string) {
-  switch (difficulty.toLowerCase()) {
-    case 'easy':
-      return 'bg-green-500 hover:bg-green-600'
-    case 'medium':
-      return 'bg-amber-500 hover:bg-amber-600'
-    case 'hard':
-      return 'bg-red-500 hover:bg-red-600'
-    default:
-      return 'bg-gray-500 hover:bg-gray-600'
-  }
-}
-
-function getDifficultyBadge(difficulty: string) {
-  switch (difficulty.toLowerCase()) {
-    case 'easy':
-      return 'bg-green-500 text-white-primary hover:bg-green-600'
-    case 'medium':
-      return 'bg-amber-500 text-white-primary hover:bg-amber-600'
-    case 'hard':
-      return 'bg-red-500 text-white-primary hover:bg-red-600'
-    default:
-      return 'bg-gray-500 text-white-primary hover:bg-gray-600'
-  }
 }
 
 export default function QuizDetail({ quiz }: QuizDetailProps) {
@@ -73,15 +48,25 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
         {/* Quiz Info Overlay */}
         <div className='absolute bottom-0 left-0 p-6'>
           <div className='flex gap-2 mb-4'>
-            <Badge className={getDifficultyBadge(quiz.difficulty)}>
+            <Badge
+              className={`${
+                difficultyColors[quiz.difficulty].bg || 'bg-gray-600'
+              } ${
+                difficultyColors[quiz.difficulty]?.hover || 'hover:bg-gray-500'
+              } text-white-primary cursor-pointer`}
+            >
               {quiz.difficulty}
             </Badge>
-            <Badge className='bg-purple-500/80 hover:bg-purple-600 text-white-primary'>
-              Featured
-            </Badge>
-            <Badge className='bg-blue-500/80 hover:bg-blue-600 text-white-primary'>
-              Popular
-            </Badge>
+            {quiz.isFeatured && (
+              <Badge className='cursor-pointer bg-purple-500/80 hover:bg-purple-600 text-white-primary'>
+                Featured
+              </Badge>
+            )}
+            {quiz.isPopular && (
+              <Badge className='cursor-pointer bg-blue-500/80 hover:bg-blue-600 text-white-primary'>
+                Popular
+              </Badge>
+            )}
           </div>
 
           <h1 className='text-4xl font-bold mb-4'>{quiz.title}</h1>
@@ -339,9 +324,12 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
           <div className='space-y-3'>
             <Link href={`/quizzes/${quiz.id}/start`} className='block'>
               <Button
-                className={`w-full text-white font-medium ${getDifficultyColor(
-                  quiz.difficulty
-                )}`}
+                className={`w-full text-white font-medium ${
+                  difficultyColors[quiz.difficulty].bg || 'bg-gray-600'
+                } ${
+                  difficultyColors[quiz.difficulty]?.hover ||
+                  'hover:bg-gray-500'
+                } text-white-primary`}
               >
                 Start Quiz
               </Button>
