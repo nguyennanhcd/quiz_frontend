@@ -13,10 +13,26 @@ export type Quiz = {
   category: string[]
   isPopular: boolean
   isFeatured: boolean
+  rating: number
   questions: {
     id: number
     text: string
     options: string[]
     correctAnswer: string
+  }[]
+  quizReview: {
+    userId: number
+    username: string
+    rating: number // from 1 to 5
+    comment: string
+    date: string // ISO date string
+  }[]
+
+  leaderBoard: {
+    userId: number
+    username: string
+    score: number
+    rank: number
+    completedAt: string // ISO date string
   }[]
 }
