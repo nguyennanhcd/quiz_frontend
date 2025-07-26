@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { quizReviews } from '@/constant/quizReview'
+import Image from 'next/image'
+import StarRating from '../StarRating'
 
 const Reviews = () => {
   return (
