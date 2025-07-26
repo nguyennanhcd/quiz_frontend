@@ -7,6 +7,8 @@ import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Quiz } from '@/types/quiz'
 import { leaderboardData } from '@/constant/quizLeaderBoard'
+import StarRating from '../StarRating'
+import { quizReviews } from '@/constant/quizReview'
 
 interface QuizDetailProps {
   quiz: Quiz
@@ -244,23 +246,51 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
             </TabsContent>
 
             <TabsContent value='reviews' className='mt-6'>
-              <div className='space-y-4'>
-                <div className='bg-slate-800 rounded-lg p-4'>
-                  <div className='flex items-center gap-2 mb-2'>
-                    <div className='flex'>
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star
-                          key={star}
-                          className='w-4 h-4 fill-amber-400 text-amber-400'
-                        />
-                      ))}
-                    </div>
-                    <span className='font-medium'>John Doe</span>
+              <div className='bg-slate-900 text-white p-6 min-h-screen'>
+                <div className='max-w-4xl mx-auto'>
+                  {/* Header */}
+                  <div className='flex justify-between items-center mb-8'>
+                    <h1 className='text-2xl font-bold'>Reviews</h1>
+                    <Button className='bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg'>
+                      Write a Review
+                    </Button>
                   </div>
-                  <p className='text-slate-300'>
-                    The quiz is very engaging and helpful, great for reviewing
-                    knowledge effectively!
-                  </p>
+
+                  {/* Reviews List */}
+                  <div className='space-y-4'>
+                    {quizReviews.map((review) => (
+                      <div
+                        key={review.id}
+                        className='border border-slate-700 rounded-lg p-6 bg-slate-800/50'
+                      >
+                        <div className='flex items-start gap-4'>
+                          {/* Avatar */}
+                          <div className='flex-shrink-0'>
+                            <Image
+                              src={review.avatar || '/placeholder.svg'}
+                              alt={`${review.username} avatar`}
+                              width={48}
+                              height={48}
+                              className='rounded-full'
+                            />
+                          </div>
+
+                          {/* Content */}
+                          <div className='flex-1 min-w-0'>
+                            <div className='flex items-center justify-between mb-2'>
+                              <h3 className='font-semibold text-white'>
+                                {review.username}
+                              </h3>
+                              <StarRating rating={review.rating} />
+                            </div>
+                            <p className='text-gray-300 text-sm leading-relaxed'>
+                              {review.comment}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </TabsContent>
