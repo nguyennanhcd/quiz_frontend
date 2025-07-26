@@ -6,10 +6,10 @@ import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Quiz } from '@/types/quiz'
-import { leaderboardData } from '@/constant/quizLeaderBoard'
-import StarRating from '../StarRating'
-import { quizReviews } from '@/constant/quizReview'
 import { difficultyColors } from '@/constant/difficultColor'
+import Overview from '../quizDetail/Overview'
+import Leaderboard from '../quizDetail/Leaderboard'
+import Reviews from '../quizDetail/Reviews'
 
 interface QuizDetailProps {
   quiz: Quiz
@@ -86,7 +86,9 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
             </div>
             <div className='flex items-center gap-1'>
               <Star className='w-4 h-4 fill-amber-400 text-amber-400' />
-              <span>4.8 (156 reviews)</span>
+              <span>
+                {quiz.rating} ({quiz.quizReview.length} reviews)
+              </span>
             </div>
           </div>
         </div>
@@ -118,161 +120,20 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
             </TabsList>
 
             <TabsContent value='overview' className='mt-6'>
-              <div className='space-y-6'>
-                <div>
-                  <h2 className='text-2xl font-bold mb-4'>Description</h2>
-                  <p className='text-slate-300 leading-relaxed'>
-                    {quiz.description}
-                  </p>
-                </div>
-
-                <div>
-                  <h2 className='text-2xl font-bold mb-4'>Requirements</h2>
-                  <ul className='text-slate-300 space-y-2'>
-                    <li>• {quiz.requirements}</li>
-                    <li>• Completion time: {quiz.duration}</li>
-                  </ul>
-                </div>
-
-                <div className='max-w-6xl mx-auto'>
-                  {/* Tags Section */}
-                  <div className='mb-8'>
-                    <h2 className='text-2xl font-bold mb-4'>Tags</h2>
-                    <div className='flex flex-wrap gap-3'>
-                      {quiz.tags?.map((tag) => (
-                        <Button
-                          key={tag}
-                          variant='outline'
-                          className='border-slate-600 text-white hover:bg-slate-700 hover:text-white bg-transparent'
-                        >
-                          {tag}
-                        </Button>
-                      ))}
-                    </div>
-
-                    {/* Related Quizzes Section ( do it later)*/}
-                  </div>
-                </div>
-              </div>
+              <Overview
+                description={quiz.description}
+                requirements={quiz.requirements}
+                duration={quiz.duration}
+                tags={quiz.tags}
+              />
             </TabsContent>
 
             <TabsContent value='leaderboard' className='mt-6'>
-              <div className='min-h-screen bg-slate-900 p-6'>
-                <div className='max-w-4xl mx-auto'>
-                  <div className='bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 overflow-hidden'>
-                    <div className='overflow-x-auto'>
-                      <table className='w-full'>
-                        <thead>
-                          <tr className='border-b border-slate-700/50'>
-                            <th className='text-left py-4 px-6 text-slate-300 font-medium text-sm'>
-                              #
-                            </th>
-                            <th className='text-left py-4 px-6 text-slate-300 font-medium text-sm'>
-                              Player
-                            </th>
-                            <th className='text-right py-4 px-6 text-slate-300 font-medium text-sm'>
-                              Score
-                            </th>
-                            <th className='text-right py-4 px-6 text-slate-300 font-medium text-sm'>
-                              Time
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {leaderboardData.map((player) => (
-                            <tr
-                              key={player.rank}
-                              className='border-b border-slate-700/30 hover:bg-slate-700/20 transition-colors'
-                            >
-                              <td className='py-4 px-6'>
-                                <span className='text-slate-200 font-medium text-lg'>
-                                  {player.rank}
-                                </span>
-                              </td>
-                              <td className='py-4 px-6'>
-                                <div className='flex items-center gap-3'>
-                                  <div className='relative'>
-                                    <Image
-                                      src={player.avatar || '/placeholder.svg'}
-                                      alt={`${player.player} avatar`}
-                                      width={40}
-                                      height={40}
-                                      className='rounded-full border-2 border-slate-600'
-                                    />
-                                  </div>
-                                  <span className='text-slate-100 font-medium text-base'>
-                                    {player.player}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className='py-4 px-6 text-right'>
-                                <span className='text-slate-100 font-medium text-base'>
-                                  {player.score}
-                                </span>
-                              </td>
-                              <td className='py-4 px-6 text-right'>
-                                <span className='text-slate-300 font-medium text-base'>
-                                  {player.time}
-                                </span>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Leaderboard />
             </TabsContent>
 
             <TabsContent value='reviews' className='mt-6'>
-              <div className='bg-slate-900 text-white p-6 min-h-screen'>
-                <div className='max-w-4xl mx-auto'>
-                  {/* Header */}
-                  <div className='flex justify-between items-center mb-8'>
-                    <h1 className='text-2xl font-bold'>Reviews</h1>
-                    <Button className='bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg'>
-                      Write a Review
-                    </Button>
-                  </div>
-
-                  {/* Reviews List */}
-                  <div className='space-y-4'>
-                    {quizReviews.map((review) => (
-                      <div
-                        key={review.id}
-                        className='border border-slate-700 rounded-lg p-6 bg-slate-800/50'
-                      >
-                        <div className='flex items-start gap-4'>
-                          {/* Avatar */}
-                          <div className='flex-shrink-0'>
-                            <Image
-                              src={review.avatar || '/placeholder.svg'}
-                              alt={`${review.username} avatar`}
-                              width={48}
-                              height={48}
-                              className='rounded-full'
-                            />
-                          </div>
-
-                          {/* Content */}
-                          <div className='flex-1 min-w-0'>
-                            <div className='flex items-center justify-between mb-2'>
-                              <h3 className='font-semibold text-white'>
-                                {review.username}
-                              </h3>
-                              <StarRating rating={review.rating} />
-                            </div>
-                            <p className='text-gray-300 text-sm leading-relaxed'>
-                              {review.comment}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <Reviews />
             </TabsContent>
           </Tabs>
         </div>
