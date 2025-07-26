@@ -5,6 +5,7 @@ export type Quiz = {
   duration: string
   questionCount: number
   difficulty: string
+  image: string
   questions: {
     id: number
     text: string
