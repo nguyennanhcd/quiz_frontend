@@ -1,8 +1,8 @@
 'use client'
 
+import { Quiz } from '@/types/quiz'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Quiz } from '@/constant/mockQuizzes' // Adjust the import based on your type definition
 
 export default function QuizClient({
   quiz,
