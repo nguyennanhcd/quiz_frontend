@@ -17,6 +17,8 @@ export const mockQuizzes: Quiz[] = [
     requirements: 'No prior knowledge required',
     tags: ['Mathematics', 'Algebra', 'Geometry'],
     category: ['Mathematics', 'Algebra', 'Geometry'],
+    isPopular: true,
+    isFeatured: false,
     questions: [
       {
         id: 1,
@@ -45,6 +47,8 @@ export const mockQuizzes: Quiz[] = [
     requirements: 'Knowledge of Vietnamese literature',
     tags: ['Literature', 'Vietnamese'],
     category: ['Literature', 'Vietnamese'],
+    isPopular: false,
+    isFeatured: true,
     questions: [
       {
         id: 1,
