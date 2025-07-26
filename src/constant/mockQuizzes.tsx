@@ -12,6 +12,11 @@ export const mockQuizzes: Quiz[] = [
     questionCount: 20,
     difficulty: 'Easy',
     image: '/placeholder.webp',
+    currentPlayers: 10,
+    maxPlayers: 20,
+    requirements: 'No prior knowledge required',
+    tags: ['Mathematics', 'Algebra', 'Geometry'],
+    category: ['Mathematics', 'Algebra', 'Geometry'],
     questions: [
       {
         id: 1,
@@ -35,6 +40,11 @@ export const mockQuizzes: Quiz[] = [
     questionCount: 25,
     difficulty: 'Medium',
     image: '/placeholder.webp',
+    currentPlayers: 15,
+    maxPlayers: 500,
+    requirements: 'Knowledge of Vietnamese literature',
+    tags: ['Literature', 'Vietnamese'],
+    category: ['Literature', 'Vietnamese'],
     questions: [
       {
         id: 1,

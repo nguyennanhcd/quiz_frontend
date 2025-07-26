@@ -42,8 +42,8 @@ function getDifficultyBadge(difficulty: string) {
 
 export default function QuizDetail({ quiz }: QuizDetailProps) {
   // Simulate current players (you can replace this with real data)
-  const currentPlayers = Math.floor(Math.random() * 200) + 50
-  const maxPlayers = 300
+  const currentPlayers = quiz.currentPlayers
+  const maxPlayers = quiz.maxPlayers
   const spotsLeft = maxPlayers - currentPlayers
   const progressPercentage = (currentPlayers / maxPlayers) * 100
 
@@ -144,34 +144,29 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
                 <div>
                   <h2 className='text-2xl font-bold mb-4'>Requirements</h2>
                   <ul className='text-slate-300 space-y-2'>
-                    <li>• Basic knowledge of the subject</li>
+                    <li>• {quiz.requirements}</li>
                     <li>• Completion time: {quiz.duration}</li>
-                    <li>• High focus required</li>
                   </ul>
                 </div>
 
-                <div>
-                  <h2 className='text-2xl font-bold mb-4'>Sample Questions</h2>
-                  {quiz.questions.slice(0, 2).map((question, index) => (
-                    <div
-                      key={question.id}
-                      className='bg-slate-800 rounded-lg p-4 mb-4'
-                    >
-                      <h3 className='font-medium mb-3'>
-                        Question {index + 1}: {question.text}
-                      </h3>
-                      <div className='grid grid-cols-2 gap-2'>
-                        {question.options.map((option, optionIndex) => (
-                          <div
-                            key={optionIndex}
-                            className='bg-slate-700 rounded p-2 text-sm'
-                          >
-                            {String.fromCharCode(65 + optionIndex)}. {option}
-                          </div>
-                        ))}
-                      </div>
+                <div className='max-w-6xl mx-auto'>
+                  {/* Tags Section */}
+                  <div className='mb-8'>
+                    <h2 className='text-2xl font-bold mb-4'>Tags</h2>
+                    <div className='flex flex-wrap gap-3'>
+                      {quiz.tags?.map((tag) => (
+                        <Button
+                          key={tag}
+                          variant='outline'
+                          className='border-slate-600 text-white hover:bg-slate-700 hover:text-white bg-transparent'
+                        >
+                          {tag}
+                        </Button>
+                      ))}
                     </div>
-                  ))}
+
+                    {/* Related Quizzes Section ( do it later)*/}
+                  </div>
                 </div>
               </div>
             </TabsContent>
@@ -318,8 +313,10 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
           {/* Quiz Details */}
           <div className='bg-slate-800 rounded-lg p-4 space-y-4'>
             <div className='flex justify-between'>
-              <span className='text-slate-300'>Category</span>
-              <span className='font-medium'>Education</span>
+              {quiz.category &&
+                quiz.category.map((cate) => {
+                  return <span key={cate}>{cate}</span>
+                })}
             </div>
 
             <div className='flex justify-between'>

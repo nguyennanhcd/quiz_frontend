@@ -6,6 +6,11 @@ export type Quiz = {
   questionCount: number
   difficulty: string
   image: string
+  currentPlayers: number
+  maxPlayers: number
+  requirements: string
+  tags: string[]
+  category: string[]
   questions: {
     id: number
     text: string
