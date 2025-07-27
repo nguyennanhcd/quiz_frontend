@@ -87,7 +87,7 @@ const DesktopNav = ({
 
           {/* Avatar */}
           <Avatar className='h-8 w-8'>
-            <AvatarImage src='/placeholder.svg?height=32&width=32' />
+            <AvatarImage src='/avatarPlaceholder.webp' />
             <AvatarFallback className='text-default'>JD</AvatarFallback>
           </Avatar>
         </div>

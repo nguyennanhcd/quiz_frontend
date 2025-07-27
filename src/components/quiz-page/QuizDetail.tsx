@@ -1,6 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, Clock, HelpCircle, Star, Users } from 'lucide-react'
+import {
+  ArrowLeft,
+  Bell,
+  Bookmark,
+  Clock,
+  HelpCircle,
+  Share2,
+  Star,
+  Users
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
@@ -10,6 +19,7 @@ import { difficultyColors } from '@/constant/difficultColor'
 import Overview from '../quizDetail/Overview'
 import Leaderboard from '../quizDetail/Leaderboard'
 import Reviews from '../quizDetail/Reviews'
+import { Card, CardContent } from '../ui/card'
 
 interface QuizDetailProps {
   quiz: Quiz
@@ -94,6 +104,7 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
         </div>
       </div>
 
+      {/* Content Section */}
       <div className='flex gap-8 px-4'>
         {/* Main Content */}
         <div className='flex-1'>
@@ -157,41 +168,117 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
           </div>
 
           {/* Quiz Details */}
-          <div className='bg-slate-800 rounded-lg p-4 space-y-4'>
-            <div className='flex justify-between'>
-              {quiz.category &&
-                quiz.category.map((cate) => {
-                  return <span key={cate}>{cate}</span>
-                })}
+          <div className='bg-main'>
+            {/* Quiz Details Grid */}
+            <div className='grid grid-cols-2 gap-4'>
+              <Card className='bg-slate-800 border-slate-700'>
+                <CardContent className='p-4'>
+                  <div className='text-slate-400 text-sm mb-1'>Category</div>
+                  <div className='text-white font-semibold text-lg'>
+                    Science &<br />
+                    Technology
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className='bg-slate-800 border-slate-700'>
+                <CardContent className='p-4'>
+                  <div className='text-slate-400 text-sm mb-1'>Questions</div>
+                  <div className='text-white font-bold text-2xl'>25</div>
+                </CardContent>
+              </Card>
+
+              <Card className='bg-slate-800 border-slate-700'>
+                <CardContent className='p-4'>
+                  <div className='text-slate-400 text-sm mb-1'>Time Limit</div>
+                  <div className='text-white font-bold text-xl'>20 min</div>
+                </CardContent>
+              </Card>
+
+              <Card className='bg-slate-800 border-slate-700'>
+                <CardContent className='p-4'>
+                  <div className='text-slate-400 text-sm mb-1'>Difficulty</div>
+                  <div className='text-white font-bold text-xl'>Medium</div>
+                </CardContent>
+              </Card>
             </div>
 
-            <div className='flex justify-between'>
-              <span className='text-slate-300'>Number of Questions</span>
-              <span className='font-medium'>{quiz.questionCount}</span>
-            </div>
+            {/* Creator Profile */}
+            <Card className='bg-slate-800 border-slate-700'>
+              <CardContent className='p-4'>
+                <div className='flex items-center gap-3 mb-4'>
+                  <div className='w-12 h-12 rounded-full overflow-hidden bg-slate-600'>
+                    <Image
+                      src='/placeholder.svg?height=48&width=48'
+                      alt='MarvelFan2023 avatar'
+                      width={48}
+                      height={48}
+                      className='w-full h-full object-cover'
+                    />
+                  </div>
+                  <div>
+                    <div className='text-white font-semibold text-lg'>
+                      MarvelFan2023
+                    </div>
+                    <div className='text-slate-400 text-sm'>
+                      Expert Quiz Creator
+                    </div>
+                  </div>
+                </div>
 
-            <div className='flex justify-between'>
-              <span className='text-slate-300'>Duration</span>
-              <span className='font-medium'>{quiz.duration}</span>
-            </div>
+                <div className='flex justify-between text-sm'>
+                  <div>
+                    <span className='text-slate-400'>Quizzes: </span>
+                    <span className='text-white font-semibold'>42</span>
+                  </div>
+                  <div>
+                    <span className='text-slate-400'>Updated: </span>
+                    <span className='text-white'>2023-10-15</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-            <div className='flex justify-between'>
-              <span className='text-slate-300'>Difficulty</span>
-              <span className='font-medium'>{quiz.difficulty}</span>
+            {/* Play Button */}
+            <Button
+              className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 text-lg rounded-xl'
+              size='lg'
+            >
+              Play Now
+            </Button>
+
+            {/* Action Buttons */}
+            <div className='flex justify-center gap-6 pt-2'>
+              <Button
+                variant='ghost'
+                size='icon'
+                className='text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl'
+              >
+                <Bookmark className='h-6 w-6' />
+              </Button>
+
+              <Button
+                variant='ghost'
+                size='icon'
+                className='text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl'
+              >
+                <Share2 className='h-6 w-6' />
+              </Button>
+
+              <Button
+                variant='ghost'
+                size='icon'
+                className='text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl'
+              >
+                <Bell className='h-6 w-6' />
+              </Button>
             </div>
           </div>
 
           {/* Action Buttons */}
           <div className='space-y-3'>
             <Link href={`/quizzes/${quiz.id}/start`} className='block'>
-              <Button
-                className={`w-full text-white font-medium ${
-                  difficultyColors[quiz.difficulty].bg || 'bg-gray-600'
-                } ${
-                  difficultyColors[quiz.difficulty]?.hover ||
-                  'hover:bg-gray-500'
-                } text-white-primary`}
-              >
+              <Button className='w-full text-white font-medium bg-default hover:bg-default-hover'>
                 Start Quiz
               </Button>
             </Link>

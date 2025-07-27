@@ -7,7 +7,7 @@ export const discussions = [
     lastActivity: '2023-10-18',
     user: {
       username: 'MarvelFan',
-      avatarSrc: '/placeholder.svg?height=32&width=32',
+      avatarSrc: '/avatarPlaceholder.webp',
       avatarFallback: 'MF'
     },
     comments: 24,
@@ -23,7 +23,7 @@ export const discussions = [
     lastActivity: '2023-10-17',
     user: {
       username: 'GeoExpert',
-      avatarSrc: '/placeholder.svg?height=32&width=32',
+      avatarSrc: '/avatarPlaceholder.webp',
       avatarFallback: 'GE'
     },
     comments: 18,
