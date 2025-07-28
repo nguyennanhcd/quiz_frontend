@@ -44,7 +44,7 @@ const InfoCard = () => {
 
   return (
     <section className='grid grid-cols-1 lg:grid-cols-4 gap-4 max-w-7xl mx-auto mt-6'>
-      <Card className='bg-purple-100 border-purple-200'>
+      <Card className='bg-purple-100 border-purple-200 py-6'>
         <CardContent className='p-4 flex items-center space-x-3'>
           <div className='p-2 bg-purple-200 rounded-full'>
             <Clock className='h-5 w-5 text-purple-700' />
@@ -58,7 +58,7 @@ const InfoCard = () => {
         </CardContent>
       </Card>
 
-      <Card className='bg-blue-100 border-blue-200'>
+      <Card className='bg-blue-100 border-blue-200 py-6'>
         <CardContent className='p-4 flex items-center space-x-3'>
           <div className='p-2 bg-blue-200 rounded-full'>
             <Calendar className='h-5 w-5 text-blue-700' />
@@ -72,7 +72,7 @@ const InfoCard = () => {
         </CardContent>
       </Card>
 
-      <Card className='bg-yellow-100 border-yellow-200'>
+      <Card className='bg-yellow-100 border-yellow-200 py-6'>
         <CardContent className='p-4 flex items-center space-x-3'>
           <div className='p-2 bg-yellow-200 rounded-full'>
             <Trophy className='h-5 w-5 text-yellow-700' />
@@ -84,7 +84,7 @@ const InfoCard = () => {
         </CardContent>
       </Card>
 
-      <Card className='bg-red-50 border-red-200'>
+      <Card className='bg-red-50 border-red-200 py-6'>
         <CardContent className='p-4 flex items-center space-x-3'>
           <div className='p-2 bg-red-100 rounded-full'>
             <Flame className='h-5 w-5 text-red-600' />

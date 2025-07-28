@@ -27,7 +27,7 @@ import Image from 'next/image'
 const MainContent = () => {
   const [questionTime, setQuestionTime] = useState<string>('5:00')
   const [selectedAnswer, setSelectedAnswer] = useState('')
-  const [isTimerActive, setIsTimerActive] = useState(false) // New state to control timer
+  const [isTimerActive, setIsTimerActive] = useState(false)
   const [showAllHistory, setShowAllHistory] = useState(false)
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const MainContent = () => {
       {/* Left Block */}
       <div className='lg:col-span-2 space-y-6'>
         {/* Quiz Section */}
-        <Card className='bg-main text-white lg:col-span-2'>
+        <Card className='bg-main text-white lg:col-span-2 py-6'>
           <CardHeader>
             <div className='flex justify-between items-start'>
               <div>
@@ -143,7 +143,7 @@ const MainContent = () => {
         <ChallengeChart />
 
         {/* Challenge History */}
-        <Card className='bg-main text-white max-w-4xl mx-auto border-slate-700'>
+        <Card className='bg-main text-white max-w-4xl mx-auto border-slate-700 py-6'>
           <CardHeader>
             <div className='flex items-center justify-between'>
               <h1 className='text-2xl font-bold'>Challenge History</h1>
@@ -205,7 +205,7 @@ const MainContent = () => {
       {/* Right Block */}
       <div className='space-y-6'>
         {/* Leaderboard */}
-        <Card className='bg-main text-white'>
+        <Card className='bg-main text-white py-6'>
           <CardHeader>
             <CardTitle>Leaderboard</CardTitle>
           </CardHeader>
@@ -251,7 +251,7 @@ const MainContent = () => {
         </Card>
 
         {/* Rewards & Streaks */}
-        <Card className='bg-slate-800 border-slate-700'>
+        <Card className='bg-slate-800 border-slate-700 py-6'>
           <CardHeader>
             <CardTitle className='flex items-center space-x-2'>
               <Trophy className='h-5 w-5' />

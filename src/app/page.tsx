@@ -124,14 +124,12 @@ export default function QuizHubDashboard() {
           </h2>
           <div className='flex gap-2'>
             <Button
-              variant='ghost'
               size='icon'
               className=' bg-default text-white hover:bg-default-hover'
             >
               <ChevronLeft className='h-5 w-5' />
             </Button>
             <Button
-              variant='ghost'
               size='icon'
               className='bg-default text-white hover:bg-default-hover'
             >
@@ -140,7 +138,7 @@ export default function QuizHubDashboard() {
           </div>
         </div>
 
-        <ScrollArea className='w-full whitespace-nowrap pb-4 mt-5 bg-slate-900'>
+        <ScrollArea className='w-full whitespace-nowrap pb-4 mt-5'>
           <div className='flex space-x-6'>
             {playersRank.map((player, index) => (
               <PlayerCard key={index} {...player} />
