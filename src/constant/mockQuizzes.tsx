@@ -23,7 +23,7 @@ export const mockQuizzes: Quiz[] = [
       username: 'MathProfessor',
       name: 'Dr. John Smith',
       position: 'Mathematics Professor',
-      imageURL: '/creators/math_professor.webp',
+      imageURL: '/avatarPlaceholder.webp',
       quizzesCreated: 12
     },
     createdAt: '2025-06-01T08:00:00Z',
@@ -94,9 +94,9 @@ export const mockQuizzes: Quiz[] = [
     creator: {
       userId: 102,
       username: 'LiteratureScholar',
-      name: 'Dr. Nguyen Thi Anh',
+      name: 'Dr. Nguyen Hoang Anh',
       position: 'Literature Professor',
-      imageURL: '/creators/literature_scholar.webp',
+      imageURL: '/avatarPlaceholder.webp',
       quizzesCreated: 8
     },
     createdAt: '2025-06-15T09:00:00Z',
