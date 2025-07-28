@@ -168,48 +168,56 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
           </div>
 
           {/* Quiz Details */}
-          <div className='bg-main'>
+          <div className='bg-main p-4'>
             {/* Quiz Details Grid */}
-            <div className='grid grid-cols-2 gap-4'>
-              <Card className='bg-slate-800 border-slate-700'>
-                <CardContent className='p-4'>
-                  <div className='text-slate-400 text-sm mb-1'>Category</div>
-                  <div className='text-white font-semibold text-lg'>
+            <div className='grid grid-cols-2 gap-4 mb-5 grid-rows-[auto]'>
+              <Card className='bg-slate-900 border-slate-700 border-[0.5px] ring-0'>
+                <CardContent className='rounded-lg border p-3'>
+                  <div className='text-xs text-muted-foreground mb-1'>
+                    Category
+                  </div>
+                  <div className='font-medium'>
                     Science &<br />
                     Technology
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className='bg-slate-800 border-slate-700'>
-                <CardContent className='p-4'>
-                  <div className='text-slate-400 text-sm mb-1'>Questions</div>
-                  <div className='text-white font-bold text-2xl'>25</div>
+              <Card className='bg-slate-900 border-slate-700'>
+                <CardContent className='rounded-lg border p-3 '>
+                  <div className='text-xs text-muted-foreground mb-1'>
+                    Questions
+                  </div>
+                  <div className='font-medium'>25</div>
                 </CardContent>
               </Card>
 
-              <Card className='bg-slate-800 border-slate-700'>
-                <CardContent className='p-4'>
-                  <div className='text-slate-400 text-sm mb-1'>Time Limit</div>
-                  <div className='text-white font-bold text-xl'>20 min</div>
+              <Card className='bg-slate-900 border-slate-700'>
+                <CardContent className='rounded-lg border p-3 '>
+                  <div className='text-xs text-muted-foreground mb-1'>
+                    Time Limit
+                  </div>
+                  <div className='font-medium'>20 min</div>
                 </CardContent>
               </Card>
 
-              <Card className='bg-slate-800 border-slate-700'>
-                <CardContent className='p-4'>
-                  <div className='text-slate-400 text-sm mb-1'>Difficulty</div>
-                  <div className='text-white font-bold text-xl'>Medium</div>
+              <Card className='bg-slate-900 border-slate-700'>
+                <CardContent className='rounded-lg border p-3 '>
+                  <div className='text-xs text-muted-foreground mb-1'>
+                    Difficulty
+                  </div>
+                  <div className='font-medium'>Medium</div>
                 </CardContent>
               </Card>
             </div>
 
             {/* Creator Profile */}
-            <Card className='bg-slate-800 border-slate-700'>
+            <Card className='bg-slate-900 border-slate-700 mb-10'>
               <CardContent className='p-4'>
                 <div className='flex items-center gap-3 mb-4'>
                   <div className='w-12 h-12 rounded-full overflow-hidden bg-slate-600'>
                     <Image
-                      src='/placeholder.svg?height=48&width=48'
+                      src=''
                       alt='MarvelFan2023 avatar'
                       width={48}
                       height={48}
@@ -217,9 +225,7 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
                     />
                   </div>
                   <div>
-                    <div className='text-white font-semibold text-lg'>
-                      MarvelFan2023
-                    </div>
+                    <div className=''>MarvelFan2023</div>
                     <div className='text-slate-400 text-sm'>
                       Expert Quiz Creator
                     </div>
@@ -241,7 +247,7 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
 
             {/* Play Button */}
             <Button
-              className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 text-lg rounded-xl'
+              className='w-full bg-default hover:bg-default-hover text-white font-semibold py-4 text-lg rounded-xl'
               size='lg'
             >
               Play Now
