@@ -248,12 +248,14 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
             </Card>
 
             {/* Play Button */}
-            <Button
-              className='w-[98%] mx-auto flex justify-center items-center bg-default hover:bg-default-hover text-white font-semibold py-4 text-base rounded-xl'
-              size='lg'
-            >
-              Play now
-            </Button>
+            <Link href={`/quizzes/${quiz.id}/start`} className='block'>
+              <Button
+                className='w-[98%] mx-auto flex justify-center items-center bg-default hover:bg-default-hover text-white font-semibold py-4 text-base rounded-xl'
+                size='lg'
+              >
+                Play now
+              </Button>
+            </Link>
 
             {/* Action Buttons */}
             <div className='flex justify-center gap-6 pt-2 mt-3'>
