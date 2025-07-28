@@ -14,6 +14,16 @@ export type Quiz = {
   isPopular: boolean
   isFeatured: boolean
   rating: number
+  creator: {
+    userId: number
+    username: string
+    name: string
+    position: string
+    imageURL: string
+    quizzesCreated: number
+  }
+  createdAt: string
+  updatedAt: string
   questions: {
     id: number
     text: string

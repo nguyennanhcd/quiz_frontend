@@ -18,6 +18,16 @@ export const mockQuizzes: Quiz[] = [
     isPopular: true,
     isFeatured: false,
     rating: 4.5,
+    creator: {
+      userId: 101,
+      username: 'MathProfessor',
+      name: 'Dr. John Smith',
+      position: 'Mathematics Professor',
+      imageURL: '/creators/math_professor.webp',
+      quizzesCreated: 12
+    },
+    createdAt: '2025-06-01T08:00:00Z',
+    updatedAt: '2025-07-01T12:00:00Z',
     questions: [
       {
         id: 1,
@@ -81,6 +91,16 @@ export const mockQuizzes: Quiz[] = [
     isPopular: false,
     isFeatured: true,
     rating: 4.8,
+    creator: {
+      userId: 102,
+      username: 'LiteratureScholar',
+      name: 'Dr. Nguyen Thi Anh',
+      position: 'Literature Professor',
+      imageURL: '/creators/literature_scholar.webp',
+      quizzesCreated: 8
+    },
+    createdAt: '2025-06-15T09:00:00Z',
+    updatedAt: '2025-07-03T10:00:00Z',
     questions: [
       {
         id: 1,
