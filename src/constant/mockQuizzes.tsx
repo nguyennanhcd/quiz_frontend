@@ -31,14 +31,26 @@ export const mockQuizzes: Quiz[] = [
     questions: [
       {
         id: 1,
-        text: '2 + 2 = ?',
-        options: ['3', '4', '5', '6'],
+        question: '2 + 2 = ?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
         correctAnswer: '4'
       },
       {
         id: 2,
-        text: 'How many sides does a square have?',
-        options: ['3', '4', '5', '6'],
+        question: 'How many sides does a square have?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
         correctAnswer: '4'
       }
     ],
@@ -104,8 +116,14 @@ export const mockQuizzes: Quiz[] = [
     questions: [
       {
         id: 1,
-        text: "Who is the author of 'The Tale of Kieu'?",
-        options: ['Nguyen Du', 'Ho Xuan Huong', 'Nguyen Trai', 'To Huu'],
+        question: "Who is the author of 'The Tale of Kieu'?",
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: 'Nguyen Du' },
+          { label: 'B', value: 'Ho Xuan Huong' },
+          { label: 'C', value: 'Nguyen Trai' },
+          { label: 'D', value: 'To Huu' }
+        ],
         correctAnswer: 'Nguyen Du'
       }
     ],

@@ -26,8 +26,9 @@ export type Quiz = {
   updatedAt: string
   questions: {
     id: number
-    text: string
-    options: string[]
+    question: string
+    image: string
+    answers: { label: string; value: string }[]
     correctAnswer: string
   }[]
   quizReview: {
@@ -37,7 +38,6 @@ export type Quiz = {
     comment: string
     date: string // ISO date string
   }[]
-
   leaderBoard: {
     userId: number
     username: string
