@@ -33,7 +33,7 @@ const MobileNav = () => {
 
           {/* Avatar */}
           <Avatar className='h-7 w-7'>
-            <AvatarImage src='/placeholder.svg?height=28&width=28' />
+            <AvatarImage src='/avatarPlaceholder.webp' />
             <AvatarFallback className='text-default text-sm'>JD</AvatarFallback>
           </Avatar>
         </div>
