@@ -29,7 +29,7 @@ const ChallengeChart = () => {
   return (
     <section className=' bg-slate-900 text-white rounded-lg'>
       {/* Performance Chart */}
-      <Card className='bg-slate-800 border-slate-700 lg:col-span-2 lg:row-span-2'>
+      <Card className='bg-slate-800 border-slate-700 lg:col-span-2 lg:row-span-2 py-6'>
         <CardHeader>
           <CardTitle>Your Challenge Stats</CardTitle>
           <div className='flex space-x-4'>

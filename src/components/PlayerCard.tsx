@@ -38,7 +38,7 @@ export function PlayerCard({
   }
 
   return (
-    <div className='relative w-[280px] xl:w-[350px] flex-shrink-0 overflow-hidden rounded-lg bg-transparent border text-white shadow-lg'>
+    <div className='relative w-[280px] xl:w-[350px] flex-shrink-0 overflow-hidden rounded-lg bg-slate-900 border text-white shadow-lg'>
       <div className='relative h-32 w-full'>
         <Image
           src={

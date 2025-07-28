@@ -46,7 +46,7 @@ const Page = () => {
 
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 mx-auto'>
         {/* Competition Stats Card */}
-        <Card className='bg-transparent col-span-1'>
+        <Card className='bg-transparent col-span-1 py-6'>
           <CardHeader>
             <CardTitle className='text-white text-2xl font-bold'>
               Competition Stats
@@ -120,7 +120,7 @@ const Page = () => {
         </Card>
 
         {/* Leaderboard Highlights */}
-        <Card className='bg-transparent border-slate-700 col-span-2'>
+        <Card className='bg-transparent border-slate-700 col-span-2 py-6'>
           <CardHeader>
             <CardTitle className='text-white text-2xl font-bold'>
               Leaderboard Highlights

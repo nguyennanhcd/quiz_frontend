@@ -32,14 +32,14 @@ export default function SuccessStoriesCarousel() {
   }, [currentIndex])
 
   return (
-    <section className='w-full py-12 md:py-24 lg:py-32 bg-transparent text-white'>
+    <section className='w-full py-12 mt-10 rounded-xl text-white bg-main'>
       <div className='container px-4 md:px-6'>
         <div className='flex flex-col items-center justify-center space-y-4 text-center'>
           <div className='space-y-2'>
-            <h2 className='text-xl font-bold tracking-tighter sm:text-5xl'>
+            <h2 className='text-3xl font-bold text-slate-800 dark:text-slate-200 mb-4'>
               Success Stories
             </h2>
-            <p className='max-w-[900px] text-gray-300 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
+            <p className='text-slate-600 text-lg dark:text-slate-400 max-w-2xl mx-auto'>
               Hear from our community of quiz creators and players who are
               earning rewards and building their audience
             </p>
@@ -47,7 +47,6 @@ export default function SuccessStoriesCarousel() {
         </div>
         <div className='relative mt-12 flex items-center justify-center'>
           <Button
-            variant='ghost'
             size='icon'
             className='absolute left-0 z-10 rounded-full bg-default hover:bg-default-hover text-white'
             onClick={goToPrevious}
@@ -55,7 +54,7 @@ export default function SuccessStoriesCarousel() {
           >
             <ChevronLeft className='h-6 w-6' />
           </Button>
-          <div className='relative w-full max-w-4xl rounded-xl bg-main p-8 shadow-lg md:p-12'>
+          <div className='relative w-full max-w-4xl rounded-xl p-6 md:p-12'>
             <div className='flex flex-col items-center md:flex-row md:items-start md:space-x-8'>
               <div className='relative mb-6 md:mb-0'>
                 <Image
@@ -65,11 +64,6 @@ export default function SuccessStoriesCarousel() {
                   height={120}
                   className='rounded-full object-cover border-4 border-[#4a4a6a]'
                 />
-                <span className='absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 rounded-full bg-[#6a0dad] px-3 py-1 text-xs font-medium text-white shadow-md'>
-                  {currentTestimonial.role.includes('Quiz Creator')
-                    ? 'Quiz Creator'
-                    : currentTestimonial.role}
-                </span>
               </div>
               <div className='flex-1 text-center md:text-left'>
                 <div className='flex justify-center md:justify-start mb-2'>
@@ -93,19 +87,19 @@ export default function SuccessStoriesCarousel() {
                 <p className='text-gray-400'>{currentTestimonial.role}</p>
                 <div className='mt-6 flex justify-center md:justify-start space-x-8'>
                   <div className='text-center'>
-                    <div className='text-2xl font-bold text-white'>
+                    <div className='text-2xl font-bold text-default '>
                       {currentTestimonial.earnings}
                     </div>
                     <div className='text-gray-400 text-sm'>Earnings</div>
                   </div>
                   <div className='text-center'>
-                    <div className='text-2xl font-bold text-white'>
+                    <div className='text-2xl font-bold text-default '>
                       {currentTestimonial.quizzes}
                     </div>
                     <div className='text-gray-400 text-sm'>Quizzes</div>
                   </div>
                   <div className='text-center'>
-                    <div className='text-2xl font-bold text-white'>
+                    <div className='text-2xl font-bold text-default '>
                       {currentTestimonial.followers}
                     </div>
                     <div className='text-gray-400 text-sm'>Followers</div>
@@ -115,7 +109,6 @@ export default function SuccessStoriesCarousel() {
             </div>
           </div>
           <Button
-            variant='ghost'
             size='icon'
             className='absolute right-0 z-10 rounded-full bg-default hover:bg-default-hover text-white'
             onClick={goToNext}
