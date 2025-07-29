@@ -6,7 +6,7 @@ export const mockQuizzes: Quiz[] = [
     title: 'Basic Math Quiz',
     description:
       'Test your math knowledge with questions on algebra and geometry.',
-    duration: '30 minutes',
+    duration: 60,
     questionCount: 20,
     difficulty: 'Easy',
     image: '/placeholder.webp',
@@ -91,7 +91,7 @@ export const mockQuizzes: Quiz[] = [
     id: 2,
     title: 'Vietnamese Literature Quiz',
     description: 'Explore famous Vietnamese literary works.',
-    duration: '45 minutes',
+    duration: 45,
     questionCount: 25,
     difficulty: 'Medium',
     image: '/placeholder.webp',

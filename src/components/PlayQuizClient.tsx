@@ -4,13 +4,13 @@
 import { Quiz } from '@/types/quiz'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent } from './ui/card'
 import { ArrowLeft, Clock } from 'lucide-react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 
-export default function QuizClient({
+export default function PlayQuizClient({
   quiz,
   quizId
 }: {
@@ -19,15 +19,46 @@ export default function QuizClient({
 }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
+  const [timeLeft, setTimeLeft] = useState(quiz.duration)
+  const [timerStarted, setTimerStarted] = useState(false)
+
+  // Timer effect
+  useEffect(() => {
+    if (timerStarted && timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1)
+      }, 1000)
+      return () => clearInterval(timer)
+    } else if (timeLeft <= 0) {
+      // Handle time out
+      alert(`Time's up! Your answers: ${JSON.stringify(answers)}`)
+    }
+  }, [timerStarted, timeLeft, answers])
 
   const handleAnswer = (answer: string) => {
-    setAnswers({ ...answers, [currentQuestion]: answer })
-    if (currentQuestion < quiz.questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
-    } else {
-      // Display results
-      alert(`Quiz completed! Your answers: ${JSON.stringify(answers)}`)
+    if (!timerStarted) {
+      setTimerStarted(true)
     }
+
+    setAnswers({ ...answers, [currentQuestion]: answer })
+  }
+
+  const handleNextQuestion = () => {
+    setCurrentQuestion((prev) => prev + 1)
+  }
+
+  const handlePreviousQuestion = () => {
+    setCurrentQuestion((prev) => prev - 1)
+  }
+
+  // Format time display
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
+    const remainingSeconds = seconds % 60
+    return `${hours}:${minutes.toString().padStart(2, '0')}:${remainingSeconds
+      .toString()
+      .padStart(2, '0')}`
   }
 
   const currentQ = quiz.questions[currentQuestion]
@@ -71,7 +102,9 @@ export default function QuizClient({
           </div>
           <div className='flex items-center gap-2 bg-slate-800 px-3 py-2 rounded-full'>
             <Clock className='w-4 h-4 text-slate-400' />
-            <span className='text-slate-300 font-mono'>18:35</span>
+            <span className='text-slate-300 font-mono'>
+              {timerStarted ? formatTime(timeLeft) : formatTime(quiz.duration)}
+            </span>
           </div>
         </div>
 
@@ -124,6 +157,8 @@ export default function QuizClient({
                       <span>{answer.value}</span>
                     </Button>
                   ))}
+                  <Button onClick={handlePreviousQuestion}>Previous</Button>
+                  <Button onClick={handleNextQuestion}>Next</Button>
                 </div>
               </div>
             </div>

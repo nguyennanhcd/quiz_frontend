@@ -2,7 +2,7 @@ export type Quiz = {
   id: number
   title: string
   description: string
-  duration: string
+  duration: number
   questionCount: number
   difficulty: 'Easy' | 'Medium' | 'Hard'
   image: string
