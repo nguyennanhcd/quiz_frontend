@@ -1,4 +1,4 @@
-import QuizClient from '@/components/QuizClient'
+import PlayQuizClient from '@/components/PlayQuizClient'
 import { mockQuizzes } from '@/constant/mockQuizzes'
 
 export default async function QuizStart({
@@ -15,5 +15,5 @@ export default async function QuizStart({
     )
   }
 
-  return <QuizClient quiz={quiz} quizId={id} />
+  return <PlayQuizClient quiz={quiz} quizId={id} />
 }
