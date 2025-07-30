@@ -15,5 +15,5 @@ export default async function QuizStart({
     )
   }
 
-  return <PlayQuizClient quiz={quiz} quizId={id} />
+  return <PlayQuizClient quiz={quiz} />
 }

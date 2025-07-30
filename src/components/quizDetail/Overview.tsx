@@ -9,7 +9,7 @@ const Overview = ({
 }: {
   description: string
   requirements: string
-  duration: string
+  duration: number
   tags: string[]
 }) => {
   return (
