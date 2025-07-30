@@ -1,26 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { Quiz } from '@/types/quiz'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent } from './ui/card'
 import { ArrowLeft, Clock } from 'lucide-react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
+import { toast } from 'react-toastify'
 
-export default function PlayQuizClient({
-  quiz,
-  quizId
-}: {
-  quiz: Quiz
-  quizId: string
-}) {
+export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [timeLeft, setTimeLeft] = useState(quiz.duration)
   const [timerStarted, setTimerStarted] = useState(false)
+
+  const handleSubmit = useCallback(() => {
+    toast.success(`Quiz submitted! Your answers: ${JSON.stringify(answers)}`)
+  }, [answers])
 
   // Timer effect
   useEffect(() => {
@@ -31,9 +29,9 @@ export default function PlayQuizClient({
       return () => clearInterval(timer)
     } else if (timeLeft <= 0) {
       // Handle time out
-      alert(`Time's up! Your answers: ${JSON.stringify(answers)}`)
+      handleSubmit()
     }
-  }, [timerStarted, timeLeft, answers])
+  }, [timerStarted, timeLeft, answers, handleSubmit])
 
   const handleAnswer = (answer: string) => {
     if (!timerStarted) {
@@ -44,10 +42,12 @@ export default function PlayQuizClient({
   }
 
   const handleNextQuestion = () => {
+    if (currentQuestion === quiz.questions.length - 1) return
     setCurrentQuestion((prev) => prev + 1)
   }
 
   const handlePreviousQuestion = () => {
+    if (currentQuestion === 0) return
     setCurrentQuestion((prev) => prev - 1)
   }
 
@@ -62,10 +62,11 @@ export default function PlayQuizClient({
   }
 
   const currentQ = quiz.questions[currentQuestion]
+  const isLastQuestion = currentQuestion === quiz.questions.length - 1
 
   return (
     <div className='min-h-screen bg-slate-900 text-white p-4'>
-      <div className='max-w-4xl mx-auto'>
+      <div className='max-w-5xl mx-auto'>
         {/* Header */}
         <div className='flex items-center gap-3 mb-8'>
           <Button
@@ -111,7 +112,7 @@ export default function PlayQuizClient({
         {/* Progress Bar */}
         <div className='w-full bg-slate-700 rounded-full h-2 mb-8'>
           <div
-            className='bg-blue-500 h-2 rounded-full'
+            className='bg-default h-2 rounded-full'
             style={{
               width: `${((currentQuestion + 1) / quiz.questions.length) * 100}%`
             }}
@@ -157,8 +158,16 @@ export default function PlayQuizClient({
                       <span>{answer.value}</span>
                     </Button>
                   ))}
-                  <Button onClick={handlePreviousQuestion}>Previous</Button>
-                  <Button onClick={handleNextQuestion}>Next</Button>
+                  <div className='flex justify-between'>
+                    <Button onClick={handlePreviousQuestion}>Previous</Button>
+                    <Button
+                      onClick={
+                        isLastQuestion ? handleSubmit : handleNextQuestion
+                      }
+                    >
+                      {isLastQuestion ? 'Submit' : 'Next'}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

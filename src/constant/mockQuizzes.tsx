@@ -31,7 +31,7 @@ export const mockQuizzes: Quiz[] = [
     questions: [
       {
         id: 1,
-        question: '2 + 2 = ?',
+        question: 'How many legs does a dog have?',
         image: '/question.jpg',
         answers: [
           { label: 'A', value: '3' },
@@ -52,8 +52,225 @@ export const mockQuizzes: Quiz[] = [
           { label: 'D', value: '6' }
         ],
         correctAnswer: '4'
+      },
+      {
+        id: 3,
+        question: 'How many days are in a week?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '7'
+      },
+      {
+        id: 4,
+        question: 'What is 1 + 1?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '2'
+      },
+      {
+        id: 5,
+        question: 'What is 2 * 2?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 6,
+        question: 'What is 5 - 1?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 7,
+        question: 'What is 1 + 1?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '2'
+      },
+      {
+        id: 8,
+        question: 'What is 1 + 1?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '2'
+      },
+      {
+        id: 9,
+        question: 'What is 2 * 2?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 10,
+        question: 'How many sides does a square have?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 11,
+        question: 'How many days are in a week?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '7'
+      },
+      {
+        id: 12,
+        question: 'What shape has three sides?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '3'
+      },
+      {
+        id: 13,
+        question: 'What is 10 - 6?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 14,
+        question: 'What is 3 + 2?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '5'
+      },
+      {
+        id: 15,
+        question: 'What is 5 - 1?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 16,
+        question: '2 + 2 = ?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 17,
+        question: 'What is 3 + 2?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '5'
+      },
+      {
+        id: 18,
+        question: 'What shape has three sides?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '3'
+      },
+      {
+        id: 19,
+        question: 'How many legs does a dog have?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
+      },
+      {
+        id: 20,
+        question: 'What is 10 - 6?',
+        image: '/question.jpg',
+        answers: [
+          { label: 'A', value: '3' },
+          { label: 'B', value: '4' },
+          { label: 'C', value: '5' },
+          { label: 'D', value: '6' }
+        ],
+        correctAnswer: '4'
       }
     ],
+
     quizReview: [
       {
         userId: 1,

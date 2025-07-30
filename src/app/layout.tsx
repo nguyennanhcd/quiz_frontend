@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
-
 import './globals.css'
 import LayoutClientWrapper from '@/components/LayoutClientWrapper'
+import { ToastContainer } from 'react-toastify'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -31,7 +31,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LayoutClientWrapper>{children}</LayoutClientWrapper>
+          <LayoutClientWrapper>
+            {children}{' '}
+            <ToastContainer
+              position='top-right'
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme='dark'
+            />
+          </LayoutClientWrapper>
         </ThemeProvider>
       </body>
     </html>
