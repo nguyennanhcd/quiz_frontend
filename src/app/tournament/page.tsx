@@ -1,5 +1,94 @@
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { CalendarDays, Users, Trophy, Clock, ArrowRight } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
+import categories from '@/constant/category'
+import { difficultyColors } from '@/constant/difficultColor'
+import {
+  CalendarDays,
+  Users,
+  Trophy,
+  Clock,
+  ArrowRight,
+  Calendar,
+  ChevronDown,
+  Check
+} from 'lucide-react'
+import Image from 'next/image'
+
+type Tournament = {
+  id: number
+  title: string
+  description: string
+  image: string
+  difficulty: 'Easy' | 'Medium' | 'Hard'
+  status: string
+  statusColor: string
+  participants: number
+  prize: string
+  dateRange: string
+  closingInfo?: string
+}
+
+const tournaments: Tournament[] = [
+  {
+    id: 1,
+    title: 'Science Showdown',
+    description:
+      'Test your scientific knowledge across physics, chemistry, biology...',
+    image: '/placeholder.svg?height=200&width=350',
+    difficulty: 'Medium',
+    status: 'Registration Open',
+    statusColor: 'bg-green-500',
+    participants: 342,
+    prize: '$1,000',
+    dateRange: 'June 1 - June 15, 2023',
+    closingInfo: 'Closes in 2 days'
+  },
+  {
+    id: 2,
+    title: 'History Heroes',
+    description:
+      'Journey through time and test your knowledge of historical events and...',
+    image: '/placeholder.svg?height=200&width=350',
+    difficulty: 'Hard',
+    status: 'Upcoming',
+    statusColor: 'bg-blue-500',
+    participants: 215,
+    prize: '$750',
+    dateRange: 'June 5 - June 20, 2023'
+  },
+  {
+    id: 3,
+    title: 'Pop Culture Party',
+    description: 'From movies to music, test your knowledge of all things...',
+    image: '/placeholder.svg?height=200&width=350',
+    difficulty: 'Easy',
+    status: 'Ongoing',
+    statusColor: 'bg-orange-500',
+    participants: 567,
+    prize: '$1,500',
+    dateRange: 'May 20 - June 5, 2023'
+  },
+  {
+    id: 4,
+    title: 'Geography Genius',
+    description: 'Navigate through countries, capitals, landmarks and...',
+    image: '/placeholder.svg?height=200&width=350',
+    difficulty: 'Medium',
+    status: 'Registration Open',
+    statusColor: 'bg-green-500',
+    participants: 189,
+    prize: '$800',
+    dateRange: 'June 10 - June 25, 2023'
+  }
+]
 
 export default function QuizTournament() {
   return (
@@ -88,6 +177,122 @@ export default function QuizTournament() {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+      <div className='max-w-7xl mx-auto'>
+        {/* Header */}
+        <div className='flex items-center justify-between mb-8'>
+          <h1 className='text-3xl font-bold'>All Tournaments</h1>
+          <Select defaultValue='all'>
+            <SelectTrigger className='w-48 bg-gray-900 border-gray-700'>
+              <SelectValue placeholder='All Tournaments' />
+            </SelectTrigger>
+            <SelectContent className='bg-gray-900 border-gray-700'>
+              <SelectItem value='all' className='text-white'>
+                <div className='flex items-center gap-2'>
+                  <Check className='w-4 h-4' />
+                  All Tournaments
+                </div>
+              </SelectItem>
+              <SelectItem value='upcoming' className='text-white'>
+                Upcoming
+              </SelectItem>
+              <SelectItem value='ongoing' className='text-white'>
+                Ongoing
+              </SelectItem>
+              <SelectItem value='completed' className='text-white'>
+                Completed
+              </SelectItem>
+              <SelectItem value='registration' className='text-white'>
+                Registration Open
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Category Filter */}
+        <div className='flex gap-3 mb-8 overflow-x-auto pb-2'>
+          {categories.map((category, index) => (
+            <Button
+              key={category.id}
+              variant={index === 0 ? 'default' : 'outline'}
+              className={`whitespace-nowrap ${
+                index === 0
+                  ? 'bg-purple-600 hover:bg-purple-700 text-white'
+                  : 'bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white'
+              }`}
+            >
+              {category.name}
+            </Button>
+          ))}
+        </div>
+
+        {/* Tournament Grid */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+          {tournaments.map((tournament) => (
+            <Card
+              key={tournament.id}
+              className='bg-gray-900 border-gray-700 overflow-hidden'
+            >
+              <div className='relative'>
+                <Image
+                  src={tournament.image || '/placeholder.svg'}
+                  alt={tournament.title}
+                  width={350}
+                  height={200}
+                  className='w-full h-48 object-cover'
+                />
+                <div className='absolute top-3 left-3'>
+                  <Badge
+                    className={`${difficultyColors[tournament.difficulty].bg}`}
+                  >
+                    {tournament.difficulty}
+                  </Badge>
+                </div>
+                <div className='absolute top-3 right-3'>
+                  <Badge className={`${tournament.statusColor} text-white`}>
+                    {tournament.status}
+                  </Badge>
+                </div>
+              </div>
+
+              <CardContent className='p-4'>
+                <h3 className='text-xl font-bold mb-2 text-white'>
+                  {tournament.title}
+                </h3>
+                <p className='text-gray-400 text-sm mb-4 line-clamp-2'>
+                  {tournament.description}
+                </p>
+
+                <div className='space-y-2 mb-4'>
+                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                    <Calendar className='w-4 h-4' />
+                    {tournament.dateRange}
+                  </div>
+                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                    <Users className='w-4 h-4' />
+                    {tournament.participants} participants
+                  </div>
+                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                    <Trophy className='w-4 h-4' />
+                    {tournament.prize} prize
+                  </div>
+                </div>
+
+                {tournament.closingInfo && (
+                  <div className='flex items-center gap-2 text-yellow-400 text-sm mb-4'>
+                    <Clock className='w-4 h-4' />
+                    {tournament.closingInfo}
+                  </div>
+                )}
+
+                <Button className='w-full bg-purple-600 hover:bg-purple-700 text-white'>
+                  View Details
+                  <ChevronDown className='w-4 h-4 ml-2 rotate-[-90deg]' />
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
