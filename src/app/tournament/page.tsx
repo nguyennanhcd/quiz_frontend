@@ -1,3 +1,5 @@
+'use client'
+import React, { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -8,8 +10,10 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import categories from '@/constant/category'
 import { difficultyColors } from '@/constant/difficultColor'
+import { tournaments } from '@/constant/tournament'
 import {
   CalendarDays,
   Users,
@@ -21,76 +25,55 @@ import {
   Check
 } from 'lucide-react'
 import Image from 'next/image'
-
-type Tournament = {
-  id: number
-  title: string
-  description: string
-  image: string
-  difficulty: 'Easy' | 'Medium' | 'Hard'
-  status: string
-  statusColor: string
-  participants: number
-  prize: string
-  dateRange: string
-  closingInfo?: string
-}
-
-const tournaments: Tournament[] = [
-  {
-    id: 1,
-    title: 'Science Showdown',
-    description:
-      'Test your scientific knowledge across physics, chemistry, biology...',
-    image: '/placeholder.svg?height=200&width=350',
-    difficulty: 'Medium',
-    status: 'Registration Open',
-    statusColor: 'bg-green-500',
-    participants: 342,
-    prize: '$1,000',
-    dateRange: 'June 1 - June 15, 2023',
-    closingInfo: 'Closes in 2 days'
-  },
-  {
-    id: 2,
-    title: 'History Heroes',
-    description:
-      'Journey through time and test your knowledge of historical events and...',
-    image: '/placeholder.svg?height=200&width=350',
-    difficulty: 'Hard',
-    status: 'Upcoming',
-    statusColor: 'bg-blue-500',
-    participants: 215,
-    prize: '$750',
-    dateRange: 'June 5 - June 20, 2023'
-  },
-  {
-    id: 3,
-    title: 'Pop Culture Party',
-    description: 'From movies to music, test your knowledge of all things...',
-    image: '/placeholder.svg?height=200&width=350',
-    difficulty: 'Easy',
-    status: 'Ongoing',
-    statusColor: 'bg-orange-500',
-    participants: 567,
-    prize: '$1,500',
-    dateRange: 'May 20 - June 5, 2023'
-  },
-  {
-    id: 4,
-    title: 'Geography Genius',
-    description: 'Navigate through countries, capitals, landmarks and...',
-    image: '/placeholder.svg?height=200&width=350',
-    difficulty: 'Medium',
-    status: 'Registration Open',
-    statusColor: 'bg-green-500',
-    participants: 189,
-    prize: '$800',
-    dateRange: 'June 10 - June 25, 2023'
-  }
-]
+import { Tournament } from '@/types/tournament'
 
 export default function QuizTournament() {
+  const [filter, setFilter] = useState<string>('all')
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
+
+  const getFilteredTournaments = (
+    filter: string,
+    categoryId: string
+  ): Tournament[] => {
+    const now = new Date('2025-08-01') // Fixed date for consistent filtering
+    let filtered = [...tournaments]
+
+    // Filter by category
+    if (categoryId !== 'all') {
+      filtered = filtered.filter((t) => t.categoryId === categoryId)
+    }
+
+    // Filter by status
+    switch (filter) {
+      case 'upcoming':
+        return filtered.filter((t) => new Date(t.startDate) > now)
+      case 'ongoing':
+        return filtered.filter(
+          (t) => new Date(t.startDate) <= now && new Date(t.endDate) >= now
+        )
+      case 'completed':
+        return filtered.filter((t) => new Date(t.endDate) < now)
+      case 'registration':
+        return filtered.filter((t) => t.registrationOpen)
+      case 'all':
+      default:
+        return filtered
+    }
+  }
+
+  // Handle filter changes
+  const handleFilterChange = (value: string) => {
+    setFilter(value)
+  }
+
+  // Handle tab changes
+  const handleTabChange = (value: string) => {
+    setSelectedCategory(value)
+  }
+
+  // Get filtered tournaments
+  const filteredTournaments = getFilteredTournaments(filter, selectedCategory)
+
   return (
     <div className='min-h-screen text-white p-4 md:p-8 lg:p-12'>
       <div className='max-w-7xl'>
@@ -102,7 +85,7 @@ export default function QuizTournament() {
         </p>
 
         <div className='relative bg-gradient-to-br bg-default to-indigo-950 rounded-xl p-6 md:p-10 lg:p-12 overflow-hidden shadow-lg'>
-          {/* Abstract background shapes - simplified for demonstration */}
+          {/* Abstract background shapes */}
           <div className='absolute inset-0 opacity-20'>
             <div className='absolute w-64 h-64 bg-default rounded-full -top-16 -left-16 blur-3xl'></div>
             <div className='absolute w-96 h-96 bg-indigo-700 rounded-full -bottom-32 -right-32 blur-3xl'></div>
@@ -179,11 +162,12 @@ export default function QuizTournament() {
           </div>
         </div>
       </div>
-      <div className='max-w-7xl mx-auto'>
+
+      <div className='max-w-7xl mt-10'>
         {/* Header */}
         <div className='flex items-center justify-between mb-8'>
           <h1 className='text-3xl font-bold'>All Tournaments</h1>
-          <Select defaultValue='all'>
+          <Select value={filter} onValueChange={handleFilterChange}>
             <SelectTrigger className='w-48 bg-gray-900 border-gray-700'>
               <SelectValue placeholder='All Tournaments' />
             </SelectTrigger>
@@ -210,26 +194,34 @@ export default function QuizTournament() {
           </Select>
         </div>
 
-        {/* Category Filter */}
-        <div className='flex gap-3 mb-8 overflow-x-auto pb-2'>
-          {categories.map((category, index) => (
-            <Button
-              key={category.id}
-              variant={index === 0 ? 'default' : 'outline'}
-              className={`whitespace-nowrap ${
-                index === 0
-                  ? 'bg-purple-600 hover:bg-purple-700 text-white'
-                  : 'bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white'
-              }`}
+        {/* Category Tabs */}
+        <Tabs
+          value={selectedCategory}
+          onValueChange={handleTabChange}
+          className='mb-8'
+        >
+          <TabsList className='flex gap-3 overflow-x-auto pb-2 bg-transparent'>
+            <TabsTrigger
+              value='all'
+              className='whitespace-nowrap px-4 py-2 text-gray-300 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-gray-800 hover:text-white'
             >
-              {category.name}
-            </Button>
-          ))}
-        </div>
+              All
+            </TabsTrigger>
+            {categories.map((category) => (
+              <TabsTrigger
+                key={category.id}
+                value={category.id}
+                className='whitespace-nowrap px-4 py-2 text-gray-300 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-gray-800 hover:text-white'
+              >
+                {category.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
 
         {/* Tournament Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-          {tournaments.map((tournament) => (
+          {filteredTournaments.map((tournament) => (
             <Card
               key={tournament.id}
               className='bg-gray-900 border-gray-700 overflow-hidden'
@@ -286,7 +278,7 @@ export default function QuizTournament() {
                   </div>
                 )}
 
-                <Button className='w-full bg-purple-600 hover:bg-purple-700 text-white'>
+                <Button className='w-full bg-default hover:bg-default-hover text-white'>
                   View Details
                   <ChevronDown className='w-4 h-4 ml-2 rotate-[-90deg]' />
                 </Button>
