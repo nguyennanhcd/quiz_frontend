@@ -168,10 +168,10 @@ export default function QuizTournament() {
         <div className='flex items-center justify-between mb-8'>
           <h1 className='text-3xl font-bold'>All Tournaments</h1>
           <Select value={filter} onValueChange={handleFilterChange}>
-            <SelectTrigger className='w-48 bg-gray-900 border-gray-700'>
+            <SelectTrigger className='w-48 bg-main border-gray-700'>
               <SelectValue placeholder='All Tournaments' />
             </SelectTrigger>
-            <SelectContent className='bg-gray-900 border-gray-700'>
+            <SelectContent className='bg-main border-gray-700'>
               <SelectItem value='all' className='text-white'>
                 <div className='flex items-center gap-2'>
                   <Check className='w-4 h-4' />
