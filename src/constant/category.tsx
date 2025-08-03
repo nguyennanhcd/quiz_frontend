@@ -62,6 +62,22 @@ const categories = [
     updatedAt: '2025-07-15T17:30:00Z',
     isFeatured: true,
     imageUrl: '/categories.webp'
+  },
+  {
+    id: 'gay',
+    name: 'gay',
+    description:
+      'Challenge your brain with logic puzzles, riddles, and problem-solving tasks.',
+    color: 'bg-yellow-500',
+    textColor: 'text-black',
+    count: 4,
+    slug: 'puzzle',
+    popularity: 91,
+    difficultyRange: [3, 5],
+    createdAt: '2023-12-05T11:00:00Z',
+    updatedAt: '2025-07-15T17:30:00Z',
+    isFeatured: true,
+    imageUrl: '/categories.webp'
   }
 ]
 
