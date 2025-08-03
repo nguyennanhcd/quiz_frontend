@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ChevronLeft, ChevronRight, Swords } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import categories from '@/constant/category'
-import { CategoryCard } from '@/components/CatergoryCard'
+import QuizCategories from '@/components/QuizCategories'
 import { quizzes } from '@/constant/quizzes'
 import QuizCard from '@/components/QuizCard'
 import Link from 'next/link'
@@ -63,32 +63,7 @@ export default function QuizHubDashboard() {
       </div>
 
       {/* Quiz Categories */}
-      <div className='mb-6 sm:mb-8'>
-        <div className='flex items-center justify-between mb-4 sm:mb-6'>
-          <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
-          <div className='flex space-x-2'>
-            <Button size='sm'>
-              <ChevronLeft className='h-4 w-4' />
-            </Button>
-            <Button size='sm'>
-              <ChevronRight className='h-4 w-4' />
-            </Button>
-          </div>
-        </div>
-
-        <div className='flex overflow-x-auto gap-6 w-full'>
-          {categories.map((category) => (
-            <CategoryCard
-              key={category.id}
-              id={category.id}
-              name={category.name}
-              count={category.count}
-              slug={category.slug}
-              imageUrl={category.imageUrl}
-            />
-          ))}
-        </div>
-      </div>
+      <QuizCategories categories={categories} />
 
       {/* Latest Quizzes */}
       <div className=' bg-main text-white border rounded-lg lg:p-8 mb-10'>
