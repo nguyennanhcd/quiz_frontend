@@ -72,7 +72,7 @@ const MainContent = () => {
     : challengeData.slice(0, 3)
 
   return (
-    <main className='grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mt-6 items-start'>
+    <main className='grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 items-start'>
       {/* Left Block */}
       <div className='lg:col-span-2 space-y-6'>
         {/* Quiz Section */}
@@ -143,7 +143,7 @@ const MainContent = () => {
         <ChallengeChart />
 
         {/* Challenge History */}
-        <Card className='bg-main text-white max-w-4xl mx-auto border-slate-700 py-6'>
+        <Card className='bg-main text-white border-slate-700 py-6'>
           <CardHeader>
             <div className='flex items-center justify-between'>
               <h1 className='text-2xl font-bold'>Challenge History</h1>

@@ -76,7 +76,7 @@ export default function QuizTournament() {
 
   return (
     <div className='min-h-screen text-white p-4 md:p-8 lg:p-12'>
-      <div className='max-w-7xl'>
+      <div className=''>
         <h1 className='text-3xl md:text-4xl font-bold mb-2'>
           Quiz Tournaments
         </h1>
@@ -163,7 +163,7 @@ export default function QuizTournament() {
         </div>
       </div>
 
-      <div className='max-w-7xl mt-10'>
+      <div className='mt-10'>
         {/* Header */}
         <div className='flex items-center justify-between mb-8'>
           <h1 className='text-3xl font-bold'>All Tournaments</h1>
