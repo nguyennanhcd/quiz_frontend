@@ -37,17 +37,17 @@ export function QuizCardDifficulty({
     spotsAvailable > 0
       ? `${spotsAvailable} spots available`
       : `Only ${totalSpots - players} spots left!`
-  const isSpotsLow = spotsAvailable > 0 && spotsAvailable <= 10 // Example threshold for "Only X spots left!"
+  const isSpotsLow = spotsAvailable > 0 && spotsAvailable <= 10
 
   return (
-    <div className='relative w-72 flex-shrink-0 overflow-hidden rounded-lg border shadow-lg'>
-      <div className='relative h-40 w-full'>
+    <div className='w-full overflow-hidden rounded-lg border shadow-lg'>
+      <div className='relative aspect-[16/9] w-full'>
         <Image
           src={imageSrc || '/placeholder.svg'}
           alt={title}
-          width={288} // w-72 * 4 (for better quality)
-          height={160} // h-40 * 4
-          className='absolute inset-0 h-full w-full object-cover'
+          fill
+          className='object-cover'
+          sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
         />
         <div className='absolute inset-0 bg-gradient-to-t from-black/70 to-transparent' />
         <div
@@ -57,7 +57,6 @@ export function QuizCardDifficulty({
         >
           {difficulty}
         </div>
-
         <div className='absolute bottom-3 left-3 flex items-center gap-2'>
           <Avatar className='h-10 w-10 border-2 border-white'>
             <AvatarImage
@@ -73,8 +72,8 @@ export function QuizCardDifficulty({
           </Avatar>
           <span className='font-semibold text-white'>{authorName}</span>
         </div>
-        <div className='absolute bottom-3 right-3 flex items-center flex-col text-sm font-semibold text-white'>
-          <span>Reward </span>
+        <div className='absolute bottom-3 right-3 flex flex-col items-center text-sm font-semibold text-white'>
+          <span>Reward</span>
           <div className='flex items-center justify-center'>
             <DollarSign className='mr-1 h-4 w-4 text-green-400' />
             <span className='text-green-400'>{reward}</span>
@@ -98,7 +97,7 @@ export function QuizCardDifficulty({
         </div>
         <div className='mb-3 h-2 w-full rounded-full bg-gray-700'>
           <div
-            className='h-full rounded-full bg-white-primary'
+            className='h-full rounded-full bg-white'
             style={{ width: `${progress}%` }}
           />
         </div>

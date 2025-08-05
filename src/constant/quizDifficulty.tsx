@@ -98,5 +98,19 @@ export const quizzesDifficulty: QuizCardProps[] = [
     players: 40,
     spotsAvailable: 60,
     totalSpots: 100
+  },
+  {
+    id: '8',
+    imageSrc: '/placeholder.webp',
+    difficulty: 'Easy',
+    authorAvatarSrc: '/avatarPlaceholder.webp',
+    authorName: 'Alex Smith',
+    reward: 1.0,
+    category: 'Sports',
+    duration: 10,
+    title: 'Sports Fundamentals',
+    players: 40,
+    spotsAvailable: 60,
+    totalSpots: 100
   }
 ]
