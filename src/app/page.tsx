@@ -1,6 +1,5 @@
 'use client'
-import { useState } from 'react'
-import { ChevronLeft, ChevronRight, Swords } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import categories from '@/constant/category'
 import QuizCategories from '@/components/QuizCategories'
@@ -8,20 +7,13 @@ import { quizzes } from '@/constant/quizzes'
 import QuizCard from '@/components/QuizCard'
 import Link from 'next/link'
 import FeaturedQuiz from '@/components/FeaturedQuiz'
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
-import { playersRank } from '@/constant/playersRank'
-import { PlayerCard } from '@/components/PlayerCard'
-import { difficultyColors } from '@/constant/difficultColor'
-import { quizzesDifficulty } from '@/constant/quizDifficulty'
-import { QuizCardDifficulty } from '@/components/QuizCardDifficulty'
 import LiveWinners from '@/components/LiveWinner'
 import HowItWorks from '@/components/HowItWorks'
 import SuccessStoriesCarousel from '@/components/SuccessStoryCarousel'
+import PlayerRanking from '@/components/homepage/PlayerRanking'
+import QuizCardDifficultyList from '@/components/homepage/QuizCardDifficultyList'
 
 export default function QuizHubDashboard() {
-  const [selectedDifficulty, setSelectedDifficulty] = useState<
-    'Easy' | 'Medium' | 'Hard'
-  >('Easy')
   return (
     <div className='flex-1 p-4 sm:p-6 lg:p-8 max-w-full overflow-hidden'>
       <div className='relative bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 mb-6 sm:mb-8'>
@@ -91,95 +83,10 @@ export default function QuizHubDashboard() {
       <FeaturedQuiz />
 
       {/* Player Ranking */}
-      <div className=' xl:py-10 bg-main p-6 text-white rounded-sm'>
-        <div className='mb-10 flex items-center justify-between'>
-          <h2 className='flex items-center gap-2 text-2xl font-bold'>
-            <Swords className='h-6 w-6' />
-            Top Players
-          </h2>
-          <div className='flex gap-2'>
-            <Button
-              size='icon'
-              className=' bg-default text-white hover:bg-default-hover'
-            >
-              <ChevronLeft className='h-5 w-5' />
-            </Button>
-            <Button
-              size='icon'
-              className='bg-default text-white hover:bg-default-hover'
-            >
-              <ChevronRight className='h-5 w-5' />
-            </Button>
-          </div>
-        </div>
-
-        <ScrollArea className='w-full whitespace-nowrap pb-4 mt-5'>
-          <div className='flex space-x-6'>
-            {playersRank.map((player, index) => (
-              <PlayerCard key={index} {...player} />
-            ))}
-          </div>
-          <ScrollBar orientation='horizontal' className='mt-4' />
-        </ScrollArea>
-
-        <div className='mt-8 flex justify-center'>
-          <Button className='rounded-md bg-default hover:bg-default-hover'>
-            View Full Leaderboard
-          </Button>
-        </div>
-      </div>
+      <PlayerRanking />
 
       {/* QuizCard Difficulty*/}
-      <div className='mt-20'>
-        <div className='mb-8 m flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
-          <div>
-            <h1 className='text-3xl font-bold text-white md:text-4xl'>
-              Quizzes by Difficulty
-            </h1>
-            <p className='text-md text-gray-400 md:text-lg'>
-              Choose challenges according to your skill level
-            </p>
-          </div>
-          <div className='flex items-center gap-2'>
-            <div className='flex rounded-lg bg-[#2A2A3A] p-1'>
-              {(['Easy', 'Medium', 'Hard'] as const).map((level) => (
-                <Button
-                  key={level}
-                  onClick={() => setSelectedDifficulty(level)}
-                  className={`rounded-sm px-4 py-1 text-sm transition ${
-                    selectedDifficulty === level
-                      ? `${difficultyColors[level].bg} pointer-events-none `
-                      : `bg-transparent  ${difficultyColors[level].hover}`
-                  }
-                      `}
-                >
-                  {level}
-                </Button>
-              ))}
-            </div>
-            <Button
-              size='icon'
-              className='h-8 w-8 bg-transparent text-white-primary hover:bg-slate-700 '
-            >
-              <ChevronLeft className='h-4 w-4' />
-            </Button>
-            <Button
-              size='icon'
-              className='h-8 w-8 bg-transparent text-white-primary hover:bg-slate-700 '
-            >
-              <ChevronRight className='h-4 w-4' />
-            </Button>
-          </div>
-        </div>
-
-        <div className='flex gap-6 overflow-x-auto pb-4 scrollbar-hide lg:grid lg:grid-cols-4 lg:gap-30'>
-          {quizzesDifficulty
-            .filter((quiz) => quiz.difficulty === selectedDifficulty)
-            .map((quiz) => (
-              <QuizCardDifficulty key={quiz.id} {...quiz} />
-            ))}
-        </div>
-      </div>
+      <QuizCardDifficultyList />
 
       {/* Live Winners */}
       <LiveWinners />
