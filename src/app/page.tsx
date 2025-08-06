@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from '@/components/ui/button'
 import categories from '@/constant/category'
 import QuizCategories from '@/components/QuizCategories'
