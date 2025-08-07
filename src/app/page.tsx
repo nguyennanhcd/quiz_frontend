@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button'
 import categories from '@/constant/category'
 import QuizCategories from '@/components/QuizCategories'
-import { quizzes } from '@/constant/quizzes'
 import QuizCard from '@/components/QuizCard'
 import Link from 'next/link'
 import FeaturedQuiz from '@/components/FeaturedQuiz'

@@ -20,6 +20,7 @@ import Overview from '../quizDetail/Overview'
 import Leaderboard from '../quizDetail/Leaderboard'
 import Reviews from '../quizDetail/Reviews'
 import { Card, CardContent } from '../ui/card'
+import { mockQuizzes } from '@/constant/mockQuizzes'
 
 interface QuizDetailProps {
   quiz: Quiz
@@ -147,6 +148,47 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
               <Reviews />
             </TabsContent>
           </Tabs>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+            {mockQuizzes.map((quiz) => (
+              <div
+                key={quiz.id}
+                className='relative group cursor-pointer rounded-lg overflow-hidden transition-transform hover:scale-105'
+              >
+                {/* Background Image */}
+                <div className='relative h-32 w-full'>
+                  <Image
+                    src={quiz.image || '/placeholder.svg'}
+                    alt={quiz.title}
+                    fill
+                    className='object-cover'
+                  />
+                  {/* Overlay */}
+                  <div className='absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors' />
+                </div>
+
+                {/* Content */}
+                <div className='absolute inset-0 flex flex-col justify-between p-4'>
+                  {/* Difficulty Badge */}
+                  <div className='flex justify-start'>
+                    <Badge
+                      className={`${
+                        difficultyColors[quiz.difficulty].bg
+                      } text-white text-xs px-2 py-1 font-medium`}
+                    >
+                      {quiz.difficulty}
+                    </Badge>
+                  </div>
+
+                  {/* Title */}
+                  <div className='flex-1 flex items-end'>
+                    <h3 className='text-white font-semibold text-sm leading-tight'>
+                      {quiz.title}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Sidebar */}

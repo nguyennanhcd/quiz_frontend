@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import { useState } from 'react'
 import SpotAvailabilityIndicator from '@/components/SpotAvailabiltyIndicator'
-import { quizzes } from '@/constant/quizzes'
+import { mockQuizzes } from '@/constant/mockQuizzes'
 
 const FeaturedQuiz = () => {
   const [activeTab, setActiveTab] = useState('All')
@@ -20,7 +20,7 @@ const FeaturedQuiz = () => {
   ]
 
   // Update filterTabs to use activeTab state
-  const filteredQuizzes = quizzes.filter((quiz) => {
+  const filteredQuizzes = mockQuizzes.filter((quiz) => {
     // Apply tab filter
     if (activeTab === 'All') {
       return true
