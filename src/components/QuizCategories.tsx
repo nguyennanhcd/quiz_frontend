@@ -56,18 +56,10 @@ export default function QuizCategories({
       <div className='flex items-center justify-between mb-4 sm:mb-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
-          <Button
-            variant='outline'
-            size='icon'
-            className='quiz-swiper-button-prev h-10 w-10'
-          >
+          <Button size='icon' className='quiz-swiper-button-prev h-10 w-10'>
             <ChevronLeft className='h-4 w-4' />
           </Button>
-          <Button
-            variant='outline'
-            size='icon'
-            className='quiz-swiper-button-next h-10 w-10'
-          >
+          <Button size='icon' className='quiz-swiper-button-next h-10 w-10'>
             <ChevronRight className='h-4 w-4' />
           </Button>
         </div>
@@ -75,7 +67,7 @@ export default function QuizCategories({
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={16}
-        slidesPerView={1.2}
+        slidesPerView={1}
         navigation={{
           nextEl: '.quiz-swiper-button-next',
           prevEl: '.quiz-swiper-button-prev'

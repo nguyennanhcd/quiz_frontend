@@ -38,12 +38,13 @@ export function PlayerCard({
   }
 
   return (
-    <div className='relative w-[280px] xl:w-[350px] flex-shrink-0 overflow-hidden rounded-lg bg-slate-900 border text-white shadow-lg'>
+    <div className='relative overflow-hidden rounded-lg bg-slate-900 border text-white shadow-lg h-full'>
       <div className='relative h-32 w-full'>
         <Image
           src={
             bgImageUrl ||
-            '/placeholder.svg?height=200&width=400&query=abstract colorful background'
+            '/placeholder.svg?height=200&width=400&query=abstract colorful background' ||
+            '/placeholder.svg'
           }
           alt='Abstract background'
           fill
@@ -59,12 +60,14 @@ export function PlayerCard({
           {level}
         </div>
       </div>
+
       <div className='relative -mt-12 flex flex-col items-center px-4 pb-4'>
         <Avatar className='h-24 w-24 border-4 border-[#2a2a4a] bg-gray-700'>
           <AvatarImage
             src={
               avatarUrl ||
-              '/placeholder.svg?height=100&width=100&query=person avatar'
+              '/placeholder.svg?height=100&width=100&query=person avatar' ||
+              '/placeholder.svg'
             }
             alt={name}
           />
@@ -75,10 +78,12 @@ export function PlayerCard({
               .join('')}
           </AvatarFallback>
         </Avatar>
+
         <h3 className='mt-2 text-lg font-semibold'>{name}</h3>
         <p className='text-sm text-gray-400'>
           {flag} {country}
         </p>
+
         <CardContent className='mt-4 grid w-full grid-cols-3 gap-2 p-0 text-center'>
           <div className='flex flex-col items-center'>
             <span className='text-lg font-bold'>{rank}</span>
@@ -99,6 +104,7 @@ export function PlayerCard({
             <span className='text-xs text-gray-400'>Earned</span>
           </div>
         </CardContent>
+
         <div className='mt-4 flex w-full justify-around gap-2'>
           <div className='flex flex-1 flex-col items-center rounded-md bg-main p-2'>
             <Users className='h-4 w-4 text-gray-400' />
