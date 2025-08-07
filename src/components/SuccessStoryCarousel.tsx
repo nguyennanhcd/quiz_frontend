@@ -1,36 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Star } from 'lucide-react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import { testimonials } from '@/constant/testimonial'
 
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 export default function SuccessStoriesCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const currentTestimonial = testimonials[currentIndex]
-
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-  }
-
-  const goToPrevious = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length
-    )
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
-
-  // Optional: Auto-advance carousel
-  useEffect(() => {
-    const interval = setInterval(goToNext, 5000)
-    return () => clearInterval(interval)
-  }, [currentIndex])
-
   return (
     <section className='w-full py-12 mt-10 rounded-xl text-white bg-main'>
       <div className='container px-4 md:px-6'>
@@ -45,91 +26,160 @@ export default function SuccessStoriesCarousel() {
             </p>
           </div>
         </div>
-        <div className='relative mt-12 flex items-center justify-center'>
-          <Button
-            size='icon'
-            className='absolute left-0 z-10 rounded-full bg-default hover:bg-default-hover text-white'
-            onClick={goToPrevious}
+
+        <div className='relative mt-12'>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation={{
+              prevEl: '.swiper-button-prev-custom',
+              nextEl: '.swiper-button-next-custom'
+            }}
+            pagination={{
+              el: '.swiper-pagination-custom',
+              clickable: true,
+              bulletClass: 'swiper-pagination-bullet-custom',
+              bulletActiveClass: 'swiper-pagination-bullet-active-custom'
+            }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false
+            }}
+            loop={true}
+            className='testimonial-swiper'
+          >
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide key={index}>
+                <div className='relative w-full max-w-4xl mx-auto rounded-xl p-6 md:p-12'>
+                  <div className='flex flex-col items-center md:flex-row md:items-start md:space-x-8'>
+                    <div className='relative mb-6 md:mb-0'>
+                      <Image
+                        src={testimonial.avatar || '/placeholder.svg'}
+                        alt={testimonial.name}
+                        width={120}
+                        height={120}
+                        className='rounded-full object-cover border-4 border-[#4a4a6a]'
+                      />
+                    </div>
+                    <div className='flex-1 text-center md:text-left'>
+                      <div className='flex justify-center md:justify-start mb-2'>
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-5 w-5 ${
+                              i < testimonial.rating
+                                ? 'fill-yellow-400 text-yellow-400'
+                                : 'text-gray-500'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <p className='text-lg italic text-gray-200 mb-4'>
+                        {testimonial.quote}
+                      </p>
+                      <h3 className='text-xl font-semibold text-white'>
+                        {testimonial.name}
+                      </h3>
+                      <p className='text-gray-400'>{testimonial.role}</p>
+                      <div className='mt-6 flex justify-center md:justify-start space-x-8'>
+                        <div className='text-center'>
+                          <div className='text-2xl font-bold text-default'>
+                            {testimonial.earnings}
+                          </div>
+                          <div className='text-gray-400 text-sm'>Earnings</div>
+                        </div>
+                        <div className='text-center'>
+                          <div className='text-2xl font-bold text-default'>
+                            {testimonial.quizzes}
+                          </div>
+                          <div className='text-gray-400 text-sm'>Quizzes</div>
+                        </div>
+                        <div className='text-center'>
+                          <div className='text-2xl font-bold text-default'>
+                            {testimonial.followers}
+                          </div>
+                          <div className='text-gray-400 text-sm'>Followers</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Custom Navigation Buttons */}
+          <button
+            className='swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-default hover:bg-default-hover text-white flex items-center justify-center transition-colors'
             aria-label='Previous testimonial'
           >
-            <ChevronLeft className='h-6 w-6' />
-          </Button>
-          <div className='relative w-full max-w-4xl rounded-xl p-6 md:p-12'>
-            <div className='flex flex-col items-center md:flex-row md:items-start md:space-x-8'>
-              <div className='relative mb-6 md:mb-0'>
-                <Image
-                  src={currentTestimonial.avatar || '/placeholder.svg'}
-                  alt={currentTestimonial.name}
-                  width={120}
-                  height={120}
-                  className='rounded-full object-cover border-4 border-[#4a4a6a]'
-                />
-              </div>
-              <div className='flex-1 text-center md:text-left'>
-                <div className='flex justify-center md:justify-start mb-2'>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`h-5 w-5 ${
-                        i < currentTestimonial.rating
-                          ? 'fill-yellow-400 text-yellow-400'
-                          : 'text-gray-500'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <p className='text-lg italic text-gray-200 mb-4'>
-                  {currentTestimonial.quote}
-                </p>
-                <h3 className='text-xl font-semibold text-white'>
-                  {currentTestimonial.name}
-                </h3>
-                <p className='text-gray-400'>{currentTestimonial.role}</p>
-                <div className='mt-6 flex justify-center md:justify-start space-x-8'>
-                  <div className='text-center'>
-                    <div className='text-2xl font-bold text-default '>
-                      {currentTestimonial.earnings}
-                    </div>
-                    <div className='text-gray-400 text-sm'>Earnings</div>
-                  </div>
-                  <div className='text-center'>
-                    <div className='text-2xl font-bold text-default '>
-                      {currentTestimonial.quizzes}
-                    </div>
-                    <div className='text-gray-400 text-sm'>Quizzes</div>
-                  </div>
-                  <div className='text-center'>
-                    <div className='text-2xl font-bold text-default '>
-                      {currentTestimonial.followers}
-                    </div>
-                    <div className='text-gray-400 text-sm'>Followers</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <Button
-            size='icon'
-            className='absolute right-0 z-10 rounded-full bg-default hover:bg-default-hover text-white'
-            onClick={goToNext}
+            <svg
+              className='w-6 h-6'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M15 19l-7-7 7-7'
+              />
+            </svg>
+          </button>
+
+          <button
+            className='swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-default hover:bg-default-hover text-white flex items-center justify-center transition-colors'
             aria-label='Next testimonial'
           >
-            <ChevronRight className='h-6 w-6' />
-          </Button>
-        </div>
-        <div className='mt-8 flex justify-center space-x-2'>
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`h-2 w-2 rounded-full ${
-                index === currentIndex ? 'bg-white' : 'bg-gray-500'
-              }`}
-              onClick={() => goToSlide(index)}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
+            <svg
+              className='w-6 h-6'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M9 5l7 7-7 7'
+              />
+            </svg>
+          </button>
+
+          {/* Custom Pagination */}
+          <div className='swiper-pagination-custom mt-8 flex justify-center space-x-2'></div>
         </div>
       </div>
+
+      <style jsx global>{`
+        .testimonial-swiper {
+          overflow: visible;
+        }
+
+        .swiper-pagination-bullet-custom {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: rgb(107, 114, 128);
+          opacity: 1;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active-custom {
+          background-color: white;
+        }
+
+        .swiper-pagination-bullet-custom:hover {
+          background-color: rgb(156, 163, 175);
+        }
+
+        .swiper-pagination-bullet-active-custom:hover {
+          background-color: rgb(243, 244, 246);
+        }
+      `}</style>
     </section>
   )
 }
