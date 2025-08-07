@@ -21,9 +21,9 @@ function CategoryCard({ name, count, slug, imageUrl }: CategoryCardProps) {
   return (
     <Link
       href={`/quizzes/${slug}`}
-      className='block w-[300px] h-[200px] overflow-hidden'
+      className='block w-full h-[180px] sm:h-[200px] overflow-hidden'
     >
-      <div className='relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300'>
+      <div className='relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105'>
         <Image
           src={
             imageUrl ||
@@ -35,10 +35,10 @@ function CategoryCard({ name, count, slug, imageUrl }: CategoryCardProps) {
           priority
         />
         <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none' />
-        <div className='absolute top-4 left-4 bg-gray-800/70 text-white px-3 py-1 rounded-full text-sm font-medium z-10'>
+        <div className='absolute top-3 left-3 sm:top-4 sm:left-4 bg-gray-800/70 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium z-10'>
           {name}
         </div>
-        <div className='absolute top-4 right-4 bg-white/40 backdrop-blur-sm rounded-full px-2 py-0.5 text-xs font-medium'>
+        <div className='absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/40 backdrop-blur-sm rounded-full px-2 py-0.5 text-xs font-medium'>
           {count}
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function QuizCategories({
   categories: CategoryCardProps[]
 }) {
   return (
-    <div className='mb-6 sm:mb-8'>
+    <div className='mb-6 sm:mb-8 px-4 sm:px-0'>
       <div className='flex items-center justify-between mb-4 sm:mb-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
@@ -74,8 +74,8 @@ export default function QuizCategories({
       </div>
       <Swiper
         modules={[Navigation, Autoplay]}
-        spaceBetween={24}
-        slidesPerView={1}
+        spaceBetween={16}
+        slidesPerView={1.2}
         navigation={{
           nextEl: '.quiz-swiper-button-next',
           prevEl: '.quiz-swiper-button-prev'
@@ -86,11 +86,28 @@ export default function QuizCategories({
           pauseOnMouseEnter: true
         }}
         breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 }
+          480: {
+            slidesPerView: 1.5,
+            spaceBetween: 20
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          768: {
+            slidesPerView: 2.5,
+            spaceBetween: 24
+          },
+          1024: {
+            slidesPerView: 3.5,
+            spaceBetween: 24
+          },
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 24
+          }
         }}
-        className='mx-auto w-full'
+        className='w-full !overflow-visible'
       >
         {categories.map((category) => (
           <SwiperSlide key={category.id}>
