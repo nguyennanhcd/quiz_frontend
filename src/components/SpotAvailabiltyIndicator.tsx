@@ -29,7 +29,7 @@ export default function SpotAvailabilityIndicator({
   const circumference = 2 * Math.PI * radius
 
   return (
-    <div className='flex items-center gap-2 p-4 bg-gray-900 text-gray-300 rounded-lg'>
+    <div className='flex items-center justify-center bg-gray-900 text-gray-300 rounded-lg'>
       {mode === 'default' && (
         <div className='w-6 h-6 flex items-center justify-center'>
           <svg className='w-full h-full' viewBox='0 0 24 24'>
