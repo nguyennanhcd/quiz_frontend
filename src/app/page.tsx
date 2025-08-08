@@ -9,6 +9,7 @@ import HowItWorks from '@/components/HowItWorks'
 import SuccessStoriesCarousel from '@/components/SuccessStoryCarousel'
 import PlayerRanking from '@/components/homepage/PlayerRanking'
 import QuizCardDifficultyList from '@/components/homepage/QuizCardDifficultyList'
+import { mockQuizzes } from '@/constant/mockQuizzes'
 
 export default function QuizHubDashboard() {
   return (
@@ -58,14 +59,8 @@ export default function QuizHubDashboard() {
       <div className=' bg-main text-white border rounded-lg lg:p-8 mb-10'>
         <h2 className='text-2xl font-bold mb-8'>Latest Quizzes</h2>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8'>
-          {quizzes.map((quiz) => (
-            <QuizCard
-              key={quiz.id}
-              title={quiz.title}
-              category={quiz.category}
-              difficulty={quiz.difficulty as 'Easy' | 'Medium' | 'Hard'}
-              image={quiz.image}
-            />
+          {mockQuizzes.map((quiz) => (
+            <QuizCard key={quiz.id} {...quiz} />
           ))}
         </div>
 

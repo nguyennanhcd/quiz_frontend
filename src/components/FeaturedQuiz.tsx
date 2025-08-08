@@ -129,7 +129,7 @@ const FeaturedQuiz = () => {
               <div className='flex items-center justify-between mb-3'>
                 <div className='flex items-center gap-2'>
                   <Avatar className='w-8 h-8'>
-                    <AvatarImage src={quiz.creator.avatar} />
+                    <AvatarImage src={quiz.creator.imageURL} />
                     <AvatarFallback>AS</AvatarFallback>
                   </Avatar>
                   <div>
