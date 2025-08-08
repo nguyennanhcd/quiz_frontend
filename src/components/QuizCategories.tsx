@@ -52,7 +52,7 @@ export default function QuizCategories({
   categories: CategoryCardProps[]
 }) {
   return (
-    <div className='mb-6 sm:mb-8 px-4 sm:px-0'>
+    <div className='mb-6 sm:mb-8 px-4 sm:px-0 overflow-hidden'>
       <div className='flex items-center justify-between mb-4 sm:mb-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
