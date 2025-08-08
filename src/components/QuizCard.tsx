@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { QuizType } from '@/types/quizType'
 import { difficultyColors } from '@/constant/difficultColor'
 import { Badge } from '@/components/ui/badge'
+import { Quiz } from '@/types/quiz'
 
-const QuizCard = ({ title, category, difficulty, image }: QuizType) => {
+const QuizCard = ({ title, category, difficulty, image }: Quiz) => {
   return (
     <div className='border rounded-xl overflow-hidden relative'>
       <div className='relative h-48'>

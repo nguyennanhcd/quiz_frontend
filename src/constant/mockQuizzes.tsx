@@ -16,7 +16,7 @@ export const mockQuizzes: Quiz[] = [
     tags: ['Mathematics', 'Algebra', 'Geometry'],
     category: ['Mathematics', 'Algebra', 'Geometry'],
     isPopular: true,
-    isFeatured: false,
+    isFeatured: true,
     rating: 4.5,
     creator: {
       userId: 101,
@@ -24,7 +24,8 @@ export const mockQuizzes: Quiz[] = [
       name: 'Dr. John Smith',
       position: 'Mathematics Professor',
       imageURL: '/avatarPlaceholder.webp',
-      quizzesCreated: 12
+      quizzesCreated: 12,
+      rating: 4.7 // Added creator rating
     },
     createdAt: '2025-06-01T08:00:00Z',
     updatedAt: '2025-07-01T12:00:00Z',
@@ -270,7 +271,6 @@ export const mockQuizzes: Quiz[] = [
         correctAnswer: '4'
       }
     ],
-
     quizReview: [
       {
         userId: 1,
@@ -302,7 +302,14 @@ export const mockQuizzes: Quiz[] = [
         rank: 2,
         completedAt: '2025-07-02T16:00:00Z'
       }
-    ]
+    ],
+    badges: ['Hot', 'Top Rated'], // Added badges
+    timeLeft: 3, // Added timeLeft (days)
+    reward: 50, // Added reward (in dollars)
+    spots: 20, // Added total spots
+    spotsLeft: 10, // Added available spots
+    players: 10, // Added players (aligned with currentPlayers)
+    bgGradient: 'from-blue-500 to-indigo-600' // Added background gradient
   },
   {
     id: 2,
@@ -326,7 +333,8 @@ export const mockQuizzes: Quiz[] = [
       name: 'Dr. Nguyen Hoang Anh',
       position: 'Literature Professor',
       imageURL: '/avatarPlaceholder.webp',
-      quizzesCreated: 8
+      quizzesCreated: 8,
+      rating: 4.9 // Added creator rating
     },
     createdAt: '2025-06-15T09:00:00Z',
     updatedAt: '2025-07-03T10:00:00Z',
@@ -361,6 +369,13 @@ export const mockQuizzes: Quiz[] = [
         rank: 1,
         completedAt: '2025-07-03T09:45:00Z'
       }
-    ]
+    ],
+    badges: ['Trending', "Editor's Choice"], // Added badges
+    timeLeft: 5, // Added timeLeft (days)
+    reward: 75, // Added reward (in dollars)
+    spots: 500, // Added total spots
+    spotsLeft: 485, // Added available spots
+    players: 15, // Added players (aligned with currentPlayers)
+    bgGradient: 'from-purple-500 to-pink-600' // Added background gradient
   }
 ]
