@@ -4,7 +4,8 @@ import {
   Bell,
   BookOpen,
   ArrowLeftToLine,
-  ArrowRightToLine
+  ArrowRightToLine,
+  Banknote
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -81,8 +82,10 @@ const DesktopNav = ({
 
           {/* Wallet */}
           <div className='flex items-center gap-2 p-2 border border-slate-600 rounded-lg'>
-            <span className='text-yellow-400 font-semibold'>$124.50</span>
-            <div className='w-4 h-4 bg-yellow-400 rounded-full' />
+            <span className='text-yellow-400 text-sm '>$124.50</span>
+            <div className='text-yellow-400'>
+              <Banknote size={20} />
+            </div>
           </div>
 
           {/* Avatar */}

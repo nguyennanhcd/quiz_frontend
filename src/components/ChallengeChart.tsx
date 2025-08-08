@@ -34,23 +34,21 @@ const ChallengeChart = () => {
           <CardTitle>Your Challenge Stats</CardTitle>
           <div className='flex space-x-4'>
             <Button
-              variant={activeTab === 'Performance' ? 'default' : 'ghost'}
               onClick={() => setActiveTab('Performance')}
-              className={`mr-2 px-6 py-2 rounded-md ${
+              className={`mr-2 px-6 py-2 rounded-md hover:bg-default-hover/500 ${
                 activeTab === 'Performance'
-                  ? 'bg-slate-800 text-white'
-                  : 'bg-transparent text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-default text-white'
+                  : 'bg-transparent text-slate-400 hover:text-white hover:bg-default'
               }`}
             >
               Performance
             </Button>
             <Button
-              variant={activeTab === 'Categories' ? 'default' : 'ghost'}
               onClick={() => setActiveTab('Categories')}
-              className={`px-6 py-2 rounded-md ${
+              className={`px-6 py-2 rounded-md hover:bg-default-hover/500 ${
                 activeTab === 'Categories'
-                  ? 'bg-slate-800 text-white'
-                  : 'bg-transparent text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-default text-white'
+                  : 'bg-transparent text-slate-400 hover:text-white hover:bg-default'
               }`}
             >
               Categories

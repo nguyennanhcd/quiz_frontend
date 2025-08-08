@@ -118,7 +118,7 @@ const FeaturedQuiz = () => {
                   {quiz.title}
                 </h3>
                 <p className='text-slate-300 text-sm truncate overflow-hidden whitespace-nowrap'>
-                  {quiz.category}
+                  {quiz.categories.join(', ')}
                 </p>
               </div>
             </div>

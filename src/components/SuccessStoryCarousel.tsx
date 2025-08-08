@@ -111,7 +111,7 @@ export default function SuccessStoriesCarousel() {
 
           {/* Custom Navigation Buttons */}
           <button
-            className='swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-default hover:bg-default-hover text-white flex items-center justify-center transition-colors'
+            className='swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-default hover:bg-default-hover text-white flex items-center justify-center transition-colors hover:cursor-pointer'
             aria-label='Previous testimonial'
           >
             <svg
@@ -130,7 +130,7 @@ export default function SuccessStoriesCarousel() {
           </button>
 
           <button
-            className='swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-default hover:bg-default-hover text-white flex items-center justify-center transition-colors'
+            className='swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-default hover:bg-default-hover text-white flex items-center justify-center transition-colors hover:cursor-pointer'
             aria-label='Next testimonial'
           >
             <svg

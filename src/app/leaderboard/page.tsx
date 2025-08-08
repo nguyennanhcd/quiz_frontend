@@ -21,7 +21,8 @@ import {
   TrendingUp,
   Calendar,
   Users,
-  Trophy
+  Trophy,
+  Medal
 } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
@@ -33,7 +34,7 @@ const Page = () => {
     <div className='min-h-screen text-white-primary sm:p-6 lg:p-8'>
       <header className='mb-8 max-w-7xl mx-auto space-y-2 flex flex-col xl:flex-row justify-between'>
         <div>
-          <h1 className='text-4xl font-bold mb-2'>Leader Board</h1>
+          <h1 className='text-3xl font-bold mb-2'>Leader Board</h1>
           <p className='text-slate-400 text-lg'>
             See who&#39;s leading the pack in our global quiz rankings.
           </p>
@@ -48,7 +49,7 @@ const Page = () => {
         {/* Competition Stats Card */}
         <Card className='bg-transparent col-span-1 py-6'>
           <CardHeader>
-            <CardTitle className='text-white text-2xl font-bold'>
+            <CardTitle className='text-white text-xl font-bold'>
               Competition Stats
             </CardTitle>
             <CardDescription className='text-slate-400'>
@@ -59,16 +60,14 @@ const Page = () => {
             {/* Active Participants */}
             <div className='flex items-center justify-between'>
               <span className='text-slate-400'>Active Participants</span>
-              <span className='text-white font-bold text-xl'>1,248</span>
+              <span className='text-white font-bold '>1,248</span>
             </div>
 
             {/* Top Badge */}
             <div className='flex items-center justify-between'>
               <span className='text-slate-400'>Top Badge</span>
               <div className='flex items-center gap-2'>
-                <div className='w-6 h-6 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center'>
-                  <div className='w-3 h-3 bg-white rounded-full'></div>
-                </div>
+                <Medal size={16} className='text-yellow-400' />
                 <span className='text-white font-medium'>
                   Diamond (5 users)
                 </span>
@@ -99,7 +98,7 @@ const Page = () => {
                 {/* Progress Bar */}
                 <div className='w-full bg-slate-700 rounded-full h-2'>
                   <div
-                    className='bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full'
+                    className=' bg-white h-2 rounded-full'
                     style={{ width: '81.25%' }}
                   />
                 </div>

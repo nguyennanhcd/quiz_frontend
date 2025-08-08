@@ -31,7 +31,6 @@ const MainContent = () => {
   const [showAllHistory, setShowAllHistory] = useState(false)
 
   useEffect(() => {
-    // Start timer only if an answer is selected
     if (!isTimerActive || selectedAnswer === '') return
 
     let seconds = 5 * 60 // 5 minutes in seconds
@@ -146,7 +145,7 @@ const MainContent = () => {
         <Card className='bg-main text-white border-slate-700 py-6'>
           <CardHeader>
             <div className='flex items-center justify-between'>
-              <h1 className='text-2xl font-bold'>Challenge History</h1>
+              <h1 className='text-xl font-bold'>Challenge History</h1>
               <Button
                 className='flex items-center gap-1 bg-main text-slate-300 hover:bg-main-hover transition-colors'
                 onClick={() => setShowAllHistory(!showAllHistory)}
@@ -186,7 +185,7 @@ const MainContent = () => {
                       </div>
 
                       <div className='text-right'>
-                        <div className='text-xl font-bold mb-1'>
+                        <div className='text-base font-bold mb-1'>
                           {challenge.score}%
                         </div>
                         <div className='text-slate-400 text-sm'>
