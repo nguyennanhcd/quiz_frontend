@@ -6,7 +6,7 @@ import { Quiz } from '@/types/quiz'
 
 const QuizCard = ({ title, categories, difficulty, image }: Quiz) => {
   return (
-    <div className='border rounded-xl relative overflow-hidden h-fit w-fit'>
+    <div className='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600'>
       <div className='relative h-48'>
         <Image src={image} alt={title} fill className='object-cover' />
 
@@ -30,16 +30,12 @@ const QuizCard = ({ title, categories, difficulty, image }: Quiz) => {
 
       {/* Bottom Section */}
       <div className='p-4 flex justify-between items-center'>
-        {categories.length > 0 &&
-          categories.map((category) => (
-            <div
-              key={category}
-              className='inline-flex items-center rounded-full border px-2.5 py-0.5 text-[12px] font-semibold text-foreground bg-slate-50 dark:bg-slate-700'
-            >
-              {category}
-            </div>
-          ))}
-
+        <div
+          key={categories[0]}
+          className='inline-flex items-center rounded-full border px-2.5 py-0.5 text-[12px] font-semibold text-foreground bg-slate-50 dark:bg-slate-700'
+        >
+          {categories[0]}
+        </div>
         <Button className='bg-default hover:bg-default-hover'>Play Now</Button>
       </div>
     </div>
