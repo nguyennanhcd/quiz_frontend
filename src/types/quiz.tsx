@@ -10,7 +10,7 @@ export type Quiz = {
   maxPlayers: number
   requirements: string
   tags: string[]
-  category: string[]
+  categories: string[]
   isPopular: boolean
   isFeatured: boolean
   rating: number
