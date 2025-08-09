@@ -25,7 +25,7 @@ export const mockQuizzes: Quiz[] = [
       position: 'Mathematics Professor',
       imageURL: '/avatarPlaceholder.webp',
       quizzesCreated: 12,
-      rating: 4.7 // Added creator rating
+      rating: 4.7
     },
     createdAt: '2025-06-01T08:00:00Z',
     updatedAt: '2025-07-01T12:00:00Z',
@@ -303,13 +303,14 @@ export const mockQuizzes: Quiz[] = [
         completedAt: '2025-07-02T16:00:00Z'
       }
     ],
-    badges: ['Hot', 'Top Rated'], // Added badges
-    timeLeft: 3, // Added timeLeft (days)
-    reward: 50, // Added reward (in dollars)
-    spots: 20, // Added total spots
-    spotsLeft: 10, // Added available spots
-    players: 10, // Added players (aligned with currentPlayers)
-    bgGradient: 'from-blue-500 to-indigo-600' // Added background gradient
+    badges: ['Hot', 'Top Rated'],
+    timeLeft: 3,
+    reward: 50,
+    spots: 20,
+    spotsLeft: 10,
+    players: 10,
+    bgGradient: 'from-blue-500 to-indigo-600',
+    almostFull: true // Added: spotsLeft (10) is 50% of spots (20), which is > 10%
   },
   {
     id: 2,
@@ -334,7 +335,7 @@ export const mockQuizzes: Quiz[] = [
       position: 'Literature Professor',
       imageURL: '/avatarPlaceholder.webp',
       quizzesCreated: 8,
-      rating: 4.9 // Added creator rating
+      rating: 4.9
     },
     createdAt: '2025-06-15T09:00:00Z',
     updatedAt: '2025-07-03T10:00:00Z',
@@ -370,12 +371,13 @@ export const mockQuizzes: Quiz[] = [
         completedAt: '2025-07-03T09:45:00Z'
       }
     ],
-    badges: ['Trending', "Editor's Choice"], // Added badges
-    timeLeft: 5, // Added timeLeft (days)
-    reward: 75, // Added reward (in dollars)
-    spots: 500, // Added total spots
-    spotsLeft: 485, // Added available spots
-    players: 15, // Added players (aligned with currentPlayers)
-    bgGradient: 'from-purple-500 to-pink-600' // Added background gradient
+    badges: ['Trending', "Editor's Choice"],
+    timeLeft: 5,
+    reward: 75,
+    spots: 500,
+    spotsLeft: 485,
+    players: 15,
+    bgGradient: 'from-purple-500 to-pink-600',
+    almostFull: false // Added: spotsLeft (485) is 97% of spots (500), which is < 10%
   }
 ]

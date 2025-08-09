@@ -6,10 +6,10 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import SpotAvailabilityIndicator from '@/components/SpotAvailabiltyIndicator'
-import { QuizDetailType } from '@/types/quizDetailType'
 import { difficultyColors } from '@/constant/difficultColor'
+import { Quiz } from '@/types/quiz'
 
-const QuizCardDetail = (props: QuizDetailType) => {
+const QuizCardDetail = (props: Quiz) => {
   return (
     <div key={props.id} className='border rounded-xl overflow-hidden'>
       <div className='relative h-48'>
@@ -40,12 +40,12 @@ const QuizCardDetail = (props: QuizDetailType) => {
 
         <div className='flex items-center gap-3 mb-3'>
           <Avatar className='w-8 h-8'>
-            <AvatarImage src={props.creator.avatar || '/placeholder.svg'} />
+            <AvatarImage src={props.creator.imageURL || '/placeholder.svg'} />
             <AvatarFallback>{props.creator.name[0]}</AvatarFallback>
           </Avatar>
           <span className='text-slate-300 text-sm'>{props.creator.name}</span>
           <Badge variant='secondary' className='bg-slate-700 text-slate-300'>
-            {props.category}
+            {props.categories.join(', ')}
           </Badge>
         </div>
 
@@ -53,7 +53,9 @@ const QuizCardDetail = (props: QuizDetailType) => {
           <div className='flex items-center gap-1'>
             <Star className='w-4 h-4 fill-yellow-400 text-yellow-400' />
             <span className='text-white font-semibold'>{props.rating}</span>
-            <span className='text-slate-400 text-sm'>({props.reviews})</span>
+            <span className='text-slate-400 text-sm'>
+              ({props.quizReview.length} reviews)
+            </span>
           </div>
           <div className='flex items-center gap-1 text-green-400 font-bold'>
             <DollarSign className='w-4 h-4' />

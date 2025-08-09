@@ -21,7 +21,7 @@ export type Quiz = {
     position: string
     imageURL: string
     quizzesCreated: number
-    rating: number // Added creator rating
+    rating: number
   }
   createdAt: string
   updatedAt: string
@@ -35,22 +35,23 @@ export type Quiz = {
   quizReview: {
     userId: number
     username: string
-    rating: number // from 1 to 5
+    rating: number
     comment: string
-    date: string // ISO date string
+    date: string
   }[]
   leaderBoard: {
     userId: number
     username: string
     score: number
     rank: number
-    completedAt: string // ISO date string
+    completedAt: string
   }[]
-  badges: string[] // Added badges for filtering (e.g., Hot, Trending, Editor's Choice, Top Rated)
-  timeLeft?: number // Added optional timeLeft (in days)
-  reward: number // Added reward (in dollars)
-  spots: number // Added total spots
-  spotsLeft: number // Added available spots
-  players: number // Added players (aligned with currentPlayers)
-  bgGradient: string // Added background gradient for card styling
+  badges: string[]
+  timeLeft?: number
+  reward: number
+  spots: number
+  spotsLeft: number
+  players: number
+  bgGradient: string
+  almostFull: boolean // Added almostFull field
 }
