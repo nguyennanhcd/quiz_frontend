@@ -31,10 +31,10 @@ import { leaderboardData } from '@/constant/leaderBoardRanking'
 
 const Page = () => {
   return (
-    <div className='min-h-screen text-white-primary sm:p-6 lg:p-8'>
-      <header className='mb-8 max-w-7xl mx-auto space-y-2 flex flex-col xl:flex-row justify-between'>
+    <div className='min-h-screen p-4 md:p-6 text-white'>
+      <header className='mb-8 space-y-2 flex flex-col xl:flex-row justify-between'>
         <div>
-          <h1 className='text-3xl font-bold mb-2'>Leader Board</h1>
+          <h1 className='text-4xl font-bold mb-2'>Leader Board</h1>
           <p className='text-slate-400 text-lg'>
             See who&#39;s leading the pack in our global quiz rankings.
           </p>
