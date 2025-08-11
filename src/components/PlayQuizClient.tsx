@@ -74,7 +74,7 @@ export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
             className='text-slate-400 hover:text-white p-0'
             asChild
           >
-            <Link href='/explore'>
+            <Link href='/quizzes'>
               <ArrowLeft className='w-5 h-5 mr-2' />
               Back to Explore
             </Link>
