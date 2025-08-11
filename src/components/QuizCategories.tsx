@@ -25,10 +25,7 @@ function CategoryCard({ name, count, slug, imageUrl }: CategoryCardProps) {
     >
       <div className='relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105'>
         <Image
-          src={
-            imageUrl ||
-            '/placeholder.svg?height=200&width=300&query=quiz category background'
-          }
+          src={imageUrl || '/placeholder.svgs'}
           alt={`${name} Quiz Background`}
           fill
           className='object-cover'

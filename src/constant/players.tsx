@@ -15,7 +15,7 @@ export const players: Player[] = [
   {
     id: '1',
     rank: 1,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Alex Johnson',
     country: 'United States',
     streak: 15,
@@ -27,7 +27,7 @@ export const players: Player[] = [
   {
     id: '2',
     rank: 2,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Sarah Williams',
     country: 'Canada',
     streak: 8,
@@ -39,7 +39,7 @@ export const players: Player[] = [
   {
     id: '3',
     rank: 3,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Michael Brown',
     country: 'United Kingdom',
     streak: 6,
@@ -51,7 +51,7 @@ export const players: Player[] = [
   {
     id: '4',
     rank: 4,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Emily Davis',
     country: 'Australia',
     streak: 4,
@@ -63,7 +63,7 @@ export const players: Player[] = [
   {
     id: '5',
     rank: 5,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'David Wilson',
     country: 'Germany',
     streak: 10,
@@ -75,7 +75,7 @@ export const players: Player[] = [
   {
     id: '6',
     rank: 6,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Olivia Martinez',
     country: 'France',
     streak: 7,
@@ -87,7 +87,7 @@ export const players: Player[] = [
   {
     id: '7',
     rank: 7,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'James Taylor',
     country: 'Japan',
     streak: 12,
@@ -99,7 +99,7 @@ export const players: Player[] = [
   {
     id: '8',
     rank: 8,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Sophia Anderson',
     country: 'Brazil',
     streak: 5,
@@ -111,7 +111,7 @@ export const players: Player[] = [
   {
     id: '9',
     rank: 9,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Sophia Anderson',
     country: 'Brazil',
     streak: 5,
@@ -123,7 +123,7 @@ export const players: Player[] = [
   {
     id: '10',
     rank: 10,
-    avatar: '/placeholder.svg?height=40&width=40',
+    avatar: '/placeholder.svg',
     name: 'Sophia Anderson',
     country: 'Brazil',
     streak: 5,
