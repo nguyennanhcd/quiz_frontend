@@ -2,14 +2,14 @@
 import { useState } from 'react'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
-import { quizCategories } from '@/constant/quizCategories'
 import QuizCategoriesCard from '@/components/quizCategoriesCard'
 import TestKnowledge from '@/components/categories/TestKnowledge'
 import HowItWorks from '@/components/HowItWorks'
+import categories from '@/constant/category'
 
 export default function QuizCategories() {
   const [searchTerm, setSearchTerm] = useState('')
-  const filteredCategories = quizCategories.filter((category) =>
+  const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
@@ -35,7 +35,11 @@ export default function QuizCategories() {
       {/* Categories Grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6'>
         {filteredCategories.map((category) => (
-          <QuizCategoriesCard key={category.id} {...category} />
+          <QuizCategoriesCard
+            key={category.id}
+            {...category}
+            id={Number(category.id)}
+          />
         ))}
       </div>
       {/* No Results */}
