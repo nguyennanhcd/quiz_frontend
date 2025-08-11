@@ -8,8 +8,8 @@ import { Navigation } from 'swiper/modules'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { playersRank } from '@/constant/playersRank'
 import { PlayerCard } from '../PlayerCard'
+import { Players } from '@/constant/playersRank'
 
 const PlayerRanking = () => {
   return (
@@ -59,7 +59,7 @@ const PlayerRanking = () => {
           prevEl: '.player-swiper-button-prev'
         }}
       >
-        {playersRank.map((player, index) => (
+        {Players.map((player, index) => (
           <SwiperSlide key={index}>
             <PlayerCard {...player} />
           </SwiperSlide>
