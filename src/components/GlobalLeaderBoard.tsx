@@ -16,7 +16,8 @@ import {
   DropdownMenuItem
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Player, players } from '@/constant/players'
+import { players } from '@/constant/players'
+import { Player } from '@/constant/playersRank'
 
 const getBadgeColor = (badge: Player['badge']) => {
   switch (badge) {

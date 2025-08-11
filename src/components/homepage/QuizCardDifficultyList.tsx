@@ -3,7 +3,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { difficultyColors } from '@/constant/difficultColor'
-import { quizzesDifficulty } from '@/constant/quizDifficulty'
 import { QuizCardDifficulty } from '@/components/QuizCardDifficulty'
 import { useState, useRef } from 'react'
 import { SwiperSlide, Swiper } from 'swiper/react'
@@ -11,6 +10,7 @@ import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
+import { quizzesDifficulty } from '@/constant/quizDifficulty'
 
 const QuizCardDifficultyList = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState<
