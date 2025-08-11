@@ -31,11 +31,7 @@ export function PlayerCard({
     <div className='relative overflow-hidden rounded-lg bg-slate-900 border text-white shadow-lg h-full'>
       <div className='relative h-32 w-full'>
         <Image
-          src={
-            bgImageUrl ||
-            '/placeholder.svg?height=200&width=400&query=abstract colorful background' ||
-            '/placeholder.svg'
-          }
+          src={bgImageUrl || '/placeholder.svg'}
           alt='Abstract background'
           fill
           className='object-cover'
@@ -55,14 +51,7 @@ export function PlayerCard({
 
       <div className='relative -mt-12 flex flex-col items-center px-4 pb-4'>
         <Avatar className='h-24 w-24 border-4 border-[#2a2a4a] bg-gray-700'>
-          <AvatarImage
-            src={
-              avatarUrl ||
-              '/placeholder.svg?height=100&width=100&query=person avatar' ||
-              '/placeholder.svg'
-            }
-            alt={name}
-          />
+          <AvatarImage src={avatarUrl || '/placeholder.svg'} alt={name} />
           <AvatarFallback>
             {name
               .split(' ')
