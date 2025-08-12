@@ -38,7 +38,7 @@ const items = [
   },
   {
     title: "Today's Challenge",
-    url: '/challenge',
+    url: '/daily-challenge',
     icon: Trophy
   },
   {
@@ -48,7 +48,7 @@ const items = [
   },
   {
     title: 'Explore Quizzes',
-    url: '/explore',
+    url: '/quizzes',
     icon: Compass
   },
   {
@@ -68,7 +68,7 @@ const items = [
   },
   {
     title: 'Create Quiz',
-    url: '/create',
+    url: '/create-quiz',
     icon: Plus
   }
 ]

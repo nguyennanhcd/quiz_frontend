@@ -13,7 +13,7 @@ import { mockQuizzes } from '@/constant/mockQuizzes'
 
 export default function QuizHubDashboard() {
   return (
-    <div className='flex-1 p-4 sm:p-6 lg:p-8 max-w-full overflow-hidden'>
+    <div className='min-h-screen p-4 md:p-6 overflow-x-hidden max-w-full'>
       <div className='relative bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 mb-6 sm:mb-8'>
         <div className='relative z-10 max-w-full sm:max-w-lg lg:max-w-2xl'>
           <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight'>
@@ -56,16 +56,20 @@ export default function QuizHubDashboard() {
       <QuizCategories categories={categories} />
 
       {/* Latest Quizzes */}
-      <div className=' bg-main text-white border rounded-lg lg:p-8 mb-10'>
+      <div className='bg-main text-white border rounded-lg lg:p-8 mb-10 max-w-full overflow-x-hidden'>
         <h2 className='text-2xl font-bold mb-8'>Latest Quizzes</h2>
-        <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
-          {mockQuizzes.map((quiz) => (
-            <QuizCard key={quiz.id} {...quiz} />
-          ))}
+        <div className='overflow-x-auto'>
+          <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4 min-w-0'>
+            {mockQuizzes.map((quiz) => (
+              <div key={quiz.id} className='min-w-0 max-w-full'>
+                <QuizCard {...quiz} />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className='flex justify-center mt-3 lg:mt-8 mb-3'>
-          <Button className=' text-sm hover:bg-default-hover rounded-sm'>
+          <Button className='text-sm hover:bg-default-hover rounded-sm'>
             <Link href='/quizzes'>View All Quizzes</Link>
           </Button>
         </div>

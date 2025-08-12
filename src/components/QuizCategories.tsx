@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Button } from './ui/button'
@@ -21,9 +20,9 @@ function CategoryCard({ name, count, slug, imageUrl }: CategoryCardProps) {
   return (
     <Link
       href={`/quizzes/${slug}`}
-      className='block w-full h-[180px] sm:h-[200px] overflow-hidden'
+      className='block w-full h-[180px] sm:h-[200px] overflow-hidden max-w-full min-w-0'
     >
-      <div className='relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105'>
+      <div className='relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:relative'>
         <Image
           src={imageUrl || '/placeholder.svgs'}
           alt={`${name} Quiz Background`}
@@ -49,7 +48,7 @@ export default function QuizCategories({
   categories: CategoryCardProps[]
 }) {
   return (
-    <div className='mb-6 sm:mb-8 px-4 sm:px-0 overflow-hidden'>
+    <div className='mb-6 sm:mb-8 px-4 sm:px-0 overflow-hidden max-w-full'>
       <div className='flex items-center justify-between mb-4 sm:mb-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
@@ -61,55 +60,21 @@ export default function QuizCategories({
           </Button>
         </div>
       </div>
-      <Swiper
-        modules={[Navigation, Autoplay]}
-        spaceBetween={16}
-        slidesPerView={1}
-        navigation={{
-          nextEl: '.quiz-swiper-button-next',
-          prevEl: '.quiz-swiper-button-prev'
-        }}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true
-        }}
-        breakpoints={{
-          480: {
-            slidesPerView: 1.5,
-            spaceBetween: 20
-          },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20
-          },
-          768: {
-            slidesPerView: 2.5,
-            spaceBetween: 24
-          },
-          1024: {
-            slidesPerView: 3.5,
-            spaceBetween: 24
-          },
-          1280: {
-            slidesPerView: 4,
-            spaceBetween: 24
-          }
-        }}
-        className='w-full !overflow-visible'
-      >
-        {categories.map((category) => (
-          <SwiperSlide key={category.id}>
-            <CategoryCard
-              id={category.id}
-              name={category.name}
-              count={category.count}
-              slug={category.slug}
-              imageUrl={category.imageUrl}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className='xl:w-[70%] container'>
+        <Swiper spaceBetween={30} slidesPerView={4}>
+          {categories.map((category) => (
+            <SwiperSlide key={category.id} className='w-full'>
+              <CategoryCard
+                id={category.id}
+                name={category.name}
+                count={category.count}
+                slug={category.slug}
+                imageUrl={category.imageUrl}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   )
 }
