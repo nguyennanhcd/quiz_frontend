@@ -7,6 +7,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Button } from './ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Navigation } from 'swiper/modules'
 
 interface CategoryCardProps {
   id: string
@@ -48,7 +49,7 @@ export default function QuizCategories({
   categories: CategoryCardProps[]
 }) {
   return (
-    <div className='mb-6 sm:mb-8 px-4 sm:px-0 overflow-hidden max-w-full'>
+    <div className='mb-6 sm:mb-8 px-4 sm:px-0 '>
       <div className='flex items-center justify-between mb-4 sm:mb-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
@@ -60,8 +61,13 @@ export default function QuizCategories({
           </Button>
         </div>
       </div>
-      <div className='xl:w-[70%] container'>
-        <Swiper spaceBetween={30} slidesPerView={4}>
+      <div className='xl:w-[100%] container'>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={4}
+          pagination={{ clickable: true }}
+          modules={[Navigation]}
+        >
           {categories.map((category) => (
             <SwiperSlide key={category.id} className='w-full'>
               <CategoryCard

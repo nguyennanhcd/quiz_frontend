@@ -26,74 +26,76 @@ export default function LiveWinners() {
           </Button>
         </div>
 
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          slidesPerView={1}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-          }}
-          breakpoints={{
-            480: {
-              slidesPerView: 1.5,
-              spaceBetween: 20
-            },
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20
-            },
-            768: {
-              slidesPerView: 2.5,
-              spaceBetween: 24
-            },
-            1024: {
-              slidesPerView: 3.5,
-              spaceBetween: 24
-            },
-            1280: {
-              slidesPerView: 4,
-              spaceBetween: 24
-            }
-          }}
-        >
-          {winners.map((winner) => (
-            <SwiperSlide
-              key={winner.id}
-              className='flex-shrink-0 px-3 relative overflow-hidden bg-slate-900 rounded-lg p-4 shadow-lg flex flex-col items-center text-center w-sm'
-            >
-              <div className='flex items-center justify-between mb-4 w-full flex-row-reverse'>
-                <div className='text-2xl' aria-label='Confetti popper'>
-                  🎉
-                </div>
-                <div className='flex items-center gap-4 mb-4'>
-                  <Avatar className='w-12 h-12 border-2 border-white'>
-                    <AvatarImage
-                      src={winner.avatarUrl || '/placeholder.svg'}
-                      alt={winner.name}
-                    />
-                    <AvatarFallback>{winner.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className='font-semibold text-lg'>{winner.name}</p>
-                    <p className='text-gray-400 text-sm'>{winner.timeAgo}</p>
+        <div className='xl:w-[100%] container'>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            slidesPerView={1}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            }}
+            breakpoints={{
+              480: {
+                slidesPerView: 1.5,
+                spaceBetween: 20
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+              },
+              768: {
+                slidesPerView: 2.5,
+                spaceBetween: 24
+              },
+              1024: {
+                slidesPerView: 3.5,
+                spaceBetween: 24
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 24
+              }
+            }}
+          >
+            {winners.map((winner) => (
+              <SwiperSlide
+                key={winner.id}
+                className='flex-shrink-0 px-3 relative overflow-hidden bg-slate-900 rounded-lg p-4 shadow-lg flex flex-col items-center text-center w-sm w-full'
+              >
+                <div className='flex items-center justify-between mb-4 w-full flex-row-reverse'>
+                  <div className='text-2xl' aria-label='Confetti popper'>
+                    🎉
+                  </div>
+                  <div className='flex items-center gap-4 mb-4'>
+                    <Avatar className='w-12 h-12 border-2 border-white'>
+                      <AvatarImage
+                        src={winner.avatarUrl || '/placeholder.svg'}
+                        alt={winner.name}
+                      />
+                      <AvatarFallback>{winner.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <p className='font-semibold text-lg'>{winner.name}</p>
+                      <p className='text-gray-400 text-sm'>{winner.timeAgo}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className=' text-sm'>
-                <span role='img' aria-label='Money bag'>
-                  💰
-                </span>
-                Won{' '}
-                <span className='text-emerald-400 font-semibold'>
-                  ${winner.amountWon}
-                </span>{' '}
-                playing &quot;
-                {winner.game}&quot;
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                <div className=' text-sm'>
+                  <span role='img' aria-label='Money bag'>
+                    💰
+                  </span>
+                  Won{' '}
+                  <span className='text-emerald-400 font-semibold'>
+                    ${winner.amountWon}
+                  </span>{' '}
+                  playing &quot;
+                  {winner.game}&quot;
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   )
