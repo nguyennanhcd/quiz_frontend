@@ -71,44 +71,22 @@ const QuizCardDifficultyList = () => {
         </div>
       </div>
 
-      <Swiper
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper
-        }}
-        modules={[Navigation]}
-        spaceBetween={16}
-        slidesPerView={1}
-        breakpoints={{
-          480: {
-            slidesPerView: 1.5,
-            spaceBetween: 20
-          },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20
-          },
-          768: {
-            slidesPerView: 2.5,
-            spaceBetween: 24
-          },
-          1024: {
-            slidesPerView: 3.5,
-            spaceBetween: 24
-          },
-          1280: {
-            slidesPerView: 4,
-            spaceBetween: 24
-          }
-        }}
-      >
-        {quizzesDifficulty
-          .filter((quiz) => quiz.difficulty === selectedDifficulty)
-          .map((quiz) => (
-            <SwiperSlide key={quiz.id}>
-              <QuizCardDifficulty {...quiz} />
-            </SwiperSlide>
-          ))}
-      </Swiper>
+      <div className='xl:w-[100%] container'>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={4}
+          pagination={{ clickable: true }}
+          modules={[Navigation]}
+        >
+          {quizzesDifficulty
+            .filter((quiz) => quiz.difficulty === selectedDifficulty)
+            .map((quiz) => (
+              <SwiperSlide key={quiz.id} className='w-full'>
+                <QuizCardDifficulty {...quiz} />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </div>
     </div>
   )
 }

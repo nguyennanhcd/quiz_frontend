@@ -35,36 +35,20 @@ const PlayerRanking = () => {
         </div>
       </div>
 
-      <Swiper
-        modules={[Navigation]}
-        spaceBetween={16}
-        slidesPerView={1.2}
-        breakpoints={{
-          640: {
-            slidesPerView: 2
-          },
-          768: {
-            slidesPerView: 2.5
-          },
-          1024: {
-            slidesPerView: 3
-          },
-          1280: {
-            slidesPerView: 4
-          }
-        }}
-        className='w-full pb-4 mt-5'
-        navigation={{
-          nextEl: '.player-swiper-button-next',
-          prevEl: '.player-swiper-button-prev'
-        }}
-      >
-        {Players.map((player, index) => (
-          <SwiperSlide key={index}>
-            <PlayerCard {...player} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className='xl:w-[100%] container'>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={4}
+          pagination={{ clickable: true }}
+          modules={[Navigation]}
+        >
+          {Players.map((player, index) => (
+            <SwiperSlide key={index} className='w-full'>
+              <PlayerCard {...player} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
       <div className='mt-8 flex justify-center'>
         <Button className='rounded-md bg-default hover:bg-default-hover'>
