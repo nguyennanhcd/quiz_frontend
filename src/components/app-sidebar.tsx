@@ -77,17 +77,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
 
   return (
-    <Sidebar
-      collapsible='icon'
-      className='bg-slate-800 border-slate-700'
-      {...props}
-    >
-      <SidebarHeader>
+    <Sidebar collapsible='icon' className='' {...props}>
+      <SidebarHeader className='bg-main border-x border-slate-600'>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
               <Link href='/'>
-                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-600 text-white'>
+                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-default text-white'>
                   <BookOpen className='size-4' />
                 </div>
                 <div className='flex flex-col gap-0.5 leading-none'>
@@ -98,7 +94,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className='bg-main border border-slate-600'>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -120,7 +116,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className='bg-main border-x border-slate-600'>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton className='text-slate-300 hover:text-white hover:bg-slate-700'>

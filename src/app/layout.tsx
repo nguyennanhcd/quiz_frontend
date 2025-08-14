@@ -38,7 +38,7 @@ export default function RootLayout({
             <AppSidebar />
             <SidebarInset>
               <AppHeader />
-              {children}
+              <main className='pt-16'>{children}</main>
             </SidebarInset>
           </SidebarProvider>
           <ToastContainer
