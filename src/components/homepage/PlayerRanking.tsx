@@ -37,10 +37,35 @@ const PlayerRanking = () => {
 
       <div className='xl:w-[100%] container'>
         <Swiper
-          spaceBetween={30}
-          slidesPerView={4}
           pagination={{ clickable: true }}
           modules={[Navigation]}
+          breakpoints={{
+            // Mobile: auto 1 slide
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 10
+            },
+            // Tablet
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 15
+            },
+            // Tablet lớn / Laptop nhỏ
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20
+            },
+            // Laptop
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 25
+            },
+            // Desktop lớn
+            1280: {
+              slidesPerView: 5,
+              spaceBetween: 30
+            }
+          }}
         >
           {Players.map((player, index) => (
             <SwiperSlide key={index} className='w-full'>

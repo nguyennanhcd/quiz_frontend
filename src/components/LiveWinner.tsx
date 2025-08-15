@@ -29,39 +29,43 @@ export default function LiveWinners() {
         <div className='xl:w-[100%] container'>
           <Swiper
             modules={[Navigation, Autoplay]}
-            slidesPerView={1}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true
             }}
             breakpoints={{
-              480: {
-                slidesPerView: 1.5,
-                spaceBetween: 20
+              // Mobile: auto 1 slide
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 10
               },
+              // Tablet
               640: {
                 slidesPerView: 2,
+                spaceBetween: 15
+              },
+              // Tablet lớn / Laptop nhỏ
+              768: {
+                slidesPerView: 3,
                 spaceBetween: 20
               },
-              768: {
-                slidesPerView: 2.5,
-                spaceBetween: 24
-              },
+              // Laptop
               1024: {
-                slidesPerView: 3.5,
-                spaceBetween: 24
-              },
-              1280: {
                 slidesPerView: 4,
-                spaceBetween: 24
+                spaceBetween: 25
+              },
+              // Desktop lớn
+              1280: {
+                slidesPerView: 5,
+                spaceBetween: 30
               }
             }}
           >
             {winners.map((winner) => (
               <SwiperSlide
                 key={winner.id}
-                className='flex-shrink-0 px-3 relative overflow-hidden bg-slate-900 rounded-lg p-4 shadow-lg flex flex-col items-center text-center w-sm w-full'
+                className='flex-shrink-0 px-3 relative overflow-hidden bg-slate-900 rounded-lg p-4 shadow-lg flex flex-col items-center text-center w-full'
               >
                 <div className='flex items-center justify-between mb-4 w-full flex-row-reverse'>
                   <div className='text-2xl' aria-label='Confetti popper'>

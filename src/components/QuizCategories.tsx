@@ -49,7 +49,7 @@ export default function QuizCategories({
   categories: CategoryCardProps[]
 }) {
   return (
-    <div className='mb-6 sm:mb-8 px-4 sm:px-0 '>
+    <div className='space-y-4'>
       <div className='flex items-center justify-between mb-4 sm:mb-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
@@ -63,10 +63,35 @@ export default function QuizCategories({
       </div>
       <div className='xl:w-[100%] container'>
         <Swiper
-          spaceBetween={30}
-          slidesPerView={4}
           pagination={{ clickable: true }}
           modules={[Navigation]}
+          breakpoints={{
+            // Mobile: auto 1 slide
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 10
+            },
+            // Tablet
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 15
+            },
+            // Tablet lớn / Laptop nhỏ
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20
+            },
+            // Laptop
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 25
+            },
+            // Desktop lớn
+            1280: {
+              slidesPerView: 5,
+              spaceBetween: 30
+            }
+          }}
         >
           {categories.map((category) => (
             <SwiperSlide key={category.id} className='w-full'>
