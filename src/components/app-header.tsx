@@ -9,7 +9,7 @@ import { SidebarTrigger } from '@/components/ui/sidebar'
 
 export function AppHeader() {
   return (
-    <header className='fixed top-0 z-50 flex h-16 shrink-0 items-center gap-2 bg-slate-800 border-b border-slate-700 px-2 sm:px-4 w-full'>
+    <header className='sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 bg-slate-800 border-b border-slate-700 px-2 sm:px-4 w-full'>
       <SidebarTrigger className='text-white hover:bg-slate-700 shrink-0' />
       <Separator
         orientation='vertical'
