@@ -41,15 +41,27 @@ export default function QuizDiscussions() {
 
         {/* Discussion Tabs */}
         <Tabs defaultValue='recent' className='w-full'>
-          <TabsList className='grid w-full grid-cols-3 h-12 bg-main border-none rounded-md'>
-            <TabsTrigger value='recent' className='text-base font-medium'>
-              Recent Discussions
+          <TabsList className='w-full justify-start overflow-x-auto scrollbar-hide'>
+            <TabsTrigger
+              value='recent'
+              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0'
+            >
+              <span className='hidden sm:inline'>Recent Discussions</span>
+              <span className='sm:hidden'>Recent</span>
             </TabsTrigger>
-            <TabsTrigger value='popular' className='text-base font-medium '>
-              Popular Discussions
+            <TabsTrigger
+              value='popular'
+              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0'
+            >
+              <span className='hidden sm:inline'>Popular Discussions</span>
+              <span className='sm:hidden'>Popular</span>
             </TabsTrigger>
-            <TabsTrigger value='your' className='text-base font-medium '>
-              Your Discussions
+            <TabsTrigger
+              value='your'
+              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0'
+            >
+              <span className='hidden sm:inline'>Your Discussions</span>
+              <span className='sm:hidden'>Yours</span>
             </TabsTrigger>
           </TabsList>
 

@@ -35,7 +35,7 @@ export default function QuizTournament() {
     filter: string,
     categoryId: string
   ): Tournament[] => {
-    const now = new Date('2025-08-01') // Fixed date for consistent filtering
+    const now = new Date('2025-08-01')
     let filtered = [...tournaments]
 
     // Filter by category
@@ -198,20 +198,14 @@ export default function QuizTournament() {
         <Tabs
           value={selectedCategory}
           onValueChange={handleTabChange}
-          className='mb-8'
+          className='mb-8 w-full'
         >
-          <TabsList className='flex gap-3 overflow-x-auto pb-2 bg-transparent'>
-            <TabsTrigger
-              value='all'
-              className='whitespace-nowrap px-4 py-2 text-gray-300 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-gray-800 hover:text-white'
-            >
-              All
-            </TabsTrigger>
+          <TabsList className='flex flex-nowrap gap-2 mx-2 sm:mx-0 sm:gap-3 overflow-x-auto pb-2 bg-transparent scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent'>
             {categories.map((category) => (
               <TabsTrigger
                 key={category.id}
                 value={category.id}
-                className='whitespace-nowrap px-4 py-2 text-gray-300 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-gray-800 hover:text-white'
+                className='flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs sm:text-sm sm:px-4 sm:py-1.5 font-medium text-gray-300 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-gray-800 hover:text-white transition-all duration-200'
               >
                 {category.name}
               </TabsTrigger>
