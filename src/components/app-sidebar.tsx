@@ -78,7 +78,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible='icon' className='' {...props}>
-      <SidebarHeader className='bg-main border-x border-slate-600'>
+      <SidebarHeader className='bg-main border-x border-slate-600  pointer-events-none'>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
@@ -103,7 +103,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === item.url}
-                    className='text-slate-300 hover:text-white hover:bg-slate-700 data-[active=true]:bg-blue-600 data-[active=true]:text-white'
+                    className='text-slate-300 hover:text-white hover:bg-slate-700 data-[active=true]:bg-default data-[active=true]:text-white text-sm'
                   >
                     <Link href={item.url}>
                       <item.icon />

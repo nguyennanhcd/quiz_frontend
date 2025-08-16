@@ -34,6 +34,7 @@ const FeaturedQuiz = () => {
 
   return (
     <div className='mb-8'>
+      {/* Header */}
       <div className='flex items-center justify-between mb-6 flex-col xl:flex-row'>
         <div className='mb-5'>
           <h2 className='text-2xl font-bold mb-1'>Featured Quizzes</h2>
@@ -41,12 +42,14 @@ const FeaturedQuiz = () => {
             Specially selected quizzes you don&apos;t want to miss
           </p>
         </div>
-        <div className='flex gap-3 rounded-lg p-1'>
+
+        {/* Filter Tabs (scrollable on mobile) */}
+        <div className='flex gap-3 rounded-lg p-1 overflow-x-auto scrollbar-hide w-full xl:w-auto'>
           {filterTabs.map((tab) => (
             <Button
               key={tab.name}
               size='sm'
-              className={`${
+              className={`whitespace-nowrap ${
                 tab.active ? '' : 'bg-slate-700 text-white hover:bg-slate-600'
               }`}
               onClick={() => setActiveTab(tab.name)}
@@ -57,25 +60,22 @@ const FeaturedQuiz = () => {
         </div>
       </div>
 
-      {/* Dynamic Quiz Cards Layout */}
-      <div className='flex gap-6 justify-start'>
+      {/* Responsive Grid for Quizzes */}
+      <div
+        className='
+          grid gap-6 
+          grid-cols-1 
+          sm:grid-cols-2 
+          lg:grid-cols-3 
+          xl:grid-cols-4
+        '
+      >
         {filteredQuizzes.map((quiz) => (
           <div
             key={quiz.id}
-            className='border border-white/20 rounded-xl overflow-hidden cursor-pointer flex-shrink-0 transition-all duration-300 hover:shadow-lg'
-            style={{
-              minWidth: '280px',
-              maxWidth: '400px',
-              width: `calc(${Math.min(
-                100,
-                Math.max(
-                  25,
-                  quiz.title.length * 2 + quiz.categories.join(', ').length
-                )
-              )}% - 1.5rem)`
-            }}
+            className='border border-white/20 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg'
           >
-            {/* Quiz Image - Dynamic height based on content */}
+            {/* Quiz Image */}
             <div
               className={`relative bg-gradient-to-br ${quiz.bgGradient}`}
               style={{
@@ -86,7 +86,7 @@ const FeaturedQuiz = () => {
                 src={quiz.image || '/placeholder.svg'}
                 alt={quiz.title}
                 fill
-                className='object-cover mix-blend-overlay hover:transform hover:scale-105 transition-all duration-200'
+                className='object-cover mix-blend-overlay hover:scale-105 transition-transform duration-200'
               />
 
               {/* Badges */}
@@ -104,7 +104,7 @@ const FeaturedQuiz = () => {
                   {quiz.badges.map((badge) => (
                     <Badge
                       key={badge}
-                      className={`text-white rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent flex items-center ${
+                      className={`text-white rounded-full border px-2.5 py-0.5 text-xs font-semibold flex items-center ${
                         badge === 'Hot'
                           ? 'bg-[#7F1D1D] hover:bg-[#7F1D1D]/80'
                           : badge === "Editor's Choice"
@@ -124,7 +124,7 @@ const FeaturedQuiz = () => {
                 </div>
               </div>
 
-              {/* Quiz Title Overlay */}
+              {/* Quiz Title */}
               <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4'>
                 <h3 className='font-bold text-lg mb-1 leading-tight'>
                   {quiz.title}
@@ -135,7 +135,7 @@ const FeaturedQuiz = () => {
               </div>
             </div>
 
-            {/* Quiz Details - Dynamic padding based on content */}
+            {/* Quiz Details */}
             <div className='p-4 flex flex-col gap-3'>
               {/* Creator Info */}
               <div className='flex items-center justify-between'>
