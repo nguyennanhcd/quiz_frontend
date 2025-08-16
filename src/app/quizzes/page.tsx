@@ -6,6 +6,10 @@ import { Button } from '@/components/ui/button'
 import FeaturedQuiz from '@/components/FeaturedQuiz'
 import { briefCategories } from '@/constant/briefCategories'
 import MainContent from '@/components/quizzes/MainContent'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/free-mode'
 
 export default function QuizPlatform() {
   return (
@@ -30,30 +34,29 @@ export default function QuizPlatform() {
           </div>
         </div>
 
-        {/* Category Pills */}
-        <div className=' gap-3 mb-12 overflow-x-auto pb-2 scrollbar-hide w-full max-w-full hidden sm:flex'>
-          <style jsx global>{`
-            .scrollbar-hide {
-              -ms-overflow-style: none;
-              scrollbar-width: none;
-            }
-            .scrollbar-hide::-webkit-scrollbar {
-              display: none;
-            }
-          `}</style>
-          {briefCategories.map((category) => (
-            <Button
-              key={category.name}
-              className={`whitespace-nowrap flex-shrink-0 rounded-full ${
-                category.active
-                  ? 'bg-default hover:bg-default/90'
-                  : 'border-slate-700 bg-slate-800 hover:bg-slate-700'
-              }`}
-            >
-              <span className='mr-2'>{category.icon}</span>
-              {category.name}
-            </Button>
-          ))}
+        <div className='mb-12 hidden sm:block'>
+          <Swiper
+            modules={[FreeMode]}
+            spaceBetween={12}
+            slidesPerView='auto'
+            freeMode={true}
+            className='category-swiper'
+          >
+            {briefCategories.map((category) => (
+              <SwiperSlide key={category.name} className='!w-auto'>
+                <Button
+                  className={`whitespace-nowrap rounded-full ${
+                    category.active
+                      ? 'bg-default hover:bg-default/90'
+                      : 'border-slate-700 bg-slate-800 hover:bg-slate-700'
+                  }`}
+                >
+                  <span className='mr-2'>{category.icon}</span>
+                  {category.name}
+                </Button>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
 
         <FeaturedQuiz />
