@@ -5,10 +5,10 @@ import { LeaderboardHighlights } from '@/components/leaderboard/leaderboard-high
 
 export default function Page() {
   return (
-    <div className='min-h-screen p-2 sm:p-4 md:p-6 lg:p-8 bg-slate-950'>
+    <div className='min-h-screen p-2 sm:p-4 md:p-6 lg:p-8'>
       <LeaderboardHeader />
 
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mx-auto max-w-7xl'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6'>
         <CompetitionStats />
         <LeaderboardHighlights />
       </div>
