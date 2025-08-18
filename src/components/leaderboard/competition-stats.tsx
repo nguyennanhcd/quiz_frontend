@@ -10,7 +10,7 @@ import { Medal, Users, Trophy } from 'lucide-react'
 
 export function CompetitionStats() {
   return (
-    <Card className='bg-transparent col-span-1 py-4 sm:py-6'>
+    <Card className='col-span-1 py-4 sm:py-6'>
       <CardHeader>
         <CardTitle className='text-white text-lg sm:text-xl font-bold'>
           Competition Stats
@@ -45,7 +45,7 @@ export function CompetitionStats() {
                   Your Rank
                 </span>
               </div>
-              <Badge className='bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm'>
+              <Badge className='bg-default hover:bg-default-hover text-white text-xs sm:text-sm'>
                 #42
               </Badge>
             </div>

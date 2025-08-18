@@ -99,7 +99,7 @@ export function FindFriendsPopup({ isOpen, onClose }: FindFriendsPopupProps) {
       <DialogContent className='bg-slate-900 border-slate-700 text-white max-w-2xl max-h-[80vh] overflow-hidden'>
         <DialogHeader>
           <DialogTitle className='text-xl font-bold flex items-center gap-2'>
-            <Users className='w-5 h-5 text-blue-400' />
+            <Users className='w-5 h-5' />
             Find Friends
           </DialogTitle>
         </DialogHeader>
@@ -124,7 +124,7 @@ export function FindFriendsPopup({ isOpen, onClose }: FindFriendsPopupProps) {
               onClick={() => setSelectedTab('suggested')}
               className={
                 selectedTab === 'suggested'
-                  ? 'bg-blue-600 hover:bg-blue-700'
+                  ? 'bg-default hover:bg-default-hover'
                   : 'border-slate-600 text-slate-300 hover:bg-slate-700'
               }
             >
@@ -136,7 +136,7 @@ export function FindFriendsPopup({ isOpen, onClose }: FindFriendsPopupProps) {
               onClick={() => setSelectedTab('search')}
               className={
                 selectedTab === 'search'
-                  ? 'bg-blue-600 hover:bg-blue-700'
+                  ? 'bg-default hover:bg-default-hover'
                   : 'border-slate-600 text-slate-300 hover:bg-slate-700'
               }
             >
@@ -208,7 +208,7 @@ export function FindFriendsPopup({ isOpen, onClose }: FindFriendsPopupProps) {
 
                 <Button
                   size='sm'
-                  className='bg-blue-600 hover:bg-blue-700 text-white'
+                  className='bg-default hover:bg-default-hover text-white'
                 >
                   <UserPlus className='w-4 h-4 mr-1' />
                   Add Friend

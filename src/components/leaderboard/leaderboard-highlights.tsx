@@ -24,7 +24,7 @@ const leaderboardData = [
     rank: 1,
     name: 'Alex Chen',
     points: 15420,
-    avatar: '/professional-avatar-1.png',
+    avatar: '/avatarPlaceholder.webp',
     badge: 'Diamond',
     badgeColor: 'bg-blue-600 hover:bg-blue-700',
     borderColor: 'border-yellow-400',
@@ -36,7 +36,7 @@ const leaderboardData = [
     rank: 2,
     name: 'Sarah Kim',
     points: 14850,
-    avatar: '/professional-avatar-2.png',
+    avatar: '/avatarPlaceholder.webp',
     badge: 'Diamond',
     badgeColor: 'bg-blue-600 hover:bg-blue-700',
     borderColor: 'border-gray-400',
@@ -48,7 +48,7 @@ const leaderboardData = [
     rank: 3,
     name: 'Mike Johnson',
     points: 13920,
-    avatar: '/professional-avatar-3.png',
+    avatar: '/avatarPlaceholder.webp',
     badge: 'Diamond',
     badgeColor: 'bg-blue-600 hover:bg-blue-700',
     borderColor: 'border-orange-400',
@@ -60,7 +60,7 @@ const leaderboardData = [
 
 export function LeaderboardHighlights() {
   return (
-    <Card className='bg-transparent border-slate-700 col-span-1 lg:col-span-2 py-4 sm:py-6'>
+    <Card className='bg-transparent border-slate-700 col-span-2 lg:col-span-2 py-4 sm:py-6'>
       <CardHeader>
         <CardTitle className='text-white text-lg sm:text-xl md:text-2xl font-bold'>
           Leaderboard Highlights
@@ -99,7 +99,7 @@ export function LeaderboardHighlights() {
             <Button
               variant='default'
               size='sm'
-              className='bg-blue-600 hover:bg-blue-700 text-xs sm:text-sm'
+              className='bg-default hover:bg-default-hover text-xs sm:text-sm'
             >
               All Time
             </Button>
