@@ -11,7 +11,7 @@ export function AppHeader() {
     <header className='sticky top-0 z-50 flex h-16 shrink-0 items-center bg-slate-800 border-b border-slate-700 px-2 sm:px-4 w-full'>
       {/* Left Section: SidebarTrigger and Separator */}
       <div className='flex items-center gap-2 shrink-0 '>
-        <SidebarTrigger className='text-white hover:bg-default-hover' />
+        <SidebarTrigger className='dark:text-white-primary hover:bg-default-hover' />
       </div>
 
       {/* Gap between Left and Middle/Right sections */}

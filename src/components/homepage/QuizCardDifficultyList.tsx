@@ -54,20 +54,14 @@ const QuizCardDifficultyList = () => {
               </Button>
             ))}
           </div>
-          <Button
-            size='icon'
-            onClick={handlePrevClick}
-            className='h-8 w-8 bg-transparent text-white hover:bg-slate-700'
-          >
-            <ChevronLeft className='h-4 w-4' />
-          </Button>
-          <Button
-            size='icon'
-            onClick={handleNextClick}
-            className='h-8 w-8 bg-transparent text-white hover:bg-slate-700'
-          >
-            <ChevronRight className='h-4 w-4' />
-          </Button>
+          <div className='flex items-center gap-1'>
+            <Button size='icon' onClick={handlePrevClick}>
+              <ChevronLeft className='h-4 w-4' />
+            </Button>
+            <Button size='icon' onClick={handleNextClick}>
+              <ChevronRight className='h-4 w-4' />
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -97,11 +91,6 @@ const QuizCardDifficultyList = () => {
             1024: {
               slidesPerView: 4,
               spaceBetween: 25
-            },
-            // Desktop lớn
-            1280: {
-              slidesPerView: 5,
-              spaceBetween: 30
             }
           }}
         >
