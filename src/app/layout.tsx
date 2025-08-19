@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${inter.className} antialiased bg-slate-900 text-white`}
+        className={`${inter.className} antialiased bg-slate-900 text-white overflow-x-hidden`}
       >
         <ThemeProvider
           attribute='class'
@@ -36,9 +36,11 @@ export default function RootLayout({
         >
           <SidebarProvider>
             <AppSidebar />
-            <SidebarInset>
+            <SidebarInset className='overflow-x-hidden'>
               <AppHeader />
-              <main className='pt-16'>{children}</main>
+              <main className='pt-16 overflow-x-hidden max-w-full'>
+                {children}
+              </main>
             </SidebarInset>
           </SidebarProvider>
           <ToastContainer

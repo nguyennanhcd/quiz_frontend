@@ -25,7 +25,7 @@ function CategoryCard({ name, count, slug, imageUrl }: CategoryCardProps) {
     >
       <div className='relative w-full h-full rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:relative'>
         <Image
-          src={imageUrl || '/placeholder.svgs'}
+          src={imageUrl || '/placeholder.svg'}
           alt={`${name} Quiz Background`}
           fill
           className='object-cover'
@@ -49,8 +49,8 @@ export default function QuizCategories({
   categories: CategoryCardProps[]
 }) {
   return (
-    <div className='space-y-4'>
-      <div className='flex items-center justify-between mb-4 sm:mb-6'>
+    <div className='w-full max-w-full overflow-hidden'>
+      <div className='flex items-center justify-between mb-4 sm:mb-6 px-4 sm:px-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
           <Button size='icon' className='quiz-swiper-button-prev h-10 w-10'>
@@ -61,12 +61,17 @@ export default function QuizCategories({
           </Button>
         </div>
       </div>
-      <div className='xl:w-[100%] container'>
+      <div className='w-full overflow-x-hidden px-4 sm:px-6'>
         <Swiper
           pagination={{ clickable: true }}
           modules={[Navigation]}
+          navigation={{
+            prevEl: '.quiz-swiper-button-prev',
+            nextEl: '.quiz-swiper-button-next'
+          }}
+          watchOverflow={true}
+          centerInsufficientSlides={true}
           breakpoints={{
-            // Mobile: auto 1 slide
             0: {
               slidesPerView: 1,
               spaceBetween: 10
@@ -78,23 +83,24 @@ export default function QuizCategories({
             },
             // Tablet lớn / Laptop nhỏ
             768: {
-              slidesPerView: 3,
+              slidesPerView: 2.5,
               spaceBetween: 20
             },
             // Laptop
             1024: {
-              slidesPerView: 4,
+              slidesPerView: 3,
               spaceBetween: 25
             },
             // Desktop lớn
             1280: {
-              slidesPerView: 5,
+              slidesPerView: 3.5,
               spaceBetween: 30
             }
           }}
+          className='w-full max-w-full'
         >
           {categories.map((category) => (
-            <SwiperSlide key={category.id} className='w-full'>
+            <SwiperSlide key={category.id} className='min-w-0 max-w-full'>
               <CategoryCard
                 id={category.id}
                 name={category.name}
