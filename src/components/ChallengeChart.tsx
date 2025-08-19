@@ -1,6 +1,6 @@
 'use client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   ChartConfig,
   ChartContainer,
@@ -9,9 +9,8 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart'
-import { BarChart, Bar, XAxis, CartesianGrid } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'
 import { performanceData } from '@/constant/performanceData'
-import { useState } from 'react'
 import ChallengePieChart from './ChallengePieChart'
 
 const chartConfig = {
@@ -24,40 +23,31 @@ const chartConfig = {
 } satisfies ChartConfig
 
 const ChallengeChart = () => {
-  const [activeTab, setActiveTab] = useState('Performance')
-
   return (
     <section className=' bg-slate-900 text-white rounded-lg'>
       {/* Performance Chart */}
       <Card className='bg-slate-800 border-slate-700 lg:col-span-2 lg:row-span-2 py-6'>
         <CardHeader>
           <CardTitle>Your Challenge Stats</CardTitle>
-          <div className='flex space-x-4'>
-            <Button
-              onClick={() => setActiveTab('Performance')}
-              className={`mr-2 px-6 py-2 rounded-md hover:bg-default-hover/500 ${
-                activeTab === 'Performance'
-                  ? 'bg-default text-white'
-                  : 'bg-transparent text-slate-400 hover:text-white hover:bg-default'
-              }`}
-            >
-              Performance
-            </Button>
-            <Button
-              onClick={() => setActiveTab('Categories')}
-              className={`px-6 py-2 rounded-md hover:bg-default-hover/500 ${
-                activeTab === 'Categories'
-                  ? 'bg-default text-white'
-                  : 'bg-transparent text-slate-400 hover:text-white hover:bg-default'
-              }`}
-            >
-              Categories
-            </Button>
-          </div>
         </CardHeader>
         <CardContent>
-          {activeTab === 'Performance' && (
-            <div className='space-y-6'>
+          <Tabs defaultValue='performance' className='w-full'>
+            <TabsList className='grid w-full grid-cols-2 bg-slate-700'>
+              <TabsTrigger
+                value='performance'
+                className='data-[state=active]:bg-default data-[state=active]:text-white'
+              >
+                Performance
+              </TabsTrigger>
+              <TabsTrigger
+                value='categories'
+                className='data-[state=active]:bg-default data-[state=active]:text-white'
+              >
+                Categories
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value='performance' className='space-y-6 mt-6'>
               <ChartContainer
                 config={chartConfig}
                 className='min-h-20 dark:[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-slate-700'
@@ -85,21 +75,27 @@ const ChallengeChart = () => {
                     tickLine={false}
                     tick={{ fill: '#9CA3AF', fontSize: 14 }}
                   />
+                  <YAxis
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: '#9CA3AF', fontSize: 14 }}
+                  />
+
                   <ChartLegend
                     content={<ChartLegendContent className='text-sm' />}
                   />
                   <ChartTooltip
-                    cursor={{ fill: '#1e293b' }}
+                    cursor={{ fill: '#475569' }}
                     content={<ChartTooltipContent />}
                   />
                   <Bar
                     dataKey='yourScore'
-                    fill='rgb(168 85 247)' // purple-500
+                    fill='rgb(168 85 247)'
                     radius={[4, 4, 0, 0]}
                   />
                   <Bar
                     dataKey='avgScore'
-                    fill='rgb(34 197 94)' // green-500
+                    fill='rgb(34 197 94)'
                     radius={[4, 4, 0, 0]}
                   />
                 </BarChart>
@@ -108,11 +104,13 @@ const ChallengeChart = () => {
               <p className='text-center text-slate-400 text-sm'>
                 Your daily challenge performance compared to the average
               </p>
-            </div>
-          )}
-        </CardContent>
+            </TabsContent>
 
-        {activeTab === 'Categories' && <ChallengePieChart />}
+            <TabsContent value='categories'>
+              <ChallengePieChart />
+            </TabsContent>
+          </Tabs>
+        </CardContent>
       </Card>
     </section>
   )

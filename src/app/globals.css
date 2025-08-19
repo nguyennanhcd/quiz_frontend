@@ -119,7 +119,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background  dark:text-white-primary;
   }
   /* Added global overflow-x-hidden to prevent horizontal scrolling */
   html,
@@ -127,4 +127,21 @@
     overflow-x: hidden;
     max-width: 100vw;
   }
+}
+
+
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 960px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1536px;
+
+  --font-primary: "var(--font-inter)";
+  --color-default: oklch(0.65 0.15 270);
+  --color-default-hover: oklch(0.72 0.15 270);
+  --color-primary: oklch(0.2291 0.0115 285.46);
+  --color-white-primary: 	oklch(0.98 0 0);
+  --color-main: oklch(0.2795 0.0368 260.03);
+  --color-main-hover: oklch(0.4455 0.0374 257.28)
 }

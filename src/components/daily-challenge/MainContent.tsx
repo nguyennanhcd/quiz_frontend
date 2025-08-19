@@ -33,12 +33,12 @@ const MainContent = () => {
   useEffect(() => {
     if (!isTimerActive || selectedAnswer === '') return
 
-    let seconds = 5 * 60 // 5 minutes in seconds
+    let seconds = 5 * 60
 
     const updateTimer = () => {
       if (seconds <= 0) {
         setQuestionTime('00:00')
-        setIsTimerActive(false) // Stop timer when it reaches 0
+        setIsTimerActive(false)
         return
       }
 
