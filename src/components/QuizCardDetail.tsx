@@ -63,13 +63,13 @@ const QuizCardDetail = (props: Quiz) => {
           </div>
         </div>
 
-        <div className='flex items-center gap-4 mb-4 text-sm text-slate-400'>
+        <div className='flex items-center justify-between gap-4 mb-4 text-sm text-slate-400'>
           <div className='flex items-center gap-1'>
             <Users className='w-4 h-4' />
             {props.players} players
           </div>
-          <div>{props.spotsLeft} spots left</div>
-          <div className='flex-1'>
+          <div className='flex items-center gap-1'>
+            <div>{props.spotsLeft} spots left</div>
             <SpotAvailabilityIndicator
               currentSpots={props.spots - props.spotsLeft}
               totalSpots={props.spots}

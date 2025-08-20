@@ -13,5 +13,5 @@ export interface Tournament {
   startDate: string // ISO format
   endDate: string // ISO format
   registrationOpen: boolean
-  categoryId: string
+  category: string
 }

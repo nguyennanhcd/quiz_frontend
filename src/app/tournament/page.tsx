@@ -11,7 +11,6 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import categories from '@/constant/category'
 import { difficultyColors } from '@/constant/difficultColor'
 import { tournaments } from '@/constant/tournament'
 import {
@@ -22,7 +21,8 @@ import {
   ArrowRight,
   Calendar,
   ChevronDown,
-  Check
+  Check,
+  Tag
 } from 'lucide-react'
 import Image from 'next/image'
 import { Tournament } from '@/types/tournament'
@@ -31,16 +31,22 @@ export default function QuizTournament() {
   const [filter, setFilter] = useState<string>('all')
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
+  // Get unique categories from tournaments for tabs
+  const uniqueCategories = [
+    'all',
+    ...new Set(tournaments.map((t) => t.category))
+  ]
+
   const getFilteredTournaments = (
     filter: string,
-    categoryId: string
+    category: string
   ): Tournament[] => {
     const now = new Date('2025-08-01')
     let filtered = [...tournaments]
 
     // Filter by category
-    if (categoryId !== 'all') {
-      filtered = filtered.filter((t) => t.categoryId === categoryId)
+    if (category !== 'all') {
+      filtered = filtered.filter((t) => t.category === category)
     }
 
     // Filter by status
@@ -201,13 +207,13 @@ export default function QuizTournament() {
           className='mb-8 w-full'
         >
           <TabsList className='flex flex-nowrap gap-2 mx-2 sm:mx-0 sm:gap-3 overflow-x-auto pb-2 bg-transparent scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent'>
-            {categories.map((category) => (
+            {uniqueCategories.map((category) => (
               <TabsTrigger
-                key={category.id}
-                value={category.id}
+                key={category}
+                value={category}
                 className='flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs sm:text-sm sm:px-4 sm:py-1.5 font-medium text-gray-300 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-gray-800 hover:text-white transition-all duration-200'
               >
-                {category.name}
+                {category === 'all' ? 'All Categories' : category}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -252,23 +258,27 @@ export default function QuizTournament() {
 
                 <div className='space-y-2 mb-4'>
                   <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                    <Tag className='w-4 h-4' />
+                    <span>{tournament.category}</span>
+                  </div>
+                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
                     <Calendar className='w-4 h-4' />
-                    {tournament.dateRange}
+                    <span>{tournament.dateRange}</span>
                   </div>
                   <div className='flex items-center gap-2 text-gray-400 text-sm'>
                     <Users className='w-4 h-4' />
-                    {tournament.participants} participants
+                    <span>{tournament.participants} participants</span>
                   </div>
                   <div className='flex items-center gap-2 text-gray-400 text-sm'>
                     <Trophy className='w-4 h-4' />
-                    {tournament.prize} prize
+                    <span>{tournament.prize} prize</span>
                   </div>
                 </div>
 
                 {tournament.closingInfo && (
                   <div className='flex items-center gap-2 text-yellow-400 text-sm mb-4'>
                     <Clock className='w-4 h-4' />
-                    {tournament.closingInfo}
+                    <span>{tournament.closingInfo}</span>
                   </div>
                 )}
 
