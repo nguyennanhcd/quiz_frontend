@@ -5,7 +5,7 @@ import { articles } from '@/constant/articles'
 
 export function KnowledgeBase() {
   return (
-    <div className='space-y-6'>
+    <div className='space-y-6 bg-transparent border border-slate-700 rounded-lg  p-8'>
       <div className='flex items-center justify-between'>
         <h2 className='text-2xl font-bold text-white'>
           All Categories Knowledge Base
@@ -25,12 +25,12 @@ export function KnowledgeBase() {
           return (
             <div
               key={article.id}
-              className='bg-slate-800 border border-slate-700 rounded-lg p-6 hover:bg-slate-750 transition-colors cursor-pointer'
+              className='p-6 hover:bg-slate-750 transition-colors cursor-pointer border border-slate-700 rounded-lg'
             >
               <div className='flex items-center justify-between mb-4'>
                 <div className='flex items-center gap-2'>
-                  <IconComponent className='h-4 w-4 text-slate-400' />
-                  <span className='text-sm text-slate-400'>
+                  <IconComponent className='h-4 w-4 text-white' />
+                  <span className='text-xs text-white px-1 py-0.5 cursor-pointer border border-slate-700 rounded-md'>
                     {article.category}
                   </span>
                 </div>
@@ -44,7 +44,7 @@ export function KnowledgeBase() {
               <p className='text-slate-300 text-sm mb-4'>
                 {article.description}
               </p>
-              <div className='flex items-center text-blue-400 hover:text-blue-300 transition-colors'>
+              <div className='flex items-center text-default hover:text-default-hover transition-colors'>
                 <span className='text-sm font-medium'>Read article</span>
                 <ArrowRight className='h-4 w-4 ml-1' />
               </div>
