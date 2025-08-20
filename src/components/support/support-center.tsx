@@ -11,11 +11,11 @@ export function SupportCenter() {
   const [activeTab, setActiveTab] = useState('faq')
 
   return (
-    <div className='min-h-screen bg-slate-900 text-white'>
+    <div className='min-h-screen bg-transparent text-white'>
       {/* Header */}
-      <div className='text-center py-12 px-4'>
-        <h1 className='text-4xl font-bold mb-4'>Support Center</h1>
-        <p className='text-slate-400 text-lg max-w-2xl mx-auto'>
+      <div className='text-center px-4 mb-8'>
+        <h1 className='text-3xl font-bold mb-4'>Support Center</h1>
+        <p className='text-slate-400 text-base max-w-2xl mx-auto'>
           Find answers to common questions or get in touch with our support team
         </p>
       </div>
@@ -23,7 +23,7 @@ export function SupportCenter() {
       <SupportTabs onTabChange={setActiveTab} />
 
       {/* Main Content */}
-      <div className='max-w-7xl mx-auto px-4 pb-12'>
+      <div className='px-4 pb-12'>
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
           <div className='lg:col-span-1'>
             <HelpCategories />

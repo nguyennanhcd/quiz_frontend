@@ -53,8 +53,8 @@ export function FAQSection() {
   )
 
   return (
-    <div>
-      <div className='flex items-center justify-between mb-8'>
+    <div className='bg-transparent border border-slate-700 rounded-lg p-8'>
+      <div className='flex items-center justify-between mb-8 '>
         <h2 className='text-2xl font-bold'>General FAQs</h2>
         <div className='relative w-80'>
           <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5' />
@@ -62,7 +62,7 @@ export function FAQSection() {
             placeholder='Search FAQs...'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='pl-10 bg-slate-800 border-slate-600 text-white placeholder-slate-400'
+            className='pl-10  text-white placeholder-slate-400'
           />
         </div>
       </div>
@@ -72,7 +72,7 @@ export function FAQSection() {
           <AccordionItem
             key={faq.id}
             value={faq.id}
-            className='bg-slate-800 rounded-lg border border-slate-700'
+            className='bg-transparent rounded-lg border border-slate-700'
           >
             <AccordionTrigger className='px-6 py-4 text-left hover:no-underline hover:bg-slate-750'>
               <span className='text-white font-medium'>{faq.question}</span>

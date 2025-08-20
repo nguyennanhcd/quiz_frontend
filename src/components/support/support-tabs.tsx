@@ -21,9 +21,9 @@ export function SupportTabs({ onTabChange }: SupportTabsProps) {
         <div className='flex space-x-8'>
           <button
             onClick={() => handleTabChange('faq')}
-            className={`flex items-center gap-2 py-4 px-2 border-b-2 transition-colors ${
+            className={`cursor-pointer flex items-center gap-2 py-4 px-2 border-b-2 transition-colors ${
               activeTab === 'faq'
-                ? 'border-blue-500 text-white'
+                ? 'border-default text-white'
                 : 'border-transparent text-slate-400 hover:text-white'
             }`}
           >
@@ -32,9 +32,9 @@ export function SupportTabs({ onTabChange }: SupportTabsProps) {
           </button>
           <button
             onClick={() => handleTabChange('contact')}
-            className={`flex items-center gap-2 py-4 px-2 border-b-2 transition-colors ${
+            className={`cursor-pointer flex items-center gap-2 py-4 px-2 border-b-2 transition-colors ${
               activeTab === 'contact'
-                ? 'border-blue-500 text-white'
+                ? 'border-default text-white'
                 : 'border-transparent text-slate-400 hover:text-white'
             }`}
           >
@@ -43,9 +43,9 @@ export function SupportTabs({ onTabChange }: SupportTabsProps) {
           </button>
           <button
             onClick={() => handleTabChange('knowledge')}
-            className={`flex items-center gap-2 py-4 px-2 border-b-2 transition-colors ${
+            className={`cursor-pointer flex items-center gap-2 py-4 px-2 border-b-2 transition-colors ${
               activeTab === 'knowledge'
-                ? 'border-blue-500 text-white'
+                ? 'border-default text-white'
                 : 'border-transparent text-slate-400 hover:text-white'
             }`}
           >
