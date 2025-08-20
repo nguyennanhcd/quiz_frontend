@@ -17,7 +17,7 @@ export function SupportTabs({ onTabChange }: SupportTabsProps) {
 
   return (
     <div className='border-b border-slate-700 mb-8'>
-      <div className='max-w-7xl mx-auto px-4'>
+      <div className='px-4'>
         <div className='flex space-x-8'>
           <button
             onClick={() => handleTabChange('faq')}
@@ -28,7 +28,7 @@ export function SupportTabs({ onTabChange }: SupportTabsProps) {
             }`}
           >
             <HelpCircle className='w-5 h-5' />
-            Frequently Asked Questions
+            <span className='text-sm'>Frequently Asked Questions</span>
           </button>
           <button
             onClick={() => handleTabChange('contact')}
@@ -39,7 +39,7 @@ export function SupportTabs({ onTabChange }: SupportTabsProps) {
             }`}
           >
             <MessageSquare className='w-5 h-5' />
-            Contact Support
+            <span className='text-sm'>Contact Support</span>
           </button>
           <button
             onClick={() => handleTabChange('knowledge')}
@@ -50,7 +50,7 @@ export function SupportTabs({ onTabChange }: SupportTabsProps) {
             }`}
           >
             <BookOpen className='w-5 h-5' />
-            Knowledge Base
+            <span className='text-sm'>Knowledge Base</span>
           </button>
         </div>
       </div>

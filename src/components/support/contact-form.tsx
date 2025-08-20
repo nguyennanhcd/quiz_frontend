@@ -27,9 +27,9 @@ export function ContactForm() {
   }
 
   return (
-    <div className='space-y-8'>
-      <div>
-        <h1 className='text-3xl font-bold text-white mb-2'>Contact Support</h1>
+    <div className='space-y-8 bg-transparent border border-slate-700 rounded-lg p-8'>
+      <div className='flex items-center justify-between mb-8 '>
+        <h2 className='text-2xl font-bold text-white'>Contact Support</h2>
       </div>
 
       <form className='space-y-6'>
@@ -42,7 +42,7 @@ export function ContactForm() {
             <Input
               id='name'
               placeholder='Your name'
-              className='bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-400 focus:border-blue-500'
+              className='bg-transparent border border-slate-700 text-white placeholder:text-slate-400 focus:border-blue-500'
             />
           </div>
           <div className='space-y-2'>
@@ -53,7 +53,7 @@ export function ContactForm() {
               id='email'
               type='email'
               placeholder='your.email@example.com'
-              className='bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-400 focus:border-blue-500'
+              className='bg-transparent border border-slate-700 text-white placeholder:text-slate-400 focus:border-blue-500'
             />
           </div>
         </div>
@@ -67,7 +67,7 @@ export function ContactForm() {
             <Input
               id='subject'
               placeholder='Brief description of your issue'
-              className='bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-400 focus:border-blue-500'
+              className='bg-transparent border border-slate-700 text-white placeholder:text-slate-400 focus:border-blue-500'
             />
           </div>
           <div className='space-y-2'>
@@ -75,7 +75,7 @@ export function ContactForm() {
               Category
             </Label>
             <Select>
-              <SelectTrigger className='bg-slate-900/50 border-slate-700 text-white focus:border-blue-500'>
+              <SelectTrigger className='bg-transparent text-white focus:border-default'>
                 <SelectValue placeholder='General' />
               </SelectTrigger>
               <SelectContent className='bg-slate-800 border-slate-700'>
@@ -135,7 +135,7 @@ export function ContactForm() {
             id='message'
             placeholder='Please describe your issue in detail'
             rows={8}
-            className='bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-400 focus:border-blue-500 resize-none'
+            className='bg-transparent border border-slate-700 text-white placeholder:text-slate-400 focus:border-default resize-none'
           />
         </div>
 
@@ -172,7 +172,7 @@ export function ContactForm() {
         {/* Submit button */}
         <Button
           type='submit'
-          className='bg-blue-600 hover:bg-blue-700 text-white px-8 py-2'
+          className='bg-default hover:bg-default-hover text-white px-8 py-2'
         >
           Submit Request
         </Button>

@@ -42,7 +42,7 @@ export function HelpCategories() {
               }`}
             >
               <Icon className='w-5 h-5' />
-              {category.label}
+              <span className='text-sm'>{category.label}</span>
             </button>
           )
         })}
