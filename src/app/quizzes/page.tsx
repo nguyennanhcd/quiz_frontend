@@ -13,7 +13,7 @@ import 'swiper/css/free-mode'
 
 export default function QuizPlatform() {
   return (
-    <div className='min-h-screen p-4 md:p-6'>
+    <div className='min-h-screen text-white p-4 md:p-8 lg:p-12'>
       <div className=''>
         {/* Header */}
         <div className='mb-8'>
