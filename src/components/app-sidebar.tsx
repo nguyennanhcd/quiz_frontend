@@ -11,7 +11,8 @@ import {
   BarChart3,
   MessageSquare,
   Plus,
-  LogOut
+  LogOut,
+  LifeBuoy
 } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -70,6 +71,11 @@ const items = [
     title: 'Create Quiz',
     url: '/create-quiz',
     icon: Plus
+  },
+  {
+    title: 'Support',
+    url: '/support',
+    icon: LifeBuoy
   }
 ]
 
