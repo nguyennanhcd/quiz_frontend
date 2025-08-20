@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import {
   Search,
   ChevronDown,
@@ -25,20 +28,43 @@ const getBadgeColor = (badge: Player['badge']) => {
       return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50'
     case 'Platinum':
       return 'bg-purple-500/20 text-purple-400 border-purple-500/50'
-
     case 'Gold':
       return 'bg-amber-500/20 text-amber-400 border-amber-500/50'
-
     default:
       return 'bg-gray-500/20 text-gray-400 border-gray-500/50'
   }
 }
 
 export default function GlobalLeaderboard() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortBy, setSortBy] = useState('Score') // State for sort criterion
   const maxScore = Math.max(...players.map((p) => p.score))
 
+  // Filter players based on search query
+  const filteredPlayers = players.filter((player) =>
+    player.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
+  // Sort players based on selected criterion
+  const sortedPlayers = [...filteredPlayers].sort((a, b) => {
+    switch (sortBy) {
+      case 'Score':
+        return b.score - a.score // Descending
+      case 'Level':
+        return b.level - a.level // Descending
+      case 'Quizzes':
+        return b.quizzes - a.quizzes // Descending
+      case 'Streak':
+        return b.streak - a.streak // Descending
+      case 'Name':
+        return a.name.localeCompare(b.name) // Ascending
+      default:
+        return b.score - a.score // Default to Score
+    }
+  })
+
   return (
-    <div className='min-h-screen mt-10 '>
+    <div className='min-h-screen mt-10'>
       {/* Header Section */}
       <div className='relative overflow-hidden rounded-xl p-6 md:p-8 mb-8 bg-default'>
         <div className='relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4'>
@@ -61,7 +87,6 @@ export default function GlobalLeaderboard() {
             </Button>
           </div>
         </div>
-        {/* Background gradient overlay for visual effect */}
         <div
           className='absolute inset-0 opacity-20'
           style={{
@@ -79,6 +104,8 @@ export default function GlobalLeaderboard() {
             type='text'
             placeholder='Search players...'
             className='w-full pl-10 pr-4 py-2 rounded-lg bg-transparent border outline-none'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
         <div className='flex gap-3 w-full md:w-auto justify-end'>
@@ -88,19 +115,40 @@ export default function GlobalLeaderboard() {
                 variant='outline'
                 className='bg-[#1a1a2e] text-white border border-[#3a3a5e] hover:bg-[#2a2a4e] hover:text-white rounded-lg px-4 py-2 flex items-center gap-2'
               >
-                Sort by: Score
+                Sort by: {sortBy}
                 <ChevronDown className='w-4 h-4' />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='bg-[#1a1a2e] border border-[#3a3a5e] text-white'>
-              <DropdownMenuItem className='hover:bg-[#2a2a4e] cursor-pointer'>
+              <DropdownMenuItem
+                className='hover:bg-[#2a2a4e] cursor-pointer'
+                onClick={() => setSortBy('Score')}
+              >
                 Score
               </DropdownMenuItem>
-              <DropdownMenuItem className='hover:bg-[#2a2a4e] cursor-pointer'>
+              <DropdownMenuItem
+                className='hover:bg-[#2a2a4e] cursor-pointer'
+                onClick={() => setSortBy('Level')}
+              >
                 Level
               </DropdownMenuItem>
-              <DropdownMenuItem className='hover:bg-[#2a2a4e] cursor-pointer'>
+              <DropdownMenuItem
+                className='hover:bg-[#2a2a4e] cursor-pointer'
+                onClick={() => setSortBy('Quizzes')}
+              >
                 Quizzes
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className='hover:bg-[#2a2a4e] cursor-pointer'
+                onClick={() => setSortBy('Streak')}
+              >
+                Streak
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className='hover:bg-[#2a2a4e] cursor-pointer'
+                onClick={() => setSortBy('Name')}
+              >
+                Name
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -142,7 +190,7 @@ export default function GlobalLeaderboard() {
         </div>
 
         {/* Table Rows */}
-        {players.map((player) => (
+        {sortedPlayers.map((player, index) => (
           <div
             key={player.id}
             className='grid grid-cols-[0.5fr_2fr_1.5fr_1fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1.5fr_1fr_1fr_1fr] gap-4 p-4 border-b border-[#3a3a5e] last:border-b-0 items-center text-sm md:text-base'
@@ -151,13 +199,13 @@ export default function GlobalLeaderboard() {
             <div className='flex justify-center items-center'>
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center font-bold
-                  ${player.rank === 1 ? 'bg-amber-500 text-white' : ''}
-                  ${player.rank === 2 ? 'bg-gray-400 text-white' : ''}
-                  ${player.rank === 3 ? 'bg-orange-600 text-white' : ''}
-                  ${player.rank > 3 ? 'bg-[#2a2a4e] text-gray-300' : ''}
+                  ${index === 0 ? 'bg-amber-500 text-white' : ''}
+                  ${index === 1 ? 'bg-gray-400 text-white' : ''}
+                  ${index === 2 ? 'bg-orange-600 text-white' : ''}
+                  ${index > 2 ? 'bg-[#2a2a4e] text-gray-300' : ''}
                 `}
               >
-                {player.rank}
+                {index + 1}
               </div>
             </div>
 
@@ -190,11 +238,11 @@ export default function GlobalLeaderboard() {
                   style={{
                     width: `${(player.score / maxScore) * 100}%`,
                     background:
-                      player.rank === 1
+                      index === 0
                         ? '#f59e0b'
-                        : player.rank === 2
+                        : index === 1
                         ? '#9ca3af'
-                        : player.rank === 3
+                        : index === 2
                         ? '#ea580c'
                         : '#6b7280'
                   }}
@@ -231,7 +279,7 @@ export default function GlobalLeaderboard() {
           </div>
         ))}
         <div className='text-sm p-5 flex flex-row justify-between'>
-          <span>Showing 1-10 of {players.length} players</span>
+          <span>Showing 1-10 of {sortedPlayers.length} players</span>
           <div className='flex items-center gap-2'>
             <Button className='rounded-full px-3 py-1 h-auto text-xs font-medium flex items-center gap-1'>
               Previous

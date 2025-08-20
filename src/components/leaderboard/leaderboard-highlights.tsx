@@ -8,7 +8,6 @@ import {
   CardTitle,
   CardDescription
 } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -23,17 +22,15 @@ import {
   BarChart3,
   TrendingUp,
   Calendar,
-  Trophy,
-  Star,
-  Zap,
-  Target,
   Clock,
   Users,
-  TrendingDown,
-  Minus
+  Trophy
 } from 'lucide-react'
-import Image from 'next/image'
+import GlobalTab from './leaderboard-hightlights/GlobalTab'
+import CategoryTab from './leaderboard-hightlights/CategoryTab'
+import TrendingTab from './leaderboard-hightlights/TrendingTab'
 
+// Shared interfaces and mock data
 interface LeaderboardUser {
   id: string
   rank: number
@@ -50,7 +47,7 @@ interface LeaderboardUser {
   streak: number
   quizzesCompleted: number
   winRate: number
-  change: number // rank change from previous period
+  change: number
   category?: string
   isOnline?: boolean
   lastActive?: string
@@ -64,7 +61,6 @@ interface Category {
   totalUsers: number
 }
 
-// Comprehensive mock data
 const mockUsers: LeaderboardUser[] = [
   {
     id: '1',
@@ -187,9 +183,9 @@ const categoryUsers: Record<string, LeaderboardUser[]> = {
 }
 
 const trendingUsers: LeaderboardUser[] = [
-  { ...mockUsers[3], rank: 1, change: 5 }, // Emma Wilson trending up
-  { ...mockUsers[4], rank: 2, change: 3 }, // David Park trending up
-  { ...mockUsers[0], rank: 3, change: 0 } // Alex Chen stable
+  { ...mockUsers[3], rank: 1, change: 5 },
+  { ...mockUsers[4], rank: 2, change: 3 },
+  { ...mockUsers[0], rank: 3, change: 0 }
 ]
 
 const categories: Category[] = [
@@ -240,59 +236,11 @@ export function LeaderboardHighlights() {
   const [isLoading, setIsLoading] = useState(false)
   const [users] = useState<LeaderboardUser[]>(mockUsers)
 
-  // Simulate loading state
   useEffect(() => {
     setIsLoading(true)
     const timer = setTimeout(() => setIsLoading(false), 500)
     return () => clearTimeout(timer)
   }, [activeTab, timePeriod, selectedCategory])
-
-  const getFilteredUsers = (): LeaderboardUser[] => {
-    if (activeTab === 'category' && selectedCategory !== 'all') {
-      return categoryUsers[selectedCategory] || []
-    }
-    if (activeTab === 'trending') {
-      return trendingUsers
-    }
-    return users
-  }
-
-  const getChangeIcon = (change: number) => {
-    if (change > 0) return <TrendingUp className='w-3 h-3 text-green-400' />
-    if (change < 0) return <TrendingDown className='w-3 h-3 text-red-400' />
-    return <Minus className='w-3 h-3 text-slate-400' />
-  }
-
-  const getChangeText = (change: number) => {
-    if (change > 0) return `+${change}`
-    if (change < 0) return `${change}`
-    return '0'
-  }
-
-  const getChangeColor = (change: number) => {
-    if (change > 0) return 'text-green-400'
-    if (change < 0) return 'text-red-400'
-    return 'text-slate-400'
-  }
-
-  const getBadgeIcon = (badge: string) => {
-    switch (badge) {
-      case 'Diamond':
-        return '💎'
-      case 'Platinum':
-        return '🥇'
-      case 'Gold':
-        return '🥈'
-      case 'Silver':
-        return '🥉'
-      case 'Bronze':
-        return '🏅'
-      default:
-        return '⭐'
-    }
-  }
-
-  const filteredUsers = getFilteredUsers()
 
   return (
     <Card className='bg-transparent border-slate-700 col-span-2 lg:col-span-2 py-4 sm:py-6'>
@@ -310,7 +258,7 @@ export function LeaderboardHighlights() {
           <div className='flex items-center gap-2'>
             <div className='flex items-center gap-1 text-xs text-slate-400'>
               <Users className='w-3 h-3' />
-              <span>{filteredUsers.length} active</span>
+              <span>{users.length} active</span>
             </div>
           </div>
         </div>
@@ -346,7 +294,6 @@ export function LeaderboardHighlights() {
             </TabsTrigger>
           </TabsList>
 
-          {/* Time Period Filters */}
           <div className='flex flex-wrap gap-2 mb-4'>
             <Button
               variant={timePeriod === 'all-time' ? 'default' : 'outline'}
@@ -401,7 +348,6 @@ export function LeaderboardHighlights() {
             </Button>
           </div>
 
-          {/* Category Selector - Only show for category tab */}
           {activeTab === 'category' && (
             <Select
               value={selectedCategory}
@@ -427,426 +373,26 @@ export function LeaderboardHighlights() {
             </Select>
           )}
 
-          {/* Loading State */}
           {isLoading && (
             <div className='flex items-center justify-center py-8'>
               <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-white'></div>
             </div>
           )}
 
-          <TabsContent value='global' className='space-y-4'>
-            {!isLoading && (
-              <div className='relative'>
-                <div className='flex items-end justify-center gap-4 mb-8'>
-                  {/* Second Place - Left */}
-                  {filteredUsers[1] && (
-                    <div className='flex flex-col items-center'>
-                      <div className='relative mb-3'>
-                        <div className='w-20 h-20 rounded-full overflow-hidden border-4 border-slate-400'>
-                          <Image
-                            src={filteredUsers[1].avatar || '/placeholder.svg'}
-                            alt={filteredUsers[1].name}
-                            width={80}
-                            height={80}
-                            className='w-full h-full object-cover'
-                          />
-                        </div>
-                        <div className='absolute -top-2 -right-2 w-8 h-8 bg-slate-400 rounded-full flex items-center justify-center'>
-                          <span className='font-bold text-sm text-black'>
-                            2
-                          </span>
-                        </div>
-                        {filteredUsers[1].isOnline && (
-                          <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
-                        )}
-                      </div>
-                      <h3 className='text-white font-bold text-base mb-1'>
-                        {filteredUsers[1].name}
-                      </h3>
-                      <p className='text-slate-300 text-sm mb-2'>
-                        {filteredUsers[1].points.toLocaleString()} pts
-                      </p>
-                      <div className='flex items-center gap-2 mb-2'>
-                        <Badge className='bg-slate-600 hover:bg-slate-700 text-xs'>
-                          💎 Platinum
-                        </Badge>
-                        <Badge
-                          variant='outline'
-                          className='border-yellow-400 text-yellow-400 text-xs'
-                        >
-                          ⭐65
-                        </Badge>
-                      </div>
-                      <div className='bg-slate-800/50 rounded-lg p-4 w-32 h-24'></div>
-                    </div>
-                  )}
-
-                  {/* First Place - Center (Elevated) */}
-                  {filteredUsers[0] && (
-                    <div className='flex flex-col items-center -mt-8'>
-                      <div className='relative mb-3'>
-                        <div className='w-24 h-24 rounded-full overflow-hidden border-4 border-yellow-400'>
-                          <Image
-                            src={filteredUsers[0].avatar || '/placeholder.svg'}
-                            alt={filteredUsers[0].name}
-                            width={96}
-                            height={96}
-                            className='w-full h-full object-cover'
-                          />
-                        </div>
-                        <div className='absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center'>
-                          <span className='font-bold text-sm text-black'>
-                            1
-                          </span>
-                        </div>
-                        <div className='absolute -top-6 left-1/2 transform -translate-x-1/2'>
-                          <div className='text-3xl'>👑</div>
-                        </div>
-                        {filteredUsers[0].isOnline && (
-                          <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
-                        )}
-                      </div>
-                      <h3 className='text-white font-bold text-lg mb-1'>
-                        {filteredUsers[0].name}
-                      </h3>
-                      <p className='text-slate-300 text-base mb-2'>
-                        {filteredUsers[0].points.toLocaleString()} pts
-                      </p>
-                      <div className='flex items-center gap-2 mb-2'>
-                        <Badge className='bg-blue-600 hover:bg-blue-700 text-sm'>
-                          💎 Diamond
-                        </Badge>
-                        <Badge
-                          variant='outline'
-                          className='border-yellow-400 text-yellow-400 text-sm'
-                        >
-                          ⭐78
-                        </Badge>
-                      </div>
-                      <div className='bg-slate-800/50 rounded-lg p-4 w-36 h-32'></div>
-                    </div>
-                  )}
-
-                  {/* Third Place - Right */}
-                  {filteredUsers[2] && (
-                    <div className='flex flex-col items-center'>
-                      <div className='relative mb-3'>
-                        <div className='w-20 h-20 rounded-full overflow-hidden border-4 border-orange-400'>
-                          <Image
-                            src={filteredUsers[2].avatar || '/placeholder.svg'}
-                            alt={filteredUsers[2].name}
-                            width={80}
-                            height={80}
-                            className='w-full h-full object-cover'
-                          />
-                        </div>
-                        <div className='absolute -top-2 -right-2 w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center'>
-                          <span className='font-bold text-sm text-black'>
-                            3
-                          </span>
-                        </div>
-                        {filteredUsers[2].isOnline && (
-                          <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
-                        )}
-                      </div>
-                      <h3 className='text-white font-bold text-base mb-1'>
-                        {filteredUsers[2].name}
-                      </h3>
-                      <p className='text-slate-300 text-sm mb-2'>
-                        {filteredUsers[2].points.toLocaleString()} pts
-                      </p>
-                      <div className='flex items-center gap-2 mb-2'>
-                        <Badge className='bg-yellow-600 hover:bg-yellow-700 text-xs'>
-                          🥇 Gold
-                        </Badge>
-                        <Badge
-                          variant='outline'
-                          className='border-yellow-400 text-yellow-400 text-xs'
-                        >
-                          ⭐59
-                        </Badge>
-                      </div>
-                      <div className='bg-slate-800/50 rounded-lg p-4 w-32 h-20'></div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Additional Stats */}
-                <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mt-6'>
-                  <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
-                    <div className='flex items-center justify-center mb-2'>
-                      <Target className='w-4 h-4 text-green-400' />
-                    </div>
-                    <p className='text-lg font-bold text-white'>
-                      {filteredUsers[0]?.winRate}%
-                    </p>
-                    <p className='text-xs text-slate-400'>Top Win Rate</p>
-                  </div>
-                  <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
-                    <div className='flex items-center justify-center mb-2'>
-                      <BarChart3 className='w-4 h-4 text-blue-400' />
-                    </div>
-                    <p className='text-lg font-bold text-white'>
-                      {filteredUsers[0]?.quizzesCompleted}
-                    </p>
-                    <p className='text-xs text-slate-400'>Most Quizzes</p>
-                  </div>
-                  <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
-                    <div className='flex items-center justify-center mb-2'>
-                      <Zap className='w-4 h-4 text-orange-400' />
-                    </div>
-                    <p className='text-lg font-bold text-white'>
-                      {Math.max(...filteredUsers.map((u) => u.streak))}
-                    </p>
-                    <p className='text-xs text-slate-400'>Longest Streak</p>
-                  </div>
-                  <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
-                    <div className='flex items-center justify-center mb-2'>
-                      <Star className='w-4 h-4 text-yellow-400' />
-                    </div>
-                    <p className='text-lg font-bold text-white'>
-                      {Math.max(...filteredUsers.map((u) => u.stars))}
-                    </p>
-                    <p className='text-xs text-slate-400'>Top Rating</p>
-                  </div>
-                </div>
-              </div>
-            )}
+          <TabsContent value='global'>
+            <GlobalTab users={users} isLoading={isLoading} />
           </TabsContent>
-
-          <TabsContent value='category' className='space-y-4'>
-            {!isLoading && (
-              <div>
-                {selectedCategory === 'all' ? (
-                  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                    {categories.map((category) => (
-                      <div
-                        key={category.id}
-                        className='bg-slate-800/50 p-4 rounded-lg border border-slate-700 hover:bg-slate-800/70 transition-colors cursor-pointer'
-                        onClick={() => setSelectedCategory(category.id)}
-                      >
-                        <div className='flex items-center gap-3 mb-3'>
-                          <div className={`text-2xl ${category.color}`}>
-                            {category.icon}
-                          </div>
-                          <div>
-                            <h3 className='text-white font-semibold'>
-                              {category.name}
-                            </h3>
-                            <p className='text-slate-400 text-sm'>
-                              {category.totalUsers} users
-                            </p>
-                          </div>
-                        </div>
-                        <div className='space-y-2'>
-                          {(categoryUsers[category.id] || [])
-                            .slice(0, 3)
-                            .map((user, index) => (
-                              <div
-                                key={user.id}
-                                className='flex items-center gap-2 text-sm'
-                              >
-                                <span className='text-slate-400 w-4'>
-                                  #{index + 1}
-                                </span>
-                                <div className='w-6 h-6 rounded-full overflow-hidden'>
-                                  <Image
-                                    src={user.avatar || '/placeholder.svg'}
-                                    alt={user.name}
-                                    width={24}
-                                    height={24}
-                                    className='w-full h-full object-cover'
-                                  />
-                                </div>
-                                <span className='text-white flex-1'>
-                                  {user.name}
-                                </span>
-                                <span className='text-slate-400'>
-                                  {user.points.toLocaleString()}
-                                </span>
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className='space-y-4'>
-                    <div className='flex items-center gap-3 mb-4'>
-                      <div
-                        className={`text-2xl ${
-                          categories.find((c) => c.id === selectedCategory)
-                            ?.color
-                        }`}
-                      >
-                        {
-                          categories.find((c) => c.id === selectedCategory)
-                            ?.icon
-                        }
-                      </div>
-                      <div>
-                        <h3 className='text-white font-semibold'>
-                          {
-                            categories.find((c) => c.id === selectedCategory)
-                              ?.name
-                          }{' '}
-                          Leaderboard
-                        </h3>
-                        <p className='text-slate-400 text-sm'>
-                          {
-                            categories.find((c) => c.id === selectedCategory)
-                              ?.totalUsers
-                          }{' '}
-                          active users
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className='space-y-3'>
-                      {(categoryUsers[selectedCategory] || []).map((user) => (
-                        <div
-                          key={user.id}
-                          className='flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-800/70 transition-colors'
-                        >
-                          <div className='relative'>
-                            <div className='w-10 h-10 rounded-full overflow-hidden'>
-                              <Image
-                                src={user.avatar || '/placeholder.svg'}
-                                alt={user.name}
-                                width={40}
-                                height={40}
-                                className='w-full h-full object-cover'
-                              />
-                            </div>
-                            {user.isOnline && (
-                              <div className='absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border border-slate-900' />
-                            )}
-                          </div>
-                          <div className='flex-1'>
-                            <div className='flex items-center gap-2'>
-                              <h4 className='text-white font-semibold'>
-                                {user.name}
-                              </h4>
-                              <Badge className={`${user.badgeColor} text-xs`}>
-                                {getBadgeIcon(user.badge)} {user.badge}
-                              </Badge>
-                            </div>
-                            <p className='text-slate-400 text-sm'>
-                              {user.username}
-                            </p>
-                          </div>
-                          <div className='text-right'>
-                            <p className='text-white font-semibold'>
-                              {user.points.toLocaleString()} pts
-                            </p>
-                            <div className='flex items-center gap-1 text-xs'>
-                              {getChangeIcon(user.change)}
-                              <span className={getChangeColor(user.change)}>
-                                {getChangeText(user.change)}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
+          <TabsContent value='category'>
+            <CategoryTab users={users} isLoading={isLoading} />
           </TabsContent>
-
-          <TabsContent value='trending' className='space-y-4'>
-            {!isLoading && (
-              <div className='space-y-4'>
-                <div className='flex items-center gap-2 mb-4'>
-                  <TrendingUp className='w-5 h-5 text-green-400' />
-                  <h3 className='text-white font-semibold'>
-                    Trending This Week
-                  </h3>
-                </div>
-
-                <div className='space-y-3'>
-                  {trendingUsers.map((user) => (
-                    <div
-                      key={user.id}
-                      className='flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-800/70 transition-colors'
-                    >
-                      <div className='relative'>
-                        <div className='w-12 h-12 rounded-full overflow-hidden'>
-                          <Image
-                            src={user.avatar || '/placeholder.svg'}
-                            alt={user.name}
-                            width={48}
-                            height={48}
-                            className='w-full h-full object-cover'
-                          />
-                        </div>
-                        {user.isOnline && (
-                          <div className='absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border border-slate-900' />
-                        )}
-                      </div>
-                      <div className='flex-1'>
-                        <div className='flex items-center gap-2'>
-                          <h4 className='text-white font-semibold'>
-                            {user.name}
-                          </h4>
-                          <Badge className={`${user.badgeColor} text-xs`}>
-                            {getBadgeIcon(user.badge)} {user.badge}
-                          </Badge>
-                        </div>
-                        <p className='text-slate-400 text-sm'>
-                          {user.username}
-                        </p>
-                        <div className='flex items-center gap-2 mt-1 text-xs text-slate-400'>
-                          <span>{user.quizzesCompleted} quizzes</span>
-                          <span>•</span>
-                          <span>{user.winRate}% win rate</span>
-                        </div>
-                      </div>
-                      <div className='text-right'>
-                        <p className='text-white font-semibold'>
-                          {user.points.toLocaleString()} pts
-                        </p>
-                        <div className='flex items-center gap-1 text-xs'>
-                          {getChangeIcon(user.change)}
-                          <span className={getChangeColor(user.change)}>
-                            {getChangeText(user.change)} this week
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Trending Stats */}
-                <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mt-6'>
-                  <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
-                    <div className='flex items-center justify-center mb-2'>
-                      <TrendingUp className='w-4 h-4 text-green-400' />
-                    </div>
-                    <p className='text-lg font-bold text-white'>+12</p>
-                    <p className='text-xs text-slate-400'>Biggest Gain</p>
-                  </div>
-                  <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
-                    <div className='flex items-center justify-center mb-2'>
-                      <Users className='w-4 h-4 text-blue-400' />
-                    </div>
-                    <p className='text-lg font-bold text-white'>156</p>
-                    <p className='text-xs text-slate-400'>New Users</p>
-                  </div>
-                  <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
-                    <div className='flex items-center justify-center mb-2'>
-                      <Zap className='w-4 h-4 text-orange-400' />
-                    </div>
-                    <p className='text-lg font-bold text-white'>89</p>
-                    <p className='text-xs text-slate-400'>Active Streaks</p>
-                  </div>
-                </div>
-              </div>
-            )}
+          <TabsContent value='trending'>
+            <TrendingTab users={trendingUsers} isLoading={isLoading} />
           </TabsContent>
         </Tabs>
       </CardContent>
     </Card>
   )
 }
+
+export { mockUsers, categoryUsers, trendingUsers, categories }
+export type { LeaderboardUser, Category }
