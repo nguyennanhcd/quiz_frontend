@@ -9,13 +9,15 @@ import { SwiperSlide, Swiper } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Navigation } from 'swiper/modules'
+import { Autoplay, Navigation } from 'swiper/modules'
 import { quizzesDifficulty } from '@/constant/quizDifficulty'
 
 const QuizCardDifficultyList = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState<
     'Easy' | 'Medium' | 'Hard'
   >('Easy')
+  const [isBeginning, setIsBeginning] = useState(true)
+  const [isEnd, setIsEnd] = useState(false)
 
   const swiperRef = useRef<SwiperType | null>(null)
 
@@ -55,10 +57,14 @@ const QuizCardDifficultyList = () => {
             ))}
           </div>
           <div className='flex items-center gap-1'>
-            <Button size='icon' onClick={handlePrevClick}>
+            <Button
+              size='icon'
+              onClick={handlePrevClick}
+              disabled={isBeginning}
+            >
               <ChevronLeft className='h-4 w-4' />
             </Button>
-            <Button size='icon' onClick={handleNextClick}>
+            <Button size='icon' onClick={handleNextClick} disabled={isEnd}>
               <ChevronRight className='h-4 w-4' />
             </Button>
           </div>
@@ -70,7 +76,22 @@ const QuizCardDifficultyList = () => {
           spaceBetween={30}
           slidesPerView={4}
           pagination={{ clickable: true }}
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: true
+          }}
+          onBeforeInit={(swiper) => {
+            swiperRef.current = swiper
+          }}
+          onInit={(swiper) => {
+            setIsBeginning(swiper.isBeginning)
+            setIsEnd(swiper.isEnd)
+          }}
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning)
+            setIsEnd(swiper.isEnd)
+          }}
           breakpoints={{
             // Mobile: auto 1 slide
             0: {

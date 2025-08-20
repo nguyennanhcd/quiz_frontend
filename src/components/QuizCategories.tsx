@@ -7,7 +7,9 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { Button } from './ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Navigation } from 'swiper/modules'
+import { Autoplay, Navigation } from 'swiper/modules'
+import { useRef, useState } from 'react'
+import type { Swiper as SwiperType } from 'swiper'
 
 interface CategoryCardProps {
   id: string
@@ -48,26 +50,51 @@ export default function QuizCategories({
 }: {
   categories: CategoryCardProps[]
 }) {
+  const swiperRef = useRef<SwiperType | null>(null)
+  const [isBeginning, setIsBeginning] = useState(true)
+  const [isEnd, setIsEnd] = useState(false)
+
   return (
     <div className='w-full max-w-full overflow-hidden mb-10'>
       <div className='flex items-center justify-between mb-4 sm:mb-6 px-4 sm:px-6'>
         <h2 className='text-xl sm:text-2xl font-bold'>Quiz Categories</h2>
         <div className='flex gap-2'>
-          <Button size='icon' className='quiz-swiper-button-prev h-10 w-10'>
+          <Button
+            size='icon'
+            className='h-10 w-10'
+            disabled={isBeginning}
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
             <ChevronLeft className='h-4 w-4' />
           </Button>
-          <Button size='icon' className='quiz-swiper-button-next h-10 w-10'>
+          <Button
+            size='icon'
+            className='h-10 w-10'
+            disabled={isEnd}
+            onClick={() => swiperRef.current?.slideNext()}
+          >
             <ChevronRight className='h-4 w-4' />
           </Button>
         </div>
       </div>
       <div className='w-full overflow-x-hidden px-4 sm:px-6'>
         <Swiper
+          onBeforeInit={(swiper) => {
+            swiperRef.current = swiper
+          }}
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning)
+            setIsEnd(swiper.isEnd)
+          }}
+          onInit={(swiper) => {
+            setIsBeginning(swiper.isBeginning)
+            setIsEnd(swiper.isEnd)
+          }}
           pagination={{ clickable: true }}
-          modules={[Navigation]}
-          navigation={{
-            prevEl: '.quiz-swiper-button-prev',
-            nextEl: '.quiz-swiper-button-next'
+          modules={[Navigation, Autoplay]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: true
           }}
           watchOverflow={true}
           centerInsufficientSlides={true}
@@ -76,24 +103,20 @@ export default function QuizCategories({
               slidesPerView: 1,
               spaceBetween: 10
             },
-            // Tablet
             640: {
               slidesPerView: 2,
               spaceBetween: 15
             },
-            // Tablet lớn / Laptop nhỏ
             768: {
               slidesPerView: 2.5,
               spaceBetween: 20
             },
-            // Laptop
             1024: {
               slidesPerView: 3,
               spaceBetween: 25
             },
-            // Desktop lớn
             1280: {
-              slidesPerView: 3.5,
+              slidesPerView: 4,
               spaceBetween: 30
             }
           }}

@@ -9,7 +9,7 @@ import { discussions } from '@/constant/discussion'
 
 export default function QuizDiscussions() {
   return (
-    <div className='min-h-screen w-full text-white p-4 sm:p-6 md:p-8'>
+    <div className='min-h-screen text-white p-4 md:p-8 lg:p-12'>
       <div className=''>
         {/* Header Section */}
         <div className='space-y-2'>

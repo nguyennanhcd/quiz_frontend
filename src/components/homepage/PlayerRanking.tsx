@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight, Swords } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Autoplay, Navigation } from 'swiper/modules'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -38,7 +38,15 @@ const PlayerRanking = () => {
       <div className='xl:w-[100%] container'>
         <Swiper
           pagination={{ clickable: true }}
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: true
+          }}
+          navigation={{
+            prevEl: '.player-swiper-button-prev',
+            nextEl: '.player-swiper-button-next'
+          }}
           breakpoints={{
             // Mobile: auto 1 slide
             0: {
