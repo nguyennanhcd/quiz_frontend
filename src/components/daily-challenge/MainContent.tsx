@@ -283,7 +283,7 @@ const MainContent = () => {
                 ))}
               </div>
               <p className='text-sm text-slate-400'>
-                Current streak: 4 days. Keep playing daily!
+                Current streak: 5 days. Keep playing daily!
               </p>
             </div>
 

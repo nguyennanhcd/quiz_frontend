@@ -21,19 +21,19 @@ export default function QuizForm() {
           <TabsList className='grid w-full grid-cols-3 bg-slate-700'>
             <TabsTrigger
               value='quiz-details'
-              className='text-base font-semibold data-[state=active]:bg-slate-800'
+              className='sm:text-base text-sm font-semibold data-[state=active]:bg-slate-800'
             >
               Quiz Details
             </TabsTrigger>
             <TabsTrigger
               value='questions'
-              className='text-base font-semibold data-[state=active]:bg-slate-700'
+              className='sm:text-base text-sm font-semibold data-[state=active]:bg-slate-700'
             >
               Questions
             </TabsTrigger>
             <TabsTrigger
               value='settings'
-              className='text-base font-semibold data-[state=active]:bg-slate-700'
+              className='sm:text-base text-sm font-semibold data-[state=active]:bg-slate-700'
             >
               Settings
             </TabsTrigger>

@@ -17,7 +17,7 @@ export const tournaments: Tournament[] = [
     startDate: '2023-06-01',
     endDate: '2023-06-15',
     registrationOpen: true,
-    categoryId: 'science'
+    category: 'Science'
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ export const tournaments: Tournament[] = [
     startDate: '2023-06-05',
     endDate: '2023-06-20',
     registrationOpen: false,
-    categoryId: 'history'
+    category: 'History'
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ export const tournaments: Tournament[] = [
     startDate: '2023-05-20',
     endDate: '2023-06-05',
     registrationOpen: false,
-    categoryId: 'pop-culture'
+    category: 'Pop Culture'
   },
   {
     id: 4,
@@ -66,6 +66,6 @@ export const tournaments: Tournament[] = [
     startDate: '2023-06-10',
     endDate: '2023-06-25',
     registrationOpen: true,
-    categoryId: 'geography'
+    category: 'Geography'
   }
 ]

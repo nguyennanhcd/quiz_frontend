@@ -13,16 +13,24 @@ export default function SpotAvailabilityIndicator({
   totalSpots,
   mode = 'default'
 }: SpotAvailabilityIndicatorProps) {
-  const displaySpots = Math.max(0, currentSpots)
+  // Đảm bảo currentSpots không vượt quá totalSpots
+  const displaySpots = Math.max(0, Math.min(currentSpots, totalSpots))
   const displayTotal = Math.max(1, totalSpots)
 
-  const occupiedPercentage = (displayTotal - displaySpots) / displayTotal
+  // Cảnh báo nếu currentSpots lớn hơn totalSpots
+  if (currentSpots > totalSpots) {
+    console.warn(
+      'currentSpots cannot be greater than totalSpots. Clamping to totalSpots.'
+    )
+  }
+
   const availablePercentage = displaySpots / displayTotal
 
-  const occupiedSegmentColor = useMemo(() => {
-    if (occupiedPercentage > 0.9) return 'rgb(239, 68, 68)' // Red
-    return 'rgb(255, 255, 255)' // White
-  }, [occupiedPercentage])
+  // Màu sắc cho cả hai chế độ (dựa trên availablePercentage)
+  const segmentColor = useMemo(() => {
+    if (availablePercentage < 0.1) return 'rgb(239, 68, 68)' // Đỏ khi chỗ trống dưới 10%
+    return 'rgb(255, 255, 255)' // Trắng nếu không
+  }, [availablePercentage])
 
   const unoccupiedSegmentColor = 'rgb(55, 65, 81)'
   const radius = 10
@@ -47,9 +55,9 @@ export default function SpotAvailabilityIndicator({
               r={radius}
               strokeWidth='4'
               fill='none'
-              stroke={occupiedSegmentColor}
+              stroke={segmentColor}
               strokeDasharray={circumference}
-              strokeDashoffset={circumference * (1 - occupiedPercentage)}
+              strokeDashoffset={circumference * (1 - availablePercentage)}
               strokeLinecap='round'
               transform='rotate(-90 12 12)'
             />
@@ -74,14 +82,14 @@ export default function SpotAvailabilityIndicator({
               r={radius}
               strokeWidth='1.5'
               fill='none'
-              stroke={occupiedSegmentColor}
+              stroke={segmentColor}
               strokeDasharray={circumference}
               strokeDashoffset={circumference * (1 - availablePercentage)}
               strokeLinecap='round'
               transform='rotate(-90 12 12)'
             />
           </svg>
-          <span className='text-[10px] text-white z-10 font-semibold'>
+          <span className='text-xs sm:text-xs text-white z-10 font-semibold'>
             {Math.round(availablePercentage * 100)}%
           </span>
         </div>

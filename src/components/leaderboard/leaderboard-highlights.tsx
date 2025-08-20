@@ -437,147 +437,138 @@ export function LeaderboardHighlights() {
           <TabsContent value='global' className='space-y-4'>
             {!isLoading && (
               <div className='relative'>
-                {/* First Place */}
-                {filteredUsers.slice(0, 1).map((user) => (
-                  <div
-                    key={user.id}
-                    className='flex flex-col items-center mb-6 sm:mb-8'
-                  >
-                    <div className='relative'>
-                      <div
-                        className={`w-16 sm:w-20 h-16 sm:h-20 rounded-full overflow-hidden border-4 ${user.borderColor}`}
-                      >
-                        <Image
-                          src={user.avatar || '/placeholder.svg'}
-                          alt={user.name}
-                          width={80}
-                          height={80}
-                          className='w-full h-full object-cover'
-                        />
-                      </div>
-                      <div
-                        className={`absolute -top-2 -right-2 w-6 sm:w-8 h-6 sm:h-8 ${user.rankBgColor} rounded-full flex items-center justify-center`}
-                      >
-                        <span
-                          className={`font-bold text-xs sm:text-sm ${user.rankTextColor}`}
-                        >
-                          {user.rank}
-                        </span>
-                      </div>
-                      <div className='absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2'>
-                        <div className='w-5 sm:w-6 h-5 sm:h-6 text-yellow-400'>
-                          👑
-                        </div>
-                      </div>
-                      {user.isOnline && (
-                        <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
-                      )}
-                    </div>
-                    <h3 className='text-white font-bold text-sm sm:text-base mt-2'>
-                      {user.name}
-                    </h3>
-                    <p className='text-slate-400 text-xs'>{user.username}</p>
-                    <p className='text-slate-300 text-xs sm:text-sm'>
-                      {user.points.toLocaleString()} pts
-                    </p>
-                    <div className='flex items-center gap-1 sm:gap-2 mt-1'>
-                      <Badge
-                        className={`${user.badgeColor} text-xs sm:text-sm`}
-                      >
-                        {getBadgeIcon(user.badge)} {user.badge}
-                      </Badge>
-                      <Badge
-                        variant='outline'
-                        className='border-yellow-400 text-yellow-400 text-xs sm:text-sm'
-                      >
-                        ⭐{user.stars}
-                      </Badge>
-                    </div>
-                    <div className='flex items-center gap-2 mt-2 text-xs text-slate-400'>
-                      <div className='flex items-center gap-1'>
-                        <Zap className='w-3 h-3' />
-                        <span>{user.streak} day streak</span>
-                      </div>
-                      <div className='flex items-center gap-1'>
-                        {getChangeIcon(user.change)}
-                        <span className={getChangeColor(user.change)}>
-                          {getChangeText(user.change)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-
-                {/* Second and Third Place */}
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6'>
-                  {filteredUsers.slice(1, 3).map((user) => (
-                    <div
-                      key={user.id}
-                      className='flex flex-col items-center mb-6 sm:mb-8'
-                    >
-                      <div className='relative'>
-                        <div
-                          className={`w-16 sm:w-20 h-16 sm:h-20 rounded-full overflow-hidden border-4 ${user.borderColor}`}
-                        >
+                <div className='flex items-end justify-center gap-4 mb-8'>
+                  {/* Second Place - Left */}
+                  {filteredUsers[1] && (
+                    <div className='flex flex-col items-center'>
+                      <div className='relative mb-3'>
+                        <div className='w-20 h-20 rounded-full overflow-hidden border-4 border-slate-400'>
                           <Image
-                            src={user.avatar || '/placeholder.svg'}
-                            alt={user.name}
+                            src={filteredUsers[1].avatar || '/placeholder.svg'}
+                            alt={filteredUsers[1].name}
                             width={80}
                             height={80}
                             className='w-full h-full object-cover'
                           />
                         </div>
-                        <div
-                          className={`absolute -top-2 -right-2 w-6 sm:w-8 h-6 sm:h-8 ${user.rankBgColor} rounded-full flex items-center justify-center`}
-                        >
-                          <span
-                            className={`font-bold text-xs sm:text-sm ${user.rankTextColor}`}
-                          >
-                            {user.rank}
+                        <div className='absolute -top-2 -right-2 w-8 h-8 bg-slate-400 rounded-full flex items-center justify-center'>
+                          <span className='font-bold text-sm text-black'>
+                            2
                           </span>
                         </div>
-                        {user.isOnline && (
+                        {filteredUsers[1].isOnline && (
                           <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
                         )}
                       </div>
-                      <div className='text-center mt-2'>
-                        <h3 className='text-white font-bold text-sm sm:text-base'>
-                          {user.name}
-                        </h3>
-                        <p className='text-slate-400 text-xs'>
-                          {user.username}
-                        </p>
-                        <p className='text-slate-300 text-xs sm:text-sm'>
-                          {user.points.toLocaleString()} pts
-                        </p>
-                        <div className='flex items-center gap-1 sm:gap-2 mt-1'>
-                          <Badge
-                            className={`${user.badgeColor} text-xs sm:text-sm`}
-                          >
-                            {getBadgeIcon(user.badge)} {user.badge}
-                          </Badge>
-                          <Badge
-                            variant='outline'
-                            className='border-yellow-400 text-yellow-400 text-xs sm:text-sm'
-                          >
-                            ⭐{user.stars}
-                          </Badge>
-                        </div>
-                        <div className='flex items-center gap-2 mt-2 text-xs text-slate-400'>
-                          <div className='flex items-center gap-1'>
-                            <Zap className='w-3 h-3' />
-                            <span>{user.streak} day streak</span>
-                          </div>
-                          <div className='flex items-center gap-1'>
-                            {getChangeIcon(user.change)}
-                            <span className={getChangeColor(user.change)}>
-                              {getChangeText(user.change)}
-                            </span>
-                          </div>
-                        </div>
+                      <h3 className='text-white font-bold text-base mb-1'>
+                        {filteredUsers[1].name}
+                      </h3>
+                      <p className='text-slate-300 text-sm mb-2'>
+                        {filteredUsers[1].points.toLocaleString()} pts
+                      </p>
+                      <div className='flex items-center gap-2 mb-2'>
+                        <Badge className='bg-slate-600 hover:bg-slate-700 text-xs'>
+                          💎 Platinum
+                        </Badge>
+                        <Badge
+                          variant='outline'
+                          className='border-yellow-400 text-yellow-400 text-xs'
+                        >
+                          ⭐65
+                        </Badge>
                       </div>
+                      <div className='bg-slate-800/50 rounded-lg p-4 w-32 h-24'></div>
                     </div>
-                  ))}
+                  )}
+
+                  {/* First Place - Center (Elevated) */}
+                  {filteredUsers[0] && (
+                    <div className='flex flex-col items-center -mt-8'>
+                      <div className='relative mb-3'>
+                        <div className='w-24 h-24 rounded-full overflow-hidden border-4 border-yellow-400'>
+                          <Image
+                            src={filteredUsers[0].avatar || '/placeholder.svg'}
+                            alt={filteredUsers[0].name}
+                            width={96}
+                            height={96}
+                            className='w-full h-full object-cover'
+                          />
+                        </div>
+                        <div className='absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center'>
+                          <span className='font-bold text-sm text-black'>
+                            1
+                          </span>
+                        </div>
+                        <div className='absolute -top-6 left-1/2 transform -translate-x-1/2'>
+                          <div className='text-3xl'>👑</div>
+                        </div>
+                        {filteredUsers[0].isOnline && (
+                          <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
+                        )}
+                      </div>
+                      <h3 className='text-white font-bold text-lg mb-1'>
+                        {filteredUsers[0].name}
+                      </h3>
+                      <p className='text-slate-300 text-base mb-2'>
+                        {filteredUsers[0].points.toLocaleString()} pts
+                      </p>
+                      <div className='flex items-center gap-2 mb-2'>
+                        <Badge className='bg-blue-600 hover:bg-blue-700 text-sm'>
+                          💎 Diamond
+                        </Badge>
+                        <Badge
+                          variant='outline'
+                          className='border-yellow-400 text-yellow-400 text-sm'
+                        >
+                          ⭐78
+                        </Badge>
+                      </div>
+                      <div className='bg-slate-800/50 rounded-lg p-4 w-36 h-32'></div>
+                    </div>
+                  )}
+
+                  {/* Third Place - Right */}
+                  {filteredUsers[2] && (
+                    <div className='flex flex-col items-center'>
+                      <div className='relative mb-3'>
+                        <div className='w-20 h-20 rounded-full overflow-hidden border-4 border-orange-400'>
+                          <Image
+                            src={filteredUsers[2].avatar || '/placeholder.svg'}
+                            alt={filteredUsers[2].name}
+                            width={80}
+                            height={80}
+                            className='w-full h-full object-cover'
+                          />
+                        </div>
+                        <div className='absolute -top-2 -right-2 w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center'>
+                          <span className='font-bold text-sm text-black'>
+                            3
+                          </span>
+                        </div>
+                        {filteredUsers[2].isOnline && (
+                          <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
+                        )}
+                      </div>
+                      <h3 className='text-white font-bold text-base mb-1'>
+                        {filteredUsers[2].name}
+                      </h3>
+                      <p className='text-slate-300 text-sm mb-2'>
+                        {filteredUsers[2].points.toLocaleString()} pts
+                      </p>
+                      <div className='flex items-center gap-2 mb-2'>
+                        <Badge className='bg-yellow-600 hover:bg-yellow-700 text-xs'>
+                          🥇 Gold
+                        </Badge>
+                        <Badge
+                          variant='outline'
+                          className='border-yellow-400 text-yellow-400 text-xs'
+                        >
+                          ⭐59
+                        </Badge>
+                      </div>
+                      <div className='bg-slate-800/50 rounded-lg p-4 w-32 h-20'></div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Additional Stats */}
@@ -660,7 +651,7 @@ export function LeaderboardHighlights() {
                                 </span>
                                 <div className='w-6 h-6 rounded-full overflow-hidden'>
                                   <Image
-                                    src={user.avatar}
+                                    src={user.avatar || '/placeholder.svg'}
                                     alt={user.name}
                                     width={24}
                                     height={24}
@@ -720,7 +711,7 @@ export function LeaderboardHighlights() {
                           <div className='relative'>
                             <div className='w-10 h-10 rounded-full overflow-hidden'>
                               <Image
-                                src={user.avatar}
+                                src={user.avatar || '/placeholder.svg'}
                                 alt={user.name}
                                 width={40}
                                 height={40}
@@ -783,7 +774,7 @@ export function LeaderboardHighlights() {
                       <div className='relative'>
                         <div className='w-12 h-12 rounded-full overflow-hidden'>
                           <Image
-                            src={user.avatar}
+                            src={user.avatar || '/placeholder.svg'}
                             alt={user.name}
                             width={48}
                             height={48}
