@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import categories from '@/constant/category'
+import categories from '@/constant/categories'
 import QuizCategories from '@/components/QuizCategories'
 import QuizCard from '@/components/QuizCard'
 import Link from 'next/link'

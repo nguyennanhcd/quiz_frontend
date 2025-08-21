@@ -9,7 +9,7 @@ import { Autoplay, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { PlayerCard } from '../PlayerCard'
-import { Players } from '@/constant/playersRank'
+import { players } from '@/constant/players'
 
 const PlayerRanking = () => {
   return (
@@ -75,7 +75,7 @@ const PlayerRanking = () => {
             }
           }}
         >
-          {Players.map((player, index) => (
+          {players.map((player, index) => (
             <SwiperSlide key={index} className='w-full'>
               <PlayerCard {...player} />
             </SwiperSlide>

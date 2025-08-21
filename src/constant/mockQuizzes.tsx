@@ -1,8 +1,67 @@
-import { Quiz } from '@/types/quiz'
+export interface Quiz {
+  id: string
+  title: string
+  description?: string
+  duration: number
+  questionCount?: number
+  difficulty: 'Easy' | 'Medium' | 'Hard'
+  image: string
+  currentPlayers: number
+  maxPlayers?: number
+  requirements?: string
+  tags?: string[]
+  categories?: string[]
+  isPopular?: boolean
+  isFeatured?: boolean
+  rating?: number
+  creator?: {
+    userId?: number
+    username: string
+    name: string
+    position?: string
+    imageURL: string
+    quizzesCreated?: number
+    rating?: number
+  }
+  createdAt?: string
+  updatedAt?: string
+  questions?: {
+    id: number
+    question: string
+    image: string
+    answers: { label: string; value: string }[]
+    correctAnswer: string
+  }[]
+  quizReview?: {
+    userId?: number
+    username: string
+    rating: number
+    comment: string
+    date?: string
+  }[]
+  leaderBoard?: {
+    userId?: number
+    username: string
+    score: number | string
+    rank: number
+    completedAt?: string
+    avatar?: string
+    time?: string
+  }[]
+  badges?: string[]
+  timeLeft?: number
+  reward: number
+  spots?: number
+  spotsLeft?: number
+  bgGradient?: string
+  almostFull?: boolean
+  authorAvatarSrc?: string
+  authorName?: string
+}
 
-export const mockQuizzes: Quiz[] = [
+export const quizzes: Quiz[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Basic Math Quiz',
     description:
       'Test your math knowledge with questions on algebra and geometry.',
@@ -308,12 +367,13 @@ export const mockQuizzes: Quiz[] = [
     reward: 50,
     spots: 20,
     spotsLeft: 10,
-    players: 10,
     bgGradient: 'from-blue-500 to-indigo-600',
-    almostFull: true // Added: spotsLeft (10) is 50% of spots (20), which is > 10%
+    almostFull: true,
+    authorAvatarSrc: '/avatarPlaceholder.webp',
+    authorName: 'Dr. John Smith'
   },
   {
-    id: 2,
+    id: '2',
     title: 'Vietnamese Literature Quiz',
     description: 'Explore famous Vietnamese literary works.',
     duration: 45,
@@ -376,8 +436,186 @@ export const mockQuizzes: Quiz[] = [
     reward: 75,
     spots: 500,
     spotsLeft: 485,
-    players: 15,
     bgGradient: 'from-purple-500 to-pink-600',
-    almostFull: false // Added: spotsLeft (485) is 97% of spots (500), which is < 10%
+    almostFull: false,
+    authorAvatarSrc: '/avatarPlaceholder.webp',
+    authorName: 'Dr. Nguyen Hoang Anh'
+  },
+  {
+    id: '3',
+    title: 'Pop Culture Essentials',
+    description: undefined,
+    duration: 8,
+    questionCount: undefined,
+    difficulty: 'Medium',
+    image: '/placeholder.webp',
+    currentPlayers: 60,
+    maxPlayers: 100,
+    requirements: undefined,
+    tags: ['Entertainment'],
+    categories: ['Entertainment'],
+    isPopular: undefined,
+    isFeatured: undefined,
+    rating: undefined,
+    creator: {
+      userId: 103,
+      username: 'AlexSmith',
+      name: 'Alex Smith',
+      imageURL: '/avatarPlaceholder.webp',
+      quizzesCreated: 5,
+      rating: 4.2
+    },
+    createdAt: '2025-06-20T10:00:00Z',
+    updatedAt: '2025-07-01T14:00:00Z',
+    questions: undefined,
+    quizReview: [
+      {
+        userId: 201,
+        username: 'MarvelFan',
+        rating: 5,
+        comment: 'Excellent quiz! Really tests your knowledge of the MCU.',
+        date: '2025-07-01T12:00:00Z'
+      },
+      {
+        userId: 202,
+        username: 'QuizLover',
+        rating: 4,
+        comment: 'Good variety of questions, some were quite challenging.',
+        date: '2025-07-02T09:30:00Z'
+      },
+      {
+        userId: 203,
+        username: 'Avenger',
+        rating: 5,
+        comment: 'Perfect for Marvel fans. I learned some new facts too!',
+        date: '2025-07-03T16:45:00Z'
+      }
+    ],
+    leaderBoard: [
+      {
+        username: 'ThorFan',
+        score: '98%',
+        rank: 1,
+        avatar: '/avatarPlaceholder.webp',
+        time: '12:45'
+      },
+      {
+        username: 'IronManRules',
+        score: '95%',
+        rank: 2,
+        avatar: '/avatarPlaceholder.webp',
+        time: '13:20'
+      },
+      {
+        username: 'CaptainAmerica',
+        score: '92%',
+        rank: 3,
+        avatar: '/avatarPlaceholder.webp',
+        time: '14:05'
+      },
+      {
+        username: 'BlackWidow',
+        score: '90%',
+        rank: 4,
+        avatar: '/avatarPlaceholder.webp',
+        time: '15:30'
+      },
+      {
+        username: 'HulkSmash',
+        score: '88%',
+        rank: 5,
+        avatar: '/avatarPlaceholder.webp',
+        time: '16:15'
+      }
+    ],
+    badges: undefined,
+    timeLeft: undefined,
+    reward: 2.5,
+    spots: 100,
+    spotsLeft: 40,
+    bgGradient: undefined,
+    almostFull: false,
+    authorAvatarSrc: '/avatarPlaceholder.webp',
+    authorName: 'Alex Smith'
+  },
+  {
+    id: '4',
+    title: 'Science for Beginners',
+    description: undefined,
+    duration: 12,
+    questionCount: undefined,
+    difficulty: 'Medium',
+    image: '/placeholder.webp',
+    currentPlayers: 90,
+    maxPlayers: 100,
+    requirements: undefined,
+    tags: ['Science'],
+    categories: ['Science'],
+    isPopular: undefined,
+    isFeatured: undefined,
+    rating: undefined,
+    creator: {
+      userId: 104,
+      username: 'AlexSmith',
+      name: 'Alex Smith',
+      imageURL: '/avatarPlaceholder.webp',
+      quizzesCreated: 3,
+      rating: 4.0
+    },
+    createdAt: '2025-06-25T11:00:00Z',
+    updatedAt: '2025-07-02T13:00:00Z',
+    questions: undefined,
+    quizReview: undefined,
+    leaderBoard: undefined,
+    badges: undefined,
+    timeLeft: undefined,
+    reward: 3.5,
+    spots: 100,
+    spotsLeft: 10,
+    bgGradient: undefined,
+    almostFull: true,
+    authorAvatarSrc: '/avatarPlaceholder.webp',
+    authorName: 'Alex Smith'
+  },
+  {
+    id: '5',
+    title: 'Sports Fundamentals',
+    description: undefined,
+    duration: 10,
+    questionCount: undefined,
+    difficulty: 'Hard',
+    image: '/placeholder.webp',
+    currentPlayers: 40,
+    maxPlayers: 100,
+    requirements: undefined,
+    tags: ['Sports'],
+    categories: ['Sports'],
+    isPopular: undefined,
+    isFeatured: undefined,
+    rating: undefined,
+    creator: {
+      userId: 105,
+      username: 'AlexSmith',
+      name: 'Alex Smith',
+      imageURL: '/avatarPlaceholder.webp',
+      quizzesCreated: 7,
+      rating: 4.5
+    },
+    createdAt: '2025-06-30T15:00:00Z',
+    updatedAt: '2025-07-03T10:00:00Z',
+    questions: undefined,
+    quizReview: undefined,
+    leaderBoard: undefined,
+    badges: undefined,
+    timeLeft: undefined,
+    reward: 1.0,
+    spots: 100,
+    spotsLeft: 60,
+    bgGradient: undefined,
+    almostFull: false,
+    authorAvatarSrc: '/avatarPlaceholder.webp',
+    authorName: 'Alex Smith'
   }
 ]
+
+export default quizzes

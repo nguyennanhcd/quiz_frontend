@@ -23,6 +23,7 @@ import { Badge } from '@/components/ui/badge'
 import { badges } from '@/constant/badges'
 import { challengeData } from '@/constant/challengeHistoryData'
 import Image from 'next/image'
+import { players } from '@/constant/players'
 
 const MainContent = () => {
   const [questionTime, setQuestionTime] = useState<string>('5:00')
@@ -250,7 +251,7 @@ const MainContent = () => {
         </Card>
 
         {/* Rewards & Streaks */}
-        <Card className='bg-slate-800 border-slate-700 py-6'>
+        <Card className='bg-main border-slate-700 py-6'>
           <CardHeader>
             <CardTitle className='flex items-center space-x-2'>
               <Trophy className='h-5 w-5' />
@@ -268,9 +269,9 @@ const MainContent = () => {
                   <div
                     key={day}
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                      day <= 4
+                      day <= (players[0]?.streak || 0)
                         ? 'bg-blue-600 text-white'
-                        : day === 7
+                        : (players[0]?.streak || 0) === 7
                         ? 'bg-yellow-500 text-black relative'
                         : 'bg-slate-700 text-slate-400'
                     }`}
@@ -283,7 +284,7 @@ const MainContent = () => {
                 ))}
               </div>
               <p className='text-sm text-slate-400'>
-                Current streak: 5 days. Keep playing daily!
+                Current streak: {players[0].streak} days. Keep playing daily!
               </p>
             </div>
 
@@ -293,21 +294,46 @@ const MainContent = () => {
                 <span className='font-medium'>Streak Rewards</span>
               </div>
               <div className='grid grid-cols-2 gap-2'>
-                {streakRewards.map((reward) => (
-                  <div
-                    key={reward.days}
-                    className='bg-slate-700 rounded-lg p-3 text-center'
-                  >
-                    <div className='font-bold text-sm'>{reward.days} Days</div>
-                    <div className='text-xs text-slate-300 mt-1'>
-                      {reward.reward}
-                    </div>
-                  </div>
-                ))}
+                {streakRewards
+                  .filter((reward) => reward.days <= 7)
+                  .map((reward) => {
+                    const isCurrentStreak =
+                      reward.days === (players[0]?.streak || 0)
+                    const isUnlocked = reward.days <= (players[0]?.streak || 0)
+
+                    return (
+                      <div
+                        key={reward.days}
+                        className={`rounded-lg p-3 text-center transition-all ${
+                          isCurrentStreak
+                            ? 'bg-orange-600 border-2 border-orange-400'
+                            : isUnlocked
+                            ? 'bg-green-600'
+                            : 'bg-slate-700'
+                        }`}
+                      >
+                        <div className='font-bold text-sm'>
+                          {reward.days} Days
+                        </div>
+                        <div className='text-xs text-slate-300 mt-1'>
+                          {reward.reward}
+                        </div>
+                        {isCurrentStreak && (
+                          <div className='text-xs text-orange-200 mt-1 font-medium'>
+                            Current Streak!
+                          </div>
+                        )}
+                        {isUnlocked && !isCurrentStreak && (
+                          <div className='text-xs text-green-200 mt-1'>
+                            ✓ Unlocked
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
               </div>
             </div>
-          </CardContent>
-          <CardContent className=''>
+
             <div className='flex items-center gap-3 mb-8'>
               <div className='w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center'>
                 <Star className='h-4 w-4' />
