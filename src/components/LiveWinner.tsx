@@ -85,7 +85,7 @@ export default function LiveWinners() {
                     </div>
                   </div>
                 </div>
-                <div className=' text-sm'>
+                <div className=' text-sm truncate'>
                   <span role='img' aria-label='Money bag'>
                     💰
                   </span>

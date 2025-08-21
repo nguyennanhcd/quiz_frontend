@@ -4,7 +4,7 @@ import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import FeaturedQuiz from '@/components/FeaturedQuiz'
-import { briefCategories } from '@/constant/briefCategories'
+import { categories } from '@/constant/categories'
 import MainContent from '@/components/quizzes/MainContent'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode } from 'swiper/modules'
@@ -42,7 +42,7 @@ export default function QuizPlatform() {
             freeMode={true}
             className='category-swiper'
           >
-            {briefCategories.map((category) => (
+            {categories.map((category) => (
               <SwiperSlide key={category.name} className='!w-auto'>
                 <Button
                   className={`whitespace-nowrap rounded-full ${

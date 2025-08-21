@@ -20,9 +20,8 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { players } from '@/constant/players'
-import { Player } from '@/constant/playersRank'
 
-const getBadgeColor = (badge: Player['badge']) => {
+const getBadgeColor = (badge: string) => {
   switch (badge) {
     case 'Diamond':
       return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50'
@@ -38,7 +37,7 @@ const getBadgeColor = (badge: Player['badge']) => {
 export default function GlobalLeaderboard() {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('Score') // State for sort criterion
-  const maxScore = Math.max(...players.map((p) => p.score))
+  const maxScore = Math.max(...players.map((p) => p.score || 0))
 
   // Filter players based on search query
   const filteredPlayers = players.filter((player) =>
@@ -49,17 +48,17 @@ export default function GlobalLeaderboard() {
   const sortedPlayers = [...filteredPlayers].sort((a, b) => {
     switch (sortBy) {
       case 'Score':
-        return b.score - a.score // Descending
+        return (b.score || 0) - (a.score || 0) // Descending
       case 'Level':
-        return b.level - a.level // Descending
+        return (b.level || 0) - (a.level || 0) // Descending
       case 'Quizzes':
-        return b.quizzes - a.quizzes // Descending
+        return (b.quizzes || 0) - (a.quizzes || 0) // Descending
       case 'Streak':
-        return b.streak - a.streak // Descending
+        return (b.streak || 0) - (a.streak || 0) // Descending
       case 'Name':
         return a.name.localeCompare(b.name) // Ascending
       default:
-        return b.score - a.score // Default to Score
+        return (b.score || 0) - (a.score || 0) // Default to Score
     }
   })
 
@@ -230,13 +229,13 @@ export default function GlobalLeaderboard() {
             {/* Score */}
             <div className='flex flex-col items-start'>
               <span className='font-semibold mb-1'>
-                {player.score.toLocaleString()}
+                {player.score?.toLocaleString()}
               </span>
               <div className='w-full h-1.5 rounded-full bg-[#3a3a5e]'>
                 <div
                   className='h-full rounded-full'
                   style={{
-                    width: `${(player.score / maxScore) * 100}%`,
+                    width: `${((player.score || 0) / maxScore) * 100}%`,
                     background:
                       index === 0
                         ? '#f59e0b'
@@ -269,7 +268,7 @@ export default function GlobalLeaderboard() {
               <Button
                 variant='outline'
                 className={`rounded-full px-3 py-1 h-auto text-xs font-medium flex items-center gap-1
-                  ${getBadgeColor(player.badge)}
+                  ${getBadgeColor(player.badge || 'Gold')}
                 `}
               >
                 <Trophy className='w-3 h-3' />
