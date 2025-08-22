@@ -1,19 +1,19 @@
 export interface Category {
-  id?: string
+  id: string
   name: string
-  icon?: string
-  active?: boolean
-  description?: string
-  color?: string
-  textColor?: string
-  count?: number
-  slug?: string
-  popularity?: number
-  difficultyRange?: [number, number]
-  createdAt?: string
-  updatedAt?: string
-  isFeatured?: boolean
-  imageUrl?: string
+  icon: string
+  active: boolean
+  description: string
+  color: string
+  textColor: string
+  count: number
+  slug: string
+  popularity: number
+  difficultyRange: [number, number]
+  createdAt: string
+  updatedAt: string
+  isFeatured: boolean
+  imageUrl: string
 }
 
 export const categories: Category[] = [
@@ -22,119 +22,119 @@ export const categories: Category[] = [
     name: 'All Categories',
     icon: '🌐',
     active: true,
-    description: undefined,
-    color: undefined,
-    textColor: undefined,
-    count: undefined,
-    slug: undefined,
-    popularity: undefined,
-    difficultyRange: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-    isFeatured: undefined,
-    imageUrl: undefined
+    description: 'Explore quizzes across all available categories.',
+    color: 'bg-gray-500',
+    textColor: 'text-white',
+    count: 100,
+    slug: 'all-categories',
+    popularity: 100,
+    difficultyRange: [1, 5],
+    createdAt: '2023-10-01T08:00:00Z',
+    updatedAt: '2025-08-01T12:00:00Z',
+    isFeatured: true,
+    imageUrl: '/categories/all-categories.webp'
   },
   {
     id: 'science',
     name: 'Science',
     icon: '🧪',
     active: false,
-    description: undefined,
-    color: undefined,
-    textColor: undefined,
-    count: undefined,
-    slug: undefined,
-    popularity: undefined,
-    difficultyRange: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-    isFeatured: undefined,
-    imageUrl: undefined
+    description: 'Test your knowledge in physics, chemistry, and biology.',
+    color: 'bg-blue-500',
+    textColor: 'text-white',
+    count: 15,
+    slug: 'science',
+    popularity: 85,
+    difficultyRange: [2, 4],
+    createdAt: '2023-11-01T09:00:00Z',
+    updatedAt: '2025-07-10T14:00:00Z',
+    isFeatured: false,
+    imageUrl: '/categories/science.webp'
   },
   {
     id: 'history',
     name: 'History',
     icon: '🏛️',
     active: false,
-    description: undefined,
-    color: undefined,
-    textColor: undefined,
-    count: undefined,
-    slug: undefined,
-    popularity: undefined,
-    difficultyRange: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-    isFeatured: undefined,
-    imageUrl: undefined
+    description: 'Dive into quizzes about historical events and figures.',
+    color: 'bg-green-500',
+    textColor: 'text-white',
+    count: 12,
+    slug: 'history',
+    popularity: 70,
+    difficultyRange: [2, 3],
+    createdAt: '2023-12-01T10:00:00Z',
+    updatedAt: '2025-07-15T15:00:00Z',
+    isFeatured: false,
+    imageUrl: '/categories/history.webp'
   },
   {
     id: 'geography',
     name: 'Geography',
     icon: '🌍',
     active: false,
-    description: undefined,
-    color: undefined,
-    textColor: undefined,
-    count: undefined,
-    slug: undefined,
-    popularity: undefined,
-    difficultyRange: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-    isFeatured: undefined,
-    imageUrl: undefined
+    description: 'Explore quizzes about countries, capitals, and landscapes.',
+    color: 'bg-teal-500',
+    textColor: 'text-white',
+    count: 10,
+    slug: 'geography',
+    popularity: 65,
+    difficultyRange: [1, 3],
+    createdAt: '2023-12-10T11:00:00Z',
+    updatedAt: '2025-07-20T16:00:00Z',
+    isFeatured: false,
+    imageUrl: '/categories/geography.webp'
   },
   {
     id: 'mathematics',
     name: 'Mathematics',
     icon: '📊',
     active: false,
-    description: undefined,
-    color: undefined,
-    textColor: undefined,
-    count: undefined,
-    slug: undefined,
-    popularity: undefined,
-    difficultyRange: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-    isFeatured: undefined,
-    imageUrl: undefined
+    description: 'Challenge your skills in algebra, geometry, and more.',
+    color: 'bg-indigo-500',
+    textColor: 'text-white',
+    count: 20,
+    slug: 'mathematics',
+    popularity: 80,
+    difficultyRange: [2, 5],
+    createdAt: '2023-11-15T12:00:00Z',
+    updatedAt: '2025-07-25T17:00:00Z',
+    isFeatured: true,
+    imageUrl: '/categories/mathematics.webp'
   },
   {
     id: 'literature',
     name: 'Literature',
     icon: '📚',
     active: false,
-    description: undefined,
-    color: undefined,
-    textColor: undefined,
-    count: undefined,
-    slug: undefined,
-    popularity: undefined,
-    difficultyRange: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-    isFeatured: undefined,
-    imageUrl: undefined
+    description: 'Test your knowledge of books, authors, and literary works.',
+    color: 'bg-pink-500',
+    textColor: 'text-white',
+    count: 8,
+    slug: 'literature',
+    popularity: 60,
+    difficultyRange: [2, 4],
+    createdAt: '2024-01-01T13:00:00Z',
+    updatedAt: '2025-07-30T18:00:00Z',
+    isFeatured: false,
+    imageUrl: '/categories/literature.webp'
   },
   {
     id: 'sports',
     name: 'Sports',
     icon: '🏆',
     active: false,
-    description: undefined,
-    color: undefined,
-    textColor: undefined,
-    count: undefined,
-    slug: undefined,
-    popularity: undefined,
-    difficultyRange: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-    isFeatured: undefined,
-    imageUrl: undefined
+    description: 'Quizzes about sports, athletes, and competitions.',
+    color: 'bg-red-600',
+    textColor: 'text-white',
+    count: 7,
+    slug: 'sports',
+    popularity: 75,
+    difficultyRange: [1, 3],
+    createdAt: '2024-01-15T14:00:00Z',
+    updatedAt: '2025-08-01T19:00:00Z',
+    isFeatured: false,
+    imageUrl: '/categories/sports.webp'
   },
   {
     id: 'music',
@@ -152,7 +152,7 @@ export const categories: Category[] = [
     createdAt: '2024-02-15T10:30:00Z',
     updatedAt: '2025-06-05T15:45:00Z',
     isFeatured: false,
-    imageUrl: '/categories.webp'
+    imageUrl: '/categories/music.webp'
   },
   {
     id: 'movies',
@@ -170,12 +170,12 @@ export const categories: Category[] = [
     createdAt: '2023-11-01T08:00:00Z',
     updatedAt: '2025-07-10T12:00:00Z',
     isFeatured: true,
-    imageUrl: '/categories.webp'
+    imageUrl: '/categories/movies.webp'
   },
   {
     id: 'politics',
     name: 'Politics',
-    icon: undefined,
+    icon: '🗳️',
     active: false,
     description:
       'Dive into quizzes about global politics, history, and current affairs.',
@@ -188,12 +188,12 @@ export const categories: Category[] = [
     createdAt: '2024-08-20T09:15:00Z',
     updatedAt: '2025-07-01T14:00:00Z',
     isFeatured: false,
-    imageUrl: '/categories.webp'
+    imageUrl: '/categories/politics.webp'
   },
   {
     id: 'puzzle',
     name: 'Puzzle',
-    icon: undefined,
+    icon: '🧩',
     active: false,
     description:
       'Challenge your brain with logic puzzles, riddles, and problem-solving tasks.',
@@ -206,7 +206,7 @@ export const categories: Category[] = [
     createdAt: '2023-12-05T11:00:00Z',
     updatedAt: '2025-07-15T17:30:00Z',
     isFeatured: true,
-    imageUrl: '/categories.webp'
+    imageUrl: '/categories/puzzle.webp'
   }
 ]
 

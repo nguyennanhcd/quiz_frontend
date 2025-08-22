@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import { useState } from 'react'
 import SpotAvailabilityIndicator from '@/components/SpotAvailabiltyIndicator'
-import { mockQuizzes } from '@/constant/mockQuizzes'
+import { quizzes } from '@/constant/mockQuizzes'
 
 const FeaturedQuiz = () => {
   const [activeTab, setActiveTab] = useState('All')
@@ -19,7 +19,7 @@ const FeaturedQuiz = () => {
     { name: "Editor's", active: activeTab === "Editor's" }
   ]
 
-  const filteredQuizzes = mockQuizzes.filter((quiz) => {
+  const filteredQuizzes = quizzes.filter((quiz) => {
     if (activeTab === 'All') {
       return true
     } else if (activeTab === 'Hot') {
@@ -174,18 +174,20 @@ const FeaturedQuiz = () => {
                 <div className='flex items-start flex-col flex-1'>
                   <div className='flex items-center gap-2 mb-1'>
                     <div className='*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2'>
-                      {quiz.players > 0 &&
-                        (quiz.players > 3 ? (
+                      {quiz.currentPlayers > 0 &&
+                        (quiz.currentPlayers > 3 ? (
                           <Avatar className='w-6 h-6'>
                             <AvatarImage
                               src={quiz.creator.imageURL || '/placeholder.svg'}
                               alt={quiz.creator.name}
                             />
-                            <AvatarFallback>{quiz.players - 3}+</AvatarFallback>
+                            <AvatarFallback>
+                              {quiz.currentPlayers - 3}+
+                            </AvatarFallback>
                           </Avatar>
                         ) : (
-                          quiz.players > 0 &&
-                          Array.from({ length: quiz.players }).map(
+                          quiz.currentPlayers > 0 &&
+                          Array.from({ length: quiz.currentPlayers }).map(
                             (_, index) => (
                               <Avatar key={index} className='w-6 h-6'>
                                 <AvatarImage
@@ -199,7 +201,7 @@ const FeaturedQuiz = () => {
                         ))}
                     </div>
                     <span className='text-sm text-white font-semibold'>
-                      {quiz.players} players joined
+                      {quiz.currentPlayers} players joined
                     </span>
                   </div>
                   <p className='text-xs text-slate-400'>

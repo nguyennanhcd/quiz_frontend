@@ -10,7 +10,7 @@ import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Autoplay, Navigation } from 'swiper/modules'
-import { quizzesDifficulty } from '@/constant/quizDifficulty'
+import { quizzes } from '@/constant/mockQuizzes'
 
 const QuizCardDifficultyList = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState<
@@ -93,33 +93,42 @@ const QuizCardDifficultyList = () => {
             setIsEnd(swiper.isEnd)
           }}
           breakpoints={{
-            // Mobile: auto 1 slide
             0: {
               slidesPerView: 1,
               spaceBetween: 10
             },
-            // Tablet
             640: {
               slidesPerView: 2,
               spaceBetween: 15
             },
-            // Tablet lớn / Laptop nhỏ
             768: {
               slidesPerView: 3,
               spaceBetween: 20
             },
-            // Laptop
             1024: {
               slidesPerView: 4,
               spaceBetween: 25
             }
           }}
         >
-          {quizzesDifficulty
+          {quizzes
             .filter((quiz) => quiz.difficulty === selectedDifficulty)
             .map((quiz) => (
               <SwiperSlide key={quiz.id} className='w-full'>
-                <QuizCardDifficulty {...quiz} />
+                <QuizCardDifficulty
+                  id={quiz.id}
+                  imageSrc={quiz.image}
+                  difficulty={quiz.difficulty}
+                  authorAvatarSrc={quiz.authorAvatarSrc}
+                  authorName={quiz.authorName}
+                  reward={quiz.reward}
+                  category={quiz.categories[0]} // Assuming the first category is used
+                  duration={quiz.duration}
+                  title={quiz.title}
+                  players={quiz.currentPlayers}
+                  spotsAvailable={quiz.spotsLeft}
+                  totalSpots={quiz.spots}
+                />
               </SwiperSlide>
             ))}
         </Swiper>
