@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import QuizCardDetail from '@/components/QuizCardDetail'
-import { mockQuizzes } from '@/constant/mockQuizzes'
+import { quizzes } from '@/constant/mockQuizzes'
 
 const MainContent = () => {
   const [difficultyFilter, setDifficultyFilter] = useState('all')
@@ -24,7 +24,7 @@ const MainContent = () => {
   const [showTimeRange, setShowTimeRange] = useState(false)
 
   // Filter quizzes based on difficulty and active tab
-  const filteredQuizzes = mockQuizzes.filter((quiz) => {
+  const filteredQuizzes = quizzes.filter((quiz) => {
     // Apply difficulty filter
     if (
       difficultyFilter !== 'all' &&

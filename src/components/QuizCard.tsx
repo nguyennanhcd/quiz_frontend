@@ -2,9 +2,15 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { difficultyColors } from '@/constant/difficultColor'
 import { Badge } from '@/components/ui/badge'
-import { Quiz } from '@/types/quiz'
 
-const QuizCard = ({ title, categories, difficulty, image }: Quiz) => {
+interface QuizCardProps {
+  title: string
+  categories: string[]
+  difficulty: string
+  image: string
+}
+
+const QuizCard = ({ title, categories, difficulty, image }: QuizCardProps) => {
   return (
     <div className='rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600'>
       <div className='relative h-48'>

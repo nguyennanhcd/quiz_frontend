@@ -1,5 +1,5 @@
 import QuizDetail from '@/components/quiz-page/QuizDetail'
-import { mockQuizzes } from '@/constant/mockQuizzes'
+import { quizzes } from '@/constant/mockQuizzes'
 import Link from 'next/link'
 
 export default async function QuizDetailPage({
@@ -8,7 +8,7 @@ export default async function QuizDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const quiz = mockQuizzes.find((q) => q.id === Number.parseInt(id))
+  const quiz = quizzes.find((q) => q.id === id)
 
   if (!quiz) {
     return (

@@ -20,7 +20,7 @@ import Overview from '../quizDetail/Overview'
 import Leaderboard from '../quizDetail/Leaderboard'
 import Reviews from '../quizDetail/Reviews'
 import { Card, CardContent } from '../ui/card'
-import { mockQuizzes } from '@/constant/mockQuizzes'
+import { quizzes } from '@/constant/mockQuizzes'
 
 interface QuizDetailProps {
   quiz: Quiz
@@ -149,7 +149,7 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
             </TabsContent>
           </Tabs>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-            {mockQuizzes.map((quiz) => (
+            {quizzes.map((quiz) => (
               <div
                 key={quiz.id}
                 className='relative group cursor-pointer rounded-lg overflow-hidden transition-transform hover:scale-105'

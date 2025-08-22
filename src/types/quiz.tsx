@@ -1,5 +1,5 @@
-export type Quiz = {
-  id: number
+export interface Quiz {
+  id: string
   title: string
   description: string
   duration: number
@@ -42,16 +42,19 @@ export type Quiz = {
   leaderBoard: {
     userId: number
     username: string
-    score: number
+    score: number | string
     rank: number
     completedAt: string
+    avatar?: string
+    time: string
   }[]
   badges: string[]
   timeLeft?: number
   reward: number
   spots: number
   spotsLeft: number
-  players: number
   bgGradient: string
-  almostFull: boolean // Added almostFull field
+  almostFull?: boolean
+  authorAvatarSrc: string
+  authorName: string
 }
