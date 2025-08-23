@@ -38,9 +38,12 @@ export default function RootLayout({
             <AppSidebar />
             <SidebarInset className='overflow-x-hidden'>
               <AppHeader />
-              <main className=' overflow-x-hidden max-w-full'>{children}</main>
+              <main className='pt-16 overflow-x-hidden max-w-full'>
+                {children}
+              </main>
             </SidebarInset>
           </SidebarProvider>
+
           <ToastContainer
             position='top-right'
             autoClose={3000}

@@ -1,23 +1,41 @@
 'use client'
-import { Search, MessageSquare, Bell } from 'lucide-react'
 
+import { Search, MessageSquare, Bell } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { ModeToggle } from '@/components/mode-toggle'
-import { SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar'
+import { useEffect, useState } from 'react'
 
 export function AppHeader() {
+  const { state } = useSidebar()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  const sidebarWidth = isMobile ? '0' : state === 'expanded' ? '16rem' : '3rem'
+
   return (
-    <header className='sticky top-0 z-50 flex h-16 shrink-0 items-center bg-main border-b border-gray-300 dark:border-slate-700 px-2 sm:px-4 w-full'>
-      {/* Left Section: SidebarTrigger and Separator */}
-      <div className=''>
+    <header
+      className='fixed top-0 z-50 h-16 flex items-center
+                 bg-main border-b border-gray-300 dark:border-slate-700 px-2 sm:px-4
+                 transition-all duration-300'
+      style={{ left: sidebarWidth, right: 0 }}
+    >
+      {/* Left Section: SidebarTrigger */}
+      <div>
         <SidebarTrigger className='text-foreground hover:bg-default-hover font-extralight' />
       </div>
 
       {/* Gap between Left and Middle/Right sections */}
       <div className='w-4 sm:w-4' />
 
-      {/* Middle Section: Search - Hidden on mobile, shown on desktop */}
+      {/* Middle Section: Search */}
       <div className='hidden sm:flex items-center gap-2 flex-1 min-w-0 max-w-sm sm:max-w-md lg:max-w-xl'>
         <div className='relative flex-1 min-w-0'>
           <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-[#020817]/60 dark:text-slate-400 h-4 w-4' />
@@ -29,12 +47,12 @@ export function AppHeader() {
         </div>
       </div>
 
-      {/* Gap between Middle and Right sections */}
+      {/* Gap */}
       <div className='w-4 sm:w-4 flex-1' />
 
-      {/* Right Section: Icons */}
+      {/* Right Section */}
       <div className='flex items-center gap-2 sm:gap-2 md:gap-3 shrink-0'>
-        {/* Messages - Shown on all screens */}
+        {/* Messages */}
         <div className='relative'>
           <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md'>
             <MessageSquare className='h-4 w-4 text-foreground cursor-pointer' />
@@ -44,7 +62,7 @@ export function AppHeader() {
           </div>
         </div>
 
-        {/* Notifications - Shown on all screens */}
+        {/* Notifications */}
         <div className='relative'>
           <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md'>
             <Bell className='h-4 w-4 text-foreground cursor-pointer' />
@@ -54,12 +72,12 @@ export function AppHeader() {
           </div>
         </div>
 
-        {/* Theme Toggle - Shown on all screens */}
+        {/* Theme Toggle */}
         <div>
           <ModeToggle />
         </div>
 
-        {/* Wallet - Hidden on mobile, shown on desktop */}
+        {/* Wallet */}
         <div className='hidden sm:flex items-center gap-1 p-1 sm:p-2 border border-slate-600 rounded-lg'>
           <span className='text-foreground text-xs sm:text-sm font-medium'>
             $124.50
@@ -69,7 +87,7 @@ export function AppHeader() {
           </span>
         </div>
 
-        {/* Avatar - Shown on all screens */}
+        {/* Avatar */}
         <Avatar className='h-7 w-7 sm:h-8 sm:w-8 shrink-0'>
           <AvatarImage src='/avatarPlaceholder.webp' />
           <AvatarFallback className='bg-slate-600 text-white text-xs'>
