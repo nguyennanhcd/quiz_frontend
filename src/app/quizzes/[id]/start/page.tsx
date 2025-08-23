@@ -1,5 +1,5 @@
 import PlayQuizClient from '@/components/PlayQuizClient'
-import { mockQuizzes } from '@/constant/mockQuizzes'
+import { quizzes } from '@/constant/mockQuizzes'
 
 export default async function QuizStart({
   params
@@ -7,7 +7,7 @@ export default async function QuizStart({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const quiz = mockQuizzes.find((q) => q.id === parseInt(id))
+  const quiz = quizzes.find((q) => q.id === id)
 
   if (!quiz) {
     return (
