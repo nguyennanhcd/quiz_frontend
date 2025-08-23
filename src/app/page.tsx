@@ -74,7 +74,7 @@ export default function QuizHubDashboard() {
         </div>
 
         <div className='flex justify-center mt-3 lg:mt-8 mb-3'>
-          <Button className='text-sm hover:bg-default-hover rounded-sm'>
+          <Button className='text-sm hover:bg-default-hover rounded-sm text-white'>
             <Link href='/quizzes'>View All Quizzes</Link>
           </Button>
         </div>

@@ -28,7 +28,7 @@ export function PlayerCard({
   }
 
   return (
-    <div className='relative overflow-hidden rounded-lg bg-slate-900 border text-white shadow-lg h-full'>
+    <div className='relative overflow-hidden rounded-lg bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 text-foreground shadow-lg h-full'>
       <div className='relative h-32 w-full'>
         <Image
           src={bgImageUrl || '/placeholder.svg'}
@@ -68,15 +68,15 @@ export function PlayerCard({
 
         <CardContent className='mt-4 grid w-full grid-cols-3 gap-2 p-0 text-center'>
           <div className='flex flex-col items-center'>
-            <span className='text-lg font-bold'>{rank}</span>
+            <span className='text-base font-bold'>{rank}</span>
             <span className='text-xs text-gray-400'>Rank</span>
           </div>
           <div className='flex flex-col items-center'>
-            <span className='text-lg font-bold'>{wins ?? 'N/A'}</span>
+            <span className='text-base font-bold'>{wins ?? 'N/A'}</span>
             <span className='text-xs text-gray-400'>Wins</span>
           </div>
           <div className='flex flex-col items-center'>
-            <span className='text-lg font-bold text-green-400'>
+            <span className='text-base font-bold text-green-400'>
               {earned !== undefined
                 ? `$${earned.toLocaleString(undefined, {
                     minimumFractionDigits: 1,

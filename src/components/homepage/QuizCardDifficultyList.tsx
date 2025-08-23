@@ -33,7 +33,7 @@ const QuizCardDifficultyList = () => {
     <div className='mt-20'>
       <div className='mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
         <div>
-          <h1 className='text-xl font-bold text-white md:text-2xl'>
+          <h1 className='text-xl font-bold text-foreground md:text-2xl'>
             Quizzes by Difficulty
           </h1>
           <p className='text-md text-gray-400 md:text-base'>

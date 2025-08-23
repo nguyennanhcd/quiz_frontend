@@ -33,11 +33,13 @@ const FeaturedQuiz = () => {
   })
 
   return (
-    <div className='mb-8'>
+    <div className='mb-8 '>
       {/* Header */}
       <div className='flex items-center justify-between mb-6 flex-col xl:flex-row'>
         <div className='mb-5'>
-          <h2 className='text-2xl font-bold mb-1'>Featured Quizzes</h2>
+          <h2 className='text-2xl font-bold mb-1 text-foreground'>
+            Featured Quizzes
+          </h2>
           <p className='text-slate-400'>
             Specially selected quizzes you don&apos;t want to miss
           </p>
@@ -73,7 +75,7 @@ const FeaturedQuiz = () => {
         {filteredQuizzes.map((quiz) => (
           <div
             key={quiz.id}
-            className='border border-white/20 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg'
+            className='border border-gray-300 dark:border-slate-700 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg'
           >
             {/* Quiz Image */}
             <div
@@ -126,7 +128,7 @@ const FeaturedQuiz = () => {
 
               {/* Quiz Title */}
               <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4'>
-                <h3 className='font-bold text-lg mb-1 leading-tight'>
+                <h3 className='font-bold text-base mb-1 leading-tight'>
                   {quiz.title}
                 </h3>
                 <p className='text-slate-300 text-sm leading-tight'>
@@ -147,19 +149,19 @@ const FeaturedQuiz = () => {
                     <AvatarFallback>AS</AvatarFallback>
                   </Avatar>
                   <div className='min-w-0 flex-1'>
-                    <p className='font-medium text-sm truncate'>
+                    <p className='font-medium text-sm text-foreground truncate'>
                       {quiz.creator.name}
                     </p>
                     <div className='flex items-center gap-1'>
                       <Star className='w-3 h-3 fill-yellow-400 text-yellow-400' />
-                      <span className='text-xs text-slate-400'>
+                      <span className='text-xs text-foreground'>
                         {quiz.creator.rating}
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className='text-right flex-shrink-0'>
-                  <p className='text-xs text-slate-400'>Reward</p>
+                  <p className='text-xs text-foreground'>Reward</p>
                   <p className='font-bold text-green-400'>$ {quiz.reward}</p>
                 </div>
               </div>
@@ -200,11 +202,11 @@ const FeaturedQuiz = () => {
                           )
                         ))}
                     </div>
-                    <span className='text-sm text-white font-semibold'>
+                    <span className='text-sm text-foreground font-semibold'>
                       {quiz.currentPlayers} players joined
                     </span>
                   </div>
-                  <p className='text-xs text-slate-400'>
+                  <p className='text-xs text-foreground'>
                     {quiz.spotsLeft} spots available
                   </p>
                 </div>
