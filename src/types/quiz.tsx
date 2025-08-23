@@ -7,6 +7,7 @@ export interface Quiz {
   difficulty: 'Easy' | 'Medium' | 'Hard'
   image: string
   currentPlayers: number
+  players: number
   maxPlayers: number
   requirements: string
   tags: string[]

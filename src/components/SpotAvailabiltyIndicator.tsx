@@ -37,7 +37,7 @@ export default function SpotAvailabilityIndicator({
   const circumference = 2 * Math.PI * radius
 
   return (
-    <div className='flex items-center justify-center bg-gray-900 text-gray-300 rounded-lg'>
+    <div className='flex items-center justify-center bg-transparent text-foreground rounded-lg'>
       {mode === 'default' && (
         <div className='w-6 h-6 flex items-center justify-center'>
           <svg className='w-full h-full' viewBox='0 0 24 24'>
@@ -66,7 +66,7 @@ export default function SpotAvailabilityIndicator({
       )}
 
       {mode === 'percentage' && (
-        <div className='relative w-10 h-10 flex items-center justify-center'>
+        <div className='relative w-10 h-10 flex items-center justify-center bg-transparent text-foreground'>
           <svg className='absolute w-full h-full' viewBox='0 0 24 24'>
             <circle
               cx='12'
@@ -89,7 +89,7 @@ export default function SpotAvailabilityIndicator({
               transform='rotate(-90 12 12)'
             />
           </svg>
-          <span className='text-xs sm:text-xs text-white z-10 font-semibold'>
+          <span className='text-[10px] text-foreground z-10 font-medium'>
             {Math.round(availablePercentage * 100)}%
           </span>
         </div>
