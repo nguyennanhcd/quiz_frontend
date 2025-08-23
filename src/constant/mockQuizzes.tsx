@@ -532,46 +532,6 @@ export const quizzes: Quiz[] = [
     almostFull: true,
     authorAvatarSrc: '/avatarPlaceholder.webp',
     authorName: 'Alex Smith'
-  },
-  {
-    id: '5',
-    title: 'Sports Fundamentals',
-    description: '',
-    duration: 10,
-    questionCount: 0,
-    difficulty: 'Hard',
-    image: '/placeholder.webp',
-    currentPlayers: 40,
-    maxPlayers: 100,
-    requirements: '',
-    tags: ['Sports'],
-    categories: ['Sports'],
-    isPopular: false,
-    isFeatured: false,
-    rating: 0,
-    creator: {
-      userId: 105,
-      username: 'AlexSmith',
-      name: 'Alex Smith',
-      position: 'Sports Professor',
-      imageURL: '/avatarPlaceholder.webp',
-      quizzesCreated: 7,
-      rating: 4.5
-    },
-    createdAt: '2025-06-30T15:00:00Z',
-    updatedAt: '2025-07-03T10:00:00Z',
-    questions: [],
-    quizReview: [],
-    leaderBoard: [],
-    badges: [],
-    timeLeft: 0,
-    reward: 1.0,
-    spots: 100,
-    spotsLeft: 60,
-    bgGradient: '',
-    almostFull: false,
-    authorAvatarSrc: '/avatarPlaceholder.webp',
-    authorName: 'Alex Smith'
   }
 ]
 

@@ -32,7 +32,7 @@ export const categories: Category[] = [
     createdAt: '2023-10-01T08:00:00Z',
     updatedAt: '2025-08-01T12:00:00Z',
     isFeatured: true,
-    imageUrl: '/categories/all-categories.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'science',
@@ -49,7 +49,7 @@ export const categories: Category[] = [
     createdAt: '2023-11-01T09:00:00Z',
     updatedAt: '2025-07-10T14:00:00Z',
     isFeatured: false,
-    imageUrl: '/categories/science.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'history',
@@ -66,7 +66,7 @@ export const categories: Category[] = [
     createdAt: '2023-12-01T10:00:00Z',
     updatedAt: '2025-07-15T15:00:00Z',
     isFeatured: false,
-    imageUrl: '/categories/history.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'geography',
@@ -83,7 +83,7 @@ export const categories: Category[] = [
     createdAt: '2023-12-10T11:00:00Z',
     updatedAt: '2025-07-20T16:00:00Z',
     isFeatured: false,
-    imageUrl: '/categories/geography.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'mathematics',
@@ -100,7 +100,7 @@ export const categories: Category[] = [
     createdAt: '2023-11-15T12:00:00Z',
     updatedAt: '2025-07-25T17:00:00Z',
     isFeatured: true,
-    imageUrl: '/categories/mathematics.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'literature',
@@ -117,7 +117,7 @@ export const categories: Category[] = [
     createdAt: '2024-01-01T13:00:00Z',
     updatedAt: '2025-07-30T18:00:00Z',
     isFeatured: false,
-    imageUrl: '/categories/literature.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'sports',
@@ -134,7 +134,7 @@ export const categories: Category[] = [
     createdAt: '2024-01-15T14:00:00Z',
     updatedAt: '2025-08-01T19:00:00Z',
     isFeatured: false,
-    imageUrl: '/categories/sports.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'music',
@@ -152,7 +152,7 @@ export const categories: Category[] = [
     createdAt: '2024-02-15T10:30:00Z',
     updatedAt: '2025-06-05T15:45:00Z',
     isFeatured: false,
-    imageUrl: '/categories/music.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'movies',
@@ -170,7 +170,7 @@ export const categories: Category[] = [
     createdAt: '2023-11-01T08:00:00Z',
     updatedAt: '2025-07-10T12:00:00Z',
     isFeatured: true,
-    imageUrl: '/categories/movies.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'politics',
@@ -188,7 +188,7 @@ export const categories: Category[] = [
     createdAt: '2024-08-20T09:15:00Z',
     updatedAt: '2025-07-01T14:00:00Z',
     isFeatured: false,
-    imageUrl: '/categories/politics.webp'
+    imageUrl: '/quizCategories.webp'
   },
   {
     id: 'puzzle',
@@ -206,7 +206,7 @@ export const categories: Category[] = [
     createdAt: '2023-12-05T11:00:00Z',
     updatedAt: '2025-07-15T17:30:00Z',
     isFeatured: true,
-    imageUrl: '/categories/puzzle.webp'
+    imageUrl: '/quizCategories.webp'
   }
 ]
 
