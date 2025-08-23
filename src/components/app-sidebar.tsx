@@ -83,37 +83,43 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
 
   return (
-    <Sidebar collapsible='icon' className='' {...props}>
-      <SidebarHeader className='bg-background border-x border-border pointer-events-none'>
+    <Sidebar collapsible='icon' className='bg-main' {...props}>
+      <SidebarHeader className=' border-x border-gray-300 dark:border-slate-700 pointer-events-none'>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
               <Link href='/'>
-                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground'>
+                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-default'>
                   <BookOpen className='size-4' />
                 </div>
                 <div className='flex flex-col gap-0.5 leading-none'>
-                  <span className='font-bold text-foreground'>QuizHub</span>
+                  <span className='font-bold text-base text-foreground'>
+                    QuizHub
+                  </span>
                 </div>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='bg-background border border-border'>
+      <SidebarContent className='bg-main border border-gray-300 dark:border-slate-700'>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className='space-y-3'>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === item.url}
-                    className='text-slate-300 hover:text-white hover:bg-slate-700 data-[active=true]:bg-default data-[active=true]:text-white text-sm'
+                    className={`${
+                      pathname === item.url
+                        ? 'text-white hover:bg-main-hover data-[active=true]:bg-default'
+                        : 'text-foreground hover:bg-main-hover'
+                    } text-sm flex items-center gap-2`}
                   >
                     <Link href={item.url}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      <span className='text-sm font-medium'>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -122,10 +128,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className='bg-main border-x border-slate-600'>
+      <SidebarFooter className='bg-main border-x border-gray-300 dark:border-slate-700'>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className='text-slate-300 hover:text-white hover:bg-slate-700'>
+            <SidebarMenuButton className='text-foreground cursor-pointer hover:bg-main-hover'>
               <LogOut />
               <span>Logout</span>
             </SidebarMenuButton>
