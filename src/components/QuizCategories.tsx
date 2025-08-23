@@ -37,7 +37,7 @@ function CategoryCard({ name, count, slug, imageUrl }: CategoryCardProps) {
         <div className='absolute top-3 left-3 sm:top-4 sm:left-4 bg-gray-800/70 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium z-10'>
           {name}
         </div>
-        <div className='absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/40 backdrop-blur-sm rounded-full px-2 py-0.5 text-xs font-medium'>
+        <div className='absolute top-3 right-3 sm:top-4 sm:right-4 bg-gray-800/70 backdrop-blur-sm rounded-full px-2 py-0.5 text-xs font-medium'>
           {count}
         </div>
       </div>

@@ -84,23 +84,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible='icon' className='' {...props}>
-      <SidebarHeader className='bg-main border-x border-slate-600  pointer-events-none'>
+      <SidebarHeader className='bg-background border-x border-border pointer-events-none'>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
               <Link href='/'>
-                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-default text-white'>
+                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground'>
                   <BookOpen className='size-4' />
                 </div>
                 <div className='flex flex-col gap-0.5 leading-none'>
-                  <span className='font-bold text-white'>QuizHub</span>
+                  <span className='font-bold text-foreground'>QuizHub</span>
                 </div>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='bg-main border border-slate-600'>
+      <SidebarContent className='bg-background border border-border'>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>

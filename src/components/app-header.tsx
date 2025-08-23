@@ -1,5 +1,5 @@
 'use client'
-import { Search, MessageSquare, Bell, Banknote } from 'lucide-react'
+import { Search, MessageSquare, Bell } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -8,10 +8,10 @@ import { SidebarTrigger } from '@/components/ui/sidebar'
 
 export function AppHeader() {
   return (
-    <header className='sticky top-0 z-50 flex h-16 shrink-0 items-center bg-slate-800 border-b border-slate-700 px-2 sm:px-4 w-full'>
+    <header className='sticky top-0 z-50 flex h-16 shrink-0 items-center bg-main border-b border-slate-700 px-2 sm:px-4 w-full'>
       {/* Left Section: SidebarTrigger and Separator */}
-      <div className='flex items-center gap-2 shrink-0 '>
-        <SidebarTrigger className='dark:text-white-primary hover:bg-default-hover' />
+      <div className=''>
+        <SidebarTrigger className='text-foreground hover:bg-default-hover font-extralight' />
       </div>
 
       {/* Gap between Left and Middle/Right sections */}
@@ -20,10 +20,11 @@ export function AppHeader() {
       {/* Middle Section: Search - Hidden on mobile, shown on desktop */}
       <div className='hidden sm:flex items-center gap-2 flex-1 min-w-0 max-w-sm sm:max-w-md lg:max-w-xl'>
         <div className='relative flex-1 min-w-0'>
-          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4' />
+          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-[#020817]/60 dark:text-slate-400 h-4 w-4' />
           <Input
+            type='search'
             placeholder='Search quizzes, categories, creators...'
-            className='pl-10 bg-slate-700 border-slate-600 text-white placeholder-slate-400 w-full text-sm'
+            className='pl-10 bg-main-hover border-slate-600 text-foreground placeholder-[#020817] dark:placeholder-slate-400 w-full text-sm focus:border-slate-600'
           />
         </div>
       </div>
@@ -35,8 +36,8 @@ export function AppHeader() {
       <div className='flex items-center gap-2 sm:gap-2 md:gap-3 shrink-0'>
         {/* Messages - Shown on all screens */}
         <div className='relative'>
-          <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md hover:border-white'>
-            <MessageSquare className='h-4 w-4 text-slate-300 cursor-pointer hover:text-white' />
+          <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md'>
+            <MessageSquare className='h-4 w-4 text-foreground cursor-pointer' />
           </div>
           <div className='absolute -top-1 -right-1 h-4 w-4 rounded-full bg-blue-500 text-xs flex items-center justify-center text-white'>
             2
@@ -45,8 +46,8 @@ export function AppHeader() {
 
         {/* Notifications - Shown on all screens */}
         <div className='relative'>
-          <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md hover:border-white'>
-            <Bell className='h-4 w-4 text-slate-300 cursor-pointer hover:text-white' />
+          <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md'>
+            <Bell className='h-4 w-4 text-foreground cursor-pointer' />
           </div>
           <div className='absolute -top-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-red-500 text-xs flex items-center justify-center text-white'>
             <span className='text-xs'>3</span>
@@ -60,10 +61,12 @@ export function AppHeader() {
 
         {/* Wallet - Hidden on mobile, shown on desktop */}
         <div className='hidden sm:flex items-center gap-1 p-1 sm:p-2 border border-slate-600 rounded-lg'>
-          <span className='text-yellow-400 text-xs sm:text-sm font-medium'>
+          <span className='text-foreground text-xs sm:text-sm font-medium'>
             $124.50
           </span>
-          <Banknote className='h-3 w-3 sm:h-4 sm:w-4 text-yellow-400' />
+          <span className='text-green-500 text-xs sm:text-sm font-medium'>
+            💰
+          </span>
         </div>
 
         {/* Avatar - Shown on all screens */}
