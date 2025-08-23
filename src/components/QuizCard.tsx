@@ -42,7 +42,9 @@ const QuizCard = ({ title, categories, difficulty, image }: QuizCardProps) => {
         >
           {categories[0]}
         </div>
-        <Button className='bg-default hover:bg-default-hover'>Play Now</Button>
+        <Button className='bg-default hover:bg-default-hover text-white'>
+          Play Now
+        </Button>
       </div>
     </div>
   )

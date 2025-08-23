@@ -14,16 +14,16 @@ import { quizzes } from '@/constant/mockQuizzes'
 export default function QuizHubDashboard() {
   return (
     <div className='min-h-screen p-4 md:p-6 overflow-x-hidden max-w-full'>
-      <div className='relative bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 mb-6 sm:mb-8'>
+      <div className='relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 mb-6 sm:mb-8 border border-gray-300 dark:border-slate-600'>
         <div className='relative z-10 max-w-full sm:max-w-lg lg:max-w-2xl'>
-          <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight'>
+          <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight text-slate-900 dark:text-white'>
             Your Quiz Adventure
             <br />
             Starts Here:
             <br />
             <span className='text-default'>Play, Share, Earn!</span>
           </h1>
-          <p className='text-base sm:text-lg lg:text-xl text-slate-300 mb-6 sm:mb-8'>
+          <p className='text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 mb-6 sm:mb-8'>
             Build engaging quizzes, challenge others, and earn rewards
             <br className='hidden sm:inline' />
             for your knowledge.
@@ -31,13 +31,13 @@ export default function QuizHubDashboard() {
           <div className='flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4'>
             <Button
               size='lg'
-              className='text-white-primary bg-default hover:bg-default-hover w-full sm:w-auto'
+              className='text-white bg-default hover:bg-default-hover w-full sm:w-auto'
             >
               Create Quiz
             </Button>
             <Button
               size='lg'
-              className='text-white-primary bg-default hover:bg-default-hover w-full sm:w-auto'
+              className='text-default bg-white hover:bg-slate-50 border border-default-hover dark:text-default dark:bg-transparent dark:hover:bg-slate-700 dark:border-default-hover w-full sm:w-auto'
             >
               Join Contest
             </Button>
@@ -45,18 +45,18 @@ export default function QuizHubDashboard() {
         </div>
 
         {/* Decorative Elements */}
-        <div className='absolute top-4 right-4 bg-default text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full transform rotate-12 text-sm sm:text-base'>
+        <div className='absolute top-4 right-4 bg-default text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full transform rotate-12 text-sm sm:text-base shadow-lg'>
           <span className='font-bold'>Science Quiz</span>
         </div>
-        <div className='absolute bottom-6 sm:bottom-8 right-6 sm:right-8 w-20 sm:w-24 lg:w-32 h-20 sm:h-24 lg:h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full opacity-20'></div>
-        <div className='absolute top-1/2 right-8 sm:right-12 lg:right-16 w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-yellow-400 rounded-full opacity-30'></div>
+        <div className='absolute bottom-6 sm:bottom-8 right-6 sm:right-8 w-20 sm:w-24 lg:w-32 h-20 sm:h-24 lg:h-32 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-15'></div>
+        <div className='absolute top-1/2 right-8 sm:right-12 lg:right-16 w-12 sm:w-14 lg:w-16 h-12 sm:h-14 lg:h-16 bg-yellow-300 rounded-full opacity-25'></div>
       </div>
 
       {/* Quiz Categories */}
       <QuizCategories categories={categories} />
 
       {/* Latest Quizzes */}
-      <div className='bg-main text-white border rounded-lg lg:p-8 mb-10 max-w-full overflow-x-hidden'>
+      <div className='bg-main text-foreground border rounded-lg lg:p-8 mb-10 max-w-full overflow-x-hidden'>
         <h2 className='text-2xl font-bold mb-8'>Latest Quizzes</h2>
         <div className='overflow-x-auto'>
           <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4 min-w-0'>
