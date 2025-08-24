@@ -28,7 +28,7 @@ export const players: Player[] = [
     name: 'Alex Johnson',
     country: 'United States',
     flag: '🇺🇸',
-    streak: 15,
+    streak: 7,
     score: 9850,
     level: 78,
     levelString: 'Grandmaster',

@@ -24,6 +24,15 @@ import { badges } from '@/constant/badges'
 import { challengeData } from '@/constant/challengeHistoryData'
 import Image from 'next/image'
 import { players } from '@/constant/players'
+import { Gem, Medal } from 'lucide-react'
+
+const badgeIcons: Record<string, React.ReactNode> = {
+  Diamond: <Gem className='text-cyan-400 w-5 h-5' />,
+  Platinum: <Gem className='text-slate-300 w-5 h-5' />,
+  Gold: <Medal className='text-yellow-500 w-5 h-5' />,
+  Silver: <Medal className='text-gray-400 w-5 h-5' />,
+  Bronze: <Medal className='text-orange-600 w-5 h-5' />
+}
 
 const MainContent = () => {
   const [questionTime, setQuestionTime] = useState<string>('5:00')
@@ -138,7 +147,7 @@ const MainContent = () => {
                 disabled={!selectedAnswer}
                 className='text-white transition-colors'
               >
-                Next Question
+                Next
               </Button>
             </div>
           </CardContent>
@@ -232,7 +241,9 @@ const MainContent = () => {
                       key={player.id}
                       className='flex items-center space-x-3 p-3 border rounded-lg hover:bg-main-hover'
                     >
-                      <span className='text-lg'>{player.badge}</span>
+                      <span className='text-lg'>
+                        {badgeIcons[player.badge]}
+                      </span>
                       <div className='w-8 h-8 rounded-full flex items-center justify-center text-white'>
                         <Image
                           src={player.avatar}
@@ -260,35 +271,36 @@ const MainContent = () => {
           <CardHeader>
             <CardTitle className='flex items-center space-x-2'>
               <Trophy className='h-5 w-5' />
-              <span>Rewards & Streaks</span>
+              <span className='text-foreground font-bold'>
+                Rewards & Streaks
+              </span>
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-6'>
             <div>
               <div className='flex items-center space-x-2 mb-3'>
-                <Calendar className='h-4 w-4 text-blue-400' />
-                <span className='font-medium'>Daily Streak</span>
+                <Calendar className='h-4 w-4 text-blue-500' />
+                <span className='font-medium text-foreground text-sm'>
+                  Daily Streak
+                </span>
               </div>
               <div className='flex space-x-2 mb-2'>
                 {[1, 2, 3, 4, 5, 6, 7].map((day) => (
                   <div
                     key={day}
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                    className={`w-8 h-8 text-foreground relative rounded-full flex items-center justify-center text-xs font-medium ${
                       day <= (players[0]?.streak || 0)
-                        ? 'bg-blue-600 text-white'
-                        : (players[0]?.streak || 0) === 7
-                        ? 'bg-yellow-500 text-black relative'
-                        : 'bg-slate-700 text-slate-400'
+                        ? day === 7 && (players[0]?.streak || 0) >= 7
+                          ? 'bg-[#f59e0b] border border-yellow-500'
+                          : 'border bg-[#dbeafe] dark:bg-[#1e3a8a] dark:border-[#1d4ed8] border-[#93c5fd]'
+                        : 'dark:bg-slate-700 bg-slate-200'
                     }`}
                   >
                     {day}
-                    {day === 7 && (
-                      <Trophy className='absolute -top-1 -right-1 h-3 w-3 text-yellow-400' />
-                    )}
                   </div>
                 ))}
               </div>
-              <p className='text-sm text-slate-400'>
+              <p className='text-xs text-foreground/70 font-medium'>
                 Current streak: {players[0].streak} days. Keep playing daily!
               </p>
             </div>
@@ -296,9 +308,11 @@ const MainContent = () => {
             <div>
               <div className='flex items-center space-x-2 mb-3'>
                 <Flame className='h-4 w-4 text-orange-400' />
-                <span className='font-medium'>Streak Rewards</span>
+                <span className='font-medium text-foreground text-sm'>
+                  Streak Rewards
+                </span>
               </div>
-              <div className='grid grid-cols-2 gap-2'>
+              <div className='grid grid-cols-2 gap-2 mb-2'>
                 {streakRewards
                   .filter((reward) => reward.days <= 7)
                   .map((reward) => {
@@ -311,25 +325,25 @@ const MainContent = () => {
                         key={reward.days}
                         className={`rounded-lg p-3 text-center transition-all ${
                           isCurrentStreak
-                            ? 'bg-orange-600 border-2 border-orange-400'
+                            ? 'bg-orange-400 dark:bg-orange-400 border-2 border-orange-300 dark:border-orange-200'
                             : isUnlocked
-                            ? 'bg-green-600'
-                            : 'bg-slate-700'
+                            ? 'bg-green-500 dark:bg-emerald-400'
+                            : 'bg-slate-200 dark:bg-slate-600'
                         }`}
                       >
-                        <div className='font-bold text-sm'>
+                        <div className='font-bold text-xs text-foreground'>
                           {reward.days} Days
                         </div>
-                        <div className='text-xs text-slate-300 mt-1'>
+                        <div className='text-xs text-foreground/80 mt-1'>
                           {reward.reward}
                         </div>
                         {isCurrentStreak && (
-                          <div className='text-xs text-orange-200 mt-1 font-medium'>
+                          <div className='text-xs mt-1 font-medium text-foreground/80'>
                             Current Streak!
                           </div>
                         )}
                         {isUnlocked && !isCurrentStreak && (
-                          <div className='text-xs text-green-200 mt-1'>
+                          <div className='text-xs mt-1 text-foreground'>
                             ✓ Unlocked
                           </div>
                         )}
@@ -340,10 +354,10 @@ const MainContent = () => {
             </div>
 
             <div className='flex items-center gap-3 mb-8'>
-              <div className='w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center'>
-                <Star className='h-4 w-4' />
+              <div className='w-6 h-6 rounded-lg flex items-center justify-center'>
+                <Star className='h-4 w-4 text-violet-500' />
               </div>
-              <h1 className='text-medium text-white-primary font-bold'>
+              <h1 className='text-medium text-foreground font-bold'>
                 Daily Challenge Badges
               </h1>
             </div>
@@ -355,7 +369,7 @@ const MainContent = () => {
                   <Card
                     key={index}
                     className={`
-                  bg-slate-700 rounded-lg p-3 text-center
+                  bg-main dark:bg-slate-700 rounded-lg p-3 text-center border border-gray-300 dark:border-slate-700
                   ${!badge.unlocked ? 'opacity-60' : ''}
                 `}
                   >
@@ -366,8 +380,10 @@ const MainContent = () => {
                         <IconComponent className={`w-4 h-4 ${badge.color}`} />
                       </div>
                       <span
-                        className={`font-bold text-sm ${
-                          badge.unlocked ? 'text-white' : 'text-gray-400'
+                        className={`font-bold text-xs ${
+                          badge.unlocked
+                            ? 'text-foreground/90'
+                            : 'text-foreground/70'
                         }`}
                       >
                         {badge.name}
