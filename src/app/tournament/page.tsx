@@ -81,12 +81,12 @@ export default function QuizTournament() {
   const filteredTournaments = getFilteredTournaments(filter, selectedCategory)
 
   return (
-    <div className='min-h-screen text-white p-4 md:p-8 lg:p-12'>
+    <div className='min-h-screen text-foreground p-4 md:p-8 lg:p-12'>
       <div className=''>
         <h1 className='text-3xl md:text-4xl font-bold mb-2'>
           Quiz Tournaments
         </h1>
-        <p className='text-gray-400 text-lg mb-8'>
+        <p className='text-foreground/70 text-lg mb-8'>
           Compete against other quiz enthusiasts and win amazing prizes
         </p>
 
@@ -104,15 +104,15 @@ export default function QuizTournament() {
               <span className='inline-flex items-center rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white'>
                 FEATURED
               </span>
-              <h2 className='text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight'>
+              <h2 className='text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white'>
                 Global Knowledge Championship
               </h2>
-              <p className='text-lg text-gray-200'>
+              <p className='text-lg text-white'>
                 Test your knowledge against the best quiz enthusiasts from
                 around the world in this premier tournament with multiple rounds
                 of challenging questions.
               </p>
-              <div className='flex flex-wrap items-center gap-4 text-gray-300 text-sm'>
+              <div className='flex flex-wrap items-center gap-4 text-white text-sm'>
                 <div className='flex items-center gap-2'>
                   <CalendarDays className='w-5 h-5' />
                   <span>May 15 - June 10, 2023</span>
@@ -126,7 +126,7 @@ export default function QuizTournament() {
                   <span>$5,000 prize pool</span>
                 </div>
               </div>
-              <Button className='bg-default px-6 py-3 rounded-lg text-sm font-semibold flex items-center gap-2'>
+              <Button className='bg-default text-white px-6 py-3 rounded-lg text-sm font-semibold flex items-center gap-2'>
                 Join Tournament
                 <ArrowRight className='w-5 h-5' />
               </Button>
@@ -134,7 +134,7 @@ export default function QuizTournament() {
 
             {/* Right Section */}
             <div className='bg-default/30 backdrop-blur-sm rounded-lg p-6 space-y-6 lg:ml-auto lg:max-w-sm w-full'>
-              <div className='flex items-center justify-between text-gray-200'>
+              <div className='flex items-center justify-between text-white'>
                 <span>Registration closes in</span>
                 <div className='flex items-center gap-1'>
                   <Clock className='w-4 h-4' />
@@ -149,19 +149,19 @@ export default function QuizTournament() {
               </div>
               <div className='grid grid-cols-3 gap-4'>
                 <div className='bg-default rounded-lg p-4 text-center'>
-                  <div className='text-3xl font-bold'>3</div>
-                  <div className='text-gray-300 text-sm'>Rounds</div>
+                  <div className='text-3xl font-bold text-white'>3</div>
+                  <div className='text-white text-sm'>Rounds</div>
                 </div>
                 <div className='bg-default rounded-lg p-4 text-center'>
-                  <div className='text-3xl font-bold'>15</div>
-                  <div className='text-gray-300 text-sm'>Categories</div>
+                  <div className='text-3xl font-bold text-white'>15</div>
+                  <div className='text-white text-sm'>Categories</div>
                 </div>
                 <div className='bg-default rounded-lg p-4 text-center'>
-                  <div className='text-3xl font-bold'>50</div>
-                  <div className='text-gray-300 text-sm'>Questions</div>
+                  <div className='text-3xl font-bold text-white'>50</div>
+                  <div className='text-white text-sm'>Questions</div>
                 </div>
               </div>
-              <p className='text-gray-300 text-sm text-center'>
+              <p className='text-white text-sm text-center'>
                 Top 100 participants advance to the final round
               </p>
             </div>
@@ -174,26 +174,26 @@ export default function QuizTournament() {
         <div className='flex items-center justify-between mb-8'>
           <h1 className='text-3xl font-bold'>All Tournaments</h1>
           <Select value={filter} onValueChange={handleFilterChange}>
-            <SelectTrigger className='w-48 bg-main border-gray-700'>
+            <SelectTrigger className='w-48 bg-main border-gray-300 dark:border-slate-700'>
               <SelectValue placeholder='All Tournaments' />
             </SelectTrigger>
-            <SelectContent className='bg-main border-gray-700'>
-              <SelectItem value='all' className='text-white'>
+            <SelectContent className='bg-main border-gray-300 dark:border-slate-700'>
+              <SelectItem value='all' className='text-foreground'>
                 <div className='flex items-center gap-2'>
                   <Check className='w-4 h-4' />
                   All Tournaments
                 </div>
               </SelectItem>
-              <SelectItem value='upcoming' className='text-white'>
+              <SelectItem value='upcoming' className='text-foreground'>
                 Upcoming
               </SelectItem>
-              <SelectItem value='ongoing' className='text-white'>
+              <SelectItem value='ongoing' className='text-foreground'>
                 Ongoing
               </SelectItem>
-              <SelectItem value='completed' className='text-white'>
+              <SelectItem value='completed' className='text-foreground'>
                 Completed
               </SelectItem>
-              <SelectItem value='registration' className='text-white'>
+              <SelectItem value='registration' className='text-foreground'>
                 Registration Open
               </SelectItem>
             </SelectContent>
@@ -206,12 +206,12 @@ export default function QuizTournament() {
           onValueChange={handleTabChange}
           className='mb-8 w-full'
         >
-          <TabsList className='flex flex-nowrap gap-2 mx-2 sm:mx-0 sm:gap-3 overflow-x-auto pb-2 bg-transparent scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent'>
+          <TabsList className='flex flex-nowrap  gap-2 mx-2 sm:mx-0 sm:gap-3 overflow-x-auto pb-2 bg-transparent scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent'>
             {uniqueCategories.map((category) => (
               <TabsTrigger
                 key={category}
                 value={category}
-                className='flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs sm:text-sm sm:px-4 sm:py-1.5 font-medium text-gray-300 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-gray-800 hover:text-white transition-all duration-200'
+                className='flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs sm:text-sm  sm:px-4 sm:py-1.5 font-medium text-foreground/70 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-default-hover hover:text-white transition-all duration-200'
               >
                 {category === 'all' ? 'All Categories' : category}
               </TabsTrigger>
@@ -224,7 +224,7 @@ export default function QuizTournament() {
           {filteredTournaments.map((tournament) => (
             <Card
               key={tournament.id}
-              className='bg-gray-900 border-gray-700 overflow-hidden'
+              className='bg-main border-gray-300 dark:border-slate-700 overflow-hidden'
             >
               <div className='relative'>
                 <Image
@@ -249,27 +249,27 @@ export default function QuizTournament() {
               </div>
 
               <CardContent className='p-4'>
-                <h3 className='text-xl font-bold mb-2 text-white'>
+                <h3 className='text-xl font-bold mb-2 text-foreground'>
                   {tournament.title}
                 </h3>
-                <p className='text-gray-400 text-sm mb-4 line-clamp-2'>
+                <p className='text-foreground/70 text-sm mb-4 line-clamp-2'>
                   {tournament.description}
                 </p>
 
                 <div className='space-y-2 mb-4'>
-                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                  <div className='flex items-center gap-2 text-foreground/70 text-sm'>
                     <Tag className='w-4 h-4' />
                     <span>{tournament.category}</span>
                   </div>
-                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                  <div className='flex items-center gap-2 text-foreground/70 text-sm'>
                     <Calendar className='w-4 h-4' />
                     <span>{tournament.dateRange}</span>
                   </div>
-                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                  <div className='flex items-center gap-2 text-foreground/70 text-sm'>
                     <Users className='w-4 h-4' />
                     <span>{tournament.participants} participants</span>
                   </div>
-                  <div className='flex items-center gap-2 text-gray-400 text-sm'>
+                  <div className='flex items-center gap-2 text-foreground/70 text-sm'>
                     <Trophy className='w-4 h-4' />
                     <span>{tournament.prize} prize</span>
                   </div>
