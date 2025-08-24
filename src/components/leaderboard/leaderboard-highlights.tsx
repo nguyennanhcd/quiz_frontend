@@ -23,7 +23,6 @@ import {
   TrendingUp,
   Calendar,
   Clock,
-  Users,
   Trophy
 } from 'lucide-react'
 import GlobalTab from './leaderboard-hightlights/GlobalTab'
@@ -226,6 +225,29 @@ const categories: Category[] = [
   }
 ]
 
+const TIME_PERIODS = [
+  {
+    value: 'all-time',
+    label: 'All Time',
+    icon: null
+  },
+  {
+    value: 'monthly',
+    label: 'Monthly',
+    icon: Calendar
+  },
+  {
+    value: 'weekly',
+    label: 'Weekly',
+    icon: Calendar
+  },
+  {
+    value: 'daily',
+    label: 'Daily',
+    icon: Clock
+  }
+]
+
 type TimePeriod = 'all-time' | 'monthly' | 'weekly' | 'daily'
 type ActiveTab = 'global' | 'category' | 'trending'
 
@@ -243,23 +265,17 @@ export function LeaderboardHighlights() {
   }, [activeTab, timePeriod, selectedCategory])
 
   return (
-    <Card className='bg-transparent border-slate-700 col-span-2 lg:col-span-2 py-4 sm:py-6'>
+    <Card className='bg-main dark:bg-slate-800/50 border border-gray-300 dark:border-slate-700 col-span-2 lg:col-span-2 py-4 sm:py-6'>
       <CardHeader>
         <div className='flex items-center justify-between'>
           <div>
-            <CardTitle className='text-white text-lg sm:text-xl md:text-2xl font-bold flex items-center gap-2'>
+            <CardTitle className='text-foreground text-lg sm:text-xl md:text-2xl font-bold flex items-center gap-2'>
               <Trophy className='w-5 h-5 sm:w-6 sm:h-6 text-yellow-400' />
               Leaderboard Highlights
             </CardTitle>
-            <CardDescription className='text-slate-400 text-sm sm:text-base'>
+            <CardDescription className='text-foreground/80 text-sm sm:text-base'>
               Top performers across different categories and time periods
             </CardDescription>
-          </div>
-          <div className='flex items-center gap-2'>
-            <div className='flex items-center gap-1 text-xs text-slate-400'>
-              <Users className='w-3 h-3' />
-              <span>{users.length} active</span>
-            </div>
           </div>
         </div>
       </CardHeader>
@@ -270,82 +286,49 @@ export function LeaderboardHighlights() {
           onValueChange={(value) => setActiveTab(value as ActiveTab)}
           className='w-full'
         >
-          <TabsList className='grid w-full grid-cols-3 bg-slate-700 mb-4'>
+          <TabsList className='grid w-full grid-cols-3 bg-[#e5eaee] dark:bg-slate-700 mb-4'>
             <TabsTrigger
               value='global'
-              className='data-[state=active]:bg-slate-600 text-xs sm:text-sm'
+              className='data-[state=active]:bg-main text-xs sm:text-sm'
             >
               <Globe className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
               Global
             </TabsTrigger>
             <TabsTrigger
               value='category'
-              className='data-[state=active]:bg-slate-600 text-xs sm:text-sm'
+              className='data-[state=active]:bg-main text-xs sm:text-sm'
             >
               <BarChart3 className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
               By Category
             </TabsTrigger>
             <TabsTrigger
               value='trending'
-              className='data-[state=active]:bg-slate-600 text-xs sm:text-sm'
+              className='data-[state=active]:bg-main text-xs sm:text-sm'
             >
               <TrendingUp className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
               Trending
             </TabsTrigger>
           </TabsList>
 
-          <div className='flex flex-wrap gap-2 mb-4'>
-            <Button
-              variant={timePeriod === 'all-time' ? 'default' : 'outline'}
-              size='sm'
-              onClick={() => setTimePeriod('all-time')}
-              className={`text-xs sm:text-sm ${
-                timePeriod === 'all-time'
-                  ? 'bg-default hover:bg-default-hover'
-                  : 'border-slate-600 text-slate-300 hover:bg-slate-700'
-              }`}
-            >
-              All Time
-            </Button>
-            <Button
-              variant={timePeriod === 'monthly' ? 'default' : 'outline'}
-              size='sm'
-              onClick={() => setTimePeriod('monthly')}
-              className={`text-xs sm:text-sm ${
-                timePeriod === 'monthly'
-                  ? 'bg-default hover:bg-default-hover'
-                  : 'border-slate-600 text-slate-300 hover:bg-slate-700'
-              }`}
-            >
-              <Calendar className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
-              Monthly
-            </Button>
-            <Button
-              variant={timePeriod === 'weekly' ? 'default' : 'outline'}
-              size='sm'
-              onClick={() => setTimePeriod('weekly')}
-              className={`text-xs sm:text-sm ${
-                timePeriod === 'weekly'
-                  ? 'bg-default hover:bg-default-hover'
-                  : 'border-slate-600 text-slate-300 hover:bg-slate-700'
-              }`}
-            >
-              <Calendar className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
-              Weekly
-            </Button>
-            <Button
-              variant={timePeriod === 'daily' ? 'default' : 'outline'}
-              size='sm'
-              onClick={() => setTimePeriod('daily')}
-              className={`text-xs sm:text-sm ${
-                timePeriod === 'daily'
-                  ? 'bg-default hover:bg-default-hover'
-                  : 'border-slate-600 text-slate-300 hover:bg-slate-700'
-              }`}
-            >
-              <Clock className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
-              Daily
-            </Button>
+          <div className='flex flex-wrap gap-2'>
+            {TIME_PERIODS.map(({ value, label, icon: Icon }) => (
+              <Button
+                key={value}
+                variant={timePeriod === value ? 'default' : 'outline'}
+                size='sm'
+                onClick={() => setTimePeriod(value as TimePeriod)}
+                className={`text-xs sm:text-sm ${
+                  timePeriod === value
+                    ? 'bg-default hover:bg-default-hover'
+                    : 'dark:border-slate-600 text-foreground/80 dark:hover:bg-slate-700 border border-gray-300 hover:bg-default-hover'
+                }`}
+              >
+                {Icon && (
+                  <Icon className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
+                )}
+                {label}
+              </Button>
+            ))}
           </div>
 
           {activeTab === 'category' && (
@@ -353,17 +336,19 @@ export function LeaderboardHighlights() {
               value={selectedCategory}
               onValueChange={setSelectedCategory}
             >
-              <SelectTrigger className='w-full bg-slate-700 border-slate-600 text-white text-xs sm:text-sm mb-4'>
+              <SelectTrigger className='w-full bg-main border border-gray-300 dark:border-slate-700 text-foreground text-xs sm:text-sm mb-20'>
                 <SelectValue placeholder='Select category' />
               </SelectTrigger>
-              <SelectContent className='bg-slate-700 border-slate-600 text-xs sm:text-sm'>
+              <SelectContent className=' bg-main border border-gray-300 dark:border-slate-700 text-xs sm:text-sm'>
                 <SelectItem value='all'>All Categories</SelectItem>
                 {categories.map((category) => (
                   <SelectItem key={category.id} value={category.id}>
                     <div className='flex items-center gap-2'>
                       <span className='text-lg'>{category.icon}</span>
-                      <span>{category.name}</span>
-                      <span className='text-slate-400'>
+                      <span className='text-foreground/80 text-xs'>
+                        {category.name}
+                      </span>
+                      <span className='text-foreground/80 text-xs'>
                         ({category.totalUsers})
                       </span>
                     </div>
@@ -379,11 +364,15 @@ export function LeaderboardHighlights() {
             </div>
           )}
 
-          <TabsContent value='global'>
+          <TabsContent value='global' className='mt-20'>
             <GlobalTab users={users} isLoading={isLoading} />
           </TabsContent>
           <TabsContent value='category'>
-            <CategoryTab users={users} isLoading={isLoading} />
+            <CategoryTab
+              users={users}
+              isLoading={isLoading}
+              category={selectedCategory}
+            />
           </TabsContent>
           <TabsContent value='trending'>
             <TrendingTab users={trendingUsers} isLoading={isLoading} />

@@ -52,44 +52,39 @@ export default function TrendingTab({ users, isLoading }: TrendingTabProps) {
     <div className='space-y-4'>
       <div className='flex items-center gap-2 mb-4'>
         <TrendingUp className='w-5 h-5 text-green-400' />
-        <h3 className='text-white font-semibold'>Trending This Week</h3>
+        <h3 className='text-foreground font-semibold'>Trending This Week</h3>
       </div>
       <div className='space-y-3'>
         {users.map((user) => (
           <div
             key={user.id}
-            className='flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-800/70 transition-colors'
+            className='flex items-center gap-3 p-3 dark:bg-slate-800/50 bg-[#edf2f8] rounded-lg hover:bg-default transition-colors'
           >
-            <div className='relative'>
-              <div className='w-12 h-12 rounded-full overflow-hidden'>
-                <Image
-                  src={user.avatar || '/placeholder.svg'}
-                  alt={user.name}
-                  width={48}
-                  height={48}
-                  className='w-full h-full object-cover'
-                />
-              </div>
-              {user.isOnline && (
-                <div className='absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border border-slate-900' />
-              )}
+            <div className='w-12 h-12 rounded-full overflow-hidden'>
+              <Image
+                src={user.avatar || '/placeholder.svg'}
+                alt={user.name}
+                width={48}
+                height={48}
+                className='w-full h-full object-cover'
+              />
             </div>
             <div className='flex-1'>
               <div className='flex items-center gap-2'>
-                <h4 className='text-white font-semibold'>{user.name}</h4>
+                <h4 className='text-foreground font-semibold'>{user.name}</h4>
                 <Badge className={`${user.badgeColor} text-xs`}>
                   {getBadgeIcon(user.badge)} {user.badge}
                 </Badge>
               </div>
-              <p className='text-slate-400 text-sm'>{user.username}</p>
-              <div className='flex items-center gap-2 mt-1 text-xs text-slate-400'>
+              <p className='text-foreground/80 text-sm'>{user.username}</p>
+              <div className='flex items-center gap-2 mt-1 text-xs text-foreground/80'>
                 <span>{user.quizzesCompleted} quizzes</span>
                 <span>•</span>
                 <span>{user.winRate}% win rate</span>
               </div>
             </div>
             <div className='text-right'>
-              <p className='text-white font-semibold'>
+              <p className='text-foreground font-semibold'>
                 {user.points.toLocaleString()} pts
               </p>
               <div className='flex items-center gap-1 text-xs'>
@@ -103,26 +98,26 @@ export default function TrendingTab({ users, isLoading }: TrendingTabProps) {
         ))}
       </div>
       <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mt-6'>
-        <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
+        <div className='dark:bg-slate-800/50 bg-[#edf2f8] p-3 rounded-lg text-center'>
           <div className='flex items-center justify-center mb-2'>
             <TrendingUp className='w-4 h-4 text-green-400' />
           </div>
-          <p className='text-lg font-bold text-white'>+12</p>
-          <p className='text-xs text-slate-400'>Biggest Gain</p>
+          <p className='text-lg font-bold text-foreground'>+12</p>
+          <p className='text-xs text-foreground/80'>Biggest Gain</p>
         </div>
-        <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
+        <div className='dark:bg-slate-800/50 bg-[#edf2f8] p-3 rounded-lg text-center'>
           <div className='flex items-center justify-center mb-2'>
             <Users className='w-4 h-4 text-blue-400' />
           </div>
-          <p className='text-lg font-bold text-white'>156</p>
-          <p className='text-xs text-slate-400'>New Users</p>
+          <p className='text-lg font-bold text-foreground'>156</p>
+          <p className='text-xs text-foreground/80'>New Users</p>
         </div>
-        <div className='bg-slate-800/50 p-3 rounded-lg text-center'>
+        <div className='dark:bg-slate-800/50 bg-[#edf2f8] p-3 rounded-lg text-center'>
           <div className='flex items-center justify-center mb-2'>
             <Zap className='w-4 h-4 text-orange-400' />
           </div>
-          <p className='text-lg font-bold text-white'>89</p>
-          <p className='text-xs text-slate-400'>Active Streaks</p>
+          <p className='text-lg font-bold text-foreground'>89</p>
+          <p className='text-xs text-foreground/80'>Active Streaks</p>
         </div>
       </div>
     </div>
