@@ -83,18 +83,18 @@ export function LeaderboardHeader({
         {/* Main Header */}
         <header className='space-y-4 flex flex-col xl:flex-row justify-between items-start xl:items-center'>
           <div className='text-center xl:text-left'>
-            <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-white flex items-center gap-2'>
+            <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-foreground flex items-center gap-2'>
               <Crown className='w-6 h-6 sm:w-8 sm:h-8 text-yellow-400' />
               Leader Board
             </h1>
-            <p className='text-slate-400 text-sm sm:text-base md:text-lg'>
+            <p className='text-foreground/80 text-sm sm:text-base md:text-lg'>
               See who&apos;s leading the pack in our global quiz rankings.
             </p>
           </div>
 
           <div className='flex flex-wrap gap-2 justify-center items-center'>
             <Button
-              className='bg-slate-700 hover:bg-slate-600 text-white text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 flex items-center gap-2'
+              className='bg-default hover:bg-default-hover text-white text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 flex items-center gap-2'
               onClick={() => setShowFindFriends(true)}
             >
               <Users className='w-3 h-3 sm:w-4 sm:h-4' />
@@ -113,11 +113,11 @@ export function LeaderboardHeader({
         {/* Stats Overview */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
           {/* Total Participants */}
-          <div className='bg-slate-800/50 p-4 rounded-lg border border-slate-700'>
+          <div className='dark:bg-slate-800/50 bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
-                <p className='text-slate-400 text-sm'>Total Participants</p>
-                <p className='text-white font-bold text-lg'>
+                <p className='text-foreground/80 text-sm'>Total Participants</p>
+                <p className='text-foreground font-bold text-lg'>
                   {totalParticipants.toLocaleString()}
                 </p>
               </div>
@@ -128,11 +128,11 @@ export function LeaderboardHeader({
           </div>
 
           {/* Season End */}
-          <div className='bg-slate-800/50 p-4 rounded-lg border border-slate-700'>
+          <div className='dark:bg-slate-800/50  bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
-                <p className='text-slate-400 text-sm'>Season Ends</p>
-                <p className='text-white font-bold text-lg'>
+                <p className='text-foreground/80 text-sm'>Season Ends</p>
+                <p className='text-foreground font-bold text-lg'>
                   {formatSeasonEndDate(seasonEndDate)}
                 </p>
               </div>
@@ -143,10 +143,10 @@ export function LeaderboardHeader({
           </div>
 
           {/* Your Rank */}
-          <div className='bg-slate-800/50 p-4 rounded-lg border border-slate-700'>
+          <div className='dark:bg-slate-800/50  bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
-                <p className='text-slate-400 text-sm'>Your Rank</p>
+                <p className='text-foreground/80 text-sm'>Your Rank</p>
                 <p className={`font-bold text-lg ${getRankColor(userRank)}`}>
                   #{userRank}
                 </p>
@@ -158,49 +158,16 @@ export function LeaderboardHeader({
           </div>
 
           {/* Your Points */}
-          <div className='bg-slate-800/50 p-4 rounded-lg border border-slate-700'>
+          <div className='dark:bg-slate-800/50  bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
-                <p className='text-slate-400 text-sm'>Your Points</p>
-                <p className='text-white font-bold text-lg'>
+                <p className='text-foreground/80 text-sm'>Your Points</p>
+                <p className='text-foreground font-bold text-lg'>
                   {userPoints.toLocaleString()}
                 </p>
               </div>
               <div className='w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center'>
                 <Star className='w-5 h-5 text-green-400' />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Stats Bar */}
-        <div className='bg-slate-800/30 p-4 rounded-lg border border-slate-700'>
-          <div className='flex flex-wrap items-center justify-between gap-4'>
-            <div className='flex items-center gap-4'>
-              <div className='flex items-center gap-2'>
-                <Badge className={`${getBadgeColor(userBadge)} text-xs`}>
-                  {userBadge}
-                </Badge>
-                <span className='text-slate-400 text-sm'>Badge</span>
-              </div>
-
-              <div className='flex items-center gap-2'>
-                <div className='w-2 h-2 bg-orange-400 rounded-full'></div>
-                <span className='text-slate-400 text-sm'>
-                  {userStreak} day streak
-                </span>
-              </div>
-            </div>
-
-            <div className='flex items-center gap-4'>
-              <div className='flex items-center gap-2'>
-                <BarChart3 className='w-4 h-4 text-slate-400' />
-                <span className='text-slate-400 text-sm'>Global Rankings</span>
-              </div>
-
-              <div className='flex items-center gap-2'>
-                <Target className='w-4 h-4 text-slate-400' />
-                <span className='text-slate-400 text-sm'>Season Progress</span>
               </div>
             </div>
           </div>
