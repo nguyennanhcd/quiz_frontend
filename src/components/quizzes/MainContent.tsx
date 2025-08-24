@@ -35,13 +35,13 @@ const MainContent = () => {
     return true
   })
   return (
-    <div className=' text-white'>
+    <div className=' text-foreground'>
       <div className='flex xl:flex-row flex-col'>
         {/* Sidebar */}
         <div className='xl:w-80 xl:p-6 w-full mb-3 xl:mb-none'>
           <h2 className='text-xl font-bold mb-6'>Filters</h2>
 
-          <div className='border border-white-primary/20 rounded-md p-4'>
+          <div className='border border-gray-300 dark:border-slate-700 rounded-md p-4'>
             {/* Difficulty Filter */}
             <div className='mb-6'>
               <button
@@ -68,7 +68,7 @@ const MainContent = () => {
                     <RadioGroupItem value='easy' id='easy' />
                     <Label htmlFor='easy' className='flex items-center gap-2'>
                       Easy{' '}
-                      <Badge className='bg-green-500 text-white text-xs'>
+                      <Badge className='bg-green-500 text-foreground text-xs'>
                         Easy
                       </Badge>
                     </Label>
@@ -77,7 +77,7 @@ const MainContent = () => {
                     <RadioGroupItem value='medium' id='medium' />
                     <Label htmlFor='medium' className='flex items-center gap-2'>
                       Medium{' '}
-                      <Badge className='bg-orange-500 text-white text-xs'>
+                      <Badge className='bg-orange-500 text-foreground text-xs'>
                         Medium
                       </Badge>
                     </Label>
@@ -86,7 +86,7 @@ const MainContent = () => {
                     <RadioGroupItem value='hard' id='hard' />
                     <Label htmlFor='hard' className='flex items-center gap-2'>
                       Hard{' '}
-                      <Badge className='bg-red-500 text-white text-xs'>
+                      <Badge className='bg-red-500 text-foreground text-xs'>
                         Hard
                       </Badge>
                     </Label>
@@ -145,7 +145,7 @@ const MainContent = () => {
               </button>
               {showReward && (
                 <div className='space-y-4'>
-                  <div className='flex justify-between text-sm text-slate-400'>
+                  <div className='flex justify-between text-sm text-foreground/70'>
                     <span>$0</span>
                     <span>$15+</span>
                   </div>
@@ -175,7 +175,7 @@ const MainContent = () => {
               </button>
               {showTimeLimit && (
                 <div className='space-y-4'>
-                  <div className='flex justify-between text-sm text-slate-400'>
+                  <div className='flex justify-between text-sm text-foreground/70'>
                     <span>0 min</span>
                     <span>30+ min</span>
                   </div>
@@ -267,7 +267,7 @@ const MainContent = () => {
         {/* Main Content */}
         <div className='flex-1 p-5 xl:block flex flex-col'>
           <div className='mb-6 order-2 xl:order-1'>
-            <p className='text-slate-400'>
+            <p className='text-foreground/70 text-sm'>
               Showing 1-6 of {filteredQuizzes.length} quizzes
             </p>
           </div>

@@ -46,13 +46,13 @@ const FeaturedQuiz = () => {
         </div>
 
         {/* Filter Tabs (scrollable on mobile) */}
-        <div className='flex gap-3 rounded-lg p-1 overflow-x-auto scrollbar-hide w-full xl:w-auto'>
+        <div className='flex gap-3 rounded-lg p-1 overflow-x-auto scrollbar-hide w-full xl:w-auto '>
           {filterTabs.map((tab) => (
             <Button
               key={tab.name}
               size='sm'
               className={`whitespace-nowrap ${
-                tab.active ? '' : 'bg-slate-700 text-white hover:bg-slate-600'
+                tab.active ? '' : 'bg-main text-foreground'
               }`}
               onClick={() => setActiveTab(tab.name)}
             >
@@ -75,7 +75,7 @@ const FeaturedQuiz = () => {
         {filteredQuizzes.map((quiz) => (
           <div
             key={quiz.id}
-            className='border border-gray-300 dark:border-slate-700 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg'
+            className='border border-gray-300 dark:border-slate-700 text-foreground rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg'
           >
             {/* Quiz Image */}
             <div
@@ -96,7 +96,7 @@ const FeaturedQuiz = () => {
                 {quiz.timeLeft && (
                   <Badge
                     variant='secondary'
-                    className='bg-slate-900/80 text-white'
+                    className='bg-main text-foreground'
                   >
                     <Clock className='w-3 h-3 mr-1' />
                     {quiz.timeLeft} {quiz.timeLeft === 1 ? 'day' : 'days'} left
@@ -106,7 +106,7 @@ const FeaturedQuiz = () => {
                   {quiz.badges.map((badge) => (
                     <Badge
                       key={badge}
-                      className={`text-white rounded-full border px-2.5 py-0.5 text-xs font-semibold flex items-center ${
+                      className={`text-foreground rounded-full border px-2.5 py-0.5 text-xs font-semibold flex items-center ${
                         badge === 'Hot'
                           ? 'bg-[#7F1D1D] hover:bg-[#7F1D1D]/80'
                           : badge === "Editor's Choice"
@@ -127,11 +127,11 @@ const FeaturedQuiz = () => {
               </div>
 
               {/* Quiz Title */}
-              <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4'>
+              <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-main to-transparent p-4'>
                 <h3 className='font-bold text-base mb-1 leading-tight'>
                   {quiz.title}
                 </h3>
-                <p className='text-slate-300 text-sm leading-tight'>
+                <p className='text-foreground/70 text-sm leading-tight'>
                   {quiz.categories.join(', ')}
                 </p>
               </div>
@@ -153,7 +153,7 @@ const FeaturedQuiz = () => {
                       {quiz.creator.name}
                     </p>
                     <div className='flex items-center gap-1'>
-                      <Star className='w-3 h-3 fill-yellow-400 text-yellow-400' />
+                      <Star className='w-3 h-3 text-yellow-400' />
                       <span className='text-xs text-foreground'>
                         {quiz.creator.rating}
                       </span>
@@ -167,7 +167,7 @@ const FeaturedQuiz = () => {
               </div>
 
               {/* Stats */}
-              <div className='flex items-start gap-2 text-xs text-slate-400 -translate-x-1'>
+              <div className='flex items-start gap-2 text-xs text-foreground/70 -translate-x-1'>
                 <SpotAvailabilityIndicator
                   currentSpots={quiz.spots - quiz.spotsLeft}
                   totalSpots={quiz.spots}
@@ -175,7 +175,7 @@ const FeaturedQuiz = () => {
                 />
                 <div className='flex items-start flex-col flex-1'>
                   <div className='flex items-center gap-2 mb-1'>
-                    <div className='*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2'>
+                    <div className='*:data-[slot=avatar]:ring-main flex -space-x-2 *:data-[slot=avatar]:ring-2'>
                       {quiz.currentPlayers > 0 &&
                         (quiz.currentPlayers > 3 ? (
                           <Avatar className='w-6 h-6'>
@@ -191,7 +191,10 @@ const FeaturedQuiz = () => {
                           quiz.currentPlayers > 0 &&
                           Array.from({ length: quiz.currentPlayers }).map(
                             (_, index) => (
-                              <Avatar key={index} className='w-6 h-6'>
+                              <Avatar
+                                key={index}
+                                className='w-6 h-6 bg-main text-foreground'
+                              >
                                 <AvatarImage
                                   src={`https://randomuser.me/api/portraits/lego/${index}.jpg`}
                                   alt={`Player ${index}`}
@@ -213,7 +216,7 @@ const FeaturedQuiz = () => {
               </div>
 
               {/* Play Button */}
-              <Button className='text-sm w-full text-white mt-2'>
+              <Button className='text-sm w-full text-foreground mt-2'>
                 Play Now
               </Button>
             </div>

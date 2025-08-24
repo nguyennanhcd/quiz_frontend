@@ -11,7 +11,10 @@ import { Quiz } from '@/types/quiz'
 
 const QuizCardDetail = (props: Quiz) => {
   return (
-    <div key={props.id} className='border rounded-xl overflow-hidden'>
+    <div
+      key={props.id}
+      className='border border-gray-300 dark:border-slate-700 rounded-xl overflow-hidden'
+    >
       <div className='relative h-48'>
         <Image
           src={props.image}
@@ -23,28 +26,30 @@ const QuizCardDetail = (props: Quiz) => {
           className={`absolute top-3 left-3 ${
             difficultyColors[props.difficulty as keyof typeof difficultyColors]
               .bg
-          } text-white`}
+          } text-foreground`}
         >
           {props.difficulty}
         </Badge>
-        <div className='absolute top-3 right-3 bg-black/50 rounded-full px-2 py-1 flex items-center gap-1 text-white text-sm'>
+        <div className='absolute top-3 right-3 bg-main text-foreground rounded-full px-2 py-1 flex items-center gap-1 text-sm'>
           <Clock className='w-3 h-3' />
           {props.duration}
         </div>
       </div>
 
       <div className='p-4'>
-        <h3 className='font-bold text-lg mb-3 text-white truncate overflow-hidden'>
+        <h3 className='font-bold text-lg mb-3 text-foreground truncate overflow-hidden'>
           {props.title}
         </h3>
 
         <div className='flex items-center gap-3 mb-3'>
-          <Avatar className='w-8 h-8'>
+          <Avatar className='w-8 h-8 bg-main text-foreground'>
             <AvatarImage src={props.creator.imageURL || '/placeholder.svg'} />
             <AvatarFallback>{props.creator.name[0]}</AvatarFallback>
           </Avatar>
-          <span className='text-slate-300 text-sm'>{props.creator.name}</span>
-          <Badge variant='secondary' className='bg-slate-700 text-slate-300'>
+          <span className='text-foreground/70 text-sm'>
+            {props.creator.name}
+          </span>
+          <Badge className='dark:bg-main bg-[#f8fafc] text-foreground border border-gray-300 dark:border-slate-700'>
             {props.categories.join(', ')}
           </Badge>
         </div>
@@ -52,8 +57,10 @@ const QuizCardDetail = (props: Quiz) => {
         <div className='flex items-center justify-between mb-3'>
           <div className='flex items-center gap-1'>
             <Star className='w-4 h-4 fill-yellow-400 text-yellow-400' />
-            <span className='text-white font-semibold'>{props.rating}</span>
-            <span className='text-slate-400 text-sm'>
+            <span className='text-foreground font-semibold'>
+              {props.rating}
+            </span>
+            <span className='text-foreground/70 text-sm'>
               ({props.quizReview.length} reviews)
             </span>
           </div>

@@ -54,7 +54,7 @@ export function AppHeader() {
       <div className='flex items-center gap-2 sm:gap-2 md:gap-3 shrink-0'>
         {/* Messages */}
         <div className='relative'>
-          <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md'>
+          <div className='p-1.5 sm:p-2 border border-gray-300 dark:border-slate-700 rounded-md'>
             <MessageSquare className='h-4 w-4 text-foreground cursor-pointer' />
           </div>
           <div className='absolute -top-1 -right-1 h-4 w-4 rounded-full bg-blue-500 text-xs flex items-center justify-center text-white'>
@@ -64,7 +64,7 @@ export function AppHeader() {
 
         {/* Notifications */}
         <div className='relative'>
-          <div className='p-1.5 sm:p-2 border border-slate-600 rounded-md'>
+          <div className='p-1.5 sm:p-2 border border-gray-300 dark:border-slate-700 rounded-md'>
             <Bell className='h-4 w-4 text-foreground cursor-pointer' />
           </div>
           <div className='absolute -top-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-red-500 text-xs flex items-center justify-center text-white'>
@@ -78,7 +78,7 @@ export function AppHeader() {
         </div>
 
         {/* Wallet */}
-        <div className='hidden sm:flex items-center gap-1 p-1 sm:p-2 border border-slate-600 rounded-lg'>
+        <div className='hidden sm:flex items-center gap-1 p-1 sm:p-2 border border-gray-300 dark:border-slate-700 rounded-lg'>
           <span className='text-foreground text-xs sm:text-sm font-medium'>
             $124.50
           </span>
@@ -90,7 +90,7 @@ export function AppHeader() {
         {/* Avatar */}
         <Avatar className='h-7 w-7 sm:h-8 sm:w-8 shrink-0'>
           <AvatarImage src='/avatarPlaceholder.webp' />
-          <AvatarFallback className='bg-slate-600 text-white text-xs'>
+          <AvatarFallback className='bg-main text-foreground text-xs'>
             JD
           </AvatarFallback>
         </Avatar>
