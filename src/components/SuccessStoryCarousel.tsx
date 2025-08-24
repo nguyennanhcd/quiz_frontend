@@ -13,14 +13,14 @@ import 'swiper/css/pagination'
 
 export default function SuccessStoriesCarousel() {
   return (
-    <section className='w-full py-12 mt-10 rounded-xl text-white bg-main'>
+    <section className='w-full py-12 mt-10 rounded-xl text-foreground bg-main'>
       <div className='container px-4 md:px-6'>
         <div className='flex flex-col items-center justify-center space-y-4 text-center'>
           <div className='space-y-2'>
-            <h2 className='text-3xl font-bold text-slate-800 dark:text-slate-200 mb-4'>
+            <h2 className='text-3xl font-bold text-foreground mb-4'>
               Success Stories
             </h2>
-            <p className='text-slate-600 text-lg dark:text-slate-400 max-w-2xl mx-auto'>
+            <p className='text-foreground/80 text-lg max-w-2xl mx-auto'>
               Hear from our community of quiz creators and players who are
               earning rewards and building their audience
             </p>
@@ -75,16 +75,16 @@ export default function SuccessStoriesCarousel() {
                           />
                         ))}
                       </div>
-                      <p className='text-lg italic text-gray-200 mb-4'>
+                      <p className='text-lg italic text-foreground/80 mb-4'>
                         {testimonial.quote}
                       </p>
-                      <h3 className='text-xl font-semibold text-white'>
+                      <h3 className='text-xl font-semibold text-foreground'>
                         {testimonial.name}
                       </h3>
                       <p className='text-gray-400'>{testimonial.role}</p>
                       <div className='mt-6 flex justify-center md:justify-start space-x-8'>
                         <div className='text-center'>
-                          <div className='text-2xl font-bold text-default'>
+                          <div className='text-2xl font-bold text-foreground'>
                             {testimonial.earnings}
                           </div>
                           <div className='text-gray-400 text-sm'>Earnings</div>
@@ -169,7 +169,7 @@ export default function SuccessStoriesCarousel() {
         }
 
         .swiper-pagination-bullet-active-custom {
-          background-color: white;
+          background-color: #6c88ea;
         }
 
         .swiper-pagination-bullet-custom:hover {

@@ -1,18 +1,19 @@
+export const BADGE_TYPES = {
+  DIAMOND: 'Diamond',
+  PLATINUM: 'Platinum',
+  GOLD: 'Gold',
+  SILVER: 'Silver',
+  BRONZE: 'Bronze'
+} as const
+
+export type BadgeType = (typeof BADGE_TYPES)[keyof typeof BADGE_TYPES]
 export interface LeaderboardEntry {
   id: string
   name: string
   avatar: string
   score: number
   time?: string
-  badge:
-    | 'Diamond'
-    | 'Platinum'
-    | 'Gold'
-    | 'Silver'
-    | 'Bronze'
-    | '🏆'
-    | '🥈'
-    | '🥉'
+  badge: BadgeType
   rank?: number
   badgeColor?: string
   borderColor?: string
@@ -29,7 +30,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 7s',
-      badge: 'Gold',
+      badge: BADGE_TYPES.GOLD,
       rank: 7,
       badgeColor: undefined,
       borderColor: undefined,
@@ -43,7 +44,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 100,
       time: '1m 22s',
-      badge: 'Silver',
+      badge: BADGE_TYPES.SILVER,
       rank: 8,
       badgeColor: undefined,
       borderColor: undefined,
@@ -57,7 +58,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 80,
       time: '1m 3s',
-      badge: 'Bronze',
+      badge: BADGE_TYPES.BRONZE,
       rank: 9,
       badgeColor: undefined,
       borderColor: undefined,
@@ -73,7 +74,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 950,
       time: 'avg 45s',
-      badge: 'Gold',
+      badge: BADGE_TYPES.GOLD,
       rank: 4,
       badgeColor: undefined,
       borderColor: undefined,
@@ -87,7 +88,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 920,
       time: 'avg 52s',
-      badge: 'Silver',
+      badge: BADGE_TYPES.SILVER,
       rank: 5,
       badgeColor: undefined,
       borderColor: undefined,
@@ -101,7 +102,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 890,
       time: 'avg 48s',
-      badge: 'Bronze',
+      badge: BADGE_TYPES.BRONZE,
       rank: 6,
       badgeColor: undefined,
       borderColor: undefined,
@@ -117,7 +118,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 9850,
       time: 'avg 42s',
-      badge: 'Diamond',
+      badge: BADGE_TYPES.DIAMOND,
       rank: 1,
       badgeColor: 'bg-default hover:bg-default-hover',
       borderColor: 'border-yellow-400',
@@ -131,7 +132,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 8720,
       time: undefined,
-      badge: 'Platinum',
+      badge: BADGE_TYPES.PLATINUM,
       rank: 2,
       badgeColor: 'bg-slate-600',
       borderColor: 'border-slate-400',
@@ -145,7 +146,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 7640,
       time: undefined,
-      badge: 'Gold',
+      badge: BADGE_TYPES.GOLD,
       rank: 3,
       badgeColor: 'bg-amber-600 hover:bg-amber-700',
       borderColor: 'border-amber-600',
@@ -159,7 +160,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 9850,
       time: 'avg 42s',
-      badge: 'Diamond',
+      badge: BADGE_TYPES.DIAMOND,
       rank: 10,
       badgeColor: undefined,
       borderColor: undefined,
@@ -173,7 +174,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 9720,
       time: 'avg 44s',
-      badge: 'Platinum',
+      badge: BADGE_TYPES.PLATINUM,
       rank: 11,
       badgeColor: undefined,
       borderColor: undefined,
@@ -187,7 +188,7 @@ export const leaderboardData = {
       avatar: '/avatarPlaceholder.webp',
       score: 9650,
       time: 'avg 46s',
-      badge: 'Gold',
+      badge: BADGE_TYPES.GOLD,
       rank: 12,
       badgeColor: undefined,
       borderColor: undefined,

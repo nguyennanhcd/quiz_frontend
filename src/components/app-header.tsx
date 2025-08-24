@@ -29,7 +29,7 @@ export function AppHeader() {
     >
       {/* Left Section: SidebarTrigger */}
       <div>
-        <SidebarTrigger className='text-foreground hover:bg-default-hover font-extralight' />
+        <SidebarTrigger className='text-foreground/80 hover:bg-default-hover font-extralight' />
       </div>
 
       {/* Gap between Left and Middle/Right sections */}
@@ -42,7 +42,7 @@ export function AppHeader() {
           <Input
             type='search'
             placeholder='Search quizzes, categories, creators...'
-            className='pl-10 bg-main-hover border-slate-600 text-foreground placeholder-[#020817] dark:placeholder-slate-400 w-full text-sm focus:border-slate-600'
+            className='pl-10 bg-main-hover border border-gray-300 dark:border-slate-700 text-foreground placeholder-[#020817] dark:placeholder-slate-400 w-full text-sm focus:border-slate-600'
           />
         </div>
       </div>

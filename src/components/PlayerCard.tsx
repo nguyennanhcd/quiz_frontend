@@ -18,17 +18,15 @@ export function PlayerCard({
   avatarUrl,
   bgImageUrl
 }: Player) {
-  // Map levelString to color classes (use levelString instead of level for consistency)
   const levelColorClass: Record<string, string> = {
     Advanced: 'bg-pink-500',
     Grandmaster: 'bg-purple-500',
     Master: 'bg-red-500',
-    // Fallback for undefined or other level strings
     default: 'bg-gray-500'
   }
 
   return (
-    <div className='relative overflow-hidden rounded-lg bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 text-foreground shadow-lg h-full'>
+    <div className='relative overflow-hidden rounded-lg bg-main dark:bg-slate-900 border border-gray-300 dark:border-slate-700 text-foreground shadow-lg h-full'>
       <div className='relative h-32 w-full'>
         <Image
           src={bgImageUrl || '/placeholder.svg'}
@@ -50,7 +48,7 @@ export function PlayerCard({
       </div>
 
       <div className='relative -mt-12 flex flex-col items-center px-4 pb-4'>
-        <Avatar className='h-24 w-24 border-4 border-[#2a2a4a] bg-gray-700'>
+        <Avatar className='h-20 w-20 border-4 border-[#2a2a4a] bg-gray-700'>
           <AvatarImage src={avatarUrl || '/placeholder.svg'} alt={name} />
           <AvatarFallback>
             {name
@@ -89,14 +87,14 @@ export function PlayerCard({
         </CardContent>
 
         <div className='mt-4 flex w-full justify-around gap-2'>
-          <div className='flex flex-1 flex-col items-center rounded-md bg-main p-2'>
+          <div className='flex flex-1 flex-col items-center rounded-md dark:bg-main bg-[#e2e8f0] p-2 border border-gray-300 dark:border-slate-700'>
             <Users className='h-4 w-4 text-gray-400' />
-            <span className='mt-1 text-base font-semibold'>
+            <span className='mt-1 text-sm font-semibold'>
               {followers ?? 'N/A'}
             </span>
             <span className='text-xs text-gray-400'>Followers</span>
           </div>
-          <div className='flex flex-1 flex-col items-center rounded-md bg-main p-2'>
+          <div className='flex flex-1 flex-col items-center rounded-md dark:bg-main bg-[#e2e8f0] p-2 border border-gray-300 dark:border-slate-700'>
             <Users className='h-4 w-4 text-gray-400' />
             <span className='mt-1 text-base font-semibold'>
               {following ?? 'N/A'}
