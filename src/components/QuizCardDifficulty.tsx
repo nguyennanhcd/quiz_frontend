@@ -40,7 +40,7 @@ export function QuizCardDifficulty({
   const isSpotsLow = spotsAvailable > 0 && spotsAvailable <= 10
 
   return (
-    <div className='w-full overflow-hidden rounded-lg border shadow-lg'>
+    <div className='w-full overflow-hidden rounded-lg border border-gray-300 dark:border-slate-700 shadow-lg'>
       <div className='relative aspect-[16/9] w-full'>
         <Image
           src={imageSrc || '/placeholder.svg'}
@@ -82,7 +82,7 @@ export function QuizCardDifficulty({
       </div>
       <div className='p-4 text-white'>
         <div className='mb-2 flex items-center justify-between text-sm text-gray-400'>
-          <span className='rounded-full border border-gray-600 px-2 py-0.5 text-xs'>
+          <span className='rounded-full text-foreground border border-gray-300 dark:border-slate-700 px-2 py-0.5 text-xs'>
             {category}
           </span>
           <div className='flex items-center'>
@@ -90,10 +90,10 @@ export function QuizCardDifficulty({
             {duration} min
           </div>
         </div>
-        <h3 className='mb-3 text-lg font-bold'>{title}</h3>
+        <h3 className='mb-3 text-lg text-foreground font-bold'>{title}</h3>
         <div className='mb-3 flex items-center text-sm text-gray-400'>
-          <Users className='mr-2 h-4 w-4' />
-          {players} players
+          <Users className='mr-2 h-4 w-4 text-foreground' />
+          <span className='text-foreground'>{players} players</span>
         </div>
         <div className='mb-3 h-2 w-full rounded-full bg-gray-700'>
           <div

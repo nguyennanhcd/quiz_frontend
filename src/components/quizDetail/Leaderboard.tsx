@@ -12,7 +12,7 @@ const Leaderboard = () => {
   const renderTable = (data: LeaderboardEntry[]) => (
     <table className='w-full'>
       <thead>
-        <tr className='border-b border-slate-700/50'>
+        <tr className='border-b border-gray-300 dark:border-slate-700/50'>
           <th className='text-left py-4 px-6 text-slate-300 font-medium text-sm'>
             #
           </th>
@@ -34,7 +34,7 @@ const Leaderboard = () => {
         {data.map((player) => (
           <tr
             key={player.id}
-            className='border-b border-slate-700/30 hover:bg-slate-700/20 transition-colors'
+            className='border-b border-gray-300 dark:border-slate-700/30 hover:bg-slate-700/20 transition-colors'
           >
             <td className='py-4 px-6'>
               <span
@@ -96,8 +96,8 @@ const Leaderboard = () => {
   return (
     <div className='min-h-screen bg-slate-900 p-6'>
       <div className='max-w-4xl mx-auto'>
-        <div className='bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700/50 overflow-hidden'>
-          <div className='flex border-b border-slate-700/50'>
+        <div className='bg-slate-800/50 backdrop-blur-sm rounded-lg border border-gray-300 dark:border-slate-700/50 overflow-hidden'>
+          <div className='flex border-b border-gray-300 dark:border-slate-700/50'>
             {(['allTime', 'week', 'today'] as const).map((tab) => (
               <button
                 key={tab}

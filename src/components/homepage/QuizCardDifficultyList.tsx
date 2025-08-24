@@ -41,15 +41,15 @@ const QuizCardDifficultyList = () => {
           </p>
         </div>
         <div className='flex items-center gap-2'>
-          <div className='flex rounded-lg bg-[#2A2A3A] p-1'>
+          <div className='flex rounded-lg bg-gray-200 dark:bg-slate-800/50 p-1'>
             {(['Easy', 'Medium', 'Hard'] as const).map((level) => (
               <Button
                 key={level}
                 onClick={() => setSelectedDifficulty(level)}
-                className={`rounded-sm px-4 py-1 text-sm transition ${
+                className={`rounded-sm px-4 py-1 text-sm transition text-foreground ${
                   selectedDifficulty === level
                     ? `${difficultyColors[level].bg} pointer-events-none`
-                    : `bg-transparent ${difficultyColors[level].hover}`
+                    : `bg-transparent text-foreground ${difficultyColors[level].hover}`
                 }`}
               >
                 {level}
