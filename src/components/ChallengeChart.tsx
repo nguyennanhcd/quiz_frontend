@@ -24,15 +24,15 @@ const chartConfig = {
 
 const ChallengeChart = () => {
   return (
-    <section className=' bg-slate-900 text-white rounded-lg'>
+    <section className=' bg-main text-foreground rounded-lg'>
       {/* Performance Chart */}
-      <Card className='bg-slate-800 border-slate-700 lg:col-span-2 lg:row-span-2 py-6'>
+      <Card className='bg-main border border-gray-300 dark:border-slate-700 lg:col-span-2 lg:row-span-2 py-6'>
         <CardHeader>
           <CardTitle>Your Challenge Stats</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue='performance' className='w-full'>
-            <TabsList className='grid w-full grid-cols-2 bg-slate-700'>
+            <TabsList className='grid w-full grid-cols-2 bg-main'>
               <TabsTrigger
                 value='performance'
                 className='data-[state=active]:bg-default data-[state=active]:text-white'
@@ -50,7 +50,7 @@ const ChallengeChart = () => {
             <TabsContent value='performance' className='space-y-6 mt-6'>
               <ChartContainer
                 config={chartConfig}
-                className='min-h-20 dark:[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-slate-700'
+                className='min-h-20 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-main-hover'
               >
                 <BarChart
                   accessibilityLayer
@@ -85,7 +85,7 @@ const ChallengeChart = () => {
                     content={<ChartLegendContent className='text-sm' />}
                   />
                   <ChartTooltip
-                    cursor={{ fill: '#475569' }}
+                    cursor={{ fill: 'var(--main)' }}
                     content={<ChartTooltipContent />}
                   />
                   <Bar

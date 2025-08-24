@@ -76,14 +76,14 @@ const MainContent = () => {
       {/* Left Block */}
       <div className='lg:col-span-2 space-y-6'>
         {/* Quiz Section */}
-        <Card className='bg-main text-white lg:col-span-2 py-6'>
+        <Card className='bg-main text-foreground border border-gray-300 dark:border-slate-700 lg:col-span-2 py-6'>
           <CardHeader>
             <div className='flex justify-between items-start'>
               <div>
                 <CardTitle className='text-xl font-bold'>
                   Science & Technology Challenge
                 </CardTitle>
-                <p className='text-white/70 mt-1'>
+                <p className='text-foreground/70 mt-1'>
                   Test your knowledge of scientific discoveries and
                   technological innovations.
                 </p>
@@ -94,7 +94,7 @@ const MainContent = () => {
               </div>
             </div>
             <div className='space-y-2'>
-              <div className='flex justify-between text-sm text-white/70'>
+              <div className='flex justify-between text-sm text-foreground/70'>
                 <span>Question 1 of 5</span>
                 <span>20% Complete</span>
               </div>
@@ -134,7 +134,12 @@ const MainContent = () => {
               <Button variant='outline' disabled>
                 Previous
               </Button>
-              <Button disabled={!selectedAnswer}>Next Question</Button>
+              <Button
+                disabled={!selectedAnswer}
+                className='text-white transition-colors'
+              >
+                Next Question
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -143,12 +148,12 @@ const MainContent = () => {
         <ChallengeChart />
 
         {/* Challenge History */}
-        <Card className='bg-main text-white border-slate-700 py-6'>
+        <Card className='bg-main text-foreground border border-gray-300 dark:border-slate-700 py-6'>
           <CardHeader>
             <div className='flex items-center justify-between'>
               <h1 className='text-xl font-bold'>Challenge History</h1>
               <Button
-                className='flex items-center gap-1 bg-main text-slate-300 hover:bg-main-hover transition-colors'
+                className='flex items-center gap-1 bg-main text-foreground hover:bg-main-hover transition-colors'
                 onClick={() => setShowAllHistory(!showAllHistory)}
               >
                 <span>{showAllHistory ? 'View Less' : 'View All'}</span>
@@ -165,7 +170,7 @@ const MainContent = () => {
               {displayedHistory.map((challenge, index) => (
                 <Card
                   key={index}
-                  className='bg-slate-800 border-slate-700 last:mb-0'
+                  className='bg-main border-border/50 last:mb-0'
                 >
                   <CardContent className='p-4'>
                     <div className='flex items-center justify-between'>
@@ -174,11 +179,11 @@ const MainContent = () => {
                           {challenge.date}
                         </div>
                         <div className='flex items-center gap-3'>
-                          <Badge className='bg-main text-slate-300 hover:bg-main-hover transition-colors'>
+                          <Badge className='bg-main text-foreground hover:bg-main-hover transition-colors border border-gray-300 dark:border-slate-700 py-0.5 px-2 rounded-3xl'>
                             {challenge.category}
                           </Badge>
                           {challenge.isTopTen && (
-                            <Badge className='bg-orange-500 hover:bg-orange-600 text-white'>
+                            <Badge className='bg-orange-500 hover:bg-orange-600 text-foreground border border-gray-300 dark:border-slate-700 py-0.5 px-2 rounded-3xl'>
                               Top 10
                             </Badge>
                           )}
@@ -189,7 +194,7 @@ const MainContent = () => {
                         <div className='text-base font-bold mb-1'>
                           {challenge.score}%
                         </div>
-                        <div className='text-slate-400 text-sm'>
+                        <div className='text-foreground/70 text-sm'>
                           Rank #{challenge.rank}
                         </div>
                       </div>
@@ -205,7 +210,7 @@ const MainContent = () => {
       {/* Right Block */}
       <div className='space-y-6'>
         {/* Leaderboard */}
-        <Card className='bg-main text-white py-6'>
+        <Card className='bg-main text-foreground border border-border/50 py-6'>
           <CardHeader>
             <CardTitle>Leaderboard</CardTitle>
           </CardHeader>
@@ -251,7 +256,7 @@ const MainContent = () => {
         </Card>
 
         {/* Rewards & Streaks */}
-        <Card className='bg-main border-slate-700 py-6'>
+        <Card className='bg-main text-foreground border border-gray-300 dark:border-slate-700 py-6'>
           <CardHeader>
             <CardTitle className='flex items-center space-x-2'>
               <Trophy className='h-5 w-5' />
