@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import {
@@ -7,7 +6,8 @@ import {
   Cell,
   ResponsiveContainer,
   Legend,
-  Tooltip
+  Tooltip,
+  PieLabelRenderProps
 } from 'recharts'
 
 const data = [
@@ -19,6 +19,7 @@ const data = [
 ]
 
 const RADIAN = Math.PI / 180
+
 const renderCustomizedLabel = ({
   cx,
   cy,
@@ -26,50 +27,33 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  name
-}: any) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 1.2
-  const x = cx + radius * Math.cos(-midAngle * RADIAN)
-  const y = cy + radius * Math.sin(-midAngle * RADIAN)
+  index
+}: PieLabelRenderProps & { index?: number }) => {
+  const radius =
+    (innerRadius as number) +
+    ((outerRadius as number) - (innerRadius as number)) * 1.2
+  const x = (cx as number) + radius * Math.cos(-midAngle * RADIAN)
+  const y = (cy as number) + radius * Math.sin(-midAngle * RADIAN)
+
+  const color = data[index ?? 0].color
 
   return (
     <text
       x={x}
       y={y}
-      fill='white'
-      textAnchor={x > cx ? 'start' : 'end'}
+      fill={color}
+      textAnchor={x > (cx as number) ? 'start' : 'end'}
       dominantBaseline='central'
       className='text-sm font-medium'
     >
-      {`${name} ${(percent * 100).toFixed(0)}%`}
+      {`${data[index ?? 0].name} ${((percent as number) * 100).toFixed(0)}%`}
     </text>
-  )
-}
-
-const CustomLegend = (props: any) => {
-  // Provide a default empty array to avoid undefined errors
-  const { payload = [] } = props
-
-  if (!payload.length) return null
-
-  return (
-    <div className='flex flex-wrap justify-center gap-4 mt-6'>
-      {payload.map((entry: any, index: number) => (
-        <div key={index} className='flex items-center gap-2'>
-          <div
-            className='w-3 h-3 rounded-full'
-            style={{ backgroundColor: entry.color }}
-          />
-          <span className='text-white text-sm font-medium'>{entry.value}</span>
-        </div>
-      ))}
-    </div>
   )
 }
 
 export default function ChallengePieChart() {
   return (
-    <div className='w-full max-w-4xl mx-auto p-8 bg-slate-900 rounded-lg'>
+    <div className='w-full max-w-4xl mx-auto p-8 bg-main rounded-lg'>
       <div className='h-96'>
         <ResponsiveContainer width='100%' height='100%'>
           <PieChart>
@@ -82,21 +66,30 @@ export default function ChallengePieChart() {
               outerRadius={120}
               fill='#8884d8'
               dataKey='value'
+              className='text-foreground'
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={entry.color}
+                  className='text-foreground'
+                />
               ))}
             </Pie>
             <Tooltip
-              contentStyle={{ backgroundColor: '#1f2937', border: 'none' }}
-              itemStyle={{ color: '#fff' }}
+              contentStyle={{
+                backgroundColor: 'var(--main)',
+                border: 'none',
+                padding: '10px'
+              }}
+              itemStyle={{ color: 'var(--foreground)' }}
               formatter={(value: number, name: string) => [`${value}%`, name]}
             />
-            <Legend content={<CustomLegend />} />
+            <Legend wrapperStyle={{ color: 'var(--foreground)' }} />
           </PieChart>
         </ResponsiveContainer>
       </div>
-      <p className='text-center text-gray-400 text-sm mt-4'>
+      <p className='text-center text-foreground/70 text-sm mt-4'>
         Distribution of your correct answers by category
       </p>
     </div>
