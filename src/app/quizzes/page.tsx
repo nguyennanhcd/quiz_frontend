@@ -1,6 +1,5 @@
 'use client'
 
-import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import FeaturedQuiz from '@/components/FeaturedQuiz'
@@ -10,26 +9,29 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
+import { Search } from 'lucide-react'
 
 export default function QuizPlatform() {
   return (
-    <div className='min-h-screen text-white p-4 md:p-8 lg:p-12'>
+    <div className='min-h-screen text-foreground p-4 md:p-8 lg:p-12'>
       <div className=''>
         {/* Header */}
         <div className='mb-8'>
-          <h1 className='text-4xl font-bold mb-2'>Explore Quizzes</h1>
-          <p className='text-slate-400 text-base'>
+          <h1 className='text-4xl font-bold mb-2 text-foreground'>
+            Explore Quizzes
+          </h1>
+          <p className='text-foreground/70 text-base'>
             Discover and play quizzes from our community
           </p>
         </div>
 
         {/* Search Bar */}
-        <div className='relative mb-8 flex items-center gap-4'>
+        <div className='relative mb-8 flex items-center gap-4 rounded-full'>
           <div className='relative flex-1'>
-            <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5' />
+            <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/70 w-5 h-5 ' />
             <Input
               placeholder='Search quizzes by title, category, or creator...'
-              className='pl-10 bg-slate-800 border-slate-700 text-white placeholder:text-slate-400 h-12'
+              className='pl-10 bg-main dark:bg-slate-800 border-x border-gray-300 dark:border-slate-700  text-foreground placeholder:text-foreground/70 h-12'
             />
           </div>
         </div>
@@ -48,7 +50,7 @@ export default function QuizPlatform() {
                   className={`whitespace-nowrap rounded-full ${
                     category.active
                       ? 'bg-default hover:bg-default/90'
-                      : 'border-slate-700 bg-slate-800 hover:bg-slate-700'
+                      : 'bg-main hover:bg-main/90'
                   }`}
                 >
                   <span className='mr-2'>{category.icon}</span>
