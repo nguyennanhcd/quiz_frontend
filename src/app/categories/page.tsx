@@ -14,21 +14,23 @@ export default function QuizCategories() {
   )
 
   return (
-    <div className='min-h-screen text-white p-4 md:p-8 lg:p-12'>
+    <div className='min-h-screen text-foreground p-4 md:p-8 lg:p-12'>
       <div className='mb-8'>
-        <h1 className='text-3xl md:text-4xl font-bold mb-4'>Quiz Categories</h1>
-        <p className='text-slate-400 text-lg mb-6'>
+        <h1 className='text-3xl md:text-4xl font-bold mb-4 text-foreground'>
+          Quiz Categories
+        </h1>
+        <p className='text-foreground/70 text-lg mb-6'>
           Browse all quiz categories and find quizzes that match your interests.
         </p>
         {/* Search Bar */}
         <div className='relative max-w-md'>
-          <Search className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5' />
+          <Search className='absolute left-3 top-1/2 -translate-y-1/2 text-foreground/70 w-5 h-5' />
           <Input
             type='text'
             placeholder='Search categories...'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className='pl-10 bg-slate-800 border-slate-700 text-white placeholder-slate-400 focus:border-slate-600'
+            className='pl-10 bg-main dark:bg-slate-800 border-slate-700 text-foreground placeholder-foreground/70 focus:border-slate-600'
           />
         </div>
       </div>
@@ -45,7 +47,7 @@ export default function QuizCategories() {
       {/* No Results */}
       {filteredCategories.length === 0 && (
         <div className='text-center py-12'>
-          <p className='text-slate-400 text-lg'>
+          <p className='text-foreground/70 text-lg'>
             No categories found matching your search.
           </p>
         </div>
