@@ -40,8 +40,8 @@ export default function QuizDiscussions() {
         </div>
 
         {/* Discussion Tabs */}
-        <Tabs defaultValue='recent' className='w-full'>
-          <TabsList className='w-full justify-start overflow-x-auto scrollbar-hide'>
+        <Tabs defaultValue='recent' className='w-full '>
+          <TabsList className='w-full justify-start overflow-x-auto scrollbar-hide border border-gray-300 dark:border-slate-700 rounded-md'>
             <TabsTrigger
               value='recent'
               className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0'
