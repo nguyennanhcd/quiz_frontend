@@ -53,16 +53,16 @@ export function FAQSection() {
   )
 
   return (
-    <div className='bg-transparent border border-slate-700 rounded-lg p-8'>
+    <div className='bg-transparent border border-gray-300 dark:border-slate-700 rounded-lg p-8'>
       <div className='flex items-center justify-between mb-8 '>
         <h2 className='text-2xl font-bold'>General FAQs</h2>
         <div className='relative w-80'>
-          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5' />
+          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/70 w-5 h-5' />
           <Input
             placeholder='Search FAQs...'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className='pl-10  text-white placeholder-slate-400'
+            className='pl-10  text-foreground placeholder-foreground/70'
           />
         </div>
       </div>
@@ -72,12 +72,14 @@ export function FAQSection() {
           <AccordionItem
             key={faq.id}
             value={faq.id}
-            className='bg-transparent rounded-lg border border-slate-700'
+            className='bg-transparent rounded-lg border border-gray-300 dark:border-slate-700'
           >
-            <AccordionTrigger className='px-6 py-4 text-left hover:no-underline hover:bg-slate-750'>
-              <span className='text-white font-medium'>{faq.question}</span>
+            <AccordionTrigger className='px-6 py-4 text-left hover:underline'>
+              <span className='text-foreground font-medium'>
+                {faq.question}
+              </span>
             </AccordionTrigger>
-            <AccordionContent className='px-6 pb-4 text-slate-300'>
+            <AccordionContent className='px-6 pb-4 text-foreground/70'>
               {faq.answer}
             </AccordionContent>
           </AccordionItem>
@@ -86,7 +88,9 @@ export function FAQSection() {
 
       {filteredFaqs.length === 0 && (
         <div className='text-center py-12'>
-          <p className='text-slate-400'>No FAQs found matching your search.</p>
+          <p className='text-foreground/70'>
+            No FAQs found matching your search.
+          </p>
         </div>
       )}
     </div>

@@ -83,7 +83,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
 
   return (
-    <Sidebar collapsible='icon' className='bg-main' {...props}>
+    <Sidebar
+      collapsible='icon'
+      className='dark:bg-main bg-background'
+      {...props}
+    >
       <SidebarHeader className=' border-x border-gray-300 dark:border-slate-700 pointer-events-none'>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -102,7 +106,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='bg-main border border-gray-300 dark:border-slate-700'>
+      <SidebarContent className='dark:bg-main bg-background border border-gray-300 dark:border-slate-700'>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu className='space-y-3'>

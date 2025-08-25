@@ -5,16 +5,16 @@ import { articles } from '@/constant/articles'
 
 export function KnowledgeBase() {
   return (
-    <div className='space-y-6 bg-transparent border border-slate-700 rounded-lg  p-8'>
+    <div className='space-y-6 bg-transparent border border-gray-300 dark:border-slate-700 rounded-lg  p-8'>
       <div className='flex items-center justify-between'>
-        <h2 className='text-2xl font-bold text-white'>
+        <h2 className='text-2xl font-bold text-foreground'>
           All Categories Knowledge Base
         </h2>
         <div className='relative w-80'>
-          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4' />
+          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/70 h-4 w-4' />
           <Input
             placeholder='Search articles...'
-            className='pl-10 bg-slate-800 border-slate-700 text-white placeholder:text-slate-400'
+            className='pl-10 bg-transparent border border-gray-300 dark:border-slate-700 text-foreground placeholder:text-foreground/70'
           />
         </div>
       </div>
@@ -25,26 +25,26 @@ export function KnowledgeBase() {
           return (
             <div
               key={article.id}
-              className='p-6 hover:bg-slate-750 transition-colors cursor-pointer border border-slate-700 rounded-lg'
+              className='group p-6 dark:hover:bg-default-hover group-hover:border-default transition-colors cursor-pointer border border-gray-300 dark:border-slate-700 rounded-lg hover:border-default-hover'
             >
               <div className='flex items-center justify-between mb-4'>
                 <div className='flex items-center gap-2'>
-                  <IconComponent className='h-4 w-4 text-white' />
-                  <span className='text-xs text-white px-1 py-0.5 cursor-pointer border border-slate-700 rounded-md'>
+                  <IconComponent className='h-4 w-4 text-foreground' />
+                  <span className='text-xs text-foreground px-1 py-0.5 cursor-pointer border border-gray-300 dark:border-slate-700 rounded-md'>
                     {article.category}
                   </span>
                 </div>
-                <span className='text-sm text-slate-400'>
+                <span className='text-sm text-foreground/70'>
                   {article.readTime}
                 </span>
               </div>
-              <h3 className='text-lg font-semibold text-white mb-2'>
+              <h3 className='text-lg font-semibold text-foreground mb-2'>
                 {article.title}
               </h3>
-              <p className='text-slate-300 text-sm mb-4'>
+              <p className='text-foreground/70 text-sm mb-4'>
                 {article.description}
               </p>
-              <div className='flex items-center text-default hover:text-default-hover transition-colors'>
+              <div className='flex items-center text-foreground group-hover:text-default-hover dark:group-hover:text-foreground transition-colors'>
                 <span className='text-sm font-medium'>Read article</span>
                 <ArrowRight className='h-4 w-4 ml-1' />
               </div>

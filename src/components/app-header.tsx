@@ -23,7 +23,7 @@ export function AppHeader() {
   return (
     <header
       className='fixed top-0 z-50 h-16 flex items-center
-                 bg-main border-b border-gray-300 dark:border-slate-700 px-2 sm:px-4
+                 dark:bg-main bg-background border-b border-gray-300 dark:border-slate-700 px-2 sm:px-4
                  transition-all duration-300'
       style={{ left: sidebarWidth, right: 0 }}
     >
@@ -57,8 +57,8 @@ export function AppHeader() {
           <div className='p-1.5 sm:p-2 border border-gray-300 dark:border-slate-700 rounded-md'>
             <MessageSquare className='h-4 w-4 text-foreground cursor-pointer' />
           </div>
-          <div className='absolute -top-1 -right-1 h-4 w-4 rounded-full bg-blue-500 text-xs flex items-center justify-center text-white'>
-            2
+          <div className='absolute -top-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 rounded-full dark:bg-white bg-black text-[0.6rem] flex items-center justify-center text-white dark:text-black'>
+            <span className='text-center leading-none'>2</span>
           </div>
         </div>
 
@@ -67,8 +67,8 @@ export function AppHeader() {
           <div className='p-1.5 sm:p-2 border border-gray-300 dark:border-slate-700 rounded-md'>
             <Bell className='h-4 w-4 text-foreground cursor-pointer' />
           </div>
-          <div className='absolute -top-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-red-500 text-xs flex items-center justify-center text-white'>
-            <span className='text-xs'>3</span>
+          <div className='absolute -top-1 -right-1 h-3 w-3 sm:h-4 sm:w-4 rounded-full dark:bg-white bg-black text-[0.6rem] flex items-center justify-center text-white dark:text-black'>
+            <span className='text-center leading-none'>3</span>
           </div>
         </div>
 
