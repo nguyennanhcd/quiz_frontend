@@ -40,9 +40,6 @@ const Reviews = () => {
                       width={48}
                       height={48}
                       className='rounded-full'
-                      onError={(e) => {
-                        e.currentTarget.src = '/placeholder.svg'
-                      }}
                     />
                   </div>
 

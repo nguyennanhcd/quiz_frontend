@@ -34,11 +34,11 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
   const progressPercentage = (currentPlayers / maxPlayers) * 100
 
   return (
-    <div className='min-h-screen bg-slate-900 text-white'>
+    <div className='min-h-screen bg-main text-foreground'>
       {/* Header */}
       <div className='p-4'>
         <Link href='/quizzes'>
-          <Button variant='ghost' className='text-white hover:bg-slate-800'>
+          <Button className='text-white hover:bg-default-hover'>
             <ArrowLeft className='w-4 h-4 mr-2' />
             Back to List
           </Button>
@@ -54,10 +54,9 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
           height={400}
           className='w-full h-[400px] object-cover'
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
 
         {/* Quiz Info Overlay */}
-        <div className='absolute bottom-0 left-0 p-6'>
+        <div className='absolute bottom-0 left-0 p-6 text-white'>
           <div className='flex gap-2 mb-4'>
             <Badge
               className={`${
