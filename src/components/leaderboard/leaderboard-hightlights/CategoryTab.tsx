@@ -38,9 +38,6 @@ export default function CategoryTab({
                 <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-6 h-6 bg-[#d1d5db] rounded-full flex items-center justify-center'>
                   <span className='font-bold text-xs text-white'>2</span>
                 </div>
-                {users[1].isOnline && (
-                  <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
-                )}
               </div>
               <h3 className='text-foreground font-bold text-base mb-1'>
                 {users[1].name}
@@ -49,12 +46,12 @@ export default function CategoryTab({
                 {users[1].points.toLocaleString()} pts
               </p>
               <div className='flex items-center gap-2 mb-2'>
-                <Badge className='bg-slate-600 hover:bg-slate-700 text-xs dark:bg-slate-600 dark:hover:bg-slate-700'>
+                <Badge className='bg-slate-600 hover:bg-slate-700 text-xs dark:bg-slate-600 dark:hover:bg-slate-700 text-white'>
                   💎 Platinum
                 </Badge>
                 <Badge
                   variant='outline'
-                  className='border-yellow-400 text-yellow-400 text-xs'
+                  className='border-yellow-400 text-foreground text-xs'
                 >
                   ⭐65
                 </Badge>
@@ -82,9 +79,6 @@ export default function CategoryTab({
                 <div className='absolute -top-4 left-1/2 transform -translate-x-1/2'>
                   <div className='text-2xl'>👑</div>
                 </div>
-                {users[0].isOnline && (
-                  <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
-                )}
               </div>
               <h3 className='text-foreground font-bold text-lg mb-1'>
                 {users[0].name}
@@ -93,12 +87,12 @@ export default function CategoryTab({
                 {users[0].points.toLocaleString()} pts
               </p>
               <div className='flex items-center gap-2 mb-2'>
-                <Badge className='bg-blue-600 hover:bg-blue-700 text-sm dark:bg-blue-600 dark:hover:bg-blue-700'>
+                <Badge className='bg-blue-600 hover:bg-blue-700 text-sm dark:bg-blue-600 dark:hover:bg-blue-700 text-white'>
                   💎 Diamond
                 </Badge>
                 <Badge
                   variant='outline'
-                  className='border-yellow-400 text-yellow-400 text-sm'
+                  className='border-yellow-400 text-foreground text-sm'
                 >
                   ⭐78
                 </Badge>
@@ -123,9 +117,6 @@ export default function CategoryTab({
                 <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-6 h-6 bg-orange-500 dark:bg-orange-600 rounded-full flex items-center justify-center'>
                   <span className='font-bold text-xs text-white'>3</span>
                 </div>
-                {users[2].isOnline && (
-                  <div className='absolute -bottom-1 -left-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900' />
-                )}
               </div>
               <h3 className='text-foreground font-bold text-base mb-1'>
                 {users[2].name}
@@ -134,17 +125,17 @@ export default function CategoryTab({
                 {users[2].points.toLocaleString()} pts
               </p>
               <div className='flex items-center gap-2 mb-2'>
-                <Badge className='bg-yellow-600 hover:bg-yellow-700 text-xs dark:bg-yellow-600 dark:hover:bg-yellow-700'>
+                <Badge className='bg-yellow-600 hover:bg-yellow-700 text-xs dark:bg-yellow-600 dark:hover:bg-yellow-700 text-white'>
                   🥇 Gold
                 </Badge>
                 <Badge
                   variant='outline'
-                  className='border-yellow-400 text-yellow-400 text-xs'
+                  className='border-yellow-400 text-foreground text-xs'
                 >
                   ⭐59
                 </Badge>
               </div>
-              <div className='dark:bg-slate-800/50 bg-[#edf2f8] rounded-lg p-4 w-32 h-20'></div>
+              <div className='dark:bg-slate-800/50 bg-[#edf2f8] rounded-lg p-4 w-32 h-20 text-white'></div>
             </div>
           )}
         </div>

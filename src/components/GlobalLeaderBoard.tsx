@@ -114,12 +114,12 @@ export default function GlobalLeaderboard() {
                   <ChevronDown className='w-4 h-4' />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className='bg-main border text-foreground '>
+              <DropdownMenuContent className='bg-main  text-foreground '>
                 {['Score', 'Level', 'Quizzes', 'Streak', 'Name'].map(
                   (option) => (
                     <DropdownMenuItem
                       key={option}
-                      className='text-foreground border cursor-pointer data-[highlighted]:bg-default-hove'
+                      className='text-foreground cursor-pointer data-[highlighted]:bg-default-hover'
                       onClick={() => setSortBy(option)}
                     >
                       {option}
@@ -142,7 +142,7 @@ export default function GlobalLeaderboard() {
                 {['All Time', 'Last Month', 'Last Week'].map((option) => (
                   <DropdownMenuItem
                     key={option}
-                    className='text-foreground border hover:bg-default-hover cursor-pointer'
+                    className='text-foreground hover:bg-default-hover cursor-pointer'
                   >
                     {option}
                   </DropdownMenuItem>
@@ -173,7 +173,7 @@ export default function GlobalLeaderboard() {
               {/* Rank */}
               <div className='flex justify-center items-center'>
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center font-bold
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
                 ${
                   index === 0
                     ? 'bg-amber-500 text-white'
@@ -181,7 +181,7 @@ export default function GlobalLeaderboard() {
                     ? 'bg-gray-400 text-white'
                     : index === 2
                     ? 'bg-orange-600 text-white'
-                    : 'bg-default text-foreground/70'
+                    : 'bg-background text-foreground/80 border'
                 }
               `}
                 >
