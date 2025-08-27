@@ -9,6 +9,7 @@ import { ArrowLeft, Clock } from 'lucide-react'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { toast } from 'react-toastify'
+import { Progress } from './ui/progress'
 
 export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -65,13 +66,13 @@ export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
   const isLastQuestion = currentQuestion === quiz.questions.length - 1
 
   return (
-    <div className='min-h-screen bg-slate-900 text-white p-4'>
-      <div className='max-w-5xl mx-auto'>
+    <div className='min-h-screen bg-background text-foreground p-4'>
+      <div className='max-w-7xl mx-auto'>
         {/* Header */}
         <div className='flex items-center gap-3 mb-8'>
           <Button
             size='sm'
-            className='text-slate-400 hover:text-white p-0'
+            className='text-foreground/70 dark:text-foreground/70 bg-transparent p-0 hover:bg-transparent hover:text-foreground dark:hover:text-foreground   shadow-none'
             asChild
           >
             <Link href='/quizzes'>
@@ -86,11 +87,14 @@ export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
           <h1 className='text-4xl font-bold mb-4'>{quiz.title}</h1>
           <div className='flex gap-2'>
             {quiz.tags.map((tag) => (
-              <Badge key={tag} className='bg-slate-700 text-slate-300'>
+              <Badge
+                key={tag}
+                className='bg-background text-foreground border border-gray-300 dark:border-slate-700'
+              >
                 {tag}
               </Badge>
             ))}
-            <Badge className='bg-yellow-500 text-black font-medium'>
+            <Badge className='bg-yellow-500 text-foreground font-medium border border-gray-300 dark:border-slate-700'>
               {quiz.difficulty}
             </Badge>
           </div>
@@ -98,29 +102,27 @@ export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
 
         {/* Progress and Timer */}
         <div className='flex justify-between items-center mb-8'>
-          <div className='text-slate-300'>
+          <div className='text-foreground font-semibold text-sm'>
             Question {currentQuestion + 1} of {quiz.questions.length}
           </div>
-          <div className='flex items-center gap-2 bg-slate-800 px-3 py-2 rounded-full'>
-            <Clock className='w-4 h-4 text-slate-400' />
-            <span className='text-slate-300 font-mono'>
+          <div className='flex items-center gap-2 bg-background px-3 py-2 rounded-full border border-gray-300 dark:border-slate-700'>
+            <Clock className='w-4 h-4 text-foreground' />
+            <span className='text-foreground font-mono text-sm'>
               {timerStarted ? formatTime(timeLeft) : formatTime(quiz.duration)}
             </span>
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className='w-full bg-slate-700 rounded-full h-2 mb-8'>
-          <div
-            className='bg-default h-2 rounded-full'
-            style={{
-              width: `${((currentQuestion + 1) / quiz.questions.length) * 100}%`
-            }}
-          ></div>
+        {/* Progress Bar using shadcn Progress */}
+        <div className='mb-8'>
+          <Progress
+            value={((currentQuestion + 1) / quiz.questions.length) * 100}
+            className='h-2'
+          />
         </div>
 
         {/* Question Card */}
-        <Card className='bg-slate-800 border-slate-700'>
+        <Card className='bg-background border border-gray-300 dark:border-slate-700 text-foreground'>
           <CardContent className='p-8'>
             <div className='grid md:grid-cols-2 gap-8 items-center'>
               {/* Image */}
@@ -136,7 +138,7 @@ export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
 
               {/* Question and Answers */}
               <div className='order-1 md:order-2 space-y-6'>
-                <h2 className='text-2xl font-semibold text-white leading-tight'>
+                <h2 className='text-2xl font-semibold text-foreground leading-tight'>
                   {currentQ.question}
                 </h2>
 
@@ -149,10 +151,10 @@ export default function PlayQuizClient({ quiz }: { quiz: Quiz }) {
                           ? 'default'
                           : 'outline'
                       }
-                      className='w-full justify-start text-left h-auto p-4 bg-slate-700 border-slate-600 hover:bg-slate-600 text-white'
+                      className='w-full justify-start text-left h-auto p-4 bg-background border border-gray-300 dark:border-slate-700 dark:hover:bg-slate-600 hover:bg-gray-200 text-foreground'
                       onClick={() => handleAnswer(answer.value)}
                     >
-                      <span className='bg-slate-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mr-4 flex-shrink-0'>
+                      <span className='bg-background text-foreground rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium mr-4 flex-shrink-0'>
                         {answer.label}
                       </span>
                       <span>{answer.value}</span>
