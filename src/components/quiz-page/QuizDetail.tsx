@@ -267,15 +267,24 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
 
               {/* Action Buttons */}
               <div className='flex justify-center gap-6 pt-2 mt-3'>
-                <Button size='icon' className='text-white-primary rounded-xl'>
+                <Button
+                  size='icon'
+                  className='text-foreground rounded-xl border border-gray-300 dark:border-slate-700 bg-transparent'
+                >
                   <Bookmark className='h-6 w-6' />
                 </Button>
 
-                <Button size='icon' className='text-white-primary  rounded-xl'>
+                <Button
+                  size='icon'
+                  className='text-foreground rounded-xl border border-gray-300 dark:border-slate-700 bg-transparent'
+                >
                   <Share2 className='h-6 w-6' />
                 </Button>
 
-                <Button size='icon' className='text-white-primary  rounded-xl'>
+                <Button
+                  size='icon'
+                  className='text-foreground rounded-xl border border-gray-300 dark:border-slate-700 bg-transparent'
+                >
                   <Bell className='h-6 w-6' />
                 </Button>
               </div>

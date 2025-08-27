@@ -356,6 +356,30 @@ export const quizzes: Quiz[] = [
           { label: 'D', value: 'To Huu' }
         ],
         correctAnswer: 'Nguyen Du'
+      },
+      {
+        id: 2,
+        question: "Who is the author of 'The Tale of Kieu'?",
+        image: '/q17.png',
+        answers: [
+          { label: 'A', value: 'Nguyen Du' },
+          { label: 'B', value: 'Ho Xuan Huong' },
+          { label: 'C', value: 'Nguyen Trai' },
+          { label: 'D', value: 'To Huu' }
+        ],
+        correctAnswer: 'Nguyen Du'
+      },
+      {
+        id: 3,
+        question: "Who is the author of 'The Tale of Kieu'?",
+        image: '/q17.png',
+        answers: [
+          { label: 'A', value: 'Nguyen Du' },
+          { label: 'B', value: 'Ho Xuan Huong' },
+          { label: 'C', value: 'Nguyen Trai' },
+          { label: 'D', value: 'To Huu' }
+        ],
+        correctAnswer: 'Nguyen Du'
       }
     ],
     quizReview: [
