@@ -1,6 +1,10 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { formatDuration } from '@/lib/formatDuration'
+import { quizzes } from '@/constant/mockQuizzes'
+import Image from 'next/image'
+import { Badge } from '../ui/badge'
+import { difficultyColors } from '@/constant/difficultColor'
 
 const Overview = ({
   description,
@@ -50,6 +54,48 @@ const Overview = ({
 
           {/* Related Quizzes Section ( do it later)*/}
         </div>
+      </div>
+
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+        {quizzes.map((quiz) => (
+          <div
+            key={quiz.id}
+            className='relative group cursor-pointer rounded-lg overflow-hidden transition-transform hover:scale-105'
+          >
+            {/* Background Image */}
+            <div className='relative h-32 w-full'>
+              <Image
+                src={quiz.image || '/placeholder.svg'}
+                alt={quiz.title}
+                fill
+                className='object-cover'
+              />
+              {/* Overlay */}
+              <div className='absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors' />
+            </div>
+
+            {/* Content */}
+            <div className='absolute inset-0 flex flex-col justify-between p-4'>
+              {/* Difficulty Badge */}
+              <div className='flex justify-start'>
+                <Badge
+                  className={`${
+                    difficultyColors[quiz.difficulty].bg
+                  } text-white text-xs px-2 py-1 font-medium`}
+                >
+                  {quiz.difficulty}
+                </Badge>
+              </div>
+
+              {/* Title */}
+              <div className='flex-1 flex items-end'>
+                <h3 className='text-white font-semibold text-sm leading-tight'>
+                  {quiz.title}
+                </h3>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )

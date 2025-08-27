@@ -20,7 +20,6 @@ import Overview from '../quizDetail/Overview'
 import Leaderboard from '../quizDetail/Leaderboard'
 import Reviews from '../quizDetail/Reviews'
 import { Card, CardContent } from '../ui/card'
-import { quizzes } from '@/constant/mockQuizzes'
 import { formatDuration } from '@/lib/formatDuration'
 
 interface QuizDetailProps {
@@ -142,7 +141,7 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
               />
             </TabsContent>
 
-            <TabsContent value='leaderboard' className='mt-6'>
+            <TabsContent value='leaderboard' className='mt-6 bg-background'>
               <Leaderboard />
             </TabsContent>
 
@@ -150,170 +149,136 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
               <Reviews />
             </TabsContent>
           </Tabs>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-            {quizzes.map((quiz) => (
-              <div
-                key={quiz.id}
-                className='relative group cursor-pointer rounded-lg overflow-hidden transition-transform hover:scale-105'
-              >
-                {/* Background Image */}
-                <div className='relative h-32 w-full'>
-                  <Image
-                    src={quiz.image || '/placeholder.svg'}
-                    alt={quiz.title}
-                    fill
-                    className='object-cover'
-                  />
-                  {/* Overlay */}
-                  <div className='absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors' />
-                </div>
-
-                {/* Content */}
-                <div className='absolute inset-0 flex flex-col justify-between p-4'>
-                  {/* Difficulty Badge */}
-                  <div className='flex justify-start'>
-                    <Badge
-                      className={`${
-                        difficultyColors[quiz.difficulty].bg
-                      } text-white text-xs px-2 py-1 font-medium`}
-                    >
-                      {quiz.difficulty}
-                    </Badge>
-                  </div>
-
-                  {/* Title */}
-                  <div className='flex-1 flex items-end'>
-                    <h3 className='text-white font-semibold text-sm leading-tight'>
-                      {quiz.title}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Sidebar */}
-        <div className=' space-y-6 col-span-1'>
-          {/* Spots Filled */}
-          <div className='bg-slate-800 rounded-lg p-4'>
-            <div className='flex justify-between items-center mb-2'>
-              <span className='text-slate-300'>Registered Spots</span>
-              <span className='font-bold'>
-                {currentPlayers}/{maxPlayers}
-              </span>
-            </div>
-            <Progress value={progressPercentage} className='mb-3' />
-            {spotsLeft <= 20 && (
-              <p className='text-red-400 text-sm font-medium'>
-                Almost full! Only {spotsLeft} spots left
-              </p>
-            )}
-          </div>
-
-          {/* Quiz Details */}
-          <div className='bg-main p-4 rounded-lg mb-3'>
-            {/* Quiz Details Grid */}
-            <div className='grid grid-cols-2 gap-4 mb-5 grid-rows-[auto] items-stretch'>
-              <Card className='bg-slate-900 border-slate-700 h-full'>
-                <CardContent className='rounded-lg border p-3 h-full'>
-                  <div className='text-xs text-muted-foreground mb-1'>
-                    Category
-                  </div>
-                  <div className='font-medium'>
-                    Science &<br />
-                    Technology
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className='bg-slate-900 border-slate-700 h-full'>
-                <CardContent className='rounded-lg border p-3 h-full '>
-                  <div className='text-xs text-muted-foreground mb-1'>
-                    Questions
-                  </div>
-                  <div className='font-medium'>25</div>
-                </CardContent>
-              </Card>
-
-              <Card className='bg-slate-900 border-slate-700 h-full'>
-                <CardContent className='rounded-lg border p-3 h-full '>
-                  <div className='text-xs text-muted-foreground mb-1'>
-                    Time Limit
-                  </div>
-                  <div className='font-medium'>20 min</div>
-                </CardContent>
-              </Card>
-
-              <Card className='bg-slate-900 border-slate-700 h-full'>
-                <CardContent className='rounded-lg border p-3 h-full '>
-                  <div className='text-xs text-muted-foreground mb-1'>
-                    Difficulty
-                  </div>
-                  <div className='font-medium'>Medium</div>
-                </CardContent>
-              </Card>
+        <div className='col-span-1'>
+          <div className='space-y-6 text-foreground border border-gray-300 dark:border-slate-700 rounded-lg p-4 bg-background'>
+            {/* Spots Filled */}
+            <div className='bg-background rounded-lg p-4 pb-0'>
+              <div className='flex justify-between items-center mb-2'>
+                <span className='text-foreground'>Registered Spots</span>
+                <span className='font-bold text-foreground text-sm'>
+                  {currentPlayers}/{maxPlayers}
+                </span>
+              </div>
+              <Progress value={progressPercentage} className='mb-3' />
+              {spotsLeft <= 0.1 * maxPlayers && (
+                <p className='text-red-400 text-sm font-medium'>
+                  Almost full! Only {spotsLeft} spots left
+                </p>
+              )}
+              {spotsLeft > 0.1 * maxPlayers && (
+                <p className='text-green-400 text-sm font-medium'>
+                  {spotsLeft} spots left
+                </p>
+              )}
             </div>
 
-            {/* Creator Profile */}
-            <Card className='bg-slate-900 border-slate-700 mb-5'>
-              <CardContent className='p-4'>
-                <div className='flex items-center gap-3 mb-4'>
-                  <div className='w-12 h-12 rounded-full overflow-hidden bg-slate-600'>
-                    <Image
-                      src={quiz.creator.imageURL}
-                      alt={`${quiz.creator.name}'s name`}
-                      width={48}
-                      height={48}
-                      className='w-full h-full object-cover'
-                    />
-                  </div>
-                  <div>
-                    <div className=''>{quiz.creator.name}</div>
-                    <div className='text-white-primary text-sm'>
-                      {quiz.creator.position}
+            {/* Quiz Details */}
+            <div className='bg-background p-4 rounded-lg mb-3'>
+              {/* Quiz Details Grid */}
+              <div className='grid grid-cols-2 gap-4 mb-5 grid-rows-[auto] items-stretch'>
+                <Card className='bg-background border dark:border-slate-700 border-gray-300 h-full'>
+                  <CardContent className='rounded-lg border p-3 h-full'>
+                    <div className='text-xs text-muted-foreground mb-1'>
+                      Category
+                    </div>
+                    <div className='font-medium'>
+                      Science &<br />
+                      Technology
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className='bg-background border dark:border-slate-700 border-gray-300 h-full'>
+                  <CardContent className='rounded-lg border p-3 h-full '>
+                    <div className='text-xs text-muted-foreground mb-1'>
+                      Questions
+                    </div>
+                    <div className='font-medium'>25</div>
+                  </CardContent>
+                </Card>
+
+                <Card className='bg-background border dark:border-slate-700 border-gray-300 h-full'>
+                  <CardContent className='rounded-lg border p-3 h-full '>
+                    <div className='text-xs text-muted-foreground mb-1'>
+                      Time Limit
+                    </div>
+                    <div className='font-medium'>20 min</div>
+                  </CardContent>
+                </Card>
+
+                <Card className='bg-background border dark:border-slate-700 border-gray-300 h-full'>
+                  <CardContent className='rounded-lg border p-3 h-full '>
+                    <div className='text-xs text-muted-foreground mb-1'>
+                      Difficulty
+                    </div>
+                    <div className='font-medium'>Medium</div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Creator Profile */}
+              <Card className='bg-background border dark:border-slate-700 border-gray-300 mb-5'>
+                <CardContent className='p-4'>
+                  <div className='flex items-center gap-3 mb-4'>
+                    <div className='w-12 h-12 rounded-full overflow-hidden bg-slate-600'>
+                      <Image
+                        src={quiz.creator.imageURL}
+                        alt={`${quiz.creator.name}'s name`}
+                        width={48}
+                        height={48}
+                        className='w-full h-full object-cover'
+                      />
+                    </div>
+                    <div>
+                      <div className='text-foreground'>{quiz.creator.name}</div>
+                      <div className='text-foreground/70 text-xs'>
+                        {quiz.creator.position}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className='flex justify-between text-sm'>
-                  <div>
-                    <span className='text-slate-400'>Quizzes: </span>
-                    <span className='text-white font-semibold'>
-                      {quiz.creator.quizzesCreated}
-                    </span>
+                  <div className='flex justify-between text-sm'>
+                    <div>
+                      <span className='text-muted-foreground'>Quizzes: </span>
+                      <span className='text-foreground font-semibold'>
+                        {quiz.creator.quizzesCreated}
+                      </span>
+                    </div>
+                    <div>
+                      <span className='text-muted-foreground'>Updated: </span>
+                      <span className='text-foreground'>{quiz.updatedAt}</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className='text-slate-400'>Updated: </span>
-                    <span className='text-white'>{quiz.updatedAt}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* Play Button */}
-            <Link href={`/quizzes/${quiz.id}/start`} className='block'>
-              <Button
-                className='w-[98%] mx-auto flex justify-center items-center bg-default hover:bg-default-hover text-white font-semibold py-4 text-base rounded-xl'
-                size='lg'
-              >
-                Play now
-              </Button>
-            </Link>
+              {/* Play Button */}
+              <Link href={`/quizzes/${quiz.id}/start`} className='block'>
+                <Button
+                  className='w-[98%] mx-auto flex justify-center items-center bg-default hover:bg-default-hover text-white font-semibold py-4 text-base rounded-xl'
+                  size='lg'
+                >
+                  Play now
+                </Button>
+              </Link>
 
-            {/* Action Buttons */}
-            <div className='flex justify-center gap-6 pt-2 mt-3'>
-              <Button size='icon' className='text-white-primary rounded-xl'>
-                <Bookmark className='h-6 w-6' />
-              </Button>
+              {/* Action Buttons */}
+              <div className='flex justify-center gap-6 pt-2 mt-3'>
+                <Button size='icon' className='text-white-primary rounded-xl'>
+                  <Bookmark className='h-6 w-6' />
+                </Button>
 
-              <Button size='icon' className='text-white-primary  rounded-xl'>
-                <Share2 className='h-6 w-6' />
-              </Button>
+                <Button size='icon' className='text-white-primary  rounded-xl'>
+                  <Share2 className='h-6 w-6' />
+                </Button>
 
-              <Button size='icon' className='text-white-primary  rounded-xl'>
-                <Bell className='h-6 w-6' />
-              </Button>
+                <Button size='icon' className='text-white-primary  rounded-xl'>
+                  <Bell className='h-6 w-6' />
+                </Button>
+              </div>
             </div>
           </div>
         </div>

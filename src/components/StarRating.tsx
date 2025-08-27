@@ -10,7 +10,7 @@ const StarRating = ({ rating }: { rating: number }) => {
           className={`w-4 h-4 ${
             star <= rating
               ? 'fill-yellow-400 text-yellow-400'
-              : 'fill-gray-600 text-gray-600'
+              : 'dark:fill-gray-600 dark:text-gray-600 fill-white text-gray-300'
           }`}
         />
       ))}
