@@ -46,10 +46,10 @@ const QuizCardDifficultyList = () => {
               <Button
                 key={level}
                 onClick={() => setSelectedDifficulty(level)}
-                className={`rounded-sm px-4 py-1 text-sm transition text-foreground ${
+                className={`rounded-sm px-4 py-1 text-sm transition ${
                   selectedDifficulty === level
-                    ? `${difficultyColors[level].bg} pointer-events-none`
-                    : `bg-transparent text-foreground ${difficultyColors[level].hover}`
+                    ? `${difficultyColors[level].bg} pointer-events-none text-white dark:text-foreground`
+                    : `bg-transparent text-foreground dark:text-foreground/70 ${difficultyColors[level].hover}`
                 }`}
               >
                 {level}

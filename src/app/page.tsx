@@ -14,7 +14,7 @@ import { quizzes } from '@/constant/mockQuizzes'
 export default function QuizHubDashboard() {
   return (
     <div className='min-h-screen p-4 md:p-6 overflow-x-hidden max-w-full'>
-      <div className='relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-6 sm:p-8 lg:p-12 mb-6 sm:mb-8 border border-gray-300 dark:border-slate-600'>
+      <div className='relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 rounded-xl p-6 sm:p-8 lg:p-12 mb-6 sm:mb-8 border border-gray-300 dark:border-slate-600'>
         <div className='relative z-10 max-w-full sm:max-w-lg lg:max-w-2xl'>
           <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight text-slate-900 dark:text-white'>
             Your Quiz Adventure
@@ -56,7 +56,7 @@ export default function QuizHubDashboard() {
       <QuizCategories categories={categories} />
 
       {/* Latest Quizzes */}
-      <div className='bg-main text-foreground border rounded-lg lg:p-8 mb-10 max-w-full overflow-x-hidden'>
+      <div className='bg-main text-foreground border rounded-xl lg:p-8 mb-10 max-w-full overflow-x-hidden'>
         <h2 className='text-2xl font-bold mb-8'>Latest Quizzes</h2>
         <div className='overflow-x-auto'>
           <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4 min-w-0'>

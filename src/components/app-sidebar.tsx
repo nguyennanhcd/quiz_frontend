@@ -85,7 +85,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
       collapsible='icon'
-      className='dark:bg-main bg-background'
+      className='dark:bg-background bg-background'
       {...props}
     >
       <SidebarHeader className=' border-x border-gray-300 dark:border-slate-700 pointer-events-none'>
@@ -106,7 +106,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='dark:bg-main bg-background border border-gray-300 dark:border-slate-700'>
+      <SidebarContent className=' bg-background border border-gray-300 dark:border-slate-700'>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu className='space-y-3'>
@@ -132,7 +132,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className='bg-main border-x border-gray-300 dark:border-slate-700'>
+      <SidebarFooter className='bg-background border-x border-gray-300 dark:border-slate-700'>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton className='text-foreground cursor-pointer hover:bg-main-hover'>
