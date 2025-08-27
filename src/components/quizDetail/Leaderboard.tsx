@@ -3,6 +3,15 @@
 import { leaderboardData, LeaderboardEntry } from '@/constant/leaderBoard'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const Leaderboard = () => {
   const [activeTab, setActiveTab] = useState<'today' | 'week' | 'allTime'>(
@@ -10,33 +19,30 @@ const Leaderboard = () => {
   )
 
   const renderTable = (data: LeaderboardEntry[]) => (
-    <table className='w-full'>
-      <thead>
-        <tr className='border-b border-gray-300 dark:border-slate-700/50'>
-          <th className='text-left py-4 px-6 text-slate-300 font-medium text-sm'>
+    <Table>
+      <TableHeader>
+        <TableRow className='border-b border-gray-300 dark:border-slate-700/50 hover:bg-transparent'>
+          <TableHead className='text-left py-4 px-6 text-slate-300 font-medium text-sm w-[60px]'>
             #
-          </th>
-          <th className='text-left py-4 px-6 text-slate-300 font-medium text-sm'>
+          </TableHead>
+          <TableHead className='text-left py-4 px-6 text-slate-300 font-medium text-sm'>
             Player
-          </th>
-          <th className='text-right py-4 px-6 text-slate-300 font-medium text-sm'>
+          </TableHead>
+          <TableHead className='text-right py-4 px-6 text-slate-300 font-medium text-sm'>
             Score
-          </th>
-          <th className='text-right py-4 px-6 text-slate-300 font-medium text-sm'>
+          </TableHead>
+          <TableHead className='text-right py-4 px-6 text-slate-300 font-medium text-sm'>
             Time
-          </th>
-          <th className='text-right py-4 px-6 text-slate-300 font-medium text-sm'>
-            Badge
-          </th>
-        </tr>
-      </thead>
-      <tbody>
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {data.map((player) => (
-          <tr
+          <TableRow
             key={player.id}
             className='border-b border-gray-300 dark:border-slate-700/30 hover:bg-slate-700/20 transition-colors'
           >
-            <td className='py-4 px-6'>
+            <TableCell className='py-4 px-6'>
               <span
                 className={`text-lg font-medium ${
                   player.rankTextColor || 'text-slate-200'
@@ -48,8 +54,8 @@ const Leaderboard = () => {
               >
                 {player.rank}
               </span>
-            </td>
-            <td className='py-4 px-6'>
+            </TableCell>
+            <TableCell className='py-4 px-6'>
               <div className='flex items-center gap-3'>
                 <div className='relative'>
                   <Image
@@ -66,57 +72,65 @@ const Leaderboard = () => {
                   {player.name}
                 </span>
               </div>
-            </td>
-            <td className='py-4 px-6 text-right'>
+            </TableCell>
+            <TableCell className='py-4 px-6 text-right'>
               <span className='text-slate-100 font-medium text-base'>
-                {player.score}
+                {player.score}%
               </span>
-            </td>
-            <td className='py-4 px-6 text-right'>
+            </TableCell>
+            <TableCell className='py-4 px-6 text-right'>
               <span className='text-slate-300 font-medium text-base'>
                 {player.time || 'N/A'}
               </span>
-            </td>
-            <td className='py-4 px-6 text-right'>
-              <span
-                className={`text-sm font-medium px-2 py-1 rounded ${
-                  player.badgeColor || 'bg-slate-600'
-                }`}
-              >
-                {player.badge}
-                {player.stars && ` (${player.stars} ⭐)`}
-              </span>
-            </td>
-          </tr>
+            </TableCell>
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   )
 
   return (
-    <div className='min-h-screen bg-slate-900 p-6'>
+    <div className='bg-background p-6'>
       <div className='max-w-4xl mx-auto'>
         <div className='bg-slate-800/50 backdrop-blur-sm rounded-lg border border-gray-300 dark:border-slate-700/50 overflow-hidden'>
-          <div className='flex border-b border-gray-300 dark:border-slate-700/50'>
-            {(['allTime', 'week', 'today'] as const).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`flex-1 py-3 px-6 text-sm font-medium ${
-                  activeTab === tab
-                    ? 'bg-slate-700 text-slate-100'
-                    : 'text-slate-400 hover:bg-slate-700/50'
-                } transition-colors`}
+          <Tabs
+            defaultValue={activeTab}
+            onValueChange={(value) =>
+              setActiveTab(value as 'today' | 'week' | 'allTime')
+            }
+          >
+            <TabsList className='grid w-full grid-cols-3 bg-transparent'>
+              <TabsTrigger
+                value='allTime'
+                className={`py-3 px-6 text-sm font-medium rounded-none data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100 data-[state=inactive]:text-slate-400 data-[state=inactive]:hover:bg-slate-700/50`}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
-            ))}
-          </div>
-          <div className='overflow-x-auto'>
-            {activeTab === 'today' && renderTable(leaderboardData.today)}
-            {activeTab === 'week' && renderTable(leaderboardData.week)}
-            {activeTab === 'allTime' && renderTable(leaderboardData.allTime)}
-          </div>
+                All Time
+              </TabsTrigger>
+              <TabsTrigger
+                value='week'
+                className={`py-3 px-6 text-sm font-medium rounded-none data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100 data-[state=inactive]:text-slate-400 data-[state=inactive]:hover:bg-slate-700/50`}
+              >
+                Week
+              </TabsTrigger>
+              <TabsTrigger
+                value='today'
+                className={`py-3 px-6 text-sm font-medium rounded-none data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100 data-[state=inactive]:text-slate-400 data-[state=inactive]:hover:bg-slate-700/50`}
+              >
+                Today
+              </TabsTrigger>
+            </TabsList>
+            <div className='overflow-x-auto'>
+              <TabsContent value='today'>
+                {renderTable(leaderboardData.today)}
+              </TabsContent>
+              <TabsContent value='week'>
+                {renderTable(leaderboardData.week)}
+              </TabsContent>
+              <TabsContent value='allTime'>
+                {renderTable(leaderboardData.allTime)}
+              </TabsContent>
+            </div>
+          </Tabs>
         </div>
       </div>
     </div>
