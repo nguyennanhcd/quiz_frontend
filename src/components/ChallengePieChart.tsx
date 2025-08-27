@@ -53,7 +53,7 @@ const renderCustomizedLabel = ({
 
 export default function ChallengePieChart() {
   return (
-    <div className='w-full max-w-4xl mx-auto p-8 bg-main rounded-lg'>
+    <div className='w-full max-w-4xl mx-auto p-8 bg-background rounded-lg'>
       <div className='h-96'>
         <ResponsiveContainer width='100%' height='100%'>
           <PieChart>

@@ -30,7 +30,7 @@ const QuizCardDetail = (props: Quiz) => {
         >
           {props.difficulty}
         </Badge>
-        <div className='absolute top-3 right-3 bg-main text-foreground rounded-full px-2 py-1 flex items-center gap-1 text-sm'>
+        <div className='absolute top-3 right-3 bg-transparent text-white rounded-full px-2 py-1 flex items-center gap-1 text-sm'>
           <Clock className='w-3 h-3' />
           {props.duration}
         </div>
@@ -91,7 +91,7 @@ const QuizCardDetail = (props: Quiz) => {
           </p>
         )}
 
-        <Button className='w-full bg-default hover:bg-default-hover'>
+        <Button className='w-full bg-default hover:bg-default-hover text-white'>
           Play Now
         </Button>
       </div>

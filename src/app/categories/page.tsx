@@ -19,7 +19,7 @@ export default function QuizCategories() {
         <h1 className='text-3xl md:text-4xl font-bold mb-4 text-foreground'>
           Quiz Categories
         </h1>
-        <p className='text-foreground/70 text-lg mb-6'>
+        <p className='text-foreground/70 text-base mb-6'>
           Browse all quiz categories and find quizzes that match your interests.
         </p>
         {/* Search Bar */}
@@ -30,7 +30,7 @@ export default function QuizCategories() {
             placeholder='Search categories...'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className='pl-10 bg-main dark:bg-slate-800 border-slate-700 text-foreground placeholder-foreground/70 focus:border-slate-600'
+            className='pl-10 bg-background border-slate-700 text-foreground placeholder-foreground/70 focus:border-slate-600'
           />
         </div>
       </div>

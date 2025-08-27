@@ -85,7 +85,7 @@ const MainContent = () => {
       {/* Left Block */}
       <div className='lg:col-span-2 space-y-6'>
         {/* Quiz Section */}
-        <Card className='bg-main text-foreground border border-gray-300 dark:border-slate-700 lg:col-span-2 py-6'>
+        <Card className='bg-background text-foreground border border-gray-300 dark:border-slate-700 lg:col-span-2 py-6'>
           <CardHeader>
             <div className='flex justify-between items-start'>
               <div>
@@ -157,15 +157,17 @@ const MainContent = () => {
         <ChallengeChart />
 
         {/* Challenge History */}
-        <Card className='bg-main text-foreground border border-gray-300 dark:border-slate-700 py-6'>
+        <Card className='bg-background text-foreground border border-gray-300 dark:border-slate-700 py-6'>
           <CardHeader>
             <div className='flex items-center justify-between'>
               <h1 className='text-xl font-bold'>Challenge History</h1>
               <Button
-                className='flex items-center gap-1 bg-main text-foreground hover:bg-main-hover transition-colors'
+                className='flex items-center gap-1 bg-background text-foreground/70 hover:text-foreground hover:bg-transparent transition-colors  shadow-none '
                 onClick={() => setShowAllHistory(!showAllHistory)}
               >
-                <span>{showAllHistory ? 'View Less' : 'View All'}</span>
+                <span className='text-xs'>
+                  {showAllHistory ? 'View Less' : 'View All'}
+                </span>
                 {showAllHistory ? (
                   <ChevronLeft className='w-4 h-4' />
                 ) : (
@@ -179,20 +181,20 @@ const MainContent = () => {
               {displayedHistory.map((challenge, index) => (
                 <Card
                   key={index}
-                  className='bg-main border-border/50 last:mb-0'
+                  className='bg-background border-b border-gray-300 dark:border-slate-700 last:border-b-0'
                 >
                   <CardContent className='p-4'>
                     <div className='flex items-center justify-between'>
                       <div className='flex-1'>
-                        <div className='text-lg font-medium mb-3'>
+                        <div className='text-base font-medium mb-3'>
                           {challenge.date}
                         </div>
                         <div className='flex items-center gap-3'>
-                          <Badge className='bg-main text-foreground hover:bg-main-hover transition-colors border border-gray-300 dark:border-slate-700 py-0.5 px-2 rounded-3xl'>
+                          <Badge className='bg-background text-foreground hover:bg-main-hover transition-colors border border-gray-300 dark:border-slate-700 py-0.5 px-2 rounded-3xl'>
                             {challenge.category}
                           </Badge>
                           {challenge.isTopTen && (
-                            <Badge className='bg-orange-500 hover:bg-orange-600 text-foreground border border-gray-300 dark:border-slate-700 py-0.5 px-2 rounded-3xl'>
+                            <Badge className='bg-orange-300 hover:bg-orange-400 text-foreground border border-gray-300 dark:border-slate-700 py-0.5 px-2 rounded-3xl'>
                               Top 10
                             </Badge>
                           )}
@@ -219,16 +221,31 @@ const MainContent = () => {
       {/* Right Block */}
       <div className='space-y-6'>
         {/* Leaderboard */}
-        <Card className='bg-main text-foreground border border-border/50 py-6'>
+        <Card className='bg-background text-foreground border border-border/50 py-6'>
           <CardHeader>
             <CardTitle>Leaderboard</CardTitle>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue='today' className='w-full'>
-              <TabsList className='bg-main grid grid-cols-3 w-full'>
-                <TabsTrigger value='today'>Today</TabsTrigger>
-                <TabsTrigger value='week'>Week</TabsTrigger>
-                <TabsTrigger value='allTime'>All Time</TabsTrigger>
+              <TabsList className='text-white grid grid-cols-3 w-full bg-main'>
+                <TabsTrigger
+                  className='text-foreground data-[state=active]:bg-default data-[state=active]:text-white'
+                  value='today'
+                >
+                  Today
+                </TabsTrigger>
+                <TabsTrigger
+                  className='text-foreground data-[state=active]:bg-default data-[state=active]:text-white'
+                  value='week'
+                >
+                  Week
+                </TabsTrigger>
+                <TabsTrigger
+                  className='text-foreground data-[state=active]:bg-default data-[state=active]:text-white'
+                  value='allTime'
+                >
+                  All Time
+                </TabsTrigger>
               </TabsList>
               {Object.entries(leaderboardData).map(([period, data]) => (
                 <TabsContent
@@ -267,7 +284,7 @@ const MainContent = () => {
         </Card>
 
         {/* Rewards & Streaks */}
-        <Card className='bg-main text-foreground border border-gray-300 dark:border-slate-700 py-6'>
+        <Card className='bg-background text-foreground border border-gray-300 dark:border-slate-700 py-6'>
           <CardHeader>
             <CardTitle className='flex items-center space-x-2'>
               <Trophy className='h-5 w-5' />
@@ -369,7 +386,7 @@ const MainContent = () => {
                   <Card
                     key={index}
                     className={`
-                  bg-main dark:bg-slate-700 rounded-lg p-3 text-center border border-gray-300 dark:border-slate-700
+                  bg-background dark:bg-slate-700 rounded-lg p-3 text-center border border-gray-300 dark:border-slate-700
                   ${!badge.unlocked ? 'opacity-60' : ''}
                 `}
                   >

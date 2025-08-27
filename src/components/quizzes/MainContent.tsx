@@ -2,6 +2,7 @@
 
 import { ChevronUp, ChevronDown } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
@@ -11,6 +12,7 @@ import { quizzes } from '@/constant/mockQuizzes'
 
 const MainContent = () => {
   const [difficultyFilter, setDifficultyFilter] = useState('all')
+  const [appliedDifficulty, setAppliedDifficulty] = useState('all')
   const [sortBy, setSortBy] = useState('popular')
   const [rewardRange, setRewardRange] = useState([0])
   const [timeLimit, setTimeLimit] = useState([0])
@@ -23,30 +25,31 @@ const MainContent = () => {
   const [showAvailability, setShowAvailability] = useState(false)
   const [showTimeRange, setShowTimeRange] = useState(false)
 
-  // Filter quizzes based on difficulty and active tab
+  // Filter quizzes based on applied filters
   const filteredQuizzes = quizzes.filter((quiz) => {
     // Apply difficulty filter
     if (
-      difficultyFilter !== 'all' &&
-      quiz.difficulty.toLowerCase() !== difficultyFilter
+      appliedDifficulty !== 'all' &&
+      quiz.difficulty.toLowerCase() !== appliedDifficulty
     ) {
       return false
     }
     return true
   })
+
   return (
-    <div className=' text-foreground'>
-      <div className='flex xl:flex-row flex-col'>
+    <div className='text-foreground'>
+      <div className='flex xl:flex-row flex-col gap-7'>
         {/* Sidebar */}
-        <div className='xl:w-80 xl:p-6 w-full mb-3 xl:mb-none'>
+        <div className='xl:w-[16rem] w-full mb-3 xl:mb-none rounded-xl'>
           <h2 className='text-xl font-bold mb-6'>Filters</h2>
 
           <div className='border border-gray-300 dark:border-slate-700 rounded-md p-4'>
             {/* Difficulty Filter */}
-            <div className='mb-6'>
+            <div className='mb-6 cursor-pointer'>
               <button
                 onClick={() => setShowDifficulty(!showDifficulty)}
-                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+                className='flex items-center justify-between w-full text-left font-semibold mb-3 cursor-pointer'
               >
                 Difficulty
                 {showDifficulty ? (
@@ -94,12 +97,13 @@ const MainContent = () => {
                 </RadioGroup>
               )}
             </div>
+            <hr className='w-full border-gray-300 dark:border-slate-700 my-4' />
 
             {/* Sort By Filter */}
             <div className='mb-6'>
               <button
                 onClick={() => setShowSortBy(!showSortBy)}
-                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+                className='flex items-center justify-between w-full text-left font-semibold mb-3 cursor-pointer'
               >
                 Sort By
                 {showSortBy ? (
@@ -129,12 +133,13 @@ const MainContent = () => {
                 </RadioGroup>
               )}
             </div>
+            <hr className='w-full border-gray-300 dark:border-slate-700 my-4' />
 
             {/* Reward Filter */}
             <div className='mb-6'>
               <button
                 onClick={() => setShowReward(!showReward)}
-                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+                className='flex items-center justify-between w-full text-left font-semibold mb-3 cursor-pointer'
               >
                 Reward
                 {showReward ? (
@@ -159,12 +164,13 @@ const MainContent = () => {
                 </div>
               )}
             </div>
+            <hr className='w-full border-gray-300 dark:border-slate-700 my-4' />
 
             {/* Time Limit Filter */}
             <div className='mb-6'>
               <button
                 onClick={() => setShowTimeLimit(!showTimeLimit)}
-                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+                className='flex items-center justify-between w-full text-left font-semibold mb-3 cursor-pointer'
               >
                 Time Limit
                 {showTimeLimit ? (
@@ -189,12 +195,13 @@ const MainContent = () => {
                 </div>
               )}
             </div>
+            <hr className='w-full border-gray-300 dark:border-slate-700 my-4' />
 
             {/* Availability Filter */}
             <div className='mb-6'>
               <button
                 onClick={() => setShowAvailability(!showAvailability)}
-                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+                className='flex items-center justify-between w-full text-left font-semibold mb-3 cursor-pointer'
               >
                 Availability
                 {showAvailability ? (
@@ -226,12 +233,13 @@ const MainContent = () => {
                 </RadioGroup>
               )}
             </div>
+            <hr className='w-full border-gray-300 dark:border-slate-700 my-4' />
 
             {/* Time Range Filter */}
-            <div className='mb-6'>
+            <div>
               <button
                 onClick={() => setShowTimeRange(!showTimeRange)}
-                className='flex items-center justify-between w-full text-left font-semibold mb-3'
+                className='flex items-center justify-between w-full text-left font-semibold mb-3 cursor-pointer'
               >
                 Time Range
                 {showTimeRange ? (
@@ -262,10 +270,21 @@ const MainContent = () => {
               )}
             </div>
           </div>
+          {/* Apply Filters Button */}
+          <div className='mt-6'>
+            <Button
+              className='w-full text-white'
+              onClick={() => {
+                setAppliedDifficulty(difficultyFilter)
+              }}
+            >
+              Apply Filters
+            </Button>
+          </div>
         </div>
 
         {/* Main Content */}
-        <div className='flex-1 p-5 xl:block flex flex-col'>
+        <div className='flex-1 xl:block flex flex-col'>
           <div className='mb-6 order-2 xl:order-1'>
             <p className='text-foreground/70 text-sm'>
               Showing 1-6 of {filteredQuizzes.length} quizzes
