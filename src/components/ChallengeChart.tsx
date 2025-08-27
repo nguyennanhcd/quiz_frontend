@@ -24,9 +24,9 @@ const chartConfig = {
 
 const ChallengeChart = () => {
   return (
-    <section className=' bg-main text-foreground rounded-lg'>
+    <section className=' bg-background text-foreground rounded-lg'>
       {/* Performance Chart */}
-      <Card className='bg-main border border-gray-300 dark:border-slate-700 lg:col-span-2 lg:row-span-2 py-6'>
+      <Card className='bg-background border border-gray-300 dark:border-slate-700 lg:col-span-2 lg:row-span-2 py-6'>
         <CardHeader>
           <CardTitle>Your Challenge Stats</CardTitle>
         </CardHeader>

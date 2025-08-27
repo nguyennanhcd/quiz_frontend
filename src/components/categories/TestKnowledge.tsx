@@ -8,9 +8,9 @@ export default function TestKnowledge() {
     <div className='bg-gradient-to-br bg-default to-indigo-900 rounded-xl px-4 sm:px-6 py-6 sm:py-10 w-full overflow-hidden shadow-lg mt-6 sm:mt-10'>
       {/* Header Badge */}
       <div className='flex justify-center mb-8 sm:mb-12'>
-        <div className='inline-flex items-center gap-2 bg-main dark:bg-slate-800/50 border border-purple-500/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 backdrop-blur-sm text-foreground'>
+        <div className='inline-flex items-center gap-2 bg-background dark:bg-main border border-purple-500/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 backdrop-blur-sm text-foreground'>
           <Sparkles className='w-4 h-4 sm:w-5 sm:h-5 text-purple-400' />
-          <span className='text-foreground/70 text-xs sm:text-sm font-medium'>
+          <span className='text-foreground text-xs sm:text-sm font-medium'>
             Discover Your Next Challenge
           </span>
         </div>
@@ -57,7 +57,7 @@ export default function TestKnowledge() {
             <div className='inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-purple-100 dark:bg-purple-900/30 mb-3 sm:mb-4'>
               <Trophy className='w-5 h-5 sm:w-6 sm:h-6 text-purple-400' />
             </div>
-            <h3 className='text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4'>
+            <h3 className='text-xl font-bold text-foreground mb-3 sm:mb-4'>
               Compete & Win
             </h3>
             <p className='text-foreground/70 leading-relaxed text-sm sm:text-base'>
@@ -73,7 +73,7 @@ export default function TestKnowledge() {
             <div className='inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-indigo-100 dark:bg-indigo-900/30 mb-3 sm:mb-4'>
               <Sparkles className='w-5 h-5 sm:w-6 sm:h-6 text-indigo-400' />
             </div>
-            <h3 className='text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4'>
+            <h3 className='text-xl font-bold text-foreground mb-3 sm:mb-4'>
               Learn & Grow
             </h3>
             <p className='text-foreground/70 leading-relaxed text-sm sm:text-base'>
@@ -89,7 +89,7 @@ export default function TestKnowledge() {
             <div className='inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-100 dark:bg-blue-900/30 mb-3 sm:mb-4'>
               <Users className='w-5 h-5 sm:w-6 sm:h-6 text-blue-400' />
             </div>
-            <h3 className='text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4'>
+            <h3 className='text-xl font-bold text-foreground mb-3 sm:mb-4'>
               Connect & Share
             </h3>
             <p className='text-foreground/70 leading-relaxed text-sm sm:text-base'>
@@ -107,7 +107,7 @@ export default function TestKnowledge() {
             <Users className='w-4 h-4  text-foreground' />
           </div>
           <div className='text-foreground'>
-            <span className='text-sm sm:text-lg font-medium'>
+            <span className='text-sm sm:text-base font-medium'>
               <span className='font-bold'>500,000+</span> quiz enthusiasts have
               joined our community. Will you be next?
             </span>
