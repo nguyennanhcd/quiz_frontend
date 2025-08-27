@@ -83,11 +83,11 @@ export function LeaderboardHeader({
         {/* Main Header */}
         <header className='space-y-4 flex flex-col xl:flex-row justify-between items-start xl:items-center'>
           <div className='text-center xl:text-left'>
-            <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-foreground flex items-center gap-2'>
+            <h1 className='text-2xl sm:text-3xl font-bold mb-2 text-foreground flex items-center gap-2'>
               <Crown className='w-6 h-6 sm:w-8 sm:h-8 text-yellow-400' />
               Leader Board
             </h1>
-            <p className='text-foreground/80 text-sm sm:text-base md:text-lg'>
+            <p className='text-foreground/80 text-sm sm:text-base'>
               See who&apos;s leading the pack in our global quiz rankings.
             </p>
           </div>
@@ -113,7 +113,7 @@ export function LeaderboardHeader({
         {/* Stats Overview */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
           {/* Total Participants */}
-          <div className='dark:bg-slate-800/50 bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
+          <div className='dark:bg-slate-800/50 background  p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
                 <p className='text-foreground/80 text-sm'>Total Participants</p>
@@ -128,7 +128,7 @@ export function LeaderboardHeader({
           </div>
 
           {/* Season End */}
-          <div className='dark:bg-slate-800/50  bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
+          <div className='dark:bg-slate-800/50  bg-background p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
                 <p className='text-foreground/80 text-sm'>Season Ends</p>
@@ -143,7 +143,7 @@ export function LeaderboardHeader({
           </div>
 
           {/* Your Rank */}
-          <div className='dark:bg-slate-800/50  bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
+          <div className='dark:bg-slate-800/50  bg-background p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
                 <p className='text-foreground/80 text-sm'>Your Rank</p>
@@ -158,7 +158,7 @@ export function LeaderboardHeader({
           </div>
 
           {/* Your Points */}
-          <div className='dark:bg-slate-800/50  bg-main p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
+          <div className='dark:bg-slate-800/50  bg-background p-4 rounded-lg border border-gray-300 dark:border-slate-700'>
             <div className='flex items-center justify-between'>
               <div>
                 <p className='text-foreground/80 text-sm'>Your Points</p>

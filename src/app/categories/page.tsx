@@ -16,7 +16,7 @@ export default function QuizCategories() {
   return (
     <div className='min-h-screen text-foreground p-4 md:p-8 lg:p-12'>
       <div className='mb-8'>
-        <h1 className='text-3xl md:text-4xl font-bold mb-4 text-foreground'>
+        <h1 className='text-3xl font-bold mb-4 text-foreground'>
           Quiz Categories
         </h1>
         <p className='text-foreground/70 text-base mb-6'>

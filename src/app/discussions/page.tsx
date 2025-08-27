@@ -13,8 +13,8 @@ export default function QuizDiscussions() {
       <div className=''>
         {/* Header Section */}
         <div className='space-y-2'>
-          <h1 className='text-4xl font-bold'>Quiz Discussions</h1>
-          <p className='text-foreground/70 text-lg'>
+          <h1 className='text-3xl font-bold'>Quiz Discussions</h1>
+          <p className='text-foreground/70 text-base'>
             Join discussions about quizzes, share explanations, and learn from
             the community.
           </p>
@@ -30,10 +30,10 @@ export default function QuizDiscussions() {
             />
           </div>
           <div className='flex gap-2 w-full sm:w-auto'>
-            <Button className='bg-main hover:bg-main-hover text-foreground px-6 py-2 rounded-md border border-gray-300 dark:border-slate-700'>
+            <Button className='bg-background hover:bg-main text-foreground px-6 py-2 rounded-md border border-gray-300 dark:border-slate-700'>
               Filter
             </Button>
-            <Button className='bg-main hover:bg-main-hover text-foreground px-6 py-2 rounded-md border border-gray-300 dark:border-slate-700'>
+            <Button className='bg-background  hover:bg-main text-foreground px-6 py-2 rounded-md border border-gray-300 dark:border-slate-700'>
               Sort
             </Button>
           </div>
@@ -44,50 +44,54 @@ export default function QuizDiscussions() {
           <TabsList className='w-full justify-start overflow-x-auto scrollbar-hide border border-gray-300 dark:border-slate-700 rounded-md'>
             <TabsTrigger
               value='recent'
-              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0'
+              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0 transition-transform data-[state=active]:bg-background text-foreground/70'
             >
-              <span className='hidden sm:inline'>Recent Discussions</span>
+              <span className='hidden sm:inline text-sm'>
+                Recent Discussions
+              </span>
               <span className='sm:hidden'>Recent</span>
             </TabsTrigger>
             <TabsTrigger
               value='popular'
-              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0'
+              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0 transition-transform data-[state=active]:bg-background text-foreground/70'
             >
-              <span className='hidden sm:inline'>Popular Discussions</span>
+              <span className='hidden sm:inline text-sm'>
+                Popular Discussions
+              </span>
               <span className='sm:hidden'>Popular</span>
             </TabsTrigger>
             <TabsTrigger
               value='your'
-              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0'
+              className='text-xs sm:text-sm md:text-base font-medium px-2 sm:px-3 md:px-4 flex-shrink-0 transition-transform data-[state=active]:bg-background text-foreground/70'
             >
-              <span className='hidden sm:inline'>Your Discussions</span>
+              <span className='hidden sm:inline text-sm'>Your Discussions</span>
               <span className='sm:hidden'>Yours</span>
             </TabsTrigger>
           </TabsList>
 
           {/* Recent Discussions Content */}
-          <TabsContent value='recent' className='mt-6 space-y-4'>
+          <TabsContent value='recent' className='mt-6 space-y-4 '>
             {discussions.map((discussion) => (
               <Card
                 key={discussion.id}
-                className='bg-transparent p-6 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'
+                className='bg-transparentrounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border border-gray-300 dark:border-slate-700 p-10'
               >
-                <div className='flex-1 space-y-2'>
-                  <h3 className='text-xl font-semibold'>{discussion.title}</h3>
-                  <div className='flex items-center gap-2 text-foreground/70 text-sm'>
-                    <Badge className='dark:bg-[#3a3a3e] bg-[#f1f5f9] text-foreground/70 px-2 py-1 rounded-md border border-gray-300 dark:border-slate-700'>
+                <div className='flex-1 gap-2 flex flex-col'>
+                  <h3 className='text-lg font-semibold'>{discussion.title}</h3>
+                  <div className='flex items-center gap-2 text-foreground text-sm'>
+                    <Badge className='bg-transparent text-foreground px-2 py-1 rounded-md border border-gray-300 dark:border-slate-700'>
                       {discussion.category}
                     </Badge>
                     <Badge
                       className={`px-2 py-1 rounded-md border border-gray-300 dark:border-slate-700 ${
                         discussion.difficulty === 'Medium'
-                          ? 'bg-[#d97706] text-foreground'
-                          : 'bg-[#dc2626] text-foreground'
+                          ? 'bg-[#d97706] text-white'
+                          : 'bg-[#dc2626] text-white'
                       }`}
                     >
                       {discussion.difficulty}
                     </Badge>
-                    <span className='text-foreground/70'>
+                    <span className='text-foreground'>
                       Last activity: {discussion.lastActivity}
                     </span>
                   </div>
@@ -98,15 +102,17 @@ export default function QuizDiscussions() {
                         {discussion.user.avatarFallback}
                       </AvatarFallback>
                     </Avatar>
-                    <span className='text-foreground/70 font-semibold text-sm'>
+                    <span className='text-foreground font-semibold text-sm'>
                       {discussion.user.username}
                     </span>
                   </div>
                 </div>
-                <div className='flex flex-col items-end gap-2 sm:ml-auto'>
+                <div className='flex flex-col items-end sm:ml-auto gap-10'>
                   <div className='flex items-center gap-1 text-foreground/70'>
                     <MessageSquare className='w-4 h-4' />
-                    <span>{discussion.comments} comments</span>
+                    <span className='text-sm text-foreground'>
+                      {discussion.comments} comments
+                    </span>
                   </div>
                   <div className='flex items-center gap-3 text-sm'>
                     <div className='flex items-center gap-1 text-green-500'>

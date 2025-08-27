@@ -94,7 +94,7 @@ const FeaturedQuiz = () => {
                         {quiz.badges.map((badge) => (
                           <Badge
                             key={badge}
-                            className={`text-foreground rounded-full border px-2.5 py-0.5 text-xs font-semibold flex items-center ${
+                            className={`text-white rounded-full border px-2.5 py-0.5 text-xs font-semibold flex items-center ${
                               badge === 'Hot'
                                 ? 'bg-[#7F1D1D] hover:bg-[#7F1D1D]/80'
                                 : badge === "Editor's Choice"
