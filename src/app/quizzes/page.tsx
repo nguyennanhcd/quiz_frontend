@@ -16,7 +16,7 @@ export default function QuizPlatform() {
     <div className='min-h-screen text-foreground p-4 md:p-8 lg:p-12'>
       {/* Header */}
       <div className='mb-8'>
-        <h1 className='text-4xl font-bold mb-2 text-foreground'>
+        <h1 className='text-3xl font-bold mb-2 text-foreground'>
           Explore Quizzes
         </h1>
         <p className='text-foreground/70 text-base'>

@@ -83,10 +83,8 @@ export default function QuizTournament() {
   return (
     <div className='min-h-screen text-foreground p-4 md:p-8 lg:p-12'>
       <div className=''>
-        <h1 className='text-3xl md:text-4xl font-bold mb-2'>
-          Quiz Tournaments
-        </h1>
-        <p className='text-foreground/70 text-lg mb-8'>
+        <h1 className='text-3xl font-bold mb-2'>Quiz Tournaments</h1>
+        <p className='text-foreground/70 text-base mb-8'>
           Compete against other quiz enthusiasts and win amazing prizes
         </p>
 
@@ -104,10 +102,10 @@ export default function QuizTournament() {
               <span className='inline-flex items-center rounded-full bg-red-500 px-3 py-1 text-xs font-medium text-white'>
                 FEATURED
               </span>
-              <h2 className='text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white'>
+              <h2 className='text-xl md:text-3xl font-extrabold leading-tight text-white'>
                 Global Knowledge Championship
               </h2>
-              <p className='text-lg text-white'>
+              <p className='text-base text-white'>
                 Test your knowledge against the best quiz enthusiasts from
                 around the world in this premier tournament with multiple rounds
                 of challenging questions.
@@ -149,15 +147,15 @@ export default function QuizTournament() {
               </div>
               <div className='grid grid-cols-3 gap-4'>
                 <div className='bg-default rounded-lg p-4 text-center'>
-                  <div className='text-3xl font-bold text-white'>3</div>
+                  <div className='text-2xl font-bold text-white'>3</div>
                   <div className='text-white text-sm'>Rounds</div>
                 </div>
                 <div className='bg-default rounded-lg p-4 text-center'>
-                  <div className='text-3xl font-bold text-white'>15</div>
+                  <div className='text-2xl font-bold text-white'>15</div>
                   <div className='text-white text-sm'>Categories</div>
                 </div>
                 <div className='bg-default rounded-lg p-4 text-center'>
-                  <div className='text-3xl font-bold text-white'>50</div>
+                  <div className='text-2xl font-bold text-white'>50</div>
                   <div className='text-white text-sm'>Questions</div>
                 </div>
               </div>
@@ -172,13 +170,13 @@ export default function QuizTournament() {
       <div className='mt-10'>
         {/* Header */}
         <div className='flex items-center justify-between mb-8'>
-          <h1 className='text-3xl font-bold'>All Tournaments</h1>
+          <h1 className='text-2xl font-bold'>All Tournaments</h1>
           <Select value={filter} onValueChange={handleFilterChange}>
-            <SelectTrigger className='w-48 bg-main border-gray-300 dark:border-slate-700'>
+            <SelectTrigger className='w-48 bg-background border-gray-300 dark:border-slate-700'>
               <SelectValue placeholder='All Tournaments' />
             </SelectTrigger>
-            <SelectContent className='bg-main border-gray-300 dark:border-slate-700'>
-              <SelectItem value='all' className='text-foreground'>
+            <SelectContent className='bg-background border-gray-300 dark:border-slate-700'>
+              <SelectItem value='all' className='text-foreground border'>
                 <div className='flex items-center gap-2'>
                   <Check className='w-4 h-4' />
                   All Tournaments
@@ -211,7 +209,7 @@ export default function QuizTournament() {
               <TabsTrigger
                 key={category}
                 value={category}
-                className='flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs sm:text-sm  sm:px-4 sm:py-1.5 font-medium text-foreground/70 data-[state=active]:bg-default data-[state=active]:text-white data-[state=active]:rounded-md hover:bg-default-hover hover:text-white transition-all duration-200'
+                className='flex-shrink-0 whitespace-nowrap px-2.5 py-1 text-xs sm:text-sm border-gray-300 dark:border-slate-700 rounded-full  sm:px-4 sm:py-1.5 font-medium text-foreground/70 data-[state=active]:bg-default data-[state=active]:text-white hover:bg-default-hover hover:text-white transition-all duration-200'
               >
                 {category === 'all' ? 'All Categories' : category}
               </TabsTrigger>
@@ -224,7 +222,7 @@ export default function QuizTournament() {
           {filteredTournaments.map((tournament) => (
             <Card
               key={tournament.id}
-              className='bg-main border-gray-300 dark:border-slate-700 overflow-hidden'
+              className='bg-background border-gray-300 dark:border-slate-700 overflow-hidden'
             >
               <div className='relative'>
                 <Image
@@ -276,8 +274,8 @@ export default function QuizTournament() {
                 </div>
 
                 {tournament.closingInfo && (
-                  <div className='flex items-center gap-2 text-yellow-400 text-sm mb-4'>
-                    <Clock className='w-4 h-4' />
+                  <div className='flex items-center gap-2 dark:text-yellow-400 text-foreground text-sm mb-4'>
+                    <Clock className='w-4 h-4 text-yellow-500' />
                     <span>{tournament.closingInfo}</span>
                   </div>
                 )}
