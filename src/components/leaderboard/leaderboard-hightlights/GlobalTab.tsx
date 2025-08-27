@@ -41,12 +41,12 @@ export default function GlobalTab({ users, isLoading }: GlobalTabProps) {
                 {users[1].points.toLocaleString()} pts
               </p>
               <div className='flex items-center gap-2 mb-2'>
-                <Badge className='bg-slate-600 hover:bg-slate-700 text-xs dark:bg-slate-600 dark:hover:bg-slate-700'>
+                <Badge className='bg-[#d9d9d9] dark:bg-main text-xs text-foreground'>
                   💎 Platinum
                 </Badge>
                 <Badge
                   variant='outline'
-                  className='border-yellow-400 text-yellow-400 text-xs'
+                  className='border-yellow-400 text-foreground'
                 >
                   ⭐65
                 </Badge>
@@ -82,12 +82,12 @@ export default function GlobalTab({ users, isLoading }: GlobalTabProps) {
                 {users[0].points.toLocaleString()} pts
               </p>
               <div className='flex items-center gap-2 mb-2'>
-                <Badge className='bg-blue-600 hover:bg-blue-700 text-sm dark:bg-blue-600 dark:hover:bg-blue-700'>
+                <Badge className='bg-blue-600 hover:bg-blue-700 text-sm dark:bg-blue-600 text-white dark:hover:bg-blue-700'>
                   💎 Diamond
                 </Badge>
                 <Badge
                   variant='outline'
-                  className='border-yellow-400 text-yellow-400 text-sm'
+                  className='border-yellow-400 text-foreground text-sm'
                 >
                   ⭐78
                 </Badge>
@@ -120,12 +120,12 @@ export default function GlobalTab({ users, isLoading }: GlobalTabProps) {
                 {users[2].points.toLocaleString()} pts
               </p>
               <div className='flex items-center gap-2 mb-2'>
-                <Badge className='bg-yellow-600 hover:bg-yellow-700 text-xs dark:bg-yellow-600 dark:hover:bg-yellow-700'>
+                <Badge className='bg-yellow-600 hover:bg-yellow-700 text-xs dark:bg-yellow-600 dark:hover:bg-yellow-700 text-white'>
                   🥇 Gold
                 </Badge>
                 <Badge
                   variant='outline'
-                  className='border-yellow-400 text-yellow-400 text-xs'
+                  className='border-yellow-400 text-foreground text-xs'
                 >
                   ⭐59
                 </Badge>
