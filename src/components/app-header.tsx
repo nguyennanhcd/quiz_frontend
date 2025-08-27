@@ -23,7 +23,7 @@ export function AppHeader() {
   return (
     <header
       className='fixed top-0 z-50 h-16 flex items-center
-                 dark:bg-main bg-background border-b border-gray-300 dark:border-slate-700 px-2 sm:px-4
+                 bg-background border-b border-gray-300 dark:border-slate-700 px-2 sm:px-4
                  transition-all duration-300'
       style={{ left: sidebarWidth, right: 0 }}
     >
@@ -90,7 +90,7 @@ export function AppHeader() {
         {/* Avatar */}
         <Avatar className='h-7 w-7 sm:h-8 sm:w-8 shrink-0'>
           <AvatarImage src='/avatarPlaceholder.webp' />
-          <AvatarFallback className='bg-main text-foreground text-xs'>
+          <AvatarFallback className='bg-background text-background text-xs'>
             JD
           </AvatarFallback>
         </Avatar>

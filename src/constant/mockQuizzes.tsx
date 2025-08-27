@@ -323,7 +323,7 @@ export const quizzes: Quiz[] = [
     duration: 45,
     questionCount: 25,
     difficulty: 'Medium',
-    image: '/placeholder.webp',
+    image: '/q17.png',
     currentPlayers: 15,
     players: 15,
     maxPlayers: 500,

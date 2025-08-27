@@ -265,7 +265,7 @@ export function LeaderboardHighlights() {
   }, [activeTab, timePeriod, selectedCategory])
 
   return (
-    <Card className='bg-main dark:bg-slate-800/50 border border-gray-300 dark:border-slate-700 col-span-2 lg:col-span-2 py-4 sm:py-6'>
+    <Card className=' bg-background border border-gray-300 dark:border-slate-700 col-span-2 lg:col-span-2 py-4 sm:py-6'>
       <CardHeader>
         <div className='flex items-center justify-between'>
           <div>
@@ -289,21 +289,21 @@ export function LeaderboardHighlights() {
           <TabsList className='grid w-full grid-cols-3 bg-[#e5eaee] dark:bg-slate-700 mb-4'>
             <TabsTrigger
               value='global'
-              className='data-[state=active]:bg-main text-xs sm:text-sm'
+              className='data-[state=active]:bg-background text-xs sm:text-sm'
             >
               <Globe className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
               Global
             </TabsTrigger>
             <TabsTrigger
               value='category'
-              className='data-[state=active]:bg-main text-xs sm:text-sm'
+              className='data-[state=active]:bg-background text-xs sm:text-sm'
             >
               <BarChart3 className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
               By Category
             </TabsTrigger>
             <TabsTrigger
               value='trending'
-              className='data-[state=active]:bg-main text-xs sm:text-sm'
+              className='data-[state=active]:bg-background text-xs sm:text-sm'
             >
               <TrendingUp className='w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2' />
               Trending

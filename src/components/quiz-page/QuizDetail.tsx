@@ -21,6 +21,7 @@ import Leaderboard from '../quizDetail/Leaderboard'
 import Reviews from '../quizDetail/Reviews'
 import { Card, CardContent } from '../ui/card'
 import { quizzes } from '@/constant/mockQuizzes'
+import { formatDuration } from '@/lib/formatDuration'
 
 interface QuizDetailProps {
   quiz: Quiz
@@ -34,25 +35,27 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
   const progressPercentage = (currentPlayers / maxPlayers) * 100
 
   return (
-    <div className='min-h-screen bg-main text-foreground'>
+    <div className='min-h-screen bg-background text-foreground'>
       {/* Header */}
       <div className='p-4'>
         <Link href='/quizzes'>
-          <Button className='text-white hover:bg-default-hover'>
+          <Button className='text-white hover:bg-default-hover bg-transparent'>
             <ArrowLeft className='w-4 h-4 mr-2' />
-            Back to List
+            Back to Explore
           </Button>
         </Link>
       </div>
 
       {/* Hero Section */}
-      <div className='relative mx-4 mb-8 rounded-lg overflow-hidden'>
+      <div className='relative mx-4 mb-8 rounded-lg h-72 overflow-hidden'>
         <Image
           src={quiz.image}
           alt='Quiz background'
-          width={600}
-          height={400}
-          className='w-full h-[400px] object-cover'
+          width={1200}
+          height={800}
+          quality={100}
+          priority
+          className='w-full h-full object-cover'
         />
 
         {/* Quiz Info Overlay */}
@@ -84,7 +87,7 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
           <div className='flex items-center gap-6 text-sm'>
             <div className='flex items-center gap-1'>
               <Clock className='w-4 h-4' />
-              <span>{quiz.duration}</span>
+              <span>{formatDuration(quiz.duration)}</span>
             </div>
             <div className='flex items-center gap-1'>
               <Users className='w-4 h-4' />
@@ -109,22 +112,22 @@ export default function QuizDetail({ quiz }: QuizDetailProps) {
         {/* Main Content */}
         <div className='flex-1 col-span-2'>
           <Tabs defaultValue='overview' className='w-full'>
-            <TabsList className='grid w-full grid-cols-3 bg-slate-800'>
+            <TabsList className='grid w-full grid-cols-3 dark:bg-[#1e293b80]'>
               <TabsTrigger
                 value='overview'
-                className='data-[state=active]:bg-slate-700'
+                className='dark:data-[state=active]:bg-slate-700 data-[state=active]:bg-background data-[state=active]:text-foreground text-foreground/70'
               >
                 Overview
               </TabsTrigger>
               <TabsTrigger
                 value='leaderboard'
-                className='data-[state=active]:bg-slate-700'
+                className='dark:data-[state=active]:bg-slate-700 data-[state=active]:bg-background data-[state=active]:text-foreground text-foreground/70'
               >
                 Leaderboard
               </TabsTrigger>
               <TabsTrigger
                 value='reviews'
-                className='data-[state=active]:bg-slate-700'
+                className='dark:data-[state=active]:bg-slate-700 data-[state=active]:bg-background data-[state=active]:text-foreground text-foreground/70'
               >
                 Reviews
               </TabsTrigger>

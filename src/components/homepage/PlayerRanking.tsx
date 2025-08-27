@@ -13,7 +13,7 @@ import { players } from '@/constant/players'
 
 const PlayerRanking = () => {
   return (
-    <div className='xl:py-10 bg-main p-6 text-foreground rounded-sm'>
+    <div className='xl:py-10 bg-main p-6 text-foreground rounded-xl'>
       <div className='mb-10 flex items-center justify-between'>
         <h2 className='flex items-center gap-2 text-2xl font-bold'>
           <Swords className='h-6 w-6' />
