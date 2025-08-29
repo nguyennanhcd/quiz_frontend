@@ -7,7 +7,7 @@ import SettingsTab from '@/components/create-quiz/SettingsTab'
 
 export default function QuizForm() {
   return (
-    <div className='min-h-screen w-full text-foreground p-4 sm:p-6 md:p-8 bg-background'>
+    <div className='min-h-screen w-full text-foreground p-4 md:p-6 bg-background'>
       <Tabs defaultValue='quiz-details' className='w-full '>
         {/* Header/Navigation Tabs */}
 
@@ -50,6 +50,7 @@ export default function QuizForm() {
           </TabsContent>
         </div>
       </Tabs>
+      <hr />
 
       {/* Footer Action Buttons */}
       <div className='flex flex-col sm:flex-row items-center justify-between p-6 bg-transparent  gap-4 text-foreground'>
