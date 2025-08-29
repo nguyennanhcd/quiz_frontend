@@ -5,6 +5,9 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import {
   Accordion,
   AccordionContent,
@@ -109,8 +112,8 @@ export default function QuestionsTab() {
   }
 
   return (
-    <div className='p-6 rounded-xl'>
-      <div className='flex items-center justify-between mb-6'>
+    <div className='rounded-xl'>
+      <div className='flex items-center justify-between mb-3'>
         <h2 className='text-xl font-bold text-foreground'>Questions</h2>
         <Button
           onClick={addQuestion}
@@ -127,7 +130,7 @@ export default function QuestionsTab() {
             <AccordionTrigger className=''>
               <div className='flex items-center justify-between w-full mr-4'>
                 <div className='flex items-center gap-3'>
-                  <h3 className='text-base font-semibold text-foreground'>
+                  <h3 className='text-base font-semibold text-foreground pl-3'>
                     {question.title}
                   </h3>
                   {question.text && (
@@ -138,13 +141,12 @@ export default function QuestionsTab() {
                 </div>
                 <div className='flex items-center gap-2'>
                   <Button
-                    variant='ghost'
                     size='sm'
                     onClick={(e) => {
                       e.stopPropagation()
                       duplicateQuestion(question.id)
                     }}
-                    className='text-foreground hover:bg-gray-100 dark:hover:bg-slate-800'
+                    className='text-white '
                     title='Duplicate question'
                   >
                     <Copy className='w-4 h-4' />
@@ -156,9 +158,9 @@ export default function QuestionsTab() {
                       e.stopPropagation()
                       togglePreview(question.id)
                     }}
-                    className={`text-foreground hover:bg-gray-100 dark:hover:bg-slate-800 ${
+                    className={`text-white hover:bg-default-hover hover:text-white ${
                       previewMode === question.id
-                        ? 'bg-gray-100 dark:bg-slate-800'
+                        ? 'bg-default/80 dark:bg-slate-800'
                         : ''
                     }`}
                     title='Preview question'
@@ -166,13 +168,12 @@ export default function QuestionsTab() {
                     <Eye className='w-4 h-4' />
                   </Button>
                   <Button
-                    variant='ghost'
                     size='sm'
                     onClick={(e) => {
                       e.stopPropagation()
                       deleteQuestion(question.id)
                     }}
-                    className='text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20'
+                    className='text-red-600 bg-transparent hover:text-red-400 shadow-none hover:bg-transparent'
                     disabled={questions.length === 1}
                     title='Delete question'
                   >
@@ -184,43 +185,51 @@ export default function QuestionsTab() {
 
             <AccordionContent>
               {previewMode === question.id ? (
-                // Preview Mode
-                <div className='space-y-4 p-4 bg-gray-50 dark:bg-slate-800/50 rounded-lg'>
-                  <h4 className='text-lg font-medium'>Preview Mode</h4>
-                  {question.text && (
-                    <div className='text-foreground'>
-                      <strong>Question:</strong> {question.text}
-                    </div>
-                  )}
-                  <div className='space-y-2'>
-                    <strong>Options:</strong>
-                    {question.options.map((option, index) => (
-                      <div
-                        key={index}
-                        className={`p-2 rounded border ${
-                          index === question.correctAnswer
-                            ? 'bg-green-100 dark:bg-green-900/20 border-green-300'
-                            : 'bg-white dark:bg-slate-700 border-gray-300'
-                        }`}
-                      >
-                        <span className='mr-2'>
-                          {String.fromCharCode(65 + index)}.
-                        </span>
-                        {option || `Option ${index + 1}`}
-                        {index === question.correctAnswer && (
-                          <span className='ml-2 text-green-600 dark:text-green-400 font-semibold'>
-                            ✓ Correct
-                          </span>
-                        )}
+                <Card className='bg-gray-50 dark:bg-slate-800/50'>
+                  <CardContent className='p-4 space-y-4'>
+                    <h4 className='text-lg font-medium'>Preview Mode</h4>
+                    {question.text && (
+                      <div className='text-foreground'>
+                        <strong>Question:</strong> {question.text}
                       </div>
-                    ))}
-                  </div>
-                  {question.explanation && (
-                    <div className='mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded border border-blue-200'>
-                      <strong>Explanation:</strong> {question.explanation}
+                    )}
+                    <div className='space-y-2'>
+                      <strong>Options:</strong>
+                      {question.options.map((option, index) => (
+                        <Card
+                          key={index}
+                          className={`p-2 ${
+                            index === question.correctAnswer
+                              ? 'bg-green-100 dark:bg-green-900/20 border-green-300'
+                              : 'bg-white dark:bg-slate-700 border-gray-300'
+                          }`}
+                        >
+                          <CardContent className='p-0 flex items-center'>
+                            <span className='mr-2'>
+                              {String.fromCharCode(65 + index)}.
+                            </span>
+                            {option || `Option ${index + 1}`}
+                            {index === question.correctAnswer && (
+                              <Badge
+                                variant='secondary'
+                                className='ml-2 text-green-600 dark:text-green-400 bg-transparent border-0 p-0'
+                              >
+                                ✓ Correct
+                              </Badge>
+                            )}
+                          </CardContent>
+                        </Card>
+                      ))}
                     </div>
-                  )}
-                </div>
+                    {question.explanation && (
+                      <Card className='mt-4 bg-blue-50 dark:bg-blue-900/20 border-blue-200'>
+                        <CardContent className='p-3'>
+                          <strong>Explanation:</strong> {question.explanation}
+                        </CardContent>
+                      </Card>
+                    )}
+                  </CardContent>
+                </Card>
               ) : (
                 // Edit Mode
                 <div className='space-y-6 mt-4'>
@@ -248,21 +257,22 @@ export default function QuestionsTab() {
                     <Label className='text-foreground text-sm mb-3 font-semibold block'>
                       Options (Select the correct answer)
                     </Label>
-                    <div className='space-y-3'>
+                    <RadioGroup
+                      value={question.correctAnswer.toString()}
+                      onValueChange={(value) =>
+                        setCorrectAnswer(question.id, parseInt(value))
+                      }
+                      className='space-y-3'
+                    >
                       {question.options.map((option, optionIndex) => (
                         <div
                           key={optionIndex}
                           className='flex items-center gap-3'
                         >
-                          <input
-                            type='radio'
-                            name={`correct-answer-${question.id}`}
+                          <RadioGroupItem
+                            value={optionIndex.toString()}
                             id={`option-${question.id}-${optionIndex}`}
-                            className='w-4 h-4 text-blue-600'
-                            checked={question.correctAnswer === optionIndex}
-                            onChange={() =>
-                              setCorrectAnswer(question.id, optionIndex)
-                            }
+                            className='w-4 h-4'
                           />
                           <Input
                             placeholder={`Option ${optionIndex + 1}`}
@@ -278,7 +288,7 @@ export default function QuestionsTab() {
                           />
                         </div>
                       ))}
-                    </div>
+                    </RadioGroup>
                   </div>
 
                   {/* Explanation */}

@@ -1,3 +1,5 @@
+'use client'
+
 import { Label } from '@/components/ui/label'
 import {
   Select,
@@ -7,15 +9,22 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
+import { Switch } from '@/components/ui/switch'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState } from 'react'
 
 export default function SettingsTab() {
-  return (
-    <div className='p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm'>
-      <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-6'>
-        Quiz Settings
-      </h2>
+  const [passingScore, setPassingScore] = useState(70)
 
-      <div className='space-y-5'>
+  return (
+    <Card className='bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 shadow-sm py-10'>
+      <CardHeader className='pb-4'>
+        <CardTitle className='text-xl font-semibold text-gray-900 dark:text-white'>
+          Quiz Settings
+        </CardTitle>
+      </CardHeader>
+
+      <CardContent className='space-y-5'>
         {/* Time Limit */}
         <div>
           <Label
@@ -136,14 +145,10 @@ export default function SettingsTab() {
           >
             Randomize Questions
           </Label>
-          <label className='relative inline-flex items-center cursor-pointer'>
-            <input
-              type='checkbox'
-              id='randomize-questions'
-              className='sr-only peer'
-            />
-            <div className="relative w-10 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 dark:peer-focus:ring-blue-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500 dark:peer-checked:bg-blue-400"></div>
-          </label>
+          <Switch
+            id='randomize-questions'
+            className='data-[state=checked]:bg-blue-500 dark:data-[state=checked]:bg-blue-400 data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-600'
+          />
         </div>
 
         {/* Show Explanations After Answering */}
@@ -154,15 +159,11 @@ export default function SettingsTab() {
           >
             Show Explanations After Answering
           </Label>
-          <label className='relative inline-flex items-center cursor-pointer'>
-            <input
-              type='checkbox'
-              id='show-explanations'
-              className='sr-only peer'
-              defaultChecked
-            />
-            <div className="relative w-10 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 dark:peer-focus:ring-blue-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500 dark:peer-checked:bg-blue-400"></div>
-          </label>
+          <Switch
+            id='show-explanations'
+            defaultChecked
+            className='data-[state=checked]:bg-blue-500 dark:data-[state=checked]:bg-blue-400 data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-600'
+          />
         </div>
 
         {/* Allow Retakes */}
@@ -173,30 +174,27 @@ export default function SettingsTab() {
           >
             Allow Retakes
           </Label>
-          <label className='relative inline-flex items-center cursor-pointer'>
-            <input
-              type='checkbox'
-              id='allow-retakes'
-              className='sr-only peer'
-              defaultChecked
-            />
-            <div className="relative w-10 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 dark:peer-focus:ring-blue-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500 dark:peer-checked:bg-blue-400"></div>
-          </label>
+          <Switch
+            id='allow-retakes'
+            defaultChecked
+            className='data-[state=checked]:bg-blue-500 dark:data-[state=checked]:bg-blue-400 data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-600'
+          />
         </div>
 
         {/* Passing Score */}
         <div className='py-2'>
           <div className='flex items-center justify-between mb-3'>
             <Label className='text-gray-700 dark:text-gray-200 text-sm font-medium'>
-              Passing Score: 70%
+              Passing Score: {passingScore}%
             </Label>
           </div>
           <Slider
-            defaultValue={[70]}
+            value={[passingScore]}
+            onValueChange={(value) => setPassingScore(value[0])}
             max={100}
             min={0}
             step={1}
-            className='w-full [&>span:first-child]:bg-gray-200 dark:[&>span:first-child]:bg-gray-600 [&_[role=slider]]:bg-blue-500 dark:[&_[role=slider]]:bg-blue-400 [&>span:first-child>span]:bg-blue-500 dark:[&>span:first-child>span]:bg-blue-400'
+            className='w-full [&>span:first-child]:bg-gray-200 dark:[&>span:first-child]:bg-gray-600 [&_[role=slider]]:bg-default dark:[&_[role=slider]]:bg-default-hover [&>span:first-child>span]:bg-default dark:[&>span:first-child>span]:bg-default-hover'
           />
         </div>
 
@@ -237,7 +235,7 @@ export default function SettingsTab() {
             </SelectContent>
           </Select>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }
