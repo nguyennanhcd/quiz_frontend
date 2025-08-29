@@ -54,11 +54,11 @@ export default function QuizDetailsTab() {
           <Select defaultValue='medium'>
             <SelectTrigger
               id='difficulty-level'
-              className='w-full bg-white text-foreground placeholder:text-foreground/70 focus:ring-offset-0 focus:ring-0 border border-gray-300 dark:border-slate-700'
+              className='w-full bg-white dark:bg-background text-foreground placeholder:text-foreground/70 focus:ring-offset-0 focus:ring-0 border border-gray-300 dark:border-slate-700'
             >
               <SelectValue placeholder='Select difficulty' />
             </SelectTrigger>
-            <SelectContent className='bg-white text-foreground'>
+            <SelectContent className='bg-white dark:bg-background text-foreground'>
               <SelectItem value='easy'>Easy</SelectItem>
               <SelectItem value='medium'>Medium</SelectItem>
               <SelectItem value='hard'>Hard</SelectItem>
